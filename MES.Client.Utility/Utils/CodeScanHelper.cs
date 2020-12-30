@@ -6,6 +6,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FastReport;
+using FastReport.Barcode;
+using FastReport.Table;
 
 
 namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
@@ -39,11 +41,25 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
         }
 
 
-        public void PrintQrCode(String code)
+        public void PrintQrCode(String code, String frxModelName)
         {
             Report rep = new Report();
-            string mainModuleFileName = System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName;
+            String mainModuleFileName = System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName;
+            String exeName = "ManufacturingExecutionSystem.exe";
+            mainModuleFileName = mainModuleFileName?.Substring(0, mainModuleFileName.Length - exeName.Length);
+            mainModuleFileName += frxModelName;
+            rep.Load(mainModuleFileName);
+            if (rep.FindObject("Text1") is TextObject textObject)
+            {
+                textObject.Text = code;
+            }
 
+            if (rep.FindObject("Barcode42") is BarcodeObject barcodeObject)
+            {
+                barcodeObject.Text = code;
+                barcodeObject.Barcode = new BarcodeQR();
+            }
+            
         }
     }
 }

@@ -159,7 +159,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             RegisteredDeviceList.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Type dgvType = RegisteredDeviceList.GetType();
             PropertyInfo pi = dgvType.GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
-            pi.SetValue(this.RegisteredDeviceList, true, null);
+            pi?.SetValue(this.RegisteredDeviceList, true, null);
         }
 
 
@@ -210,7 +210,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             if (RegisteredDeviceList == null) return;
             if (saleOrder == null) return;
 
-            DateTime _dtStart = new DateTime(1970, 1, 1, 8, 0, 0);
+            DateTime dtStart = new DateTime(1970, 1, 1, 8, 0, 0);
 
             foreach (var i in registrationDeviceRecord)
             {
@@ -322,7 +322,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     {
                         time = "0";
                     }
-                    var startTime = _dtStart.AddMilliseconds(Convert.ToInt64(time));
+                    var startTime = dtStart.AddMilliseconds(Convert.ToInt64(time));
                     RegisteredDeviceList.Rows[index].Cells[13].Value = startTime.ToString("yyyy-MM-dd HH:mm:ss:f");
                 }
 
@@ -413,6 +413,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             {
                 Id = Qualify_ComboBox.SelectedIndex + 1, Reason = Qualify_ComboBox.SelectedItem?.ToString()
             };
+        }
+
+        private void Setting_Button_Click(object sender, EventArgs e)
+        {
+            PrinterSettings printerSettings = new PrinterSettings();
+            printerSettings.ShowDialog();
         }
     }
 }

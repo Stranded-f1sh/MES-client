@@ -29,3 +29,4 @@ E:\code\ManufacturingExecutionSystem\bin\Debug\System.Security.Principal.Windows
 E:\code\ManufacturingExecutionSystem\bin\Debug\FastReport.Bars.dll
 E:\code\ManufacturingExecutionSystem\bin\Debug\FastReport.dll
 E:\code\ManufacturingExecutionSystem\bin\Debug\FastReport.Editor.dll
+E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.PrinterSettings.resources
