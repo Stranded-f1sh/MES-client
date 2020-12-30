@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Configuration;
 using RestSharp;
-using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Numerics;
-using System.Diagnostics;
+
 
 namespace ManufacturingExecutionSystem.MES.Client.Api
 {
     internal static class Common
     {
+        private static readonly AppSettingsSection AppSettingsSection;
+        static Common()
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            AppSettingsSection = config.AppSettings;
+        }
+
         /// <summary>
         /// 添加Headers
         /// </summary>
@@ -25,13 +24,13 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         private static ICollection<KeyValuePair<string, string>> AddHeaders(string token)
         {
             ICollection<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            KeyValuePair<string, string> avpAccept = new KeyValuePair<string, string>("Accept", "application/json, text/plain, */*");
-            KeyValuePair<string, string> acceptEncoding = new KeyValuePair<string, string>("Accept-Encoding", "gzip, deflate");
-            KeyValuePair<string, string> acceptLanguage = new KeyValuePair<string, string>("Accept-Language", "en,zh-CN;q=0.9,zh;q=0.8,jv;q=0.7");
-            KeyValuePair<string, string> connection = new KeyValuePair<string, string>("Connection", "keep-alive");
-            KeyValuePair<string, string> host = new KeyValuePair<string, string>("Host", "47.97.117.253:8092");
-            KeyValuePair<string, string> referer = new KeyValuePair<string, string>("Referer", "http://47.97.117.253:8092/");
-            KeyValuePair<string, string> userAgent = new KeyValuePair<string, string>("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36");
+            KeyValuePair<string, string> avpAccept = new KeyValuePair<string, string>("Accept", AppSettingsSection?.Settings?["Accept"]?.Value);
+            KeyValuePair<string, string> acceptEncoding = new KeyValuePair<string, string>("Accept-Encoding", AppSettingsSection?.Settings?["Accept-Encoding"]?.Value);
+            KeyValuePair<string, string> acceptLanguage = new KeyValuePair<string, string>("Accept-Language", AppSettingsSection?.Settings?["Accept-Language"]?.Value);
+            KeyValuePair<string, string> connection = new KeyValuePair<string, string>("Connection", AppSettingsSection?.Settings?["Connection"]?.Value);
+            KeyValuePair<string, string> host = new KeyValuePair<string, string>("Host", AppSettingsSection?.Settings?["Host"]?.Value);
+            KeyValuePair<string, string> referer = new KeyValuePair<string, string>("Referer", AppSettingsSection?.Settings?["Referer"]?.Value);
+            KeyValuePair<string, string> userAgent = new KeyValuePair<string, string>("User-Agent", AppSettingsSection?.Settings?["User-Agent"]?.Value);
             KeyValuePair<string, string> authorization = new KeyValuePair<string, string>("Authorization", token);
 
             headers.Add(avpAccept);
@@ -53,13 +52,13 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         private static ICollection<KeyValuePair<string, string>> AddHeaders()
         {
             ICollection<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
-            KeyValuePair<string, string> avpAccept = new KeyValuePair<string, string>("Accept", "application/json, text/plain, */*");
-            KeyValuePair<string, string> acceptEncoding = new KeyValuePair<string, string>("Accept-Encoding", "gzip, deflate");
-            KeyValuePair<string, string> acceptLanguage = new KeyValuePair<string, string>("Accept-Language", "en,zh-CN;q=0.9,zh;q=0.8,jv;q=0.7");
-            KeyValuePair<string, string> connection = new KeyValuePair<string, string>("Connection", "keep-alive");
-            KeyValuePair<string, string> host = new KeyValuePair<string, string>("Host", "47.97.117.253:8092");
-            KeyValuePair<string, string> referer = new KeyValuePair<string, string>("Referer", "http://47.97.117.253:8092/");
-            KeyValuePair<string, string> userAgent = new KeyValuePair<string, string>("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36");
+            KeyValuePair<string, string> avpAccept = new KeyValuePair<string, string>("Accept", AppSettingsSection?.Settings?["Accept"]?.Value);
+            KeyValuePair<string, string> acceptEncoding = new KeyValuePair<string, string>("Accept-Encoding", AppSettingsSection?.Settings?["Accept-Encoding"]?.Value);
+            KeyValuePair<string, string> acceptLanguage = new KeyValuePair<string, string>("Accept-Language", AppSettingsSection?.Settings?["Accept-Language"]?.Value);
+            KeyValuePair<string, string> connection = new KeyValuePair<string, string>("Connection", AppSettingsSection?.Settings?["Connection"]?.Value);
+            KeyValuePair<string, string> host = new KeyValuePair<string, string>("Host", AppSettingsSection?.Settings?["Host"]?.Value);
+            KeyValuePair<string, string> referer = new KeyValuePair<string, string>("Referer", AppSettingsSection?.Settings?["Referer"]?.Value);
+            KeyValuePair<string, string> userAgent = new KeyValuePair<string, string>("User-Agent", AppSettingsSection?.Settings?["User-Agent"]?.Value);
 
             headers.Add(avpAccept);
             headers.Add(acceptEncoding);
@@ -82,13 +81,27 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         /// <returns></returns>
         public static JObject BackgroundRequest(string url, Method method, string token, object obj)
         {
-            var client = new RestClient("http://47.97.117.253:8092");
-            var request = new RestRequest(url, method);
+            var client = new RestClient(AppSettingsSection?.Settings?["MesBackEndIpAddress"]?.Value ?? string.Empty);
+            var request = new RestRequest(url ?? string.Empty, method);
             ICollection<KeyValuePair<string, string>> headers = AddHeaders(token);
-            request.AddHeaders(headers);
+            request.AddHeaders(headers ?? throw new InvalidOperationException());
             var json = JsonConvert.SerializeObject(obj);
             request.AddParameter("application/json", json, ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);
+
+            request.Timeout = 5000;
+            int retryTimes = 0;
+            IRestResponse response;
+
+            do
+            {
+                response = client.Execute(request);
+                retryTimes++;
+            } while ((response.ResponseStatus != ResponseStatus.Completed) && retryTimes < 3);
+
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                return null;
+            }
             string content = response.Content;
             JObject jObject = (JObject)JsonConvert.DeserializeObject(content);
             return jObject;
@@ -100,18 +113,29 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         /// </summary>
         /// <param name="url"></param>
         /// <param name="method"></param>
-        /// <param name="token"></param>
         /// <param name="obj"></param>
         /// <returns></returns>
         public static JObject BackgroundRequest(string url, Method method, object obj)
         {
-            var client = new RestClient("http://47.97.117.253:8092");
-            var request = new RestRequest(url, method);
+            var client = new RestClient(AppSettingsSection?.Settings?["MesBackEndIpAddress"]?.Value ?? string.Empty);
+            var request = new RestRequest(url ?? string.Empty, method);
             ICollection<KeyValuePair<string, string>> headers = AddHeaders();
-            request.AddHeaders(headers);
+            request.AddHeaders(headers ?? throw new InvalidOperationException());
             var json = JsonConvert.SerializeObject(obj);
             request.AddParameter("application/json", json, ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);
+            request.Timeout = 5000;
+            int retryTimes = 0;
+            IRestResponse response;
+            do
+            {
+                response = client.Execute(request);
+                retryTimes++;
+            } while ((response.ResponseStatus != ResponseStatus.Completed) && retryTimes < 3);
+
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                return null;
+            }
             string content = response.Content;
             JObject jObject = (JObject)JsonConvert.DeserializeObject(content);
             return jObject;
@@ -128,11 +152,23 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         /// <returns></returns>
         public static JObject BackgroundRequest(string url, Method method, string token)
         {
-            var client = new RestClient("http://47.97.117.253:8092");
+            var client = new RestClient(AppSettingsSection?.Settings?["MesBackEndIpAddress"]?.Value ?? string.Empty);
             var request = new RestRequest(url ?? string.Empty, method);
             ICollection<KeyValuePair<string, string>> headers = AddHeaders(token);
             request.AddHeaders(headers ?? throw new InvalidOperationException());
-            IRestResponse response = client.Execute(request);
+            request.Timeout = 5000;
+            int retryTimes = 0;
+            IRestResponse response;
+            do
+            {
+                response = client.Execute(request);
+                retryTimes ++;
+            } while ((response.ResponseStatus != ResponseStatus.Completed) && retryTimes < 3);
+
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                return null;
+            }
             string content = response.Content;
             JObject jObject = (JObject)JsonConvert.DeserializeObject(content);
             return jObject;

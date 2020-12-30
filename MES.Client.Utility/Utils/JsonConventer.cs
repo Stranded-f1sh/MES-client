@@ -1,28 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
 namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
 {
     internal static class JsonConverter
     {
-        // public void JObjectTo
 
         public static JToken GetJTokenList(JObject jObject)
         {
             if (jObject?.Property("code") != null && jObject["code"]?.ToString() == "0")
             {
-                if (jObject["data"]?["list"] != null && jObject["data"]["list"].HasValues)
-                {
-                    return jObject["data"]?["list"];
-                }
-                return null;
+                return jObject["data"]?["list"];
             }
             return null;
         }
+
+
+        public static JToken PostJToken(JObject jObject)
+        {
+            if (jObject?.Property("code") != null && jObject["code"]?.ToString() == "0")
+            {
+                return jObject["data"];
+            }
+            return jObject?["msg"];
+        }
+
+
+
+
+        // public void JObjectTo
+
+        public static JToken GetJToken(JObject jObject)
+        {
+            if (jObject?.Property("code") != null && jObject["code"]?.ToString() == "0")
+            {
+                return jObject["data"];
+            }
+            return jObject?["msg"];
+        }
+
 
         /// <summary>
         /// 判断请求后JToken返回的字段是否存在

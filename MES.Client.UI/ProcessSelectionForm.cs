@@ -30,8 +30,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         private void ProcessSelectionForm_Load(object sender, EventArgs e)
         {
-            WorkOrderService workOrderService = new WorkOrderService();
-            _productOrders = workOrderService.GetProductOrders(_loginInfo);
+            ProductOrderService productOrderService = new ProductOrderService();
+            _productOrders = productOrderService.GetProductOrders(_loginInfo);
         }
 
 

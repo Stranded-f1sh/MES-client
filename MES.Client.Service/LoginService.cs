@@ -12,12 +12,12 @@ using RestSharp;
 
 namespace ManufacturingExecutionSystem.MES.Client.Service
 {
-    internal class LoginService
-    { 
+    class LoginService
+    {
         public LoginInfo GetToken(String userName, String passWord)
         {
             LoginInfo loginInfo = new LoginInfo { username = userName, password = passWord};
-            JObject jToken = Common.BackgroundRequest("/prod-api/auth/login", Method.POST, loginInfo);
+            JObject jToken = LoginApi.GetTokenApi(loginInfo);
             if (jToken?.Property("code") != null && jToken["code"]?.ToString() == "0")
             {
                 loginInfo.Token = jToken["data"]?["token"]?.ToString();
@@ -30,7 +30,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
 
         public JToken GetUserList(LoginInfo loginInfo)
         {
-            JObject userList = Common.BackgroundRequest("/prod-api/user/list", Method.GET, loginInfo?.Token);
+            JObject userList = LoginApi.GetUserListApi(loginInfo);
             return JsonConverter.GetJTokenList(userList);
         }
     }

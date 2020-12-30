@@ -68,5 +68,14 @@ namespace ManufacturingExecutionSystem.Properties {
                 return ResourceManager.GetString("LoginPassWordErro", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 请求超时！请重试。 的本地化字符串。
+        /// </summary>
+        internal static string RequestTimeOut {
+            get {
+                return ResourceManager.GetString("RequestTimeOut", resourceCulture);
+            }
+        }
     }
 }

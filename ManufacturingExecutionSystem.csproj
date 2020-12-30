@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,8 +32,21 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FastReport, Version=2020.3.16.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\FastReport\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Bars, Version=2020.3.16.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\FastReport\FastReport.Bars.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Editor, Version=2020.3.16.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\FastReport\FastReport.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -41,8 +55,14 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Configuration.ConfigurationManager.5.0.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
       <Private>True</Private>
@@ -54,6 +74,18 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Permissions.5.0.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -64,17 +96,31 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
     <Reference Include="XPTable, Version=1.6.1.140, Culture=neutral, PublicKeyToken=24950705800d2198, processorArchitecture=MSIL">
       <HintPath>packages\XPTable.1.6.1.140\lib\net20\XPTable.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MES.Client.Api\Common.cs" />
+    <Compile Include="MES.Client.Api\DeviceBaoGongApi.cs" />
+    <Compile Include="MES.Client.Api\LoginApi.cs" />
+    <Compile Include="MES.Client.Api\ProductOrderApi.cs" />
+    <Compile Include="MES.Client.Api\QualifyApi.cs" />
+    <Compile Include="MES.Client.Api\DeviceRegistrationApi.cs" />
+    <Compile Include="MES.Client.Api\SaleOrderApi.cs" />
+    <Compile Include="MES.Client.Model\Device.cs" />
     <Compile Include="MES.Client.Model\LoginInfo.cs" />
     <Compile Include="MES.Client.Model\Process.cs" />
-    <Compile Include="MES.Client.Model\ProductOrderInfo.cs" />
+    <Compile Include="MES.Client.Model\ProductOrder.cs" />
+    <Compile Include="MES.Client.Model\Qualify.cs" />
+    <Compile Include="MES.Client.Model\SaleOrder.cs" />
+    <Compile Include="MES.Client.Service\BaoGongService.cs" />
     <Compile Include="MES.Client.Service\LoginService.cs" />
-    <Compile Include="MES.Client.Service\WorkOrderService.cs" />
+    <Compile Include="MES.Client.Service\ProductOrderService.cs" />
+    <Compile Include="MES.Client.Service\QualifyService.cs" />
+    <Compile Include="MES.Client.Service\RegistrationService.cs" />
+    <Compile Include="MES.Client.Service\SaleOrderService.cs" />
     <Compile Include="MES.Client.UI\CodeRegistrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,8 +151,11 @@
     <Compile Include="MES.Client.UI\ProcessSelectionForm.Designer.cs">
       <DependentUpon>ProcessSelectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MES.Client.Utility\Enum\IsRegister.cs" />
     <Compile Include="MES.Client.Utility\Enum\LogInfoEnum.cs" />
+    <Compile Include="MES.Client.Utility\Enum\PassJudge.cs" />
     <Compile Include="MES.Client.Utility\Enum\ProcessNameEnum.cs" />
+    <Compile Include="MES.Client.Utility\Utils\CodeScanHelper.cs" />
     <Compile Include="MES.Client.Utility\Utils\JsonConventer.cs" />
     <Compile Include="MES.Client.Utility\Utils\LogInfoHelper.cs" />
     <Compile Include="Program.cs" />

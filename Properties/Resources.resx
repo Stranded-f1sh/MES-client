@@ -120,4 +120,7 @@
   <data name="LoginPassWordErro" xml:space="preserve">
     <value>密码错误！请重试。</value>
   </data>
+  <data name="RequestTimeOut" xml:space="preserve">
+    <value>请求超时！请重试。</value>
+  </data>
 </root>

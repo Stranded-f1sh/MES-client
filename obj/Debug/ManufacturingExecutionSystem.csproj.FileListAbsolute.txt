@@ -18,3 +18,14 @@ E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.
 E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.CodeRegistrationForm.resources
 E:\code\ManufacturingExecutionSystem\bin\Debug\XPTable.dll
 E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.ProductOrdersSelectionForm.resources
+E:\code\ManufacturingExecutionSystem\bin\Debug\System.Configuration.ConfigurationManager.dll
+E:\code\ManufacturingExecutionSystem\bin\Debug\System.Security.AccessControl.dll
+E:\code\ManufacturingExecutionSystem\bin\Debug\System.Security.Permissions.dll
+E:\code\ManufacturingExecutionSystem\bin\Debug\System.Security.Principal.Windows.dll
+E:\code\ManufacturingExecutionSystem\bin\Debug\System.Configuration.ConfigurationManager.xml
+E:\code\ManufacturingExecutionSystem\bin\Debug\System.Security.AccessControl.xml
+E:\code\ManufacturingExecutionSystem\bin\Debug\System.Security.Permissions.xml
+E:\code\ManufacturingExecutionSystem\bin\Debug\System.Security.Principal.Windows.xml
+E:\code\ManufacturingExecutionSystem\bin\Debug\FastReport.Bars.dll
+E:\code\ManufacturingExecutionSystem\bin\Debug\FastReport.dll
+E:\code\ManufacturingExecutionSystem\bin\Debug\FastReport.Editor.dll

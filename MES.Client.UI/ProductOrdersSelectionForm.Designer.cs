@@ -120,6 +120,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.ProductOrderList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ProductOrderList.Size = new System.Drawing.Size(669, 265);
             this.ProductOrderList.TabIndex = 6;
+            this.ProductOrderList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductOrderList_CellClick);
             // 
             // ProductOrdersSelectionForm
             // 
