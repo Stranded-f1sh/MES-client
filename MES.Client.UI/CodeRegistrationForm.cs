@@ -417,7 +417,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         private void Setting_Button_Click(object sender, EventArgs e)
         {
-            PrinterSettings printerSettings = new PrinterSettings();
+            PrinterSettingsForm printerSettings = new PrinterSettingsForm();
             printerSettings.ShowDialog();
         }
     }

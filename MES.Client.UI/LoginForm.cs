@@ -21,8 +21,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             Login_Btn?.Select();
         }
 
-
-
+        
         private void UserName_TextBox_Enter(object sender, EventArgs e)
         {
             if (UserName_TextBox?.Text == @"UserName")
