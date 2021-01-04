@@ -179,7 +179,6 @@
     <Compile Include="MES.Client.Mapper\PrinterMapper.cs" />
     <Compile Include="MES.Client.Model\Device.cs" />
     <Compile Include="MES.Client.Model\LoginInfo.cs" />
-    <Compile Include="MES.Client.Model\PrinterContext.cs" />
     <Compile Include="MES.Client.Model\PrintSetting.cs" />
     <Compile Include="MES.Client.Model\Process.cs" />
     <Compile Include="MES.Client.Model\ProductOrder.cs" />
@@ -232,13 +231,9 @@
     <Compile Include="MES.Client.Utility\Enum\PassJudge.cs" />
     <Compile Include="MES.Client.Utility\Enum\ProcessNameEnum.cs" />
     <Compile Include="MES.Client.Utility\Utils\CodeScanHelper.cs" />
+    <Compile Include="MES.Client.Utility\Utils\DBHelper.cs" />
     <Compile Include="MES.Client.Utility\Utils\JsonConventer.cs" />
     <Compile Include="MES.Client.Utility\Utils\LogInfoHelper.cs" />
-    <Compile Include="MesSqlServerDataBaseDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MesSqlServerDataBaseDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MES.Client.UI\CodeRegistrationForm.resx">
@@ -270,17 +265,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Image\Thumbs.db" />
-    <None Include="MesSqlServerDataBaseDataSet.xsc">
-      <DependentUpon>MesSqlServerDataBaseDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="MesSqlServerDataBaseDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MesSqlServerDataBaseDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="MesSqlServerDataBaseDataSet.xss">
-      <DependentUpon>MesSqlServerDataBaseDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -325,13 +309,6 @@
     <Content Include="Image\up.png" />
     <Content Include="Image\zoom_in.png" />
     <Content Include="Image\zoom_out.png" />
-    <Content Include="MesSqlServerDataBase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MesSqlServerDataBase_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>MesSqlServerDataBase.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -34,7 +34,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.PrinterName_ComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -100,7 +100,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.comboBox2);
+            this.groupBox4.Controls.Add(this.PrinterName_ComboBox);
             this.groupBox4.Controls.Add(this.groupBox3);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Location = new System.Drawing.Point(15, 14);
@@ -110,15 +110,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "条码打印机";
             // 
-            // comboBox2
+            // PrinterName_ComboBox
             // 
-            this.comboBox2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(82, 36);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(247, 20);
-            this.comboBox2.TabIndex = 2;
+            this.PrinterName_ComboBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.PrinterName_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PrinterName_ComboBox.FormattingEnabled = true;
+            this.PrinterName_ComboBox.Location = new System.Drawing.Point(82, 36);
+            this.PrinterName_ComboBox.Name = "PrinterName_ComboBox";
+            this.PrinterName_ComboBox.Size = new System.Drawing.Size(247, 20);
+            this.PrinterName_ComboBox.TabIndex = 2;
+            this.PrinterName_ComboBox.SelectedIndexChanged += new System.EventHandler(this.PrinterName_ComboBox_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -245,7 +246,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox PrinterName_ComboBox;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
