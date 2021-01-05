@@ -25,7 +25,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
 
 
         /// <summary>
-        /// 获取设备报工记录接口
+        /// 获取所有设备报工记录接口
         /// </summary>
         /// <param name="loginInfo"></param>
         /// <param name="orderId"></param>
@@ -34,6 +34,21 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         public static JObject GetProductDevicesApi(LoginInfo loginInfo, string orderId, string processId)
         {
             return Common.BackgroundRequest("/prod-api/order/productDevices?orderId=" + orderId + "&processId=" + processId, Method.GET, loginInfo?.Token);
+        }
+
+
+        /// <summary>
+        /// 获取设备报工记录接口
+        /// </summary>
+        /// <param name="loginInfo"></param>
+        /// <param name="orderId"></param>
+        /// <param name="processId"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageNo"></param>
+        /// <returns></returns>
+        public static JObject GetProductDevicesApi(LoginInfo loginInfo, string orderId, string processId, int pageSize, int pageNo)
+        {
+            return Common.BackgroundRequest("/prod-api/order/productDevices?orderId=" + orderId + "&processId=" + processId + "&pageNo="+ pageNo + "&pageSize="+ pageSize, Method.GET, loginInfo?.Token);
         }
     }
 }

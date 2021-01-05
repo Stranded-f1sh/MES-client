@@ -16,17 +16,6 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
         }
 
 
-        public static JToken PostJToken(JObject jObject)
-        {
-            if (jObject?.Property("code") != null && jObject["code"]?.ToString() == "0")
-            {
-                return jObject["data"];
-            }
-            return jObject?["msg"];
-        }
-
-
-
 
         // public void JObjectTo
 

@@ -21,11 +21,18 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         }
 
 
+        public JToken GetRegistrationDeviceRecord(LoginInfo loginInfo, string orderId, string processId, int pageSize, int pageNo)
+        {
+            JObject jObject = DeviceBaoGongApi.GetProductDevicesApi(loginInfo, orderId, processId, pageSize, pageNo);
+
+            return JsonConverter.GetJToken(jObject);
+        }
+
         public JToken GetRegistrationDeviceRecord(LoginInfo loginInfo, string orderId, string processId)
         {
             JObject jObject = DeviceBaoGongApi.GetProductDevicesApi(loginInfo, orderId, processId);
 
-            return JsonConverter.GetJTokenList(jObject);
+            return JsonConverter.GetJToken(jObject);
         }
     }
 }

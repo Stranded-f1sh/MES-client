@@ -23,6 +23,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             InitInfoTable();
             UpdateTable();
             ProductOrderList?.ClearSelection();
+            ProductOrder_TextBox.Select();
         }
 
 
@@ -132,7 +133,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     _index++;
                 }
             }
-            if (_isFond) return;
+
+            if (_isFond)
+            {
+                Submit_Button.Select();
+                return;
+            }
             MessageBox.Show(@"未找到工单id为" + ProductOrder_TextBox.Text + @"的工单");
         }
 
@@ -159,9 +165,24 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Close();
         }
 
+
         private void ProductOrderList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             _isFond = true;
+        }
+
+
+
+        private void ProductOrder_TextBox_KeyPress(object sender, KeyPressEventArgs eventArgs)
+        {
+            if (eventArgs != null && eventArgs.KeyChar != Convert.ToChar(13)) return;
+            Go_Button_Click(sender, eventArgs);
+        }
+
+
+        private void Cancel_Button_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

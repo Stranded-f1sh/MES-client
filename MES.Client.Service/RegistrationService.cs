@@ -18,7 +18,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         public JToken PostRegisterDevice(LoginInfo loginInfo, String saleOrderId, Device deviceObject)
         {
             JObject jObject = DeviceRegistrationApi.PostRegisterDeviceApi(loginInfo, saleOrderId, deviceObject?.imei, deviceObject?.imsi);
-            return JsonConverter.PostJToken(jObject);
+            return JsonConverter.GetJToken(jObject);
         }
 
     }

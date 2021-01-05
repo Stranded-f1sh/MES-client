@@ -30,16 +30,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void InitializeComponent()
         {
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Submit_btn = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.PrinterName_ComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.VerticalOffset_TextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.HorizontalOffset_TextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -64,17 +64,18 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.button2.Text = "取消";
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // Submit_btn
             // 
-            this.button1.BackColor = System.Drawing.Color.LightGray;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(89, 403);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 27);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "确定";
-            this.button1.UseVisualStyleBackColor = false;
+            this.Submit_btn.BackColor = System.Drawing.Color.LightGray;
+            this.Submit_btn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.Submit_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Submit_btn.Location = new System.Drawing.Point(89, 403);
+            this.Submit_btn.Name = "Submit_btn";
+            this.Submit_btn.Size = new System.Drawing.Size(86, 27);
+            this.Submit_btn.TabIndex = 4;
+            this.Submit_btn.Text = "确定";
+            this.Submit_btn.UseVisualStyleBackColor = false;
+            this.Submit_btn.Click += new System.EventHandler(this.Submit_btn_Click);
             // 
             // tabControl1
             // 
@@ -123,10 +124,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Controls.Add(this.VerticalOffset_TextBox);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.HorizontalOffset_TextBox);
             this.groupBox3.Location = new System.Drawing.Point(0, 87);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(361, 77);
@@ -134,12 +135,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "位置调整";
             // 
-            // textBox2
+            // VerticalOffset_TextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(253, 27);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(49, 21);
-            this.textBox2.TabIndex = 3;
+            this.VerticalOffset_TextBox.Location = new System.Drawing.Point(253, 27);
+            this.VerticalOffset_TextBox.Name = "VerticalOffset_TextBox";
+            this.VerticalOffset_TextBox.Size = new System.Drawing.Size(49, 21);
+            this.VerticalOffset_TextBox.TabIndex = 3;
             // 
             // label3
             // 
@@ -159,12 +160,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.label2.TabIndex = 0;
             this.label2.Text = "水平偏移";
             // 
-            // textBox1
+            // HorizontalOffset_TextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(91, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(46, 21);
-            this.textBox1.TabIndex = 1;
+            this.HorizontalOffset_TextBox.Location = new System.Drawing.Point(91, 28);
+            this.HorizontalOffset_TextBox.Name = "HorizontalOffset_TextBox";
+            this.HorizontalOffset_TextBox.Size = new System.Drawing.Size(46, 21);
+            this.HorizontalOffset_TextBox.TabIndex = 1;
             // 
             // label4
             // 
@@ -221,7 +222,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(432, 438);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Submit_btn);
             this.Controls.Add(this.tabControl1);
             this.Name = "PrinterSettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -242,16 +243,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         #endregion
 
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Submit_btn;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ComboBox PrinterName_ComboBox;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox VerticalOffset_TextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox HorizontalOffset_TextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox comboBox1;

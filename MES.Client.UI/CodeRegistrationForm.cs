@@ -20,6 +20,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         public ProductOrder ProductOrderInfo; // 切换的工单实体类
         private readonly JToken _productOrders; // 缓存的所有工单
         private Qualify _qualify;
+        private int _pageCount; // 总页数
+        private int _pageNum;  // 当前页
 
         public CodeRegistrationForm(LoginInfo loginInfo, Process process, JToken productOrders)
         {
@@ -130,27 +132,50 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             RegisteredDeviceList.Rows.Clear();
             RegisteredDeviceList.Columns.Clear();
             RegisteredDeviceList.Columns.Add("index", "序号");
+            RegisteredDeviceList.Columns[0].Width = 30;
             RegisteredDeviceList.Columns.Add("orderNo", "产品名称");
+            RegisteredDeviceList.Columns[1].Width = 150;
             RegisteredDeviceList.Columns.Add("saleOrderid", "产品型号");
+            RegisteredDeviceList.Columns[2].Width = 80;
             RegisteredDeviceList.Columns.Add("companyFullName", "量程");
+            RegisteredDeviceList.Columns[3].Width = 10;
             RegisteredDeviceList.Columns.Add("deviceModel", "设备号（IMEI）");
+            RegisteredDeviceList.Columns[4].Width = 150;
             RegisteredDeviceList.Columns.Add("imsi", "IMSI");
+            RegisteredDeviceList.Columns[5].Width = 130;
             RegisteredDeviceList.Columns.Add("SIMType", "SIM类型");
+            RegisteredDeviceList.Columns[6].Width = 80;
             RegisteredDeviceList.Columns.Add("Remarks", "备注");
+            RegisteredDeviceList.Columns[7].Width = 10;
             RegisteredDeviceList.Columns.Add("userName", "注册平台");
+            RegisteredDeviceList.Columns[8].Width = 80;
             RegisteredDeviceList.Columns.Add("platform", "平台类型");
+            RegisteredDeviceList.Columns[9].Width = 80;
             RegisteredDeviceList.Columns.Add("handleResult", "注册状态");
+            RegisteredDeviceList.Columns[10].Width = 80;
             RegisteredDeviceList.Columns.Add("status", "在线状态");
+            RegisteredDeviceList.Columns[11].Width = 80;
             RegisteredDeviceList.Columns.Add("mUserName", "操作员");
+            RegisteredDeviceList.Columns[12].Width = 70;
             RegisteredDeviceList.Columns.Add("startTime", "录入时间");
+            RegisteredDeviceList.Columns[13].Width = 80;
             RegisteredDeviceList.Columns.Add("onlineTime", "数据上报时间");
+            RegisteredDeviceList.Columns[14].Width = 70;
             RegisteredDeviceList.Columns.Add("value", "数据值");
+            RegisteredDeviceList.Columns[15].Width = 70;
             RegisteredDeviceList.Columns.Add("ICCID", "ICCID");
+            RegisteredDeviceList.Columns[16].Width = 10;
 
+
+            NextPage_Btn.Enabled = _pageCount != _pageNum;
+
+            BackPage_Btn.Enabled = _pageNum != 1;
+
+            PageNum_Label.Text = _pageNum.ToString();
 
             // 设置自动列宽
-            RegisteredDeviceList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+            RegisteredDeviceList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            RegisteredDeviceList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedHeaders;
             // 设置字体样式
             Font font = new Font("宋体", 9);
             RegisteredDeviceList.Font = font;
@@ -163,7 +188,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         }
 
 
-
         #endregion
 
 
@@ -173,13 +197,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         /// <summary>
         /// 选择或者切换工单，在此方法加载时，需要将 [销售订单信息]、[工单信息]、[工序报工记录信息预加载]
         /// </summary>
-        private void CutOverProductOrder(ProductOrder poi)
+        private void CutOverProductOrder(ProductOrder poi, int pageSize)
         {
+            INFO.Text = "刷新中.......";
+            Application.DoEvents();
             if (poi?.OrderNo == null) return;
             OrderNo_TextBox.Text = poi.OrderNo;
             CompanyFullName_TextBox.Text = poi.CompanyFullName;
             DeviceModel_TextBox.Text = poi.DeviceModel;
             BuyNumber_TextBox.Text = poi.BuyNumber.ToString();
+            
 
             SaleOrderService saleOrderService = new SaleOrderService();
 
@@ -191,11 +218,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             JToken registrationDeviceRecord = productOrderService.GetRegistrationDeviceRecord(
                 _loginInfo,
                 poi.OrderId.ToString(),
-                ((int)ProcessNameEnum.CodeRegistration).ToString()
+                ((int)ProcessNameEnum.CodeRegistration).ToString(), 
+                pageSize,
+                _pageNum
             );
 
+            RegistNum_TextBox.Text = registrationDeviceRecord?.SelectToken("count")?.ToString();
+
+            _pageCount = (int)Math.Ceiling(double.Parse(registrationDeviceRecord?.SelectToken("count")?.ToString() ?? String.Empty) / pageSize);
             InitInfoTable();
             UpdateTable(registrationDeviceRecord, saleOrder);
+            INFO.Text = String.Empty;
         }
 
         #endregion
@@ -206,20 +239,21 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         private void UpdateTable(JToken registrationDeviceRecord, SaleOrder saleOrder)
         {
-            if (registrationDeviceRecord == null) return;
+            if (registrationDeviceRecord?.SelectToken("list") == null) return;
             if (RegisteredDeviceList == null) return;
             if (saleOrder == null) return;
 
             DateTime dtStart = new DateTime(1970, 1, 1, 8, 0, 0);
 
-            foreach (var i in registrationDeviceRecord)
+            foreach (var i in registrationDeviceRecord.SelectToken("list") ?? String.Empty)
             {
                 int index = RegisteredDeviceList.Rows.Add();
 
+                
 
                 if (RegisteredDeviceList.Rows[index].Cells[0] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[0].Value = JsonConverter.JTokenTransformer(index);
+                    RegisteredDeviceList.Rows[index].Cells[0].Value = JsonConverter.JTokenTransformer((_pageNum - 1) * 20 + index + 1);
                 }
 
                 if (RegisteredDeviceList.Rows[index].Cells[1] != null)
@@ -356,8 +390,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 Owner = this
             };
             productOrdersSelectionForm.ShowDialog();
-
-            CutOverProductOrder(ProductOrderInfo);
+            _pageNum = 1;
+            CutOverProductOrder(ProductOrderInfo, 20);
         }
 
 
@@ -400,8 +434,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 JToken registerResult = registrationService.PostRegisterDevice(_loginInfo, ProductOrderInfo?.SaleOrderId.ToString(), registerDevice);
                 INFO.Text = imei + @"注册:" + registerResult;
             }
-            CutOverProductOrder(ProductOrderInfo);
-            
+
+            CutOverProductOrder(ProductOrderInfo, 20);
+
             Imei_TextBox?.Clear();
         }
 
@@ -419,6 +454,28 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         {
             PrinterSettingsForm printerSettings = new PrinterSettingsForm();
             printerSettings.ShowDialog();
+        }
+
+
+
+        private void BackPage_Btn_Click(object sender, EventArgs e)
+        {
+            _pageNum -= 1;
+            CutOverProductOrder(ProductOrderInfo, 20);
+        }
+
+
+        private void NextPage_Btn_Click(object sender, EventArgs e)
+        {
+            _pageNum += 1;
+            CutOverProductOrder(ProductOrderInfo, 20);
+        }
+
+
+
+        private void Exit_Form_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

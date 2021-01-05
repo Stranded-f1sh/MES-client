@@ -12,7 +12,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         private JToken PostProductDevice(LoginInfo loginInfo, Device deviceObject)
         {
             JObject jObject = DeviceBaoGongApi.PostProductDevicesApi(loginInfo, deviceObject);
-            return JsonConverter.PostJToken(jObject);
+            return JsonConverter.GetJToken(jObject);
         }
 
 

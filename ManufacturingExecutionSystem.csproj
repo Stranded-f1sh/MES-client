@@ -175,7 +175,9 @@
     <Compile Include="MES.Client.Api\QualifyApi.cs" />
     <Compile Include="MES.Client.Api\DeviceRegistrationApi.cs" />
     <Compile Include="MES.Client.Api\SaleOrderApi.cs" />
+    <Compile Include="MES.Client.Mapper\ILoginMapper.cs" />
     <Compile Include="MES.Client.Mapper\IPrinterMapper.cs" />
+    <Compile Include="MES.Client.Mapper\LoginMapper.cs" />
     <Compile Include="MES.Client.Mapper\PrinterMapper.cs" />
     <Compile Include="MES.Client.Model\Device.cs" />
     <Compile Include="MES.Client.Model\LoginInfo.cs" />

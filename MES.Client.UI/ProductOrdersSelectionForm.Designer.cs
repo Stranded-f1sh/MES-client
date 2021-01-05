@@ -60,6 +60,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Cancel_Button.TabIndex = 1;
             this.Cancel_Button.Text = "Cancel";
             this.Cancel_Button.UseVisualStyleBackColor = true;
+            this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
             // Submit_Button
             // 
@@ -88,6 +89,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.ProductOrder_TextBox.Name = "ProductOrder_TextBox";
             this.ProductOrder_TextBox.Size = new System.Drawing.Size(563, 21);
             this.ProductOrder_TextBox.TabIndex = 2;
+            this.ProductOrder_TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ProductOrder_TextBox_KeyPress);
             // 
             // Go_Button
             // 

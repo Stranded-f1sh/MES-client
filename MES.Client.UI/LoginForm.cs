@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
@@ -10,6 +11,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 {
     public partial class LoginForm : Form
     {
+        private DataSet _userPassWd;
         public LoginForm()
         {
             InitializeComponent();
@@ -18,7 +20,33 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+            UserName_TextBox.AutoCompleteCustomSource = null;
+            PassWord_TextBox.AutoCompleteCustomSource = null;
+            LoginService loginService = new LoginService();
+            _userPassWd = loginService.GetUserPassWdCache();
+            if (_userPassWd?.Tables[0]?.Rows.Count != 0)
+            {
+                foreach (DataRow dr in _userPassWd.Tables[0].Rows)
+                {
+                    UserName_TextBox.AutoCompleteCustomSource.Add(dr[1].ToString());
+                    PassWord_TextBox.AutoCompleteCustomSource.Add(dr[2].ToString());
+                }
+
+                foreach (DataRow dr in _userPassWd.Tables[0].Rows)
+                {
+                    UserName_TextBox.Text = dr[1].ToString();
+                    break;
+                }
+
+            }
+            UserName_TextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+            PassWord_TextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+
+            UserName_TextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            PassWord_TextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
             Login_Btn?.Select();
+
         }
 
         
@@ -62,11 +90,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         }
 
 
+
         private void button3_Click(object sender, EventArgs e)
         {
             Close();
             Environment.Exit(Environment.ExitCode);
         }
+
+
 
         private void Login_Btn_Click(object sender, EventArgs e)
         {
@@ -93,9 +124,59 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     loginInfo.UserProcessPrivilege = i?["processnames"]?.ToString();
                     ProcessSelectionForm processSelectionForm = new ProcessSelectionForm(loginInfo);
                     new Thread(delegate () { processSelectionForm.ShowDialog(); }).Start();
+                    if (RecordPassWd_CheckBox.Checked)
+                    {
+                        bool isFondRecord = false;
+                        foreach (DataRow dr in _userPassWd.Tables[0].Rows)
+                        {
+                            if (loginInfo.userId == dr[0].ToString())
+                            {
+                                isFondRecord = true;
+
+                            }
+                        }
+
+                        if (!isFondRecord)
+                        {
+                            int ret = loginService.SetUserPassWd(loginInfo);
+                        }
+                        else
+                        {
+                            int ret = loginService.UpDateUserPassWd(loginInfo);
+                        }
+                    }
                     this.Close();
                 }
             }
+        }
+
+
+
+        private void UserName_TextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (_userPassWd?.Tables[0] == null) return;
+            foreach (DataRow dr in _userPassWd.Tables[0].Rows)
+            {
+                if (UserName_TextBox.Text == dr[1].ToString())
+                {
+                    UserName_TextBox.ForeColor = Color.Black;
+                    PassWord_TextBox.ForeColor = Color.Black;
+                    PassWord_TextBox.Text = dr[2].ToString();
+                }
+            }
+        }
+
+        private void Login_Btn_KeyPress(object sender, KeyPressEventArgs eventArgs)
+        {
+            if (eventArgs != null && eventArgs.KeyChar != Convert.ToChar(13)) return;
+            Login_Btn_Click(sender, eventArgs);
+        }
+
+
+
+        private void UserName_TextBox_Click(object sender, EventArgs e)
+        {
+            UserName_TextBox.Select(0, UserName_TextBox.Text.Length);
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ManufacturingExecutionSystem.MES.Client.Api;
+using ManufacturingExecutionSystem.MES.Client.Mapper;
 using ManufacturingExecutionSystem.MES.Client.Model;
 using ManufacturingExecutionSystem.MES.Client.Utility.Enum;
 using ManufacturingExecutionSystem.MES.Client.Utility.Utils;
@@ -32,6 +34,34 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         {
             JObject userList = LoginApi.GetUserListApi(loginInfo);
             return JsonConverter.GetJTokenList(userList);
+        }
+
+
+
+        public int SetUserPassWd(LoginInfo loginInfo)
+        {
+            LoginMapper loginMapper = new LoginMapper();
+            loginMapper.CreateTableIfNotExist();
+
+            return loginMapper.InsertIntoLoginInfo(loginInfo);
+        }
+
+
+        public int UpDateUserPassWd(LoginInfo loginInfo)
+        {
+            LoginMapper loginMapper = new LoginMapper();
+            loginMapper.CreateTableIfNotExist();
+
+            return loginMapper.UpdateLoginInfoById(loginInfo);
+        }
+
+
+        public DataSet GetUserPassWdCache()
+        {
+            LoginMapper loginMapper = new LoginMapper();
+            loginMapper.CreateTableIfNotExist();
+            DataSet selectLoginInfo = loginMapper.SelectLoginInfo();
+            return selectLoginInfo;
         }
     }
 }

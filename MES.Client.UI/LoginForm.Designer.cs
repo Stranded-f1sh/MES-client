@@ -43,6 +43,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.Login_Btn = new System.Windows.Forms.Button();
             this.CreateUser_Button = new System.Windows.Forms.Button();
+            this.RecordPassWd_CheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.TopsailLogo_PictureBox)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -103,6 +104,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.UserName_TextBox.Size = new System.Drawing.Size(215, 22);
             this.UserName_TextBox.TabIndex = 5;
             this.UserName_TextBox.Text = "UserName";
+            this.UserName_TextBox.Click += new System.EventHandler(this.UserName_TextBox_Click);
+            this.UserName_TextBox.TextChanged += new System.EventHandler(this.UserName_TextBox_TextChanged);
             this.UserName_TextBox.Enter += new System.EventHandler(this.UserName_TextBox_Enter);
             this.UserName_TextBox.Leave += new System.EventHandler(this.UserName_TextBox_Leave);
             // 
@@ -124,6 +127,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.PassWord_TextBox.Size = new System.Drawing.Size(215, 22);
             this.PassWord_TextBox.TabIndex = 7;
             this.PassWord_TextBox.Text = "PassWord";
+            this.PassWord_TextBox.UseSystemPasswordChar = true;
             this.PassWord_TextBox.Enter += new System.EventHandler(this.PassWord_TextBox_Enter);
             this.PassWord_TextBox.Leave += new System.EventHandler(this.PassWord_TextBox_Leave);
             // 
@@ -168,6 +172,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Login_Btn.Text = "登录(S)";
             this.Login_Btn.UseVisualStyleBackColor = true;
             this.Login_Btn.Click += new System.EventHandler(this.Login_Btn_Click);
+            this.Login_Btn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_Btn_KeyPress);
             // 
             // CreateUser_Button
             // 
@@ -180,6 +185,18 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.CreateUser_Button.Text = "创建新用户(N)";
             this.CreateUser_Button.UseVisualStyleBackColor = false;
             // 
+            // RecordPassWd_CheckBox
+            // 
+            this.RecordPassWd_CheckBox.AutoSize = true;
+            this.RecordPassWd_CheckBox.Checked = true;
+            this.RecordPassWd_CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.RecordPassWd_CheckBox.Location = new System.Drawing.Point(580, 188);
+            this.RecordPassWd_CheckBox.Name = "RecordPassWd_CheckBox";
+            this.RecordPassWd_CheckBox.Size = new System.Drawing.Size(72, 16);
+            this.RecordPassWd_CheckBox.TabIndex = 10;
+            this.RecordPassWd_CheckBox.Text = "记住密码";
+            this.RecordPassWd_CheckBox.UseVisualStyleBackColor = true;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -189,6 +206,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(714, 311);
             this.ControlBox = false;
+            this.Controls.Add(this.RecordPassWd_CheckBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ForgetPasswd_LinkLabel);
             this.Controls.Add(this.PassWord_TextBox);
@@ -230,5 +248,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.Button CreateUser_Button;
         private System.Windows.Forms.Button Cancel_Button;
         private System.Windows.Forms.Button Login_Btn;
+        private System.Windows.Forms.CheckBox RecordPassWd_CheckBox;
     }
 }
