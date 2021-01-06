@@ -198,6 +198,12 @@
     <Compile Include="MES.Client.UI\CodeRegistrationForm.Designer.cs">
       <DependentUpon>CodeRegistrationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MES.Client.UI\PackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MES.Client.UI\PackForm.Designer.cs">
+      <DependentUpon>PackForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MES.Client.UI\PrinterSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MES.Client.UI\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MES.Client.UI\PackForm.resx">
+      <DependentUpon>PackForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MES.Client.UI\PrinterSettingsForm.resx">
       <DependentUpon>PrinterSettingsForm.cs</DependentUpon>

@@ -386,7 +386,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void LoadWorkOrder_btn_Click(object sender, EventArgs e)
         {
             ProductOrderInfo = new ProductOrder();
-            ProductOrdersSelectionForm productOrdersSelectionForm = new ProductOrdersSelectionForm(_productOrders)
+            ProductOrdersSelectionForm productOrdersSelectionForm = new ProductOrdersSelectionForm(_productOrders, _process)
             {
                 Owner = this
             };

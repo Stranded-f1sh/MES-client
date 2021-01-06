@@ -30,8 +30,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CodeRegistrationForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.CreateProductOrder_Btn = new System.Windows.Forms.ToolStripButton();
             this.LoadWorkOrder_btn = new System.Windows.Forms.ToolStripButton();
@@ -85,19 +85,32 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.RegisteredDeviceList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RegisteredDeviceList)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.toolStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.toolStrip1.AutoSize = false;
-            this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(50, 50);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.CreateProductOrder_Btn, this.LoadWorkOrder_btn, this.toolStripSeparator3, this.BackPage_Btn, this.NextPage_Btn, this.toolStripSeparator1, this.Setting_Button, this.toolStripButton2, this.toolStripSeparator, this.toolStripButton6, this.toolStripSeparator2});
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CreateProductOrder_Btn,
+            this.LoadWorkOrder_btn,
+            this.toolStripSeparator3,
+            this.BackPage_Btn,
+            this.NextPage_Btn,
+            this.toolStripSeparator1,
+            this.Setting_Button,
+            this.toolStripButton2,
+            this.toolStripSeparator,
+            this.toolStripButton6,
+            this.toolStripSeparator2});
             this.toolStrip1.Location = new System.Drawing.Point(-1, 1);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -108,7 +121,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // CreateProductOrder_Btn
             // 
             this.CreateProductOrder_Btn.AutoSize = false;
-            this.CreateProductOrder_Btn.Image = ((System.Drawing.Image) (resources.GetObject("CreateProductOrder_Btn.Image")));
+            this.CreateProductOrder_Btn.Image = ((System.Drawing.Image)(resources.GetObject("CreateProductOrder_Btn.Image")));
             this.CreateProductOrder_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CreateProductOrder_Btn.Name = "CreateProductOrder_Btn";
             this.CreateProductOrder_Btn.Size = new System.Drawing.Size(84, 68);
@@ -119,7 +132,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // LoadWorkOrder_btn
             // 
             this.LoadWorkOrder_btn.AutoSize = false;
-            this.LoadWorkOrder_btn.Image = ((System.Drawing.Image) (resources.GetObject("LoadWorkOrder_btn.Image")));
+            this.LoadWorkOrder_btn.Image = ((System.Drawing.Image)(resources.GetObject("LoadWorkOrder_btn.Image")));
             this.LoadWorkOrder_btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LoadWorkOrder_btn.Name = "LoadWorkOrder_btn";
             this.LoadWorkOrder_btn.Size = new System.Drawing.Size(84, 68);
@@ -137,7 +150,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.BackPage_Btn.AutoSize = false;
             this.BackPage_Btn.Enabled = false;
-            this.BackPage_Btn.Image = ((System.Drawing.Image) (resources.GetObject("BackPage_Btn.Image")));
+            this.BackPage_Btn.Image = ((System.Drawing.Image)(resources.GetObject("BackPage_Btn.Image")));
             this.BackPage_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BackPage_Btn.Name = "BackPage_Btn";
             this.BackPage_Btn.Size = new System.Drawing.Size(84, 68);
@@ -150,7 +163,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.NextPage_Btn.AutoSize = false;
             this.NextPage_Btn.Enabled = false;
-            this.NextPage_Btn.Image = ((System.Drawing.Image) (resources.GetObject("NextPage_Btn.Image")));
+            this.NextPage_Btn.Image = ((System.Drawing.Image)(resources.GetObject("NextPage_Btn.Image")));
             this.NextPage_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NextPage_Btn.Name = "NextPage_Btn";
             this.NextPage_Btn.Size = new System.Drawing.Size(84, 68);
@@ -166,7 +179,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // Setting_Button
             // 
             this.Setting_Button.AutoSize = false;
-            this.Setting_Button.Image = ((System.Drawing.Image) (resources.GetObject("Setting_Button.Image")));
+            this.Setting_Button.Image = ((System.Drawing.Image)(resources.GetObject("Setting_Button.Image")));
             this.Setting_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Setting_Button.Name = "Setting_Button";
             this.Setting_Button.Size = new System.Drawing.Size(84, 68);
@@ -177,7 +190,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // toolStripButton2
             // 
             this.toolStripButton2.AutoSize = false;
-            this.toolStripButton2.Image = ((System.Drawing.Image) (resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(84, 68);
@@ -192,7 +205,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // toolStripButton6
             // 
             this.toolStripButton6.AutoSize = false;
-            this.toolStripButton6.Image = ((System.Drawing.Image) (resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(84, 68);
@@ -206,9 +219,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // textBox3
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (0)))), ((int) (((byte) (64)))), ((int) (((byte) (64)))));
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.textBox3.Location = new System.Drawing.Point(9, 89);
             this.textBox3.Name = "textBox3";
@@ -218,11 +233,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.BackColor = System.Drawing.Color.Green;
             this.groupBox2.Controls.Add(this.process_num);
             this.groupBox2.Controls.Add(this.INFO);
-            this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox2.ForeColor = System.Drawing.Color.LawnGreen;
             this.groupBox2.Location = new System.Drawing.Point(9, 104);
             this.groupBox2.Name = "groupBox2";
@@ -233,7 +250,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // process_num
             // 
             this.process_num.AutoSize = true;
-            this.process_num.Font = new System.Drawing.Font("明黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.process_num.Font = new System.Drawing.Font("明黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.process_num.ForeColor = System.Drawing.Color.Lime;
             this.process_num.Location = new System.Drawing.Point(902, 27);
             this.process_num.Name = "process_num";
@@ -244,7 +261,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // INFO
             // 
             this.INFO.AutoSize = true;
-            this.INFO.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.INFO.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.INFO.Location = new System.Drawing.Point(7, 17);
             this.INFO.Name = "INFO";
             this.INFO.Size = new System.Drawing.Size(0, 14);
@@ -252,7 +269,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.Silver;
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox1.Controls.Add(this.OrderNo_TextBox);
             this.groupBox1.Controls.Add(this.RegistNum_TextBox);
             this.groupBox1.Controls.Add(this.label_region);
@@ -272,30 +289,28 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // OrderNo_TextBox
             // 
-            this.OrderNo_TextBox.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.OrderNo_TextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.OrderNo_TextBox.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
-            this.OrderNo_TextBox.Location = new System.Drawing.Point(102, 36);
+            this.OrderNo_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.OrderNo_TextBox.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.OrderNo_TextBox.Location = new System.Drawing.Point(102, 33);
             this.OrderNo_TextBox.Name = "OrderNo_TextBox";
             this.OrderNo_TextBox.ReadOnly = true;
-            this.OrderNo_TextBox.Size = new System.Drawing.Size(241, 15);
+            this.OrderNo_TextBox.Size = new System.Drawing.Size(241, 22);
             this.OrderNo_TextBox.TabIndex = 5;
             // 
             // RegistNum_TextBox
             // 
-            this.RegistNum_TextBox.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.RegistNum_TextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.RegistNum_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.RegistNum_TextBox.Font = new System.Drawing.Font("等线", 10.5F);
-            this.RegistNum_TextBox.Location = new System.Drawing.Point(102, 169);
+            this.RegistNum_TextBox.Location = new System.Drawing.Point(102, 166);
             this.RegistNum_TextBox.Name = "RegistNum_TextBox";
             this.RegistNum_TextBox.ReadOnly = true;
-            this.RegistNum_TextBox.Size = new System.Drawing.Size(241, 15);
+            this.RegistNum_TextBox.Size = new System.Drawing.Size(241, 22);
             this.RegistNum_TextBox.TabIndex = 9;
             // 
             // label_region
             // 
             this.label_region.AutoSize = true;
-            this.label_region.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.label_region.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_region.ForeColor = System.Drawing.Color.Black;
             this.label_region.Location = new System.Drawing.Point(5, 170);
             this.label_region.Name = "label_region";
@@ -306,7 +321,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_buynum
             // 
             this.label_buynum.AutoSize = true;
-            this.label_buynum.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.label_buynum.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_buynum.ForeColor = System.Drawing.Color.Black;
             this.label_buynum.Location = new System.Drawing.Point(6, 138);
             this.label_buynum.Name = "label_buynum";
@@ -316,19 +331,18 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // CompanyFullName_TextBox
             // 
-            this.CompanyFullName_TextBox.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.CompanyFullName_TextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CompanyFullName_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.CompanyFullName_TextBox.Font = new System.Drawing.Font("等线", 10.5F);
-            this.CompanyFullName_TextBox.Location = new System.Drawing.Point(102, 70);
+            this.CompanyFullName_TextBox.Location = new System.Drawing.Point(102, 67);
             this.CompanyFullName_TextBox.Name = "CompanyFullName_TextBox";
             this.CompanyFullName_TextBox.ReadOnly = true;
-            this.CompanyFullName_TextBox.Size = new System.Drawing.Size(241, 15);
+            this.CompanyFullName_TextBox.Size = new System.Drawing.Size(241, 22);
             this.CompanyFullName_TextBox.TabIndex = 6;
             // 
             // label_deviceModel
             // 
             this.label_deviceModel.AutoSize = true;
-            this.label_deviceModel.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.label_deviceModel.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_deviceModel.ForeColor = System.Drawing.Color.Black;
             this.label_deviceModel.Location = new System.Drawing.Point(6, 105);
             this.label_deviceModel.Name = "label_deviceModel";
@@ -339,7 +353,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_companyName
             // 
             this.label_companyName.AutoSize = true;
-            this.label_companyName.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.label_companyName.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_companyName.ForeColor = System.Drawing.Color.Black;
             this.label_companyName.Location = new System.Drawing.Point(6, 71);
             this.label_companyName.Name = "label_companyName";
@@ -349,19 +363,18 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // BuyNumber_TextBox
             // 
-            this.BuyNumber_TextBox.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.BuyNumber_TextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.BuyNumber_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.BuyNumber_TextBox.Font = new System.Drawing.Font("等线", 10.5F);
-            this.BuyNumber_TextBox.Location = new System.Drawing.Point(102, 137);
+            this.BuyNumber_TextBox.Location = new System.Drawing.Point(102, 134);
             this.BuyNumber_TextBox.Name = "BuyNumber_TextBox";
             this.BuyNumber_TextBox.ReadOnly = true;
-            this.BuyNumber_TextBox.Size = new System.Drawing.Size(241, 15);
+            this.BuyNumber_TextBox.Size = new System.Drawing.Size(241, 22);
             this.BuyNumber_TextBox.TabIndex = 8;
             // 
             // label_orderno
             // 
             this.label_orderno.AutoSize = true;
-            this.label_orderno.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.label_orderno.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_orderno.ForeColor = System.Drawing.Color.Black;
             this.label_orderno.Location = new System.Drawing.Point(6, 37);
             this.label_orderno.Name = "label_orderno";
@@ -371,19 +384,20 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // DeviceModel_TextBox
             // 
-            this.DeviceModel_TextBox.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.DeviceModel_TextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DeviceModel_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.DeviceModel_TextBox.Font = new System.Drawing.Font("等线", 10.5F);
-            this.DeviceModel_TextBox.Location = new System.Drawing.Point(102, 104);
+            this.DeviceModel_TextBox.Location = new System.Drawing.Point(102, 101);
             this.DeviceModel_TextBox.Name = "DeviceModel_TextBox";
             this.DeviceModel_TextBox.ReadOnly = true;
-            this.DeviceModel_TextBox.Size = new System.Drawing.Size(241, 15);
+            this.DeviceModel_TextBox.Size = new System.Drawing.Size(241, 22);
             this.DeviceModel_TextBox.TabIndex = 7;
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.BackColor = System.Drawing.Color.Silver;
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox3.Controls.Add(this.checkBox2);
             this.groupBox3.Controls.Add(this.button7);
             this.groupBox3.Controls.Add(this.checkBox1);
@@ -512,7 +526,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_orderId_imei
             // 
             this.label_orderId_imei.AutoSize = true;
-            this.label_orderId_imei.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.label_orderId_imei.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_orderId_imei.ForeColor = System.Drawing.Color.Black;
             this.label_orderId_imei.Location = new System.Drawing.Point(144, 35);
             this.label_orderId_imei.Name = "label_orderId_imei";
@@ -524,7 +538,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_imsi
             // 
             this.label_imsi.AutoSize = true;
-            this.label_imsi.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.label_imsi.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_imsi.ForeColor = System.Drawing.Color.Black;
             this.label_imsi.Location = new System.Drawing.Point(144, 71);
             this.label_imsi.Name = "label_imsi";
@@ -534,7 +548,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // Imei_TextBox
             // 
-            this.Imei_TextBox.BackColor = System.Drawing.Color.Silver;
+            this.Imei_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.Imei_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Imei_TextBox.Location = new System.Drawing.Point(273, 32);
             this.Imei_TextBox.Name = "Imei_TextBox";
@@ -544,7 +558,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // Imsi_TextBox
             // 
-            this.Imsi_TextBox.BackColor = System.Drawing.Color.Silver;
+            this.Imsi_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.Imsi_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Imsi_TextBox.Location = new System.Drawing.Point(273, 68);
             this.Imsi_TextBox.Name = "Imsi_TextBox";
@@ -553,9 +567,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // textBox4
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (0)))), ((int) (((byte) (64)))), ((int) (((byte) (64)))));
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.textBox4.Location = new System.Drawing.Point(9, 381);
             this.textBox4.Name = "textBox4";
@@ -567,26 +583,28 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // RegisteredDeviceList
             // 
-            this.RegisteredDeviceList.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.RegisteredDeviceList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.RegisteredDeviceList.BackgroundColor = System.Drawing.Color.White;
             this.RegisteredDeviceList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.RegisteredDeviceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.RegisteredDeviceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.RegisteredDeviceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.RegisteredDeviceList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.RegisteredDeviceList.DefaultCellStyle = dataGridViewCellStyle6;
             this.RegisteredDeviceList.GridColor = System.Drawing.Color.Gainsboro;
             this.RegisteredDeviceList.Location = new System.Drawing.Point(10, 404);
             this.RegisteredDeviceList.Name = "RegisteredDeviceList";
@@ -599,8 +617,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Silver;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (0)))), ((int) (((byte) (64)))), ((int) (((byte) (64)))));
+            this.label1.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(1053, 772);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 58);
@@ -683,11 +701,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.RegisteredDeviceList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RegisteredDeviceList)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private System.Windows.Forms.CheckBox isPrint_CheckBox;

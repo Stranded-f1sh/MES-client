@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using ManufacturingExecutionSystem.MES.Client.Model;
+using ManufacturingExecutionSystem.MES.Client.Utility.Enum;
 using ManufacturingExecutionSystem.MES.Client.Utility.Utils;
 using Newtonsoft.Json.Linq;
 
@@ -10,11 +12,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
     public partial class ProductOrdersSelectionForm : Form
     {
         private readonly JToken _productOrders;
+        private readonly Process _process;
         private int _index = -1;
         private bool _isFond;
-        public ProductOrdersSelectionForm(JToken productOrders)
+        public ProductOrdersSelectionForm(JToken productOrders, Process process)
         {
             _productOrders = productOrders;
+            _process = process;
             InitializeComponent();
         }
 
@@ -154,14 +158,39 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 MessageBox.Show(@"未选择有效项！");
                 return;
             }
-            CodeRegistrationForm codeRegistrationForm = (CodeRegistrationForm) this.Owner;
-            if (codeRegistrationForm?.ProductOrderInfo == null) return;
-            codeRegistrationForm.ProductOrderInfo.OrderId = int.Parse(ProductOrderList.Rows[_index].Cells["Id"]?.Value?.ToString() ?? string.Empty);
-            codeRegistrationForm.ProductOrderInfo.SaleOrderId = int.Parse(ProductOrderList.Rows[_index].Cells["saleOrderid"]?.Value?.ToString() ?? string.Empty);
-            codeRegistrationForm.ProductOrderInfo.OrderNo = ProductOrderList.Rows[_index].Cells["orderNo"]?.Value?.ToString() ?? string.Empty;
-            codeRegistrationForm.ProductOrderInfo.CompanyFullName = ProductOrderList.Rows[_index].Cells["companyFullName"]?.Value?.ToString() ?? string.Empty;
-            codeRegistrationForm.ProductOrderInfo.DeviceModel = ProductOrderList.Rows[_index].Cells["deviceModel"]?.Value?.ToString() ?? string.Empty;
-            codeRegistrationForm.ProductOrderInfo.BuyNumber = int.Parse(ProductOrderList.Rows[_index].Cells["buyNumber"]?.Value?.ToString() ?? string.Empty);
+
+
+            ProductOrder productOrderInfo = new ProductOrder
+            {
+                OrderId = int.Parse(ProductOrderList.Rows[_index].Cells["Id"]?.Value?.ToString() ?? string.Empty),
+                SaleOrderId = int.Parse(ProductOrderList.Rows[_index].Cells["saleOrderid"]?.Value?.ToString() ?? string.Empty),
+                OrderNo = ProductOrderList.Rows[_index].Cells["orderNo"]?.Value?.ToString() ?? string.Empty,
+                CompanyFullName = ProductOrderList.Rows[_index].Cells["companyFullName"]?.Value?.ToString() ?? string.Empty,
+                DeviceModel = ProductOrderList.Rows[_index].Cells["deviceModel"]?.Value?.ToString() ?? string.Empty,
+                BuyNumber = int.Parse(ProductOrderList.Rows[_index].Cells["buyNumber"]?.Value?.ToString() ?? string.Empty)
+            };
+
+
+            switch (_process.SelectedProcessName)
+            {
+                case ProcessNameEnum.CodeRegistration:
+                    CodeRegistrationForm codeRegistrationForm = (CodeRegistrationForm) this.Owner;
+                    if (codeRegistrationForm?.ProductOrderInfo != null)
+                    {
+                        codeRegistrationForm.ProductOrderInfo = productOrderInfo;
+                    }
+                    break;
+                case ProcessNameEnum.Pack:
+                    PackForm packForm = (PackForm) this.Owner;
+                    if (packForm?.ProductOrderInfo != null)
+                    {
+                        packForm.ProductOrderInfo = productOrderInfo;
+                    }
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
             this.Close();
         }
 
