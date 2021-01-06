@@ -4,6 +4,7 @@ using System.Configuration;
 using RestSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 
 namespace ManufacturingExecutionSystem.MES.Client.Api
@@ -78,14 +79,21 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         /// <param name="method"></param>
         /// <param name="token"></param>
         /// <param name="obj"></param>
+        /// <param name="settingSerializer"></param>
         /// <returns></returns>
-        public static JObject BackgroundRequest(string url, Method method, string token, object obj)
+        public static JObject BackgroundRequest(string url, Method method, string token, object obj, bool settingSerializer)
         {
             var client = new RestClient(AppSettingsSection?.Settings?["MesBackEndIpAddress"]?.Value ?? string.Empty);
             var request = new RestRequest(url ?? string.Empty, method);
             ICollection<KeyValuePair<string, string>> headers = AddHeaders(token);
             request.AddHeaders(headers ?? throw new InvalidOperationException());
-            var json = JsonConvert.SerializeObject(obj);
+            
+            var serializerSettings = new JsonSerializerSettings
+            {
+                // 设置为驼峰命名
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+            String json = settingSerializer ? JsonConvert.SerializeObject(obj, Formatting.None, serializerSettings) : JsonConvert.SerializeObject(obj);
             request.AddParameter("application/json", json, ParameterType.RequestBody);
 
             request.Timeout = 5000;

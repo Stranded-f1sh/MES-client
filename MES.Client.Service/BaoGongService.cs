@@ -21,22 +21,22 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         {
             Device device = new Device
             {
-                imei = imei,
-                orderId = orderId,
-                endTime = DateTime.Now.AddHours(-8).ToString(@"yyyy-MM-dd'T'HH:mm:ss.sssZ"),
-                processId = processId,
-                userId = userId
+                Imei = imei,
+                OrderId = orderId,
+                EndTime = DateTime.Now.AddHours(-8).ToString(@"yyyy-MM-dd'T'HH:mm:ss.sssZ"),
+                ProcessId = processId,
+                UserId = userId
             };
             switch (passJudge)
             {
                 case PassJudge.Qualified:
-                    device.passed = (int)PassJudge.Qualified;
+                    device.Passed = (int)PassJudge.Qualified;
 
                     break;
                 case PassJudge.Unqualified:
-                    device.passed = (int)PassJudge.Unqualified;
-                    device.reasonId = reasonId;
-                    device.reasonContext = reasonContext;
+                    device.Passed = (int)PassJudge.Unqualified;
+                    device.ReasonId = reasonId;
+                    device.ReasonContext = reasonContext;
                     break;
             }
 

@@ -19,7 +19,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         /// <returns></returns>
         public static JObject PostProductDevicesApi(LoginInfo loginInfo, Device deviceObject)
         {
-            return Common.BackgroundRequest("/prod-api/order/productDevices", Method.POST, loginInfo?.Token, deviceObject);
+            return Common.BackgroundRequest("/prod-api/order/productDevices", Method.POST, loginInfo?.Token, deviceObject, true);
         }
 
 

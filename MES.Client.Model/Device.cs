@@ -13,51 +13,55 @@ namespace ManufacturingExecutionSystem.MES.Client.Model
     {
         [DataMember]
         [Description("设备号")]
-        public String imei { get; set; } // 设备号
+        public String Imei { get; set; } // 设备号
 
         [DataMember]
         [Description("ICCID号")]
-        public String imsi { get; set; } // ICCID号
+        public String Imsi { get; set; } // ICCID号
 
         [DataMember]
         [Description("生产订单号")]
-        public String orderId { get; set; } // 生产订单号
+        public String OrderId { get; set; } // 生产订单号
 
         [DataMember]
         [Description("工序号")]
-        public String processId { get; set; } // 工序号
+        public String ProcessId { get; set; } // 工序号
 
         [DataMember]
         [Description("开始时间")]
-        public String startTime { get; set; } // 开始时间
+        public String StartTime { get; set; } // 开始时间
 
         [DataMember]
         [Description("结束时间")]
-        public String endTime { get; set; } // 结束时间
+        public String EndTime { get; set; } // 结束时间
 
         [DataMember]
         [Description("用户id")]
-        public String userId { get; set; } //用户id
+        public String UserId { get; set; } //用户id
 
         [DataMember]
         [Description("销售订单号")]
-        public String saleorderId { get; set; } // 销售订单号
+        public String SaleOrderId { get; set; } // 销售订单号
 
         [DataMember]
         [Description("箱单id")]
-        public String packId { get; set; } // 箱单id
+        public String PackId { get; set; } // 箱单id
 
         [DataMember]
         [Description("1为合格 0为不合格")]
-        public int passed { get; set; } // 1为合格 0为不合格
+        public int Passed { get; set; } // 1为合格 0为不合格
 
         [DataMember]
         [Description("原因分类")]
-        public int reasonId { get; set; } // 原因分类
+        public int ReasonId { get; set; } // 原因分类
 
         [DataMember]
         [Description("原因备注")]
-        public String reasonContext { get; set; } // 原因备注
+        public String ReasonContext { get; set; } // 原因备注
 
+        
+        [DataMember]
+        [Description("频点")]
+        public String PinDian { get; set; } // 频点
     }
 }

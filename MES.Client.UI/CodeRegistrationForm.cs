@@ -28,7 +28,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             _loginInfo = loginInfo;
             _process = process;
             _productOrders = productOrders;
-            Control.CheckForIllegalCrossThreadCalls = false;
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             _appSettingsSection = config.AppSettings;
             InitializeComponent();
@@ -199,9 +198,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         /// </summary>
         private void CutOverProductOrder(ProductOrder poi, int pageSize)
         {
-            INFO.Text = "刷新中.......";
-            Application.DoEvents();
             if (poi?.OrderNo == null) return;
+            INFO.Text = @"刷新中.......";
+            Application.DoEvents();
+            
             OrderNo_TextBox.Text = poi.OrderNo;
             CompanyFullName_TextBox.Text = poi.CompanyFullName;
             DeviceModel_TextBox.Text = poi.DeviceModel;
@@ -229,6 +229,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             InitInfoTable();
             UpdateTable(registrationDeviceRecord, saleOrder);
             INFO.Text = String.Empty;
+            Imei_TextBox.Focus();
         }
 
         #endregion
@@ -403,11 +404,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
 
 
+        #region 报工或注册
+        
         private void Imei_TextBox_KeyPress(object sender, KeyPressEventArgs eventArgs)
         {
             if (eventArgs != null && eventArgs.KeyChar != Convert.ToChar(13)) return;
             CodeScanHelper codeScanHelper = new CodeScanHelper();
-            string imei = codeScanHelper.CodeScanFilter(Imei_TextBox?.Text);
+            string imei = codeScanHelper.CodeScanFilter(Imei_TextBox?.Text, out String pinDian);
+            
+            if (imei == null) return;
+            
             BaoGongService baoGongService = new BaoGongService();
             if (_qualify == null)
             {
@@ -415,31 +421,35 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             }
 
             PassJudge passJudge = checkBox3.Checked ? PassJudge.Qualified : PassJudge.Unqualified;
-
-            // 报工到烧录配置工序
-            baoGongService.DeviceBaoGong(_loginInfo, imei, ProductOrderInfo?.OrderId.ToString(), ((int)ProcessNameEnum.BurnConfiguration).ToString(), _loginInfo.userId, passJudge, _qualify.Id, _qualify.Reason);
+            Device device = new Device {Imei = imei, Imsi = Imsi_TextBox?.Text, PinDian = pinDian};
+            // 报工到烧录配置工序3
+            baoGongService.DeviceBaoGong(_loginInfo, device.Imei, ProductOrderInfo?.OrderId.ToString(), ((int)ProcessNameEnum.BurnConfiguration).ToString(), _loginInfo.userId, passJudge, _qualify.Id, _qualify.Reason);
 
             if (checkBox1.Checked)
             {
                 // 报工到编码注册工序
-                JToken baoGongResult = baoGongService.DeviceBaoGong(_loginInfo, imei, ProductOrderInfo?.OrderId.ToString(), ((int)_process.SelectedProcessName).ToString(), _loginInfo.userId, passJudge, _qualify.Id, _qualify.Reason);
+                JToken baoGongResult = baoGongService.DeviceBaoGong(_loginInfo, device.Imei, ProductOrderInfo?.OrderId.ToString(), ((int)_process.SelectedProcessName).ToString(), _loginInfo.userId, passJudge, _qualify.Id, _qualify.Reason);
                 INFO.Text = imei + @"报工:" + baoGongResult;
             }
 
             if (checkBox2.Checked)
             {
-                Device registerDevice = new Device {imei = imei, imsi = Imsi_TextBox?.Text};
                 RegistrationService registrationService = new RegistrationService();
                 // 设备注册
-                JToken registerResult = registrationService.PostRegisterDevice(_loginInfo, ProductOrderInfo?.SaleOrderId.ToString(), registerDevice);
+                JToken registerResult = registrationService.PostRegisterDevice(_loginInfo, ProductOrderInfo?.SaleOrderId.ToString(), device);
                 INFO.Text = imei + @"注册:" + registerResult;
             }
 
+            if (isPrint_CheckBox.Checked)
+            {
+                codeScanHelper.PrintQrCode(device, pinDian != String.Empty ? @"loraQrCode.frx" : @"generalQrCode.frx");
+            }
             CutOverProductOrder(ProductOrderInfo, 20);
 
             Imei_TextBox?.Clear();
         }
 
+        #endregion
 
 
         private void Qualify_ComboBox_SelectedValueChanged(object sender, EventArgs e)

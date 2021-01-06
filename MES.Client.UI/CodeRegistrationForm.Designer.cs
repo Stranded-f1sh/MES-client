@@ -64,7 +64,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.button7 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.isPrint_CheckBox = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.Qualify_ComboBox = new System.Windows.Forms.ComboBox();
@@ -85,32 +85,19 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RegisteredDeviceList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.RegisteredDeviceList)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.toolStrip1.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.toolStrip1.AutoSize = false;
-            this.toolStrip1.BackColor = System.Drawing.Color.Gainsboro;
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(50, 50);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CreateProductOrder_Btn,
-            this.LoadWorkOrder_btn,
-            this.toolStripSeparator3,
-            this.BackPage_Btn,
-            this.NextPage_Btn,
-            this.toolStripSeparator1,
-            this.Setting_Button,
-            this.toolStripButton2,
-            this.toolStripSeparator,
-            this.toolStripButton6,
-            this.toolStripSeparator2});
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.CreateProductOrder_Btn, this.LoadWorkOrder_btn, this.toolStripSeparator3, this.BackPage_Btn, this.NextPage_Btn, this.toolStripSeparator1, this.Setting_Button, this.toolStripButton2, this.toolStripSeparator, this.toolStripButton6, this.toolStripSeparator2});
             this.toolStrip1.Location = new System.Drawing.Point(-1, 1);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -121,7 +108,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // CreateProductOrder_Btn
             // 
             this.CreateProductOrder_Btn.AutoSize = false;
-            this.CreateProductOrder_Btn.Image = ((System.Drawing.Image)(resources.GetObject("CreateProductOrder_Btn.Image")));
+            this.CreateProductOrder_Btn.Image = ((System.Drawing.Image) (resources.GetObject("CreateProductOrder_Btn.Image")));
             this.CreateProductOrder_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CreateProductOrder_Btn.Name = "CreateProductOrder_Btn";
             this.CreateProductOrder_Btn.Size = new System.Drawing.Size(84, 68);
@@ -132,7 +119,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // LoadWorkOrder_btn
             // 
             this.LoadWorkOrder_btn.AutoSize = false;
-            this.LoadWorkOrder_btn.Image = ((System.Drawing.Image)(resources.GetObject("LoadWorkOrder_btn.Image")));
+            this.LoadWorkOrder_btn.Image = ((System.Drawing.Image) (resources.GetObject("LoadWorkOrder_btn.Image")));
             this.LoadWorkOrder_btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LoadWorkOrder_btn.Name = "LoadWorkOrder_btn";
             this.LoadWorkOrder_btn.Size = new System.Drawing.Size(84, 68);
@@ -150,7 +137,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.BackPage_Btn.AutoSize = false;
             this.BackPage_Btn.Enabled = false;
-            this.BackPage_Btn.Image = ((System.Drawing.Image)(resources.GetObject("BackPage_Btn.Image")));
+            this.BackPage_Btn.Image = ((System.Drawing.Image) (resources.GetObject("BackPage_Btn.Image")));
             this.BackPage_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BackPage_Btn.Name = "BackPage_Btn";
             this.BackPage_Btn.Size = new System.Drawing.Size(84, 68);
@@ -163,7 +150,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.NextPage_Btn.AutoSize = false;
             this.NextPage_Btn.Enabled = false;
-            this.NextPage_Btn.Image = ((System.Drawing.Image)(resources.GetObject("NextPage_Btn.Image")));
+            this.NextPage_Btn.Image = ((System.Drawing.Image) (resources.GetObject("NextPage_Btn.Image")));
             this.NextPage_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NextPage_Btn.Name = "NextPage_Btn";
             this.NextPage_Btn.Size = new System.Drawing.Size(84, 68);
@@ -179,7 +166,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // Setting_Button
             // 
             this.Setting_Button.AutoSize = false;
-            this.Setting_Button.Image = ((System.Drawing.Image)(resources.GetObject("Setting_Button.Image")));
+            this.Setting_Button.Image = ((System.Drawing.Image) (resources.GetObject("Setting_Button.Image")));
             this.Setting_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Setting_Button.Name = "Setting_Button";
             this.Setting_Button.Size = new System.Drawing.Size(84, 68);
@@ -190,7 +177,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // toolStripButton2
             // 
             this.toolStripButton2.AutoSize = false;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.Image = ((System.Drawing.Image) (resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(84, 68);
@@ -205,7 +192,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // toolStripButton6
             // 
             this.toolStripButton6.AutoSize = false;
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.Image = ((System.Drawing.Image) (resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(84, 68);
@@ -219,11 +206,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // textBox3
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (0)))), ((int) (((byte) (64)))), ((int) (((byte) (64)))));
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.textBox3.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.textBox3.Location = new System.Drawing.Point(9, 89);
             this.textBox3.Name = "textBox3";
@@ -233,13 +218,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.BackColor = System.Drawing.Color.Green;
             this.groupBox2.Controls.Add(this.process_num);
             this.groupBox2.Controls.Add(this.INFO);
-            this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.groupBox2.ForeColor = System.Drawing.Color.LawnGreen;
             this.groupBox2.Location = new System.Drawing.Point(9, 104);
             this.groupBox2.Name = "groupBox2";
@@ -250,7 +233,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // process_num
             // 
             this.process_num.AutoSize = true;
-            this.process_num.Font = new System.Drawing.Font("明黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.process_num.Font = new System.Drawing.Font("明黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.process_num.ForeColor = System.Drawing.Color.Lime;
             this.process_num.Location = new System.Drawing.Point(902, 27);
             this.process_num.Name = "process_num";
@@ -261,7 +244,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // INFO
             // 
             this.INFO.AutoSize = true;
-            this.INFO.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.INFO.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.INFO.Location = new System.Drawing.Point(7, 17);
             this.INFO.Name = "INFO";
             this.INFO.Size = new System.Drawing.Size(0, 14);
@@ -291,7 +274,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.OrderNo_TextBox.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.OrderNo_TextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.OrderNo_TextBox.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.OrderNo_TextBox.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.OrderNo_TextBox.Location = new System.Drawing.Point(102, 36);
             this.OrderNo_TextBox.Name = "OrderNo_TextBox";
             this.OrderNo_TextBox.ReadOnly = true;
@@ -312,7 +295,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_region
             // 
             this.label_region.AutoSize = true;
-            this.label_region.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_region.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.label_region.ForeColor = System.Drawing.Color.Black;
             this.label_region.Location = new System.Drawing.Point(5, 170);
             this.label_region.Name = "label_region";
@@ -323,7 +306,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_buynum
             // 
             this.label_buynum.AutoSize = true;
-            this.label_buynum.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_buynum.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.label_buynum.ForeColor = System.Drawing.Color.Black;
             this.label_buynum.Location = new System.Drawing.Point(6, 138);
             this.label_buynum.Name = "label_buynum";
@@ -345,7 +328,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_deviceModel
             // 
             this.label_deviceModel.AutoSize = true;
-            this.label_deviceModel.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_deviceModel.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.label_deviceModel.ForeColor = System.Drawing.Color.Black;
             this.label_deviceModel.Location = new System.Drawing.Point(6, 105);
             this.label_deviceModel.Name = "label_deviceModel";
@@ -356,7 +339,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_companyName
             // 
             this.label_companyName.AutoSize = true;
-            this.label_companyName.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_companyName.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.label_companyName.ForeColor = System.Drawing.Color.Black;
             this.label_companyName.Location = new System.Drawing.Point(6, 71);
             this.label_companyName.Name = "label_companyName";
@@ -378,7 +361,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_orderno
             // 
             this.label_orderno.AutoSize = true;
-            this.label_orderno.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_orderno.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.label_orderno.ForeColor = System.Drawing.Color.Black;
             this.label_orderno.Location = new System.Drawing.Point(6, 37);
             this.label_orderno.Name = "label_orderno";
@@ -399,9 +382,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.BackColor = System.Drawing.Color.Silver;
             this.groupBox3.Controls.Add(this.checkBox2);
             this.groupBox3.Controls.Add(this.button7);
@@ -460,7 +441,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.checkBox5);
+            this.groupBox4.Controls.Add(this.isPrint_CheckBox);
             this.groupBox4.Location = new System.Drawing.Point(136, 169);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(197, 34);
@@ -468,16 +449,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "自动打印";
             // 
-            // checkBox5
+            // isPrint_CheckBox
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.ForeColor = System.Drawing.Color.Black;
-            this.checkBox5.Location = new System.Drawing.Point(34, 14);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(48, 16);
-            this.checkBox5.TabIndex = 15;
-            this.checkBox5.Text = "条码";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.isPrint_CheckBox.AutoSize = true;
+            this.isPrint_CheckBox.ForeColor = System.Drawing.Color.Black;
+            this.isPrint_CheckBox.Location = new System.Drawing.Point(34, 14);
+            this.isPrint_CheckBox.Name = "isPrint_CheckBox";
+            this.isPrint_CheckBox.Size = new System.Drawing.Size(48, 16);
+            this.isPrint_CheckBox.TabIndex = 15;
+            this.isPrint_CheckBox.Text = "条码";
+            this.isPrint_CheckBox.UseVisualStyleBackColor = true;
             // 
             // checkBox4
             // 
@@ -531,7 +512,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_orderId_imei
             // 
             this.label_orderId_imei.AutoSize = true;
-            this.label_orderId_imei.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_orderId_imei.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.label_orderId_imei.ForeColor = System.Drawing.Color.Black;
             this.label_orderId_imei.Location = new System.Drawing.Point(144, 35);
             this.label_orderId_imei.Name = "label_orderId_imei";
@@ -543,7 +524,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_imsi
             // 
             this.label_imsi.AutoSize = true;
-            this.label_imsi.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_imsi.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.label_imsi.ForeColor = System.Drawing.Color.Black;
             this.label_imsi.Location = new System.Drawing.Point(144, 71);
             this.label_imsi.Name = "label_imsi";
@@ -572,11 +553,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // textBox4
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (0)))), ((int) (((byte) (64)))), ((int) (((byte) (64)))));
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.textBox4.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.textBox4.Location = new System.Drawing.Point(9, 381);
             this.textBox4.Name = "textBox4";
@@ -588,14 +567,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // RegisteredDeviceList
             // 
-            this.RegisteredDeviceList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RegisteredDeviceList.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.RegisteredDeviceList.BackgroundColor = System.Drawing.Color.White;
             this.RegisteredDeviceList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -604,7 +581,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.RegisteredDeviceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -622,8 +599,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Silver;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (0)))), ((int) (((byte) (64)))), ((int) (((byte) (64)))));
             this.label1.Location = new System.Drawing.Point(1053, 772);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 58);
@@ -681,7 +658,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1223, 841);
-            this.ControlBox = false;
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.Exit_Form);
             this.Controls.Add(this.label1);
@@ -707,13 +683,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RegisteredDeviceList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.RegisteredDeviceList)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
+
+        private System.Windows.Forms.CheckBox isPrint_CheckBox;
 
         private System.Windows.Forms.ToolStripButton Setting_Button;
 
@@ -745,7 +722,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.ComboBox Qualify_ComboBox;

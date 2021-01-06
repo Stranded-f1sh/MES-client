@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Description="This report demonstrates different QR-Code and Aztec types developed in FastReport Designer: Text, vCard, URI, GEolocation, E-Mail address, E-Mail message, SMS, Call, Event, Wi-Fi. You can create it with double-click on BarcodeObject (Barcode Type should be set to &quot;QR Code or Aztec&quot;)." ReportInfo.Created="02/21/2008 20:44:59" ReportInfo.Modified="01/06/2021 14:28:54" ReportInfo.CreatorVersion="2020.3.16.0">
+  <Dictionary/>
+  <ReportPage Name="Page1" PaperWidth="35" PaperHeight="20" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" FirstPageSource="256" OtherPagesSource="256" LastPageSource="256" Watermark.Font="宋体, 60pt">
+    <DataBand Name="Data1" Width="132.3" Height="74.8">
+      <BarcodeObject Name="Barcode42" Left="30.8" Top="3.45" Width="56.7" Height="56.7" AutoSize="false" Text="123456789123456" ShowText="false" AllowExpressions="true" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
+      <TextObject Name="Text1" Left="1.9" Top="54.15" Width="115.4" Height="12.2" Text="835B7642546EA05" HorzAlign="Center" Font="宋体, 9.75pt, style=Bold" FontWidthRatio="0.95"/>
+      <TextObject Name="Text2" Left="30.45" Top="-3" Width="77.6" Height="12.2" Text="471816000" HorzAlign="Center" Font="宋体, 9.75pt, style=Bold" FontWidthRatio="0.95"/>
+      <TextObject Name="Text3" Left="9.9" Top="-1.1" Width="47.25" Height="9.45" Text="频点:" Font="宋体, 7.5pt, style=Bold"/>
+    </DataBand>
+  </ReportPage>
+</Report>

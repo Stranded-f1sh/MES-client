@@ -10,4 +10,5 @@
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=ManufacturingExecutionSystem_002FMES_002EClient_002EUI_002FPrinterSettings/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=ManufacturingExecutionSystem_002FMES_002EClient_002EUI_002FProcessSelectionForm/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/UserDictionary/Words/=imei/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=imei/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Imsi/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
