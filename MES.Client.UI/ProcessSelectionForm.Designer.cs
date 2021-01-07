@@ -197,6 +197,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Pack_Button.TabIndex = 7;
             this.Pack_Button.Text = "包装";
             this.Pack_Button.UseVisualStyleBackColor = false;
+            this.Pack_Button.Click += new System.EventHandler(this.Pack_Button_Click);
             // 
             // OutBound_Button
             // 

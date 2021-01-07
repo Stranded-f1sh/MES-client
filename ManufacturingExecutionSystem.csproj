@@ -234,6 +234,12 @@
     <Compile Include="MES.Client.UI\ProcessSelectionForm.Designer.cs">
       <DependentUpon>ProcessSelectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MES.Client.UI\SaleOrdersSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MES.Client.UI\SaleOrdersSelectionForm.Designer.cs">
+      <DependentUpon>SaleOrdersSelectionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MES.Client.Utility\Enum\IsRegister.cs" />
     <Compile Include="MES.Client.Utility\Enum\LogInfoEnum.cs" />
     <Compile Include="MES.Client.Utility\Enum\PassJudge.cs" />
@@ -264,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MES.Client.UI\ProductOrdersSelectionForm.resx">
       <DependentUpon>ProductOrdersSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MES.Client.UI\SaleOrdersSelectionForm.resx">
+      <DependentUpon>SaleOrdersSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -37,12 +37,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void InitInfoTable()
         {
             if (ProductOrderList == null) return;
-            ProductOrderList.Columns.Add("id", "工单id");
-            ProductOrderList.Columns.Add("orderNo", "工单号");
-            ProductOrderList.Columns.Add("saleOrderid", "销售单id");
-            ProductOrderList.Columns.Add("companyFullName", "客户公司名称");
-            ProductOrderList.Columns.Add("deviceModel", "设备类型");
+            ProductOrderList.Columns.Add("id", "销售单id");
+            ProductOrderList.Columns.Add("orderNo", "销售单号");
+            ProductOrderList.Columns.Add("deviceModel", "产品型号");
             ProductOrderList.Columns.Add("buyNumber", "订单数量");
+            ProductOrderList.Columns.Add("finishNumber", "完成数量");
+            ProductOrderList.Columns.Add("productOrderno", "工单号");
+            ProductOrderList.Columns.Add("customerDeviceName", "产品名称");
 
             // 设置自动列宽
             ProductOrderList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -75,32 +76,32 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 int index = ProductOrderList.Rows.Add();
                 if (ProductOrderList.Rows[index].Cells[0] != null)
                 {
-                    ProductOrderList.Rows[index].Cells[0].Value = JsonConverter.JTokenTransformer(i?["id"]);
+                    ProductOrderList.Rows[index].Cells[0].Value = MyJsonConverter.JTokenTransformer(i?["id"]);
                 }
 
                 if (ProductOrderList.Rows[index].Cells[1] != null)
                 {
-                    ProductOrderList.Rows[index].Cells[1].Value = JsonConverter.JTokenTransformer(i?["orderNo"]);
+                    ProductOrderList.Rows[index].Cells[1].Value = MyJsonConverter.JTokenTransformer(i?["orderNo"]);
                 }
 
                 if (ProductOrderList.Rows[index].Cells[2] != null)
                 {
-                    ProductOrderList.Rows[index].Cells[2].Value = JsonConverter.JTokenTransformer(i?["saleOrderid"]);
+                    ProductOrderList.Rows[index].Cells[2].Value = MyJsonConverter.JTokenTransformer(i?["saleOrderid"]);
                 }
 
                 if (ProductOrderList.Rows[index].Cells[3] != null)
                 {
-                    ProductOrderList.Rows[index].Cells[3].Value = JsonConverter.JTokenTransformer(i?["companyFullName"]);
+                    ProductOrderList.Rows[index].Cells[3].Value = MyJsonConverter.JTokenTransformer(i?["companyFullName"]);
                 }
 
                 if (ProductOrderList.Rows[index].Cells[4] != null)
                 {
-                    ProductOrderList.Rows[index].Cells[4].Value = JsonConverter.JTokenTransformer(i?["deviceModel"]);
+                    ProductOrderList.Rows[index].Cells[4].Value = MyJsonConverter.JTokenTransformer(i?["deviceModel"]);
                 }
 
                 if (ProductOrderList.Rows[index].Cells[5] != null)
                 {
-                    ProductOrderList.Rows[index].Cells[5].Value = JsonConverter.JTokenTransformer(i?["buyNumber"]);
+                    ProductOrderList.Rows[index].Cells[5].Value = MyJsonConverter.JTokenTransformer(i?["buyNumber"]);
                 }
             }
         }
@@ -163,7 +164,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             ProductOrder productOrderInfo = new ProductOrder
             {
                 OrderId = int.Parse(ProductOrderList.Rows[_index].Cells["Id"]?.Value?.ToString() ?? string.Empty),
-                SaleOrderId = int.Parse(ProductOrderList.Rows[_index].Cells["saleOrderid"]?.Value?.ToString() ?? string.Empty),
+                SaleOrderId = int.Parse(ProductOrderList.Rows[_index].Cells["saleOrderId"]?.Value?.ToString() ?? string.Empty),
                 OrderNo = ProductOrderList.Rows[_index].Cells["orderNo"]?.Value?.ToString() ?? string.Empty,
                 CompanyFullName = ProductOrderList.Rows[_index].Cells["companyFullName"]?.Value?.ToString() ?? string.Empty,
                 DeviceModel = ProductOrderList.Rows[_index].Cells["deviceModel"]?.Value?.ToString() ?? string.Empty,

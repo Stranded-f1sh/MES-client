@@ -15,7 +15,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         public JToken GetUnQualifyReason(LoginInfo loginInfo, string processId)
         {
             JObject jObject = QualifyApi.GetUnQualifyReasonApi(loginInfo, processId);
-            return JsonConverter.GetJToken(jObject);
+            return MyJsonConverter.GetJToken(jObject);
         }
     }
 }

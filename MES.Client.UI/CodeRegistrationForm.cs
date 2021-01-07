@@ -215,7 +215,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             ProductOrderService productOrderService = new ProductOrderService();
 
-            JToken registrationDeviceRecord = productOrderService.GetRegistrationDeviceRecord(
+            JToken productDeviceRecord = productOrderService.GetProductDeviceRecord(
                 _loginInfo,
                 poi.OrderId.ToString(),
                 ((int)ProcessNameEnum.CodeRegistration).ToString(), 
@@ -223,11 +223,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 _pageNum
             );
 
-            RegistNum_TextBox.Text = registrationDeviceRecord?.SelectToken("count")?.ToString();
+            RegistNum_TextBox.Text = productDeviceRecord?.SelectToken("count")?.ToString();
 
-            _pageCount = (int)Math.Ceiling(double.Parse(registrationDeviceRecord?.SelectToken("count")?.ToString() ?? String.Empty) / pageSize);
+            _pageCount = (int)Math.Ceiling(double.Parse(productDeviceRecord?.SelectToken("count")?.ToString() ?? String.Empty) / pageSize);
             InitInfoTable();
-            UpdateTable(registrationDeviceRecord, saleOrder);
+            UpdateTable(productDeviceRecord, saleOrder);
             INFO.Text = String.Empty;
             Imei_TextBox.Focus();
         }
@@ -254,37 +254,37 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
                 if (RegisteredDeviceList.Rows[index].Cells[0] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[0].Value = JsonConverter.JTokenTransformer((_pageNum - 1) * 20 + index + 1);
+                    RegisteredDeviceList.Rows[index].Cells[0].Value = MyJsonConverter.JTokenTransformer((_pageNum - 1) * 20 + index + 1);
                 }
 
                 if (RegisteredDeviceList.Rows[index].Cells[1] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[1].Value = saleOrder.customerDeviceName;
+                    RegisteredDeviceList.Rows[index].Cells[1].Value = saleOrder.CustomerDeviceName;
                 }
 
                 if (RegisteredDeviceList.Rows[index].Cells[2] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[2].Value = saleOrder.customerDeviceModel;
+                    RegisteredDeviceList.Rows[index].Cells[2].Value = saleOrder.CustomerDeviceModel;
                 }
 
                 if (RegisteredDeviceList.Rows[index].Cells[3] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[3].Value = saleOrder.defaultConfig;
+                    RegisteredDeviceList.Rows[index].Cells[3].Value = saleOrder.DefaultConfig;
                 }
 
                 if (RegisteredDeviceList.Rows[index].Cells[4] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[4].Value = JsonConverter.JTokenTransformer(i["imei"]);
+                    RegisteredDeviceList.Rows[index].Cells[4].Value = MyJsonConverter.JTokenTransformer(i["imei"]);
                 }
 
                 if (RegisteredDeviceList.Rows[index].Cells[5] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[5].Value = JsonConverter.JTokenTransformer(i["imsi"]);
+                    RegisteredDeviceList.Rows[index].Cells[5].Value = MyJsonConverter.JTokenTransformer(i["imsi"]);
                 }
 
                 if (RegisteredDeviceList.Rows[index].Cells[6] != null)
                 {
-                    string imsi = JsonConverter.JTokenTransformer(i["imsi"]);
+                    string imsi = MyJsonConverter.JTokenTransformer(i["imsi"]);
 
                     // SIM卡类型
                     if (imsi != "" && imsi.Length > 4)
@@ -315,21 +315,21 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
                 if (RegisteredDeviceList.Rows[index].Cells[8] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[8].Value = JsonConverter.JTokenTransformer(i["userName"]);
+                    RegisteredDeviceList.Rows[index].Cells[8].Value = MyJsonConverter.JTokenTransformer(i["userName"]);
                 }
 
                 if (RegisteredDeviceList.Rows[index].Cells[9] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[9].Value = JsonConverter.JTokenTransformer(i["platform"]);
+                    RegisteredDeviceList.Rows[index].Cells[9].Value = MyJsonConverter.JTokenTransformer(i["platform"]);
                 }
 
                 if (RegisteredDeviceList.Rows[index].Cells[10] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[10].Value = JsonConverter.JTokenTransformer(i["handleResult"]);
+                    RegisteredDeviceList.Rows[index].Cells[10].Value = MyJsonConverter.JTokenTransformer(i["handleResult"]);
                 }
 
                 // status
-                var status = JsonConverter.JTokenTransformer(i["status"]);
+                var status = MyJsonConverter.JTokenTransformer(i["status"]);
                 if (status == "0")
                 {
                     RegisteredDeviceList.Rows[index].Cells[11].Value = "离线";
@@ -352,7 +352,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 {
                     RegisteredDeviceList.Rows[index].Cells[13].Value = _loginInfo.User;
 
-                    var time = JsonConverter.JTokenTransformer(i["startTime"]);
+                    var time = MyJsonConverter.JTokenTransformer(i["startTime"]);
                     if (time.Length == 0)
                     {
                         time = "0";
@@ -363,17 +363,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
                 if (RegisteredDeviceList.Rows[index].Cells[14] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[14].Value = JsonConverter.JTokenTransformer(i["onlineTime"]);
+                    RegisteredDeviceList.Rows[index].Cells[14].Value = MyJsonConverter.JTokenTransformer(i["onlineTime"]);
                 }
 
                 if (RegisteredDeviceList.Rows[index].Cells[15] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[15].Value = JsonConverter.JTokenTransformer(i["value"]);
+                    RegisteredDeviceList.Rows[index].Cells[15].Value = MyJsonConverter.JTokenTransformer(i["value"]);
                 }
 
                 if (RegisteredDeviceList.Rows[index].Cells[16] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[16].Value = JsonConverter.JTokenTransformer(i["iccid"]);
+                    RegisteredDeviceList.Rows[index].Cells[16].Value = MyJsonConverter.JTokenTransformer(i["iccid"]);
                 }
             }
         }

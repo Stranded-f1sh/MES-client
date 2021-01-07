@@ -33,7 +33,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         public JToken GetUserList(LoginInfo loginInfo)
         {
             JObject userList = LoginApi.GetUserListApi(loginInfo);
-            return JsonConverter.GetJTokenList(userList);
+            return MyJsonConverter.GetJTokenList(userList);
         }
 
 

@@ -3,9 +3,8 @@ using Newtonsoft.Json.Linq;
 
 namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
 {
-    internal static class JsonConverter
+    internal static class MyJsonConverter
     {
-
         public static JToken GetJTokenList(JObject jObject)
         {
             if (jObject?.Property("code") != null && jObject["code"]?.ToString() == "0")
@@ -32,13 +31,13 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
         /// <summary>
         /// 判断请求后JToken返回的字段是否存在
         /// </summary>
-        /// <param name="jtoken"> i["example"] </param>
+        /// <param name="jToken"> i["example"] </param>
         /// <returns></returns>
-        public static String JTokenTransformer(JToken jtoken)
+        public static String JTokenTransformer(JToken jToken)
         {
-            if (jtoken != null)
+            if (jToken != null)
             {
-                return jtoken.ToString();
+                return jToken.ToString();
             }
             return " ";
         }

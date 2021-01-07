@@ -11,6 +11,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
 {
     internal static class SaleOrderApi
     {
+
         /// <summary>
         /// 获取销售订单信息接口
         /// </summary>
@@ -20,6 +21,19 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         public static JObject GetSaleOrderInfoApi(LoginInfo loginInfo, string saleOrderId)
         {
             return Common.BackgroundRequest("/prod-api/order/saleOrders?id=" + saleOrderId, Method.GET, loginInfo?.Token);
+        }
+
+
+        /// <summary>
+        /// 获取销售订单接口
+        /// </summary>
+        /// <param name="loginInfo"></param>
+        /// <param name="selectedYear"></param>
+        /// <returns></returns>
+        public static JObject GetSaleOrdersApi(LoginInfo loginInfo, int selectedYear)
+        {
+            return Common.BackgroundRequest("/prod-api/order/monthsaleorders?year=" + selectedYear + "&month=-1", Method.GET, loginInfo?.Token);
+            
         }
     }
 }

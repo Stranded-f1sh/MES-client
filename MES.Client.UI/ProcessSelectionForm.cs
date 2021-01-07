@@ -30,8 +30,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         private void ProcessSelectionForm_Load(object sender, EventArgs e)
         {
+            // 加载缓存工单
             ProductOrderService productOrderService = new ProductOrderService();
             _productOrders = productOrderService.GetProductOrders(_loginInfo);
+
+            // 加载缓存销售单
         }
 
 
@@ -187,6 +190,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
 
 
+        // 编码注册
         private void CodeRegistration_Button_Click(object sender, EventArgs e)
         {
             Process process = new Process {SelectedProcessName = ProcessNameEnum.CodeRegistration};
@@ -194,5 +198,18 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             new Thread(delegate () { codeRegistrationForm.ShowDialog(); }).Start();
             this.Close();
         }
+
+
+
+        // 包装
+        private void Pack_Button_Click(object sender, EventArgs e)
+        {
+            Process process = new Process { SelectedProcessName = ProcessNameEnum.Pack };
+            PackForm packForm = new PackForm(_loginInfo, process, _productOrders);
+            new Thread(delegate () { packForm.ShowDialog(); }).Start();
+            this.Close();
+        }
+
+
     }
 }

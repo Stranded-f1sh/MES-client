@@ -29,23 +29,25 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackForm));
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.PageNum_Label = new System.Windows.Forms.Label();
             this.Exit_Form = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.RegisteredDeviceList = new System.Windows.Forms.DataGridView();
+            this.BaoGongDeviceList = new System.Windows.Forms.DataGridView();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.isPrint_CheckBox = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.Qualify_ComboBox = new System.Windows.Forms.ComboBox();
             this.label_orderId_imei = new System.Windows.Forms.Label();
             this.Imei_TextBox = new System.Windows.Forms.TextBox();
@@ -66,7 +68,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.INFO = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.CreateProductOrder_Btn = new System.Windows.Forms.ToolStripButton();
-            this.LoadWorkOrder_btn = new System.Windows.Forms.ToolStripButton();
+            this.LoadSaleOrders_btn = new System.Windows.Forms.ToolStripButton();
+            this.OrderSelect_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.BackPage_Btn = new System.Windows.Forms.ToolStripButton();
             this.NextPage_Btn = new System.Windows.Forms.ToolStripButton();
@@ -76,18 +79,15 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.OrderSelect_Btn = new System.Windows.Forms.ToolStripButton();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RegisteredDeviceList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BaoGongDeviceList)).BeginInit();
             this.groupBox3.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox5
@@ -146,36 +146,36 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.label1.Text = "MES";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // RegisteredDeviceList
+            // BaoGongDeviceList
             // 
-            this.RegisteredDeviceList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.BaoGongDeviceList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.RegisteredDeviceList.BackgroundColor = System.Drawing.Color.White;
-            this.RegisteredDeviceList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.RegisteredDeviceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.RegisteredDeviceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.RegisteredDeviceList.DefaultCellStyle = dataGridViewCellStyle4;
-            this.RegisteredDeviceList.GridColor = System.Drawing.Color.White;
-            this.RegisteredDeviceList.Location = new System.Drawing.Point(2, 405);
-            this.RegisteredDeviceList.Name = "RegisteredDeviceList";
-            this.RegisteredDeviceList.RowTemplate.Height = 20;
-            this.RegisteredDeviceList.Size = new System.Drawing.Size(1223, 363);
-            this.RegisteredDeviceList.TabIndex = 33;
+            this.BaoGongDeviceList.BackgroundColor = System.Drawing.Color.White;
+            this.BaoGongDeviceList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.BaoGongDeviceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.BaoGongDeviceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.BaoGongDeviceList.DefaultCellStyle = dataGridViewCellStyle2;
+            this.BaoGongDeviceList.GridColor = System.Drawing.Color.White;
+            this.BaoGongDeviceList.Location = new System.Drawing.Point(2, 405);
+            this.BaoGongDeviceList.Name = "BaoGongDeviceList";
+            this.BaoGongDeviceList.RowTemplate.Height = 20;
+            this.BaoGongDeviceList.Size = new System.Drawing.Size(1223, 363);
+            this.BaoGongDeviceList.TabIndex = 33;
             // 
             // textBox4
             // 
@@ -190,7 +190,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.textBox4.Size = new System.Drawing.Size(1224, 23);
             this.textBox4.TabIndex = 32;
             this.textBox4.TabStop = false;
-            this.textBox4.Text = "已注册设备";
+            this.textBox4.Text = "已报工设备";
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox3
@@ -213,17 +213,48 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "用户输入";
             // 
-            // button7
+            // groupBox7
             // 
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button7.ForeColor = System.Drawing.Color.Black;
-            this.button7.Location = new System.Drawing.Point(486, 109);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(39, 23);
-            this.button7.TabIndex = 22;
-            this.button7.Text = "新增";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Visible = false;
+            this.groupBox7.Controls.Add(this.checkBox3);
+            this.groupBox7.Controls.Add(this.checkBox4);
+            this.groupBox7.Location = new System.Drawing.Point(135, 99);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(197, 34);
+            this.groupBox7.TabIndex = 17;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "是否合格";
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.ForeColor = System.Drawing.Color.Black;
+            this.checkBox3.Location = new System.Drawing.Point(38, 13);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(48, 16);
+            this.checkBox3.TabIndex = 11;
+            this.checkBox3.Text = "合格";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.ForeColor = System.Drawing.Color.Black;
+            this.checkBox4.Location = new System.Drawing.Point(103, 13);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(60, 16);
+            this.checkBox4.TabIndex = 12;
+            this.checkBox4.Text = "不合格";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.checkBox1);
+            this.groupBox6.Location = new System.Drawing.Point(135, 136);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(197, 34);
+            this.groupBox6.TabIndex = 16;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "自动报工";
             // 
             // checkBox1
             // 
@@ -235,6 +266,18 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.checkBox1.TabIndex = 6;
             this.checkBox1.Text = "报工";
             this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button7.ForeColor = System.Drawing.Color.Black;
+            this.button7.Location = new System.Drawing.Point(486, 109);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(39, 23);
+            this.button7.TabIndex = 22;
+            this.button7.Text = "新增";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Visible = false;
             // 
             // groupBox4
             // 
@@ -256,28 +299,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.isPrint_CheckBox.TabIndex = 15;
             this.isPrint_CheckBox.Text = "条码";
             this.isPrint_CheckBox.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.ForeColor = System.Drawing.Color.Black;
-            this.checkBox4.Location = new System.Drawing.Point(103, 13);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(60, 16);
-            this.checkBox4.TabIndex = 12;
-            this.checkBox4.Text = "不合格";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.ForeColor = System.Drawing.Color.Black;
-            this.checkBox3.Location = new System.Drawing.Point(38, 13);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(48, 16);
-            this.checkBox3.TabIndex = 11;
-            this.checkBox3.Text = "合格";
-            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // Qualify_ComboBox
             // 
@@ -497,7 +518,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(50, 50);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CreateProductOrder_Btn,
-            this.LoadWorkOrder_btn,
+            this.LoadSaleOrders_btn,
             this.OrderSelect_Btn,
             this.toolStripSeparator3,
             this.BackPage_Btn,
@@ -525,16 +546,29 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.CreateProductOrder_Btn.Text = "创建工单";
             this.CreateProductOrder_Btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // LoadWorkOrder_btn
+            // LoadSaleOrders_btn
             // 
-            this.LoadWorkOrder_btn.AutoSize = false;
-            this.LoadWorkOrder_btn.Image = ((System.Drawing.Image)(resources.GetObject("LoadWorkOrder_btn.Image")));
-            this.LoadWorkOrder_btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.LoadWorkOrder_btn.Name = "LoadWorkOrder_btn";
-            this.LoadWorkOrder_btn.Size = new System.Drawing.Size(84, 68);
-            this.LoadWorkOrder_btn.Text = "加载销售单(&N)";
-            this.LoadWorkOrder_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.LoadWorkOrder_btn.ToolTipText = "加载工单(N)";
+            this.LoadSaleOrders_btn.AutoSize = false;
+            this.LoadSaleOrders_btn.Image = ((System.Drawing.Image)(resources.GetObject("LoadSaleOrders_btn.Image")));
+            this.LoadSaleOrders_btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.LoadSaleOrders_btn.Name = "LoadSaleOrders_btn";
+            this.LoadSaleOrders_btn.Size = new System.Drawing.Size(84, 68);
+            this.LoadSaleOrders_btn.Text = "加载销售单(&N)";
+            this.LoadSaleOrders_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.LoadSaleOrders_btn.ToolTipText = "加载工单(N)";
+            this.LoadSaleOrders_btn.Click += new System.EventHandler(this.LoadSaleOrders_btn_Click);
+            // 
+            // OrderSelect_Btn
+            // 
+            this.OrderSelect_Btn.AutoSize = false;
+            this.OrderSelect_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OrderSelect_Btn.Image")));
+            this.OrderSelect_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OrderSelect_Btn.Name = "OrderSelect_Btn";
+            this.OrderSelect_Btn.Size = new System.Drawing.Size(84, 68);
+            this.OrderSelect_Btn.Text = "工单查询";
+            this.OrderSelect_Btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.OrderSelect_Btn.ToolTipText = "工单查询";
+            this.OrderSelect_Btn.Click += new System.EventHandler(this.OrderSelect_Btn_Click);
             // 
             // toolStripSeparator3
             // 
@@ -552,6 +586,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.BackPage_Btn.Text = "上一页";
             this.BackPage_Btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BackPage_Btn.ToolTipText = "上一页";
+            this.BackPage_Btn.Click += new System.EventHandler(this.BackPage_Btn_Click);
             // 
             // NextPage_Btn
             // 
@@ -563,6 +598,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.NextPage_Btn.Size = new System.Drawing.Size(84, 68);
             this.NextPage_Btn.Text = "下一页";
             this.NextPage_Btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.NextPage_Btn.Click += new System.EventHandler(this.NextPage_Btn_Click);
             // 
             // toolStripSeparator1
             // 
@@ -609,38 +645,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 85);
             // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.checkBox1);
-            this.groupBox6.Location = new System.Drawing.Point(135, 136);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(197, 34);
-            this.groupBox6.TabIndex = 16;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "自动报工";
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.checkBox3);
-            this.groupBox7.Controls.Add(this.checkBox4);
-            this.groupBox7.Location = new System.Drawing.Point(135, 99);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(197, 34);
-            this.groupBox7.TabIndex = 17;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "是否合格";
-            // 
-            // OrderSelect_Btn
-            // 
-            this.OrderSelect_Btn.AutoSize = false;
-            this.OrderSelect_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OrderSelect_Btn.Image")));
-            this.OrderSelect_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.OrderSelect_Btn.Name = "OrderSelect_Btn";
-            this.OrderSelect_Btn.Size = new System.Drawing.Size(84, 68);
-            this.OrderSelect_Btn.Text = "工单查询";
-            this.OrderSelect_Btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.OrderSelect_Btn.ToolTipText = "工单查询";
-            // 
             // PackForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -649,7 +653,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.Exit_Form);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.RegisteredDeviceList);
+            this.Controls.Add(this.BaoGongDeviceList);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -657,12 +661,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.toolStrip1);
             this.Name = "PackForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PackForm";
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RegisteredDeviceList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BaoGongDeviceList)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -671,10 +680,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox2.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -687,7 +692,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.Label PageNum_Label;
         private System.Windows.Forms.Button Exit_Form;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView RegisteredDeviceList;
+        private System.Windows.Forms.DataGridView BaoGongDeviceList;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button7;
@@ -716,7 +721,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.Label INFO;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton CreateProductOrder_Btn;
-        private System.Windows.Forms.ToolStripButton LoadWorkOrder_btn;
+        private System.Windows.Forms.ToolStripButton LoadSaleOrders_btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton BackPage_Btn;
         private System.Windows.Forms.ToolStripButton NextPage_Btn;

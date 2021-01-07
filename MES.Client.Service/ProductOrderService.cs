@@ -17,22 +17,22 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         {
             JObject jObject = ProductOrderApi.GetProductOrderApi(loginInfo);
 
-            return JsonConverter.GetJTokenList(jObject);
+            return MyJsonConverter.GetJTokenList(jObject);
         }
 
 
-        public JToken GetRegistrationDeviceRecord(LoginInfo loginInfo, string orderId, string processId, int pageSize, int pageNo)
+        public JToken GetProductDeviceRecord(LoginInfo loginInfo, string orderId, string processId, int pageSize, int pageNo)
         {
             JObject jObject = DeviceBaoGongApi.GetProductDevicesApi(loginInfo, orderId, processId, pageSize, pageNo);
 
-            return JsonConverter.GetJToken(jObject);
+            return MyJsonConverter.GetJToken(jObject);
         }
 
-        public JToken GetRegistrationDeviceRecord(LoginInfo loginInfo, string orderId, string processId)
+        public JToken GetProductDeviceRecord(LoginInfo loginInfo, string orderId, string processId)
         {
             JObject jObject = DeviceBaoGongApi.GetProductDevicesApi(loginInfo, orderId, processId);
 
-            return JsonConverter.GetJToken(jObject);
+            return MyJsonConverter.GetJToken(jObject);
         }
     }
 }
