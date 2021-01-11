@@ -175,8 +175,10 @@
     <Compile Include="MES.Client.Api\QualifyApi.cs" />
     <Compile Include="MES.Client.Api\DeviceRegistrationApi.cs" />
     <Compile Include="MES.Client.Api\SaleOrderApi.cs" />
-    <Compile Include="MES.Client.Mapper\ILoginMapper.cs" />
-    <Compile Include="MES.Client.Mapper\IPrinterMapper.cs" />
+    <Compile Include="MES.Client.IMapper\IBaoGongCacheMapper.cs" />
+    <Compile Include="MES.Client.IMapper\ILoginMapper.cs" />
+    <Compile Include="MES.Client.IMapper\IPrinterMapper.cs" />
+    <Compile Include="MES.Client.Mapper\BaoGongCacheMapper.cs" />
     <Compile Include="MES.Client.Mapper\LoginMapper.cs" />
     <Compile Include="MES.Client.Mapper\PrinterMapper.cs" />
     <Compile Include="MES.Client.Model\Device.cs" />
@@ -299,7 +301,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Image\20130713102859455_easyicon_net_128.ico" />
     <Content Include="Image\6.png" />

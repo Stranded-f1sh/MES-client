@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ManufacturingExecutionSystem.MES.Client.IMapper;
 using ManufacturingExecutionSystem.MES.Client.Model;
 using ManufacturingExecutionSystem.MES.Client.Utility.Utils;
 
@@ -16,10 +13,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
         {
             using (SQLiteConnection conn = DbHelper.GetConnection(out SQLiteTransaction trans))
             {
-                String sql = "CREATE TABLE IF NOT EXISTS UserPassWdCache " +
-                             " (`userId` INTEGER," +
-                             " `username` Text," +
-                             " `password` Text)";
+                String sql = "CREATE TABLE IF NOT EXISTS UserPassWdCache (`userId` INTEGER,`username` Text,`password` Text)";
                 SQLiteCommand command = new SQLiteCommand(sql, conn, trans);
                 trans?.Commit();
                 return command.ExecuteNonQuery();
@@ -32,14 +26,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
         {
             using (SQLiteConnection conn = DbHelper.GetConnection(out SQLiteTransaction trans))
             {
-                String sql = @"INSERT INTO [UserPassWdCache]" +
-                             " ([userId]" +
-                             ", [username]" +
-                             ", [password])" +
-                             "VALUES(" +
-                             "@UserId" +
-                             ", @username" +
-                             ", @password)";
+                String sql = @"INSERT INTO [UserPassWdCache]([userId], [username], [password])VALUES(@UserId, @username, @password)";
 
                 SQLiteCommand command = new SQLiteCommand(sql, conn, trans);
 

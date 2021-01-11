@@ -2,7 +2,7 @@
 using ManufacturingExecutionSystem.MES.Client.Model;
 
 
-namespace ManufacturingExecutionSystem.MES.Client.Mapper
+namespace ManufacturingExecutionSystem.MES.Client.IMapper
 {
     public interface IPrinterMapper
     {

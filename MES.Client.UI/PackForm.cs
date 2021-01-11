@@ -14,6 +14,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
     {
         private readonly JToken _productOrders; // 缓存的所有工单
         public ProductOrder ProductOrderInfo; // 切换的工单实体类
+        public SaleOrder SaleOrderInfo;
         private readonly Process _process;
         private readonly LoginInfo _loginInfo;
         private int _pageCount; // 总页数
@@ -31,11 +32,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         private void LoadSaleOrders_btn_Click(object sender, EventArgs e)
         {
+            SaleOrderInfo = new SaleOrder();
             SaleOrdersSelectionForm saleOrdersSelectionForm = new SaleOrdersSelectionForm(_process, _loginInfo)
             {
                 Owner = this
             };
             saleOrdersSelectionForm.ShowDialog();
+
+            SelectSaleOrder(SaleOrderInfo);
         }
 
 
@@ -52,7 +56,20 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         }
 
 
+        #region 发货客户销售单
+        
+        private void SelectSaleOrder(SaleOrder soi)
+        {
+            SaleOrderNo_TextBox.Text = soi.OrderNo;
+            CompanyFullName_TextBox.Text = soi.CompanyFullName;
+            DeviceModel_TextBox.Text = soi.CustomerDeviceModel;
+            BuyNumber_TextBox.Text = soi.BuyNumber.ToString();
+        }
+        
+        #endregion
 
+        
+        
         #region 工单查询
         
         
@@ -87,8 +104,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         #endregion
 
-
-
+        
+        
         #region SetColumns
 
         private void InitInfoTable()

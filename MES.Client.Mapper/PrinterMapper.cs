@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SQLite;
+using ManufacturingExecutionSystem.MES.Client.IMapper;
 using ManufacturingExecutionSystem.MES.Client.Model;
 using ManufacturingExecutionSystem.MES.Client.Utility.Utils;
 

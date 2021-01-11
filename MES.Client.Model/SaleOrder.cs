@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ManufacturingExecutionSystem.MES.Client.Model
 {
     [DataContract(Name = "SaleOrder")]
-    class SaleOrder
+    public class SaleOrder
     {
         [DataMember]
         [Description("订单编号")]

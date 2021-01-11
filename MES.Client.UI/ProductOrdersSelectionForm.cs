@@ -37,13 +37,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void InitInfoTable()
         {
             if (ProductOrderList == null) return;
-            ProductOrderList.Columns.Add("id", "销售单id");
-            ProductOrderList.Columns.Add("orderNo", "销售单号");
-            ProductOrderList.Columns.Add("deviceModel", "产品型号");
-            ProductOrderList.Columns.Add("buyNumber", "订单数量");
-            ProductOrderList.Columns.Add("finishNumber", "完成数量");
-            ProductOrderList.Columns.Add("productOrderno", "工单号");
-            ProductOrderList.Columns.Add("customerDeviceName", "产品名称");
+            ProductOrderList.Columns.Add("id", "工单id");
+            ProductOrderList.Columns.Add("orderNo", "工单号");
+            ProductOrderList.Columns.Add("saleOrderid", "销售单id");
+            ProductOrderList.Columns.Add("companyFullName", "客户公司名称");
+            ProductOrderList.Columns.Add("deviceModel", "设备型号");
+            ProductOrderList.Columns.Add("buyNumber", "购买数量");
+            // ProductOrderList.Columns.Add("customerDeviceName", "产品名称");
 
             // 设置自动列宽
             ProductOrderList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

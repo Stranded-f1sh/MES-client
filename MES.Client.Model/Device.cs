@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ManufacturingExecutionSystem.MES.Client.Model
 {
     [DataContract(Name = "Device")]
-    class Device
+    public class Device
     {
         [DataMember]
         [Description("设备号")]

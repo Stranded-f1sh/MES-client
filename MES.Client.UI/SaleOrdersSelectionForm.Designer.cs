@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.Windows.Forms;
+
 namespace ManufacturingExecutionSystem.MES.Client.UI
 {
     partial class SaleOrdersSelectionForm
@@ -80,6 +83,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.SaleOrder_TextBox.Name = "SaleOrder_TextBox";
             this.SaleOrder_TextBox.Size = new System.Drawing.Size(443, 21);
             this.SaleOrder_TextBox.TabIndex = 9;
+            this.SaleOrder_TextBox.KeyPress += new KeyPressEventHandler(this.SaleOrder_TextBox_KeyPress);
             // 
             // label1
             // 
@@ -120,6 +124,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Submit_Button.TabIndex = 0;
             this.Submit_Button.Text = "OK";
             this.Submit_Button.UseVisualStyleBackColor = true;
+            this.Submit_Button.Click += new EventHandler(Submit_Button_Click);
+            this.Submit_Button.KeyPress += new KeyPressEventHandler(Submit_Button_KeyPress);
             // 
             // YearSelection_ComboBox
             // 
