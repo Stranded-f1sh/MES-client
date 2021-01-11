@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ManufacturingExecutionSystem.MES.Client.Utility.Enum
 {
-    enum PassJudge
+    public enum PassJudge
     {
         Unqualified,
         Qualified

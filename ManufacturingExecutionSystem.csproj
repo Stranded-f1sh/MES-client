@@ -175,10 +175,10 @@
     <Compile Include="MES.Client.Api\QualifyApi.cs" />
     <Compile Include="MES.Client.Api\DeviceRegistrationApi.cs" />
     <Compile Include="MES.Client.Api\SaleOrderApi.cs" />
-    <Compile Include="MES.Client.IMapper\IBaoGongCacheMapper.cs" />
+    <Compile Include="MES.Client.IMapper\IDataCacheMapper.cs" />
     <Compile Include="MES.Client.IMapper\ILoginMapper.cs" />
     <Compile Include="MES.Client.IMapper\IPrinterMapper.cs" />
-    <Compile Include="MES.Client.Mapper\BaoGongCacheMapper.cs" />
+    <Compile Include="MES.Client.Mapper\DataCacheMapper.cs" />
     <Compile Include="MES.Client.Mapper\LoginMapper.cs" />
     <Compile Include="MES.Client.Mapper\PrinterMapper.cs" />
     <Compile Include="MES.Client.Model\Device.cs" />
@@ -189,6 +189,7 @@
     <Compile Include="MES.Client.Model\Qualify.cs" />
     <Compile Include="MES.Client.Model\SaleOrder.cs" />
     <Compile Include="MES.Client.Service\BaoGongService.cs" />
+    <Compile Include="MES.Client.Service\DataCacheService.cs" />
     <Compile Include="MES.Client.Service\LoginService.cs" />
     <Compile Include="MES.Client.Service\ProductOrderService.cs" />
     <Compile Include="MES.Client.Service\QualifyService.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="MES.Client.Utility\Enum\LogInfoEnum.cs" />
     <Compile Include="MES.Client.Utility\Enum\PassJudge.cs" />
     <Compile Include="MES.Client.Utility\Enum\ProcessNameEnum.cs" />
+    <Compile Include="MES.Client.Utility\Enum\SubmitStatus.cs" />
     <Compile Include="MES.Client.Utility\Utils\CodeScanHelper.cs" />
     <Compile Include="MES.Client.Utility\Utils\DBHelper.cs" />
     <Compile Include="MES.Client.Utility\Utils\JsonConventer.cs" />

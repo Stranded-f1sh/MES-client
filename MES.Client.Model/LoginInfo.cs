@@ -15,7 +15,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Model
     {
         [DataMember]
         [Description("操作员工id")]
-        public String userId { get; set; }
+        public int userId { get; set; }
 
         [DataMember]
         [Description("操作员工名")]

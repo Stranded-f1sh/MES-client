@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using ManufacturingExecutionSystem.MES.Client.Utility.Enum;
 
 namespace ManufacturingExecutionSystem.MES.Client.Model
 {
@@ -21,11 +22,11 @@ namespace ManufacturingExecutionSystem.MES.Client.Model
 
         [DataMember]
         [Description("生产订单号")]
-        public String OrderId { get; set; } // 生产订单号
+        public int OrderId { get; set; } // 生产订单号
 
         [DataMember]
         [Description("工序号")]
-        public String ProcessId { get; set; } // 工序号
+        public ProcessNameEnum ProcessId { get; set; } // 工序号
 
         [DataMember]
         [Description("开始时间")]
@@ -37,7 +38,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Model
 
         [DataMember]
         [Description("用户id")]
-        public String UserId { get; set; } //用户id
+        public int UserId { get; set; } //用户id
 
         [DataMember]
         [Description("销售订单号")]
@@ -63,5 +64,10 @@ namespace ManufacturingExecutionSystem.MES.Client.Model
         [DataMember]
         [Description("频点")]
         public String PinDian { get; set; } // 频点
+        
+        
+        [DataMember]
+        [Description("提交状态")]
+        public SubmitStatus BaoGongStatus { get; set; } // 提交状态
     }
 }

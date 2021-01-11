@@ -24,12 +24,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             PassWord_TextBox.AutoCompleteCustomSource = null;
             LoginService loginService = new LoginService();
             _userPassWd = loginService.GetUserPassWdCache();
+            if (_userPassWd == null) return;
             if (_userPassWd?.Tables[0]?.Rows.Count != 0)
             {
                 foreach (DataRow dr in _userPassWd.Tables[0].Rows)
                 {
-                    UserName_TextBox.AutoCompleteCustomSource.Add(dr[1].ToString());
-                    PassWord_TextBox.AutoCompleteCustomSource.Add(dr[2].ToString());
+                    UserName_TextBox.AutoCompleteCustomSource?.Add(dr[1].ToString());
+                    PassWord_TextBox.AutoCompleteCustomSource?.Add(dr[2].ToString());
                 }
 
                 foreach (DataRow dr in _userPassWd.Tables[0].Rows)
@@ -118,10 +119,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             foreach (var i in userList)
             {
-                if (i?["userId"]?.ToString() == loginInfo.userId)
+                if (i?["userId"]?.ToString() == loginInfo.userId.ToString())
                 {
-                    loginInfo.User = i?["username"]?.ToString();
-                    loginInfo.UserProcessPrivilege = i?["processnames"]?.ToString();
+                    loginInfo.User = i["username"]?.ToString();
+                    loginInfo.UserProcessPrivilege = i["processnames"]?.ToString();
                     ProcessSelectionForm processSelectionForm = new ProcessSelectionForm(loginInfo);
                     new Thread(delegate () { processSelectionForm.ShowDialog(); }).Start();
                     if (RecordPassWd_CheckBox.Checked)
@@ -129,7 +130,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                         bool isFondRecord = false;
                         foreach (DataRow dr in _userPassWd.Tables[0].Rows)
                         {
-                            if (loginInfo.userId == dr[0].ToString())
+                            if (loginInfo.userId.ToString() == dr[0].ToString())
                             {
                                 isFondRecord = true;
 
@@ -138,11 +139,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
                         if (!isFondRecord)
                         {
-                            int ret = loginService.SetUserPassWd(loginInfo);
+                            loginService.SetUserPassWd(loginInfo);
                         }
                         else
                         {
-                            int ret = loginService.UpDateUserPassWd(loginInfo);
+                            loginService.UpDateUserPassWd(loginInfo);
                         }
                     }
                     this.Close();

@@ -23,7 +23,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
             if (jToken?.Property("code") != null && jToken["code"]?.ToString() == "0")
             {
                 loginInfo.Token = jToken["data"]?["token"]?.ToString();
-                loginInfo.userId = jToken["data"]?["id"]?.ToString();
+                loginInfo.userId = int.Parse(jToken["data"]?["id"]?.ToString()?? String.Empty);
                 return loginInfo;
             }
             return null;

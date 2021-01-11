@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
 using ManufacturingExecutionSystem.MES.Client.Model;
 using ManufacturingExecutionSystem.MES.Client.Service;
@@ -20,6 +22,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private int _pageCount; // 总页数
         private int _pageNum;  // 当前页
 
+        Thread dataUpLoadThread;
+        bool startScan;
 
         public PackForm(LoginInfo loginInfo, Process process, JToken productOrders)
         {
@@ -27,6 +31,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             _process = process;
             _loginInfo = loginInfo;
             InitializeComponent();
+        }
+
+
+        private void PackForm_Load(object sender, EventArgs e)
+        {
+            dataUpLoadThread = new Thread(ThreadCache);
+            if (dataUpLoadThread.ThreadState != ThreadState.Running)
+            {
+                dataUpLoadThread.Start();
+            }
         }
 
 
@@ -89,7 +103,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             JToken productDeviceRecord = productOrderService.GetProductDeviceRecord(
                 _loginInfo,
                 poi.OrderId.ToString(),
-                ((int)ProcessNameEnum.CodeRegistration).ToString(),
+                ((int)_process.SelectedProcessName).ToString(),
                 pageSize,
                 _pageNum
             );
@@ -326,10 +340,74 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             SelectProductOrder(ProductOrderInfo, 20);
         }
 
+        
         private void NextPage_Btn_Click(object sender, EventArgs e)
         {
             _pageNum += 1;
             SelectProductOrder(ProductOrderInfo, 20);
         }
+
+        
+        private void Imei_TextBox_KeyPress(object sender, KeyPressEventArgs eventArgs)
+        {
+            if (eventArgs != null && eventArgs.KeyChar != Convert.ToChar(13)) return;
+            startScan = false;
+
+            DataCacheService dataCacheService = new DataCacheService();
+            startScan = true;
+            /*if (checkBox3.Checked)
+            {
+                int cacheResult = dataCacheService.DeviceCache(
+                    Imei_TextBox.Text,
+                    _loginInfo.userId,
+                    _process.SelectedProcessName,
+                    SubmitStatus.UnCommit
+                );
+
+                if (cacheResult == 1)
+                {
+                    startScan = true;
+                }
+                else
+                {
+                    startScan = false;
+                }
+            }
+            else if (checkBox4.Checked)
+            {
+                dataCacheService.DeviceCache(
+                    Imei_TextBox.Text,
+                    0,
+                    String.Empty,
+                    _loginInfo.userId,
+                    _process.SelectedProcessName,
+                    SubmitStatus.UnCommit
+                );
+            }*/
+        }
+
+
+
+        private void ThreadCache()
+        {
+            DataCacheService dataCacheService = new DataCacheService();
+            while (true)
+            {
+                Application.DoEvents();
+                if (startScan)
+                {
+                    DataSet ds = dataCacheService.FindDataRecord();
+                    Console.WriteLine("====");
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        Console.WriteLine(dr);
+                        Console.WriteLine(dr[0]);
+                    }
+                    startScan = false;
+                }
+                Thread.Sleep(1000);
+            }
+        }
+
     }
 }
