@@ -30,7 +30,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
             {
                 Imei = imei,
                 UserId = userId,
-                ProcessId = process,
+                ProcessId = (int)process,
                 Passed = (int)PassJudge.Qualified,
                 BaoGongStatus = baoGongStatus
             };
@@ -54,7 +54,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
             {
                 Imei = imei,
                 UserId = userId,
-                ProcessId = process,
+                ProcessId = (int)process,
                 Passed = (int)PassJudge.Unqualified,
                 ReasonId = reasonId,
                 ReasonContext = reasonContext,
@@ -69,6 +69,20 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         {
             DataCacheMapper dataCacheMapper = new DataCacheMapper();
             return dataCacheMapper.FindUnUploadData();
+        }
+
+
+        public int DeleteDeviceCacheById(int id)
+        {
+            DataCacheMapper dataCacheMapper = new DataCacheMapper();
+            return dataCacheMapper.DeleteDataById(id);
+        }
+
+
+        public int UpdateDeviceSubmitStatusById(int id)
+        {
+            DataCacheMapper dataCacheMapper = new DataCacheMapper();
+            return dataCacheMapper.UpdateDataById(id);
         }
     }
 }

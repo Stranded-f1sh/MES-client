@@ -23,6 +23,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private int _pageNum;  // 当前页
 
         Thread dataUpLoadThread;
+        private static Mutex mut;
         bool startScan;
 
         public PackForm(LoginInfo loginInfo, Process process, JToken productOrders)
@@ -41,6 +42,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             {
                 dataUpLoadThread.Start();
             }
+
+            mut = new Mutex();
         }
 
 
@@ -340,12 +343,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             SelectProductOrder(ProductOrderInfo, 20);
         }
 
+
         
         private void NextPage_Btn_Click(object sender, EventArgs e)
         {
             _pageNum += 1;
             SelectProductOrder(ProductOrderInfo, 20);
         }
+
 
         
         private void Imei_TextBox_KeyPress(object sender, KeyPressEventArgs eventArgs)
@@ -354,17 +359,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             startScan = false;
 
             DataCacheService dataCacheService = new DataCacheService();
-            startScan = true;
-            /*if (checkBox3.Checked)
-            {
-                int cacheResult = dataCacheService.DeviceCache(
-                    Imei_TextBox.Text,
-                    _loginInfo.userId,
-                    _process.SelectedProcessName,
-                    SubmitStatus.UnCommit
-                );
 
-                if (cacheResult == 1)
+            if (checkBox3.Checked)
+            {
+                mut.WaitOne();
+
+                int cacheResult = dataCacheService.DeviceCache(Imei_TextBox.Text, _loginInfo.userId, _process.SelectedProcessName, SubmitStatus.UnCommit);
+
+                mut.ReleaseMutex();
+
+                if (cacheResult == 1) //等于1就插入成功
                 {
                     startScan = true;
                 }
@@ -383,31 +387,73 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     _process.SelectedProcessName,
                     SubmitStatus.UnCommit
                 );
-            }*/
+            }
+            Imei_TextBox.Clear();
         }
 
 
 
+        #region 缓存报工
+
         private void ThreadCache()
         {
             DataCacheService dataCacheService = new DataCacheService();
+            BaoGongService baoGongService = new BaoGongService();
             while (true)
             {
                 Application.DoEvents();
                 if (startScan)
                 {
                     DataSet ds = dataCacheService.FindDataRecord();
-                    Console.WriteLine("====");
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        Console.WriteLine(dr);
-                        Console.WriteLine(dr[0]);
+
+                        JToken ret = baoGongService.DeviceBaoGong(_loginInfo,
+                            dr[1].ToString(),
+                            (ProcessNameEnum)Enum.ToObject(typeof(ProcessNameEnum), int.Parse(dr[6].ToString())));
+
+                        if ("ok" == ret.ToString())
+                        {
+                            mut.WaitOne(); //安全时才可以访问共享资源，否则挂起。检测到安全并访问的同时会上锁。
+
+                            int updateRet = dataCacheService.UpdateDeviceSubmitStatusById(int.Parse(dr[0].ToString()));
+
+                            mut.ReleaseMutex(); //释放锁
+
+                            if (updateRet != 1)
+                            {
+                                MessageBox.Show("未成功更新缓存数据库");
+                            }
+                            Invoke( new Action(
+                            ()=> 
+                            {
+                                INFO.Text = "设备" + dr[1].ToString() + "报工成功";
+
+                            }));
+                        }
+                        else
+                        {
+                            Invoke(new Action(
+                            () =>
+                            {
+                                INFO.Text = "设备" + dr[1].ToString() + "报工失败";
+                            }));
+                        }
                     }
                     startScan = false;
+
+                    Invoke(new Action(
+                    () =>
+                    {
+                        SelectProductOrder(ProductOrderInfo, 20);
+                    }));
                 }
-                Thread.Sleep(1000);
+                
+                Thread.Sleep(200);
             }
         }
+
+        #endregion
 
     }
 }

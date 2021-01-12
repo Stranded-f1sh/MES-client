@@ -26,7 +26,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Model
 
         [DataMember]
         [Description("工序号")]
-        public ProcessNameEnum ProcessId { get; set; } // 工序号
+        public int ProcessId { get; set; } // 工序号
 
         [DataMember]
         [Description("开始时间")]

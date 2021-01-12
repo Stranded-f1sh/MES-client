@@ -15,7 +15,8 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
             {
                 String sql = @"CREATE TABLE
                  IF NOT EXISTS 
-                    DataCache (`imei` TEXT
+                    DataCache (`id` INTEGER PRIMARY KEY AUTOINCREMENT
+                                 ,`imei` TEXT
                                  ,`imsi` TEXT
                                  ,`passed` INTEGER
                                  , `orderId` INTEGER
@@ -99,7 +100,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
                 command.Parameters?.Add(pReasonContext);
                 
                 SQLiteParameter pBaoGongStatus =
-                    new SQLiteParameter("baoGongStatus", DbHelper.ConvertToDbNull(device?.BaoGongStatus));
+                    new SQLiteParameter("baoGongStatus", DbHelper.ConvertToDbNull(device?.BaoGongStatus.ToString()));
 
                 command.Parameters?.Add(pBaoGongStatus);
                 
@@ -109,18 +110,19 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
         }
 
 
+
         public DataSet FindUnUploadData()
         {
             using (SQLiteConnection conn = DbHelper.GetConnection(out SQLiteTransaction trans))
             {
                 DataSet ds = new DataSet();
-                String sql = @"SELECT 
-                            [imei]
+                String sql = @"SELECT
+                            [id]
+                          , [imei]
                           , [imsi]
                           , [passed]
                           , [orderId]
                           , [userId]
-                          , [orderId]
                           , [processId]
                           , [reasonId]
                           , [reasonContext]
@@ -128,10 +130,45 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
                            FROM 
                             [DataCache]
                            WHERE
-                            [baoGongStatus] = 0";
+                            [baoGongStatus] = 'UnCommit'";
                 SQLiteDataAdapter command = new SQLiteDataAdapter(sql, conn);
                 command.Fill(ds);
                 return ds;
+            }
+        }
+
+
+        public int DeleteDataById(int id)
+        {
+            using (SQLiteConnection conn = DbHelper.GetConnection(out SQLiteTransaction trans))
+            {
+                String sql = "DELETE FROM [DataCache] WHERE [id] = @id";
+                SQLiteCommand command = new SQLiteCommand(sql, conn, trans);
+                SQLiteParameter pId =
+                    new SQLiteParameter("id", DbHelper.ConvertToDbNull(id));
+
+                command.Parameters?.Add(pId);
+                trans?.Commit();
+
+                return command.ExecuteNonQuery();
+            }
+        }
+
+
+
+        public int UpdateDataById(int id)
+        {
+            using (SQLiteConnection conn = DbHelper.GetConnection(out SQLiteTransaction trans))
+            {
+                String sql = "UPDATE [DataCache] SET [baoGongStatus] = 'Committed'  WHERE [id] = @id";
+                SQLiteCommand command = new SQLiteCommand(sql, conn, trans);
+                SQLiteParameter pId =
+                    new SQLiteParameter("id", DbHelper.ConvertToDbNull(id));
+
+                command.Parameters?.Add(pId);
+                trans?.Commit();
+
+                return command.ExecuteNonQuery();
             }
         }
     }

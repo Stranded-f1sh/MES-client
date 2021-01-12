@@ -423,12 +423,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             PassJudge passJudge = checkBox3.Checked ? PassJudge.Qualified : PassJudge.Unqualified;
             Device device = new Device {Imei = imei, Imsi = Imsi_TextBox?.Text, PinDian = pinDian};
             // 报工到烧录配置工序3
-            baoGongService.DeviceBaoGong(_loginInfo, imei, ProductOrderInfo.OrderId, ProcessNameEnum.BurnConfiguration, _loginInfo.userId);
+            baoGongService.DeviceBaoGong(_loginInfo, imei, ProductOrderInfo.OrderId, ProcessNameEnum.BurnConfiguration);
 
             if (checkBox1.Checked)
             {
                 // 报工到编码注册工序
-                JToken baoGongResult = baoGongService.DeviceBaoGong(_loginInfo, imei, ProductOrderInfo.OrderId, _process.SelectedProcessName, _loginInfo.userId);
+                JToken baoGongResult = baoGongService.DeviceBaoGong(_loginInfo, imei, ProductOrderInfo.OrderId, _process.SelectedProcessName);
                 INFO.Text = imei + @"报工:" + baoGongResult;
             }
 

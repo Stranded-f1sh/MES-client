@@ -10,5 +10,9 @@ namespace ManufacturingExecutionSystem.MES.Client.IMapper
         int InsertIntoDeviceCache(Device device);
 
         DataSet FindUnUploadData();
+
+        int DeleteDataById(int id);
+
+        int UpdateDataById(int id);
     }
 }
