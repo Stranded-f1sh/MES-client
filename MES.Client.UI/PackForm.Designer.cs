@@ -31,8 +31,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackForm));
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -72,6 +72,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.CreateProductOrder_Btn = new System.Windows.Forms.ToolStripButton();
             this.LoadSaleOrders_btn = new System.Windows.Forms.ToolStripButton();
             this.OrderSelect_Btn = new System.Windows.Forms.ToolStripButton();
+            this.Find_Button = new System.Windows.Forms.ToolStripButton();
+            this.DBCache_Button = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.BackPage_Btn = new System.Windows.Forms.ToolStripButton();
             this.NextPage_Btn = new System.Windows.Forms.ToolStripButton();
@@ -79,8 +81,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Setting_Button = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.DataCache_ToolTrips_Button = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.label3 = new System.Windows.Forms.Label();
+            this.User_Label = new System.Windows.Forms.Label();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BaoGongDeviceList)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -133,6 +137,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Exit_Form.TabIndex = 35;
             this.Exit_Form.Text = "退出程序";
             this.Exit_Form.UseVisualStyleBackColor = false;
+            this.Exit_Form.Click += new System.EventHandler(this.Exit_Form_Click);
             // 
             // label1
             // 
@@ -155,23 +160,23 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BaoGongDeviceList.BackgroundColor = System.Drawing.Color.White;
             this.BaoGongDeviceList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.BaoGongDeviceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.BaoGongDeviceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.BaoGongDeviceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.BaoGongDeviceList.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.BaoGongDeviceList.DefaultCellStyle = dataGridViewCellStyle2;
             this.BaoGongDeviceList.GridColor = System.Drawing.Color.White;
             this.BaoGongDeviceList.Location = new System.Drawing.Point(2, 405);
             this.BaoGongDeviceList.Name = "BaoGongDeviceList";
@@ -529,6 +534,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.CreateProductOrder_Btn,
             this.LoadSaleOrders_btn,
             this.OrderSelect_Btn,
+            this.Find_Button,
+            this.DBCache_Button,
             this.toolStripSeparator3,
             this.BackPage_Btn,
             this.NextPage_Btn,
@@ -536,7 +543,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Setting_Button,
             this.toolStripButton2,
             this.toolStripSeparator,
-            this.toolStripButton6,
+            this.DataCache_ToolTrips_Button,
             this.toolStripSeparator2});
             this.toolStrip1.Location = new System.Drawing.Point(2, 2);
             this.toolStrip1.Name = "toolStrip1";
@@ -578,6 +585,27 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.OrderSelect_Btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.OrderSelect_Btn.ToolTipText = "工单查询";
             this.OrderSelect_Btn.Click += new System.EventHandler(this.OrderSelect_Btn_Click);
+            // 
+            // Find_Button
+            // 
+            this.Find_Button.AutoSize = false;
+            this.Find_Button.Image = ((System.Drawing.Image)(resources.GetObject("Find_Button.Image")));
+            this.Find_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Find_Button.Name = "Find_Button";
+            this.Find_Button.Size = new System.Drawing.Size(84, 68);
+            this.Find_Button.Text = "IMEI查找";
+            this.Find_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // DBCache_Button
+            // 
+            this.DBCache_Button.AutoSize = false;
+            this.DBCache_Button.Image = ((System.Drawing.Image)(resources.GetObject("DBCache_Button.Image")));
+            this.DBCache_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DBCache_Button.Name = "DBCache_Button";
+            this.DBCache_Button.Size = new System.Drawing.Size(84, 68);
+            this.DBCache_Button.Text = "报工缓存";
+            this.DBCache_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.DBCache_Button.Click += new System.EventHandler(this.DBCache_Button_Click);
             // 
             // toolStripSeparator3
             // 
@@ -623,6 +651,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Setting_Button.Size = new System.Drawing.Size(84, 68);
             this.Setting_Button.Text = "设置";
             this.Setting_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.Setting_Button.Click += new System.EventHandler(this.Setting_Button_Click);
             // 
             // toolStripButton2
             // 
@@ -639,26 +668,47 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(6, 85);
             // 
-            // toolStripButton6
+            // DataCache_ToolTrips_Button
             // 
-            this.toolStripButton6.AutoSize = false;
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
-            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(84, 68);
-            this.toolStripButton6.Text = "帮助";
-            this.toolStripButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.DataCache_ToolTrips_Button.AutoSize = false;
+            this.DataCache_ToolTrips_Button.Image = ((System.Drawing.Image)(resources.GetObject("DataCache_ToolTrips_Button.Image")));
+            this.DataCache_ToolTrips_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DataCache_ToolTrips_Button.Name = "DataCache_ToolTrips_Button";
+            this.DataCache_ToolTrips_Button.Size = new System.Drawing.Size(84, 68);
+            this.DataCache_ToolTrips_Button.Text = "数据缓存";
+            this.DataCache_ToolTrips_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 85);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label3.Location = new System.Drawing.Point(1042, 38);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 12);
+            this.label3.TabIndex = 37;
+            this.label3.Text = "当前操作员：";
+            // 
+            // User_Label
+            // 
+            this.User_Label.AutoSize = true;
+            this.User_Label.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.User_Label.Location = new System.Drawing.Point(1121, 37);
+            this.User_Label.Name = "User_Label";
+            this.User_Label.Size = new System.Drawing.Size(0, 12);
+            this.User_Label.TabIndex = 38;
+            // 
             // PackForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1227, 845);
+            this.Controls.Add(this.User_Label);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.Exit_Form);
             this.Controls.Add(this.label1);
@@ -739,10 +789,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.ToolStripButton Setting_Button;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripButton toolStripButton6;
+        private System.Windows.Forms.ToolStripButton DataCache_ToolTrips_Button;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.ToolStripButton OrderSelect_Btn;
+        private ToolStripButton Find_Button;
+        private ToolStripButton DBCache_Button;
+        private Label label3;
+        private Label User_Label;
     }
 }

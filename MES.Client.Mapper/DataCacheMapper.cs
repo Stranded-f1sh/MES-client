@@ -138,6 +138,33 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
         }
 
 
+
+        public DataSet FindAllData()
+        {
+            using (SQLiteConnection conn = DbHelper.GetConnection(out SQLiteTransaction trans))
+            {
+                DataSet ds = new DataSet();
+                String sql = @"SELECT
+                            [id]
+                          , [imei]
+                          , [imsi]
+                          , [passed]
+                          , [orderId]
+                          , [userId]
+                          , [processId]
+                          , [reasonId]
+                          , [reasonContext]
+                          , [baoGongStatus]
+                           FROM 
+                            [DataCache]";
+                SQLiteDataAdapter command = new SQLiteDataAdapter(sql, conn);
+                command.Fill(ds);
+                return ds;
+            }
+        }
+
+
+
         public int DeleteDataById(int id)
         {
             using (SQLiteConnection conn = DbHelper.GetConnection(out SQLiteTransaction trans))

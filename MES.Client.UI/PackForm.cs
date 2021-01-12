@@ -22,28 +22,32 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private int _pageCount; // 总页数
         private int _pageNum;  // 当前页
 
-        Thread dataUpLoadThread;
-        private static Mutex mut;
-        bool startScan;
+        private Thread _dataUpLoadThread;
+        private static Mutex _mut;
+        private bool _startScan;
+        private String _tipsSaleOrderNo;
 
         public PackForm(LoginInfo loginInfo, Process process, JToken productOrders)
         {
             _productOrders = productOrders;
             _process = process;
             _loginInfo = loginInfo;
+            
             InitializeComponent();
+
+            User_Label.Text = _loginInfo.User;
         }
 
 
         private void PackForm_Load(object sender, EventArgs e)
         {
-            dataUpLoadThread = new Thread(ThreadCache);
-            if (dataUpLoadThread.ThreadState != ThreadState.Running)
+            _dataUpLoadThread = new Thread(ThreadCache);
+            if (_dataUpLoadThread.ThreadState != ThreadState.Running)
             {
-                dataUpLoadThread.Start();
+                _dataUpLoadThread.Start();
             }
 
-            mut = new Mutex();
+            _mut = new Mutex();
         }
 
 
@@ -52,24 +56,31 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             SaleOrderInfo = new SaleOrder();
             SaleOrdersSelectionForm saleOrdersSelectionForm = new SaleOrdersSelectionForm(_process, _loginInfo)
             {
-                Owner = this
+                Owner = this,
+                Text = @"请选择即将发货设备对应的客户销售订单"
             };
             saleOrdersSelectionForm.ShowDialog();
 
             SelectSaleOrder(SaleOrderInfo);
+            if (ProductOrderInfo != null) return;
+
+            if (MessageBox.Show(@"是否显示对应工单报工信息？", "", MessageBoxButtons.OKCancel) != DialogResult.OK) return;
+            _tipsSaleOrderNo = SaleOrderInfo?.OrderNo;
+            OrderSelect_Btn_Click(sender, e);
         }
 
 
         private void OrderSelect_Btn_Click(object sender, EventArgs e)
         {
             ProductOrderInfo = new ProductOrder();
-            ProductOrdersSelectionForm productOrdersSelectionForm = new ProductOrdersSelectionForm(_productOrders, _process)
+            ProductOrdersSelectionForm productOrdersSelectionForm = new ProductOrdersSelectionForm(_productOrders, _process, _tipsSaleOrderNo)
             {
                 Owner = this
             };
             productOrdersSelectionForm.ShowDialog();
             _pageNum = 1;
             SelectProductOrder(ProductOrderInfo, 20);
+            Imei_TextBox?.Focus();
         }
 
 
@@ -356,26 +367,20 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void Imei_TextBox_KeyPress(object sender, KeyPressEventArgs eventArgs)
         {
             if (eventArgs != null && eventArgs.KeyChar != Convert.ToChar(13)) return;
-            startScan = false;
+
+            _startScan = false;
 
             DataCacheService dataCacheService = new DataCacheService();
 
             if (checkBox3.Checked)
             {
-                mut.WaitOne();
+                _mut?.WaitOne();
 
                 int cacheResult = dataCacheService.DeviceCache(Imei_TextBox.Text, _loginInfo.userId, _process.SelectedProcessName, SubmitStatus.UnCommit);
 
-                mut.ReleaseMutex();
+                _mut?.ReleaseMutex();
 
-                if (cacheResult == 1) //等于1就插入成功
-                {
-                    startScan = true;
-                }
-                else
-                {
-                    startScan = false;
-                }
+                _startScan = cacheResult == 1;
             }
             else if (checkBox4.Checked)
             {
@@ -393,67 +398,98 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
 
 
+
         #region 缓存报工
 
         private void ThreadCache()
         {
             DataCacheService dataCacheService = new DataCacheService();
             BaoGongService baoGongService = new BaoGongService();
+            CodeScanHelper codeScanHelper = new CodeScanHelper();
+
             while (true)
             {
                 Application.DoEvents();
-                if (startScan)
+                if (!_startScan)
                 {
-                    DataSet ds = dataCacheService.FindDataRecord();
-                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    Thread.Sleep(200);
+                    continue;
+                }
+
+                DataSet ds = dataCacheService.FindUnUploadDataRecord();
+                DataCache_ToolTrips_Button.Name = "数据缓存(" + ds.Tables[0].Rows.Count + ")";
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    JToken ret = baoGongService.DeviceBaoGong(_loginInfo,
+                        dr[1].ToString(),
+                        (ProcessNameEnum)Enum.ToObject(typeof(ProcessNameEnum), int.Parse(dr[6].ToString())));
+
+                    if ("ok" == ret?.ToString())
                     {
+                        _mut?.WaitOne(); //安全时才可以访问共享资源，否则挂起。检测到安全并访问的同时会上锁。
 
-                        JToken ret = baoGongService.DeviceBaoGong(_loginInfo,
-                            dr[1].ToString(),
-                            (ProcessNameEnum)Enum.ToObject(typeof(ProcessNameEnum), int.Parse(dr[6].ToString())));
+                        int updateRet = dataCacheService.UpdateDeviceSubmitStatusById(int.Parse(dr[0].ToString()));
 
-                        if ("ok" == ret.ToString())
+                        if (updateRet != 1)
                         {
-                            mut.WaitOne(); //安全时才可以访问共享资源，否则挂起。检测到安全并访问的同时会上锁。
-
-                            int updateRet = dataCacheService.UpdateDeviceSubmitStatusById(int.Parse(dr[0].ToString()));
-
-                            mut.ReleaseMutex(); //释放锁
-
-                            if (updateRet != 1)
-                            {
-                                MessageBox.Show("未成功更新缓存数据库");
-                            }
-                            Invoke( new Action(
-                            ()=> 
-                            {
-                                INFO.Text = "设备" + dr[1].ToString() + "报工成功";
-
-                            }));
+                            MessageBox.Show("未成功更新缓存数据库");
                         }
-                        else
+                        Invoke( new Action(()=> 
                         {
-                            Invoke(new Action(
-                            () =>
-                            {
-                                INFO.Text = "设备" + dr[1].ToString() + "报工失败";
-                            }));
-                        }
+                            INFO.Text = "设备" + dr[1] + "报工成功";
+                        }));
+
+                        // 打印小箱单
+                        string imei = codeScanHelper.CodeScanFilter(dr[1]?.ToString(), out String pinDian);
+
+                        codeScanHelper.PrintSmallPackList(new Device{Imei = imei }, SaleOrderInfo, "packlist.frx");
+
+                        _mut?.ReleaseMutex(); //释放锁
                     }
-                    startScan = false;
+                    else
+                    {
+                        Invoke(new Action(() =>
+                        {
+                            INFO.Text = "设备" + dr[1] + "报工失败";
+                        }));
+                    }
+                }
+                _startScan = false;
 
-                    Invoke(new Action(
-                    () =>
+                Invoke(new Action(() =>
+                {
+                    if (ProductOrderInfo != null)
                     {
                         SelectProductOrder(ProductOrderInfo, 20);
-                    }));
-                }
-                
-                Thread.Sleep(200);
+                    }
+                }));
             }
         }
 
         #endregion
 
+
+
+        private void Exit_Form_Click(object sender, EventArgs e)
+        {
+            Close();
+            Environment.Exit(Environment.ExitCode);
+        }
+
+
+
+        private void DBCache_Button_Click(object sender, EventArgs e)
+        {
+            SqLiteDataBaseOperateForm sqLiteDataBaseOperateForm = new SqLiteDataBaseOperateForm();
+            new Thread(delegate () { sqLiteDataBaseOperateForm.ShowDialog(); }).Start();
+        }
+
+
+
+        private void Setting_Button_Click(object sender, EventArgs e)
+        {
+            PrinterSettingsForm printerSettings = new PrinterSettingsForm();
+            printerSettings.ShowDialog();
+        }
     }
 }

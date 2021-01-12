@@ -13,6 +13,9 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
 {
     class ProductOrderService
     {
+        /*
+         * 所有工单列表获取
+         */
         public JToken GetProductOrders(LoginInfo loginInfo)
         {
             JObject jObject = ProductOrderApi.GetProductOrderApi(loginInfo);
@@ -21,6 +24,9 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         }
 
 
+        /*
+         * 分页查询
+         */
         public JToken GetProductDeviceRecord(LoginInfo loginInfo, string orderId, string processId, int pageSize, int pageNo)
         {
             JObject jObject = DeviceBaoGongApi.GetProductDevicesApi(loginInfo, orderId, processId, pageSize, pageNo);
@@ -28,10 +34,24 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
             return MyJsonConverter.GetJToken(jObject);
         }
 
+
+        /*
+         * 查询全部
+         */
         public JToken GetProductDeviceRecord(LoginInfo loginInfo, string orderId, string processId)
         {
             JObject jObject = DeviceBaoGongApi.GetProductDevicesApi(loginInfo, orderId, processId);
 
+            return MyJsonConverter.GetJToken(jObject);
+        }
+
+
+        /*
+         * 根据imei号查询工单id
+         */
+        public JToken FindProductOrderIdByImei(LoginInfo loginInfo, String imei)
+        {
+            JObject jObject = ProductOrderApi.FindProductOrderIdByImeiApi(loginInfo, imei);
             return MyJsonConverter.GetJToken(jObject);
         }
     }

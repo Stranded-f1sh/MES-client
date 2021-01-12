@@ -8,8 +8,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
 {
     public class DataCacheService
     {
-
-        public int InsertDataRecord(Device device)
+        private int InsertDataRecord(Device device)
         {
             DataCacheMapper dataCacheMapper = new DataCacheMapper();
             dataCacheMapper.CreateTableIfNotExist();
@@ -65,12 +64,18 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         }
 
 
-        public DataSet FindDataRecord()
+        public DataSet FindUnUploadDataRecord()
         {
             DataCacheMapper dataCacheMapper = new DataCacheMapper();
             return dataCacheMapper.FindUnUploadData();
         }
 
+
+        public DataSet FindAllDataRecord()
+        {
+            DataCacheMapper dataCacheMapper = new DataCacheMapper();
+            return dataCacheMapper.FindAllData();
+        }
 
         public int DeleteDeviceCacheById(int id)
         {

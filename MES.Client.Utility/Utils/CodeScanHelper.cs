@@ -4,6 +4,7 @@ using System.Data;
 using System.Text.RegularExpressions;
 using FastReport;
 using FastReport.Barcode;
+using FastReport.Table;
 using ManufacturingExecutionSystem.MES.Client.Mapper;
 using ManufacturingExecutionSystem.MES.Client.Model;
 
@@ -95,8 +96,101 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
                 return;
             }
         }
-        
+
         #endregion
+
+
+        #region 小箱单打印
+
         
+        public void PrintSmallPackList(Device device, SaleOrder saleOrder,  String frxModelName)
+        {
+            if (device == null) return;
+            if (saleOrder == null) return;
+
+            Report rep = new Report();
+            String mainModuleFileName = System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName;
+            String exeName = "ManufacturingExecutionSystem.exe";
+            mainModuleFileName = mainModuleFileName?.Substring(0, mainModuleFileName.Length - exeName.Length);
+            mainModuleFileName += frxModelName;
+            rep.Load(mainModuleFileName);
+
+            // 设备名称
+            if (rep.FindObject("Cell2") is TableCell tableCell1)
+            {
+                tableCell1.Text = saleOrder.CustomerDeviceName;
+                if (saleOrder.CustomerDeviceName?.Length <= 11)
+                {
+                    tableCell1.FontWidthRatio = 1.0F;
+                }
+                else if (saleOrder.CustomerDeviceName?.Length <= 15 && saleOrder.CustomerDeviceName.Length > 11)
+                {
+                    tableCell1.FontWidthRatio = 0.8F;
+                }
+                else if (saleOrder.CustomerDeviceName?.Length <= 19 && saleOrder.CustomerDeviceName.Length > 16)
+                {
+                    tableCell1.FontWidthRatio = 0.6F;
+                }
+            }
+
+            // 设备型号
+            if (rep.FindObject("Cell7") is TableCell tableCell2)
+            {
+                tableCell2.Text = saleOrder.CustomerDeviceModel;
+            }
+
+            // 设备编码
+            if (rep.FindObject("Barcode1") is BarcodeObject barcodeObject)
+            {
+                barcodeObject.Text = device.Imei;
+                barcodeObject.Barcode = new BarcodeQR();
+            }
+
+            if (rep.FindObject("Text5") is TextObject textObject4)
+            {
+                textObject4.Text = device.Imei;
+            }
+
+
+            // 设备量程
+            if (rep.FindObject("Text6") is TextObject textObject1)
+            {
+                textObject1.Text = saleOrder.DefaultConfig;
+            }
+
+            // 设备箱单
+            if (rep.FindObject("Text4") is TextObject textObject2)
+            {
+                textObject2.Text = "设备箱单";
+            }
+
+            // 设备数量
+            if (rep.FindObject("Text2") is TextObject textObject3)
+            {
+                textObject3.Text = "1";
+            }
+
+            PrinterMapper printerMapper = new PrinterMapper();
+            printerMapper.CreateTableIfNotExist();
+            DataSet selectPrinters = printerMapper.SelectPrinters();
+
+            foreach (DataRow dr in selectPrinters.Tables[0].Rows)
+            {
+                rep.PrintSettings.Printer = dr[1].ToString();
+                rep.PrintSettings.ShowDialog = false;
+                if (rep.FindObject("Page1") is ReportPage reportPage)
+                {
+                    // 右偏移
+                    reportPage.LeftMargin = int.Parse(dr[2].ToString());
+                    // 下偏移
+                    reportPage.TopMargin = int.Parse(dr[3].ToString());
+                }
+                rep.Print();
+                return;
+            }
+        }
+
+
+        #endregion
     }
 }

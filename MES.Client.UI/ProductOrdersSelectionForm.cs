@@ -15,19 +15,28 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private readonly Process _process;
         private int _index = -1;
         private bool _isFond;
-        public ProductOrdersSelectionForm(JToken productOrders, Process process)
+        public ProductOrdersSelectionForm(JToken productOrders, Process process, String tipsSaleOrderNo)
         {
             _productOrders = productOrders;
             _process = process;
             InitializeComponent();
+
+            if (tipsSaleOrderNo == String.Empty || _productOrders == null || ProductOrder_TextBox == null) return;
+            foreach (var jTokenItem in _productOrders)
+            {
+                if (jTokenItem?.SelectToken("saleOrderno")?.ToString() != tipsSaleOrderNo) continue;
+                ProductOrder_TextBox.Text = jTokenItem?.SelectToken("id")?.ToString();
+                break;
+            }
         }
+
 
         private void ProductOrdersSelectionForm_Load(object sender, EventArgs e)
         {
             InitInfoTable();
             UpdateTable();
             ProductOrderList?.ClearSelection();
-            ProductOrder_TextBox.Select();
+            ProductOrder_TextBox?.Select();
         }
 
 
@@ -141,7 +150,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             if (_isFond)
             {
-                Submit_Button.Select();
+                Submit_Button?.Select();
                 return;
             }
             MessageBox.Show(@"未找到工单id为" + ProductOrder_TextBox.Text + @"的工单");
@@ -160,7 +169,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 return;
             }
 
-
             ProductOrder productOrderInfo = new ProductOrder
             {
                 OrderId = int.Parse(ProductOrderList.Rows[_index].Cells["Id"]?.Value?.ToString() ?? string.Empty),
@@ -172,7 +180,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             };
 
 
-            switch (_process.SelectedProcessName)
+            switch (_process?.SelectedProcessName)
             {
                 case ProcessNameEnum.CodeRegistration:
                     CodeRegistrationForm codeRegistrationForm = (CodeRegistrationForm) this.Owner;

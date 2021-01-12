@@ -1,4 +1,5 @@
 ﻿
+using System;
 using ManufacturingExecutionSystem.MES.Client.Model;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -15,6 +16,12 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         public static JObject GetProductOrderApi(LoginInfo loginInfo)
         {
             return Common.BackgroundRequest("/prod-api/order/productOrders", Method.GET, loginInfo?.Token);
+        }
+
+
+        public static JObject FindProductOrderIdByImeiApi(LoginInfo loginInfo, String imei)
+        {
+            return Common.BackgroundRequest("/prod-api/order/deviceOrder?imei=" + imei, Method.GET, loginInfo?.Token);
         }
     }
 }

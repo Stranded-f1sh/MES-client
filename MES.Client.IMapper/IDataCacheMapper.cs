@@ -11,6 +11,8 @@ namespace ManufacturingExecutionSystem.MES.Client.IMapper
 
         DataSet FindUnUploadData();
 
+        DataSet FindAllData();
+
         int DeleteDataById(int id);
 
         int UpdateDataById(int id);

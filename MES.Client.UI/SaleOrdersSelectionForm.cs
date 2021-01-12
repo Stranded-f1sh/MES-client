@@ -157,24 +157,22 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             
             for (int i = 0; i < SaleOrderList?.Rows.Count; i++)
             {
-                if (SaleOrderList.Rows[i].Cells[0]?.Value != null)
+                if (SaleOrderList.Rows[i].Cells[0]?.Value == null) continue;
+                if (SaleOrderList.Rows[i].Cells[0].Value.ToString() == SaleOrder_TextBox.Text)
                 {
-                    if (SaleOrderList.Rows[i].Cells[0].Value.ToString() == SaleOrder_TextBox.Text)
-                    {
-                        SaleOrderList.Rows[i].Selected = true; // 选中
-                        SaleOrderList.FirstDisplayedScrollingRowIndex = i; // 定位
-                        MessageBox.Show(@"已找到销售订单id为" + SaleOrder_TextBox.Text + @"的订单");
-                        _isFond = true;
-                        break;
-                    }
-                    SaleOrderList.Rows[i].Selected = false;
-                    _index++;
+                    SaleOrderList.Rows[i].Selected = true; // 选中
+                    SaleOrderList.FirstDisplayedScrollingRowIndex = i; // 定位
+                    MessageBox.Show(@"已找到销售订单id为" + SaleOrder_TextBox.Text + @"的订单");
+                    _isFond = true;
+                    break;
                 }
+                SaleOrderList.Rows[i].Selected = false;
+                _index++;
             }
 
             if (_isFond)
             {
-                Submit_Button.Select();
+                Submit_Button?.Select();
                 return;
             }
             MessageBox.Show(@"未找到销售订单id为" + SaleOrder_TextBox.Text + @"的订单");
@@ -192,7 +190,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 _getSaleOrdersDictionary.TryGetValue(Int32.Parse(YearSelection_ComboBox?.Text), out JToken saleOrders);
                 UpdateTable(saleOrders);
                 SaleOrderList?.ClearSelection();
-                SaleOrder_TextBox.Select();
+                SaleOrder_TextBox?.Select();
             }
             else
             {
@@ -222,17 +220,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 _loginInfo, SaleOrderList.Rows[_index].Cells["id"]?.Value?.ToString() ?? string.Empty);
             SaleOrder saleOrder = saleOrderService.SetSaleOrderInfo(saleOrderInfo);
 
-            Console.WriteLine(saleOrder.Address);
-            Console.WriteLine(saleOrder.BuyDate);
-            Console.WriteLine(saleOrder.BuyNumber);
-            Console.WriteLine(saleOrder.CompanyFullName);
-            Console.WriteLine(saleOrder.CustomerDeviceModel);
-            Console.WriteLine(saleOrder.CustomerDeviceName);
-            Console.WriteLine(saleOrder.DefaultConfig);
-            Console.WriteLine(saleOrder.OrderNo);
-
-
-            switch (_process.SelectedProcessName)
+            switch (_process?.SelectedProcessName)
             {
                 case ProcessNameEnum.Pack:
                     PackForm packForm = (PackForm) this.Owner;
@@ -252,6 +240,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         {
             if (eventArgs != null && eventArgs.KeyChar != Convert.ToChar(13)) return;
             Submit_Button_Click(sender, eventArgs);
+        }
+
+
+        private void Cancel_Button_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

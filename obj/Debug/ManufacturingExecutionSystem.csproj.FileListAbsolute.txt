@@ -47,3 +47,4 @@ E:\code\ManufacturingExecutionSystem\bin\Debug\System.Data.SQLite.dll.config
 E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.exe.config
 E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.PackForm.resources
 E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.SaleOrdersSelectionForm.resources
+E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.SqLiteDataBaseOperateForm.resources

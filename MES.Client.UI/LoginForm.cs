@@ -133,7 +133,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                             if (loginInfo.userId.ToString() == dr[0].ToString())
                             {
                                 isFondRecord = true;
-
                             }
                         }
 

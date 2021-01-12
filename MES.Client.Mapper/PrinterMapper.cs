@@ -181,12 +181,6 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
                         if (sqLiteDataReader == null) return 0;
                         while (sqLiteDataReader.Read())
                         {
-                            Console.WriteLine(sqLiteDataReader["PrintSettingId"]);
-                            Console.WriteLine(sqLiteDataReader["PrinterName"]);
-                            Console.WriteLine(sqLiteDataReader["HorizontalOffset"]);
-                            Console.WriteLine(sqLiteDataReader["VerticalOffset"]);
-
-
                             ret++;
                         }
                     }

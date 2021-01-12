@@ -83,7 +83,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.SaleOrder_TextBox.Name = "SaleOrder_TextBox";
             this.SaleOrder_TextBox.Size = new System.Drawing.Size(443, 21);
             this.SaleOrder_TextBox.TabIndex = 9;
-            this.SaleOrder_TextBox.KeyPress += new KeyPressEventHandler(this.SaleOrder_TextBox_KeyPress);
+            this.SaleOrder_TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SaleOrder_TextBox_KeyPress);
             // 
             // label1
             // 
@@ -114,6 +114,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Cancel_Button.TabIndex = 1;
             this.Cancel_Button.Text = "Cancel";
             this.Cancel_Button.UseVisualStyleBackColor = true;
+            this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
             // Submit_Button
             // 
@@ -124,8 +125,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Submit_Button.TabIndex = 0;
             this.Submit_Button.Text = "OK";
             this.Submit_Button.UseVisualStyleBackColor = true;
-            this.Submit_Button.Click += new EventHandler(Submit_Button_Click);
-            this.Submit_Button.KeyPress += new KeyPressEventHandler(Submit_Button_KeyPress);
+            this.Submit_Button.Click += new System.EventHandler(this.Submit_Button_Click);
+            this.Submit_Button.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Submit_Button_KeyPress);
             // 
             // YearSelection_ComboBox
             // 
@@ -150,6 +151,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Name = "SaleOrdersSelectionForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SaleOrdersSelectionForm";
             this.Load += new System.EventHandler(this.SaleOrdersSelectionForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.SaleOrderList)).EndInit();
