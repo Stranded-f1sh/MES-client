@@ -229,6 +229,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                         packForm.SaleOrderInfo = saleOrder;
                     }
                     break;
+                case ProcessNameEnum.OutBound:
+                    OutBoundForm outBoundForm = (OutBoundForm)this.Owner;
+                    if (outBoundForm?.SaleOrderInfo != null)
+                    {
+                        outBoundForm.SaleOrderInfo = saleOrder;
+                    }
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

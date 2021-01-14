@@ -138,7 +138,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
             {
                 response = client.Execute(request);
                 retryTimes++;
-            } while ((response.ResponseStatus != ResponseStatus.Completed) && retryTimes < 3);
+            } while ((response.ResponseStatus != ResponseStatus.Completed) && retryTimes < 1);
 
             if (response.ResponseStatus != ResponseStatus.Completed)
             {

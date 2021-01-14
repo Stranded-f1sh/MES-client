@@ -20,13 +20,10 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         {
             LoginInfo loginInfo = new LoginInfo { username = userName, password = passWord};
             JObject jToken = LoginApi.GetTokenApi(loginInfo);
-            if (jToken?.Property("code") != null && jToken["code"]?.ToString() == "0")
-            {
-                loginInfo.Token = jToken["data"]?["token"]?.ToString();
-                loginInfo.userId = int.Parse(jToken["data"]?["id"]?.ToString()?? String.Empty);
-                return loginInfo;
-            }
-            return null;
+            if (jToken?.Property("code") == null || jToken["code"]?.ToString() != "0") return null;
+            loginInfo.Token = jToken["data"]?["token"]?.ToString();
+            loginInfo.userId = int.Parse(jToken["data"]?["id"]?.ToString()?? String.Empty);
+            return loginInfo;
         }
 
 

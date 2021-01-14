@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Reflection;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using ManufacturingExecutionSystem.MES.Client.Model;
 using ManufacturingExecutionSystem.MES.Client.Service;
 using ManufacturingExecutionSystem.MES.Client.Utility.Enum;
 using ManufacturingExecutionSystem.MES.Client.Utility.Utils;
+using ManufacturingExecutionSystem.MES.Client.Utility.Utils.PCB;
 using Newtonsoft.Json.Linq;
 
 namespace ManufacturingExecutionSystem.MES.Client.UI
@@ -16,16 +19,19 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
     {
         private readonly JToken _productOrders; // 缓存的所有工单
         public ProductOrder ProductOrderInfo; // 切换的工单实体类
-        public SaleOrder SaleOrderInfo;
-        private readonly Process _process;
-        private readonly LoginInfo _loginInfo;
+        public SaleOrder SaleOrderInfo; // 发货客户销售单信息
+        private readonly Process _process; // 所在工序
+        private readonly LoginInfo _loginInfo; // 操作员信息
         private int _pageCount; // 总页数
         private int _pageNum;  // 当前页
 
-        private Thread _dataUpLoadThread;
-        private static Mutex _mut;
-        private bool _startScan;
-        private String _tipsSaleOrderNo;
+        private Thread _dataUpLoadThread; // 缓存数据上传线程
+        private static Mutex _mut; // 互斥锁
+        private bool _startScan; // 为true时缓存数据上传线程开始检索缓存数据库
+        private String _tipsSaleOrderNo; // 选择销售单时提示的工单id
+
+        private StringBuilder _appendStrings; // COM口读取数据缓存buffer
+
 
         public PackForm(LoginInfo loginInfo, Process process, JToken productOrders)
         {
@@ -63,6 +69,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             SelectSaleOrder(SaleOrderInfo);
             if (ProductOrderInfo != null) return;
+            if (SaleOrderInfo?.OrderNo == null) return;
 
             if (MessageBox.Show(@"是否显示对应工单报工信息？", "", MessageBoxButtons.OKCancel) != DialogResult.OK) return;
             _tipsSaleOrderNo = SaleOrderInfo?.OrderNo;
@@ -88,6 +95,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         
         private void SelectSaleOrder(SaleOrder soi)
         {
+            if (soi.OrderNo == null) return;
             SaleOrderNo_TextBox.Text = soi.OrderNo;
             CompanyFullName_TextBox.Text = soi.CompanyFullName;
             DeviceModel_TextBox.Text = soi.CustomerDeviceModel;
@@ -422,7 +430,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 {
                     JToken ret = baoGongService.DeviceBaoGong(_loginInfo,
                         dr[1].ToString(),
-                        (ProcessNameEnum)Enum.ToObject(typeof(ProcessNameEnum), int.Parse(dr[6].ToString())));
+                        (ProcessNameEnum)Enum.ToObject(typeof(ProcessNameEnum), int.Parse(dr[6].ToString())), dr[10]?.ToString());
 
                     if ("ok" == ret?.ToString())
                     {
@@ -491,5 +499,140 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             PrinterSettingsForm printerSettings = new PrinterSettingsForm();
             printerSettings.ShowDialog();
         }
+
+
+
+#region 下位机PLC通讯
+
+
+        private SerialPort Initialize_RS485_IO(SerialPortConfig serialPortConfig)
+        {
+            if (serialPortConfig == null) return null;
+            SerialPort serialPort = new SerialPort
+            {
+                PortName = serialPortConfig.PortName,
+                BaudRate = serialPortConfig.BaudRate,
+                DataBits = serialPortConfig.DataBits,
+                ReadTimeout = serialPortConfig.ReadTimeout,
+                WriteBufferSize = serialPortConfig.WriteBufferSize,
+                ReadBufferSize = serialPortConfig.ReadBufferSize,
+                StopBits = serialPortConfig.StopBits,
+                Parity = serialPortConfig.Parity,
+                Encoding = Encoding.Unicode,
+                RtsEnable = true,  //启用请求发送信号
+                DtrEnable = true, //启用控制终端就续信号
+                ReceivedBytesThreshold = serialPortConfig.ReceivedBytesThreshold
+            };
+
+            return serialPort;
+        }
+
+
+        /*
+        *  Get String From readBuffer
+        */
+        private void ReadLine(SerialPort serialPort)
+        {
+            if (serialPort == null) return;
+            if (!serialPort.IsOpen) return;
+            if (_appendStrings == null) return;
+
+            int bytes = serialPort.BytesToRead;
+
+            byte[] readBuffer = new byte[bytes];
+
+            int count = serialPort.Read(readBuffer, 0, readBuffer.Length);
+
+            if (count <= 0) return;
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (byte b in readBuffer)
+            {
+                //{0:X2} 大写方式
+                sb.AppendFormat("{0:x2}", b);
+            }
+
+            _appendStrings.Append(sb);
+        }
+
+
+
+        /*
+         * Port Data Receive Event
+         */
+        private void serialPort_DataReceivedEventHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            ReadLine((SerialPort)sender);
+        }
+
+
+
+        private Boolean OpenPort(SerialPort serialPort)
+        {
+            if (serialPort == null) return false;
+            if (!serialPort.IsOpen)
+            {
+                serialPort.Open();
+            }
+            serialPort.DataReceived += serialPort_DataReceivedEventHandler;
+
+            return true;
+        }
+
+
+
+        private void PLC_Communication_Button_Click(object sender, EventArgs e)
+        {
+            SerialPortConfig serialPortConfig = new SerialPortConfig
+            {
+                PortName = "COM3",
+                BaudRate = 9600,
+                DataBits = 8,
+                ReadTimeout = 2000,
+                WriteBufferSize = 2048,
+                ReadBufferSize = 40480,
+                StopBits = StopBits.One,
+                Parity = Parity.None,
+                ReceivedBytesThreshold = 1
+            };
+
+            SerialPort serialPort = Initialize_RS485_IO(serialPortConfig);
+            Boolean isOpen = OpenPort(serialPort);
+            if (!isOpen) return;
+            _appendStrings = new StringBuilder();
+            AutoPackProgramRun(serialPort);
+        }
+
+
+
+        // 判断接收的数据是否符合规范
+        private Boolean IsReceivedCorrectData(SerialPort serialPort, byte[] xInput)
+        {
+            int reTriedTimes = 0;
+            do
+            {
+                reTriedTimes++;
+                if (reTriedTimes > 5) return false;
+                _appendStrings?.Clear();
+                serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 8);
+                Thread.Sleep(700);
+            } while (!_appendStrings?.ToString().Contains("fa1e") == true && !_appendStrings?.ToString().Contains("fad2") == true);
+
+            return true;
+        }
+
+        private void AutoPackProgramRun(SerialPort serialPort)
+        {
+            bool isReceivedCorrectData = IsReceivedCorrectData(serialPort, CommandDefinition.X00Input);
+            if (!isReceivedCorrectData) return;
+            Console.WriteLine(Thread.CurrentThread.Name);
+            Console.WriteLine(_appendStrings);
+            Console.WriteLine(@"收到皮带传送表到位信号，发送扫码指令");
+        }
+
+
+        #endregion
+
     }
 }

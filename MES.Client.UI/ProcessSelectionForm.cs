@@ -200,6 +200,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         }
 
 
+        // 出库
+        private void OutBound_Button_Click(object sender, EventArgs e)
+        {
+            Process process = new Process { SelectedProcessName = ProcessNameEnum.OutBound };
+            OutBoundForm outBoundForm = new OutBoundForm(_loginInfo, process);
+            new Thread(delegate () { outBoundForm.ShowDialog(); }).Start();
+            this.Close();
+        }
 
         // 包装
         private void Pack_Button_Click(object sender, EventArgs e)
@@ -209,6 +217,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             new Thread(delegate () { packForm.ShowDialog(); }).Start();
             this.Close();
         }
+
 
 
     }

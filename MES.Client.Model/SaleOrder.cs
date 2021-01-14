@@ -10,6 +10,10 @@ namespace ManufacturingExecutionSystem.MES.Client.Model
     {
         [DataMember]
         [Description("订单编号")]
+        public String Id { get; set; } // 订单id
+
+        [DataMember]
+        [Description("订单编号")]
         public String OrderNo { get; set; } // 订单编号
 
         [DataMember]
@@ -39,5 +43,9 @@ namespace ManufacturingExecutionSystem.MES.Client.Model
         [DataMember]
         [Description("量程")]
         public String DefaultConfig { get; set; } // 量程
+
+        [DataMember]
+        [Description("平台类型")]
+        public String PlatFormType { get; set; } // 平台类型
     }
 }

@@ -15,16 +15,16 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
             return MyJsonConverter.GetJToken(jObject);
         }
 
-        
+
         /// <summary>
         /// 设备报工接口
         /// </summary>
         /// <param name="loginInfo"></param>
         /// <param name="imei"></param>
         /// <param name="processId"></param>
-        /// <param name="userId"></param>
+        /// <param name="updateTime"></param>
         /// <returns></returns>
-        public JToken DeviceBaoGong(LoginInfo loginInfo, String imei, ProcessNameEnum processId)
+        public JToken DeviceBaoGong(LoginInfo loginInfo, String imei, ProcessNameEnum processId, String updateTime)
         {
             Device device = new Device
             {
@@ -34,6 +34,10 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
                 UserId = loginInfo.userId,
                 Passed = (int)PassJudge.Qualified
             };
+            if (updateTime != String.Empty)
+            {
+                device.EndTime = updateTime;
+            }
             return PostProductDevice(loginInfo, device);
         }
         
@@ -42,7 +46,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
          * 需要传不合格原因
          */
         public JToken DeviceBaoGong(LoginInfo loginInfo, String imei, ProcessNameEnum processId, 
-            int reasonId, string reasonContext)
+            int reasonId, string reasonContext, String updateTime)
         {
             Device device = new Device
             {
@@ -54,6 +58,10 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
                 ReasonId = reasonId,
                 ReasonContext = reasonContext
             };
+            if (updateTime != String.Empty)
+            {
+                device.EndTime = updateTime;
+            }
             return PostProductDevice(loginInfo, device);
         }
         
@@ -61,7 +69,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         /**
          * 需要传工单号
          */
-        public JToken DeviceBaoGong(LoginInfo loginInfo, String imei, int orderId, ProcessNameEnum processId)
+        public JToken DeviceBaoGong(LoginInfo loginInfo, String imei, int orderId, ProcessNameEnum processId, String updateTime)
         {
             Device device = new Device
             {
@@ -72,7 +80,10 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
                 UserId = loginInfo.userId,
                 Passed = (int)PassJudge.Qualified,
             };
-            
+            if (updateTime != String.Empty)
+            {
+                device.EndTime = updateTime;
+            }
             return PostProductDevice(loginInfo, device);
         }
 
@@ -81,7 +92,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
          * 需要传工单号 和 不合格原因
          */
         public JToken DeviceBaoGong(LoginInfo loginInfo, String imei, int orderId, ProcessNameEnum processId, 
-            int reasonId, string reasonContext)
+            int reasonId, string reasonContext, String updateTime)
         {
             Device device = new Device
             {
@@ -94,7 +105,10 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
                 ReasonId = reasonId,
                 ReasonContext = reasonContext
             };
-            
+            if (updateTime != String.Empty)
+            {
+                device.EndTime = updateTime;
+            }
             return PostProductDevice(loginInfo, device);
         }
     }

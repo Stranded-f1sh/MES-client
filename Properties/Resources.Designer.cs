@@ -61,7 +61,7 @@ namespace ManufacturingExecutionSystem.Properties {
         }
         
         /// <summary>
-        ///   查找类似 密码错误！请重试。 的本地化字符串。
+        ///   查找类似 请求超时或密码错误！请重试。 的本地化字符串。
         /// </summary>
         internal static string LoginPassWordErro {
             get {

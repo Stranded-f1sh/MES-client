@@ -54,6 +54,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             SqliteTable_listview.Columns.Add("reasonId", 80);
             SqliteTable_listview.Columns.Add("reasonContext", 80);
             SqliteTable_listview.Columns.Add("baoGongStatus", 105);
+            SqliteTable_listview.Columns.Add("updateTime", 105);
         }
 
 
@@ -76,6 +77,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 item.SubItems.Add(dr?[7]?.ToString());
                 item.SubItems.Add(dr?[8]?.ToString());
                 item.SubItems.Add(dr?[9]?.ToString());
+                item.SubItems.Add(dr?[10]?.ToString());
                 SqliteTable_listview?.Items.Add(item);
             }
 

@@ -31,8 +31,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackForm));
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -74,6 +74,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.OrderSelect_Btn = new System.Windows.Forms.ToolStripButton();
             this.Find_Button = new System.Windows.Forms.ToolStripButton();
             this.DBCache_Button = new System.Windows.Forms.ToolStripButton();
+            this.PLC_Communication_Button = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.BackPage_Btn = new System.Windows.Forms.ToolStripButton();
             this.NextPage_Btn = new System.Windows.Forms.ToolStripButton();
@@ -160,24 +161,24 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BaoGongDeviceList.BackgroundColor = System.Drawing.Color.White;
             this.BaoGongDeviceList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.BaoGongDeviceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.BaoGongDeviceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.BaoGongDeviceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.BaoGongDeviceList.DefaultCellStyle = dataGridViewCellStyle2;
-            this.BaoGongDeviceList.GridColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.BaoGongDeviceList.DefaultCellStyle = dataGridViewCellStyle4;
+            this.BaoGongDeviceList.GridColor = System.Drawing.SystemColors.ControlLight;
             this.BaoGongDeviceList.Location = new System.Drawing.Point(2, 405);
             this.BaoGongDeviceList.Name = "BaoGongDeviceList";
             this.BaoGongDeviceList.RowTemplate.Height = 20;
@@ -536,6 +537,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.OrderSelect_Btn,
             this.Find_Button,
             this.DBCache_Button,
+            this.PLC_Communication_Button,
             this.toolStripSeparator3,
             this.BackPage_Btn,
             this.NextPage_Btn,
@@ -606,6 +608,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.DBCache_Button.Text = "报工缓存";
             this.DBCache_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.DBCache_Button.Click += new System.EventHandler(this.DBCache_Button_Click);
+            // 
+            // PLC_Communication_Button
+            // 
+            this.PLC_Communication_Button.AutoSize = false;
+            this.PLC_Communication_Button.Image = ((System.Drawing.Image)(resources.GetObject("PLC_Communication_Button.Image")));
+            this.PLC_Communication_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PLC_Communication_Button.Name = "PLC_Communication_Button";
+            this.PLC_Communication_Button.Size = new System.Drawing.Size(84, 68);
+            this.PLC_Communication_Button.Text = "下位机通讯";
+            this.PLC_Communication_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.PLC_Communication_Button.Click += new System.EventHandler(this.PLC_Communication_Button_Click);
             // 
             // toolStripSeparator3
             // 
@@ -798,5 +811,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private ToolStripButton DBCache_Button;
         private Label label3;
         private Label User_Label;
+        private ToolStripButton PLC_Communication_Button;
     }
 }

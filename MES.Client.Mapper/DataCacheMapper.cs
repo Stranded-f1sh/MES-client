@@ -24,7 +24,8 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
                                  , `processId` INTEGER
                                  , `reasonId` INTEGER
                                  , `reasonContext` TEXT
-                                 , `baoGongStatus` TEXT)";
+                                 , `baoGongStatus` TEXT
+                                 , `updateTime` TEXT)";
                 SQLiteCommand command = new SQLiteCommand(sql, conn, trans);
                 trans?.Commit();
                 return command.ExecuteNonQuery();
@@ -45,7 +46,8 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
                     , [processId]
                     , [reasonId]
                     , [reasonContext]
-                    , [baoGongStatus])
+                    , [baoGongStatus]
+                    , [updateTime])
                     VALUES(@imei
                     , @imsi
                     , @passed
@@ -54,7 +56,8 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
                     , @processId
                     , @reasonId
                     , @reasonContext
-                    , @baoGongStatus)";
+                    , @baoGongStatus
+                    , @updateTime)";
                 SQLiteCommand command = new SQLiteCommand(sql, conn, trans);
                 
                 SQLiteParameter pImei =
@@ -103,7 +106,12 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
                     new SQLiteParameter("baoGongStatus", DbHelper.ConvertToDbNull(device?.BaoGongStatus.ToString()));
 
                 command.Parameters?.Add(pBaoGongStatus);
-                
+
+                SQLiteParameter pUpdateTime =
+                    new SQLiteParameter("updateTime", DbHelper.ConvertToDbNull(DateTime.Now.AddHours(-8).ToString(@"yyyy-MM-dd'T'HH:mm:ss.sssZ")));
+
+                command.Parameters?.Add(pUpdateTime);
+
                 trans?.Commit();
                 return command.ExecuteNonQuery();
             }
@@ -127,6 +135,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
                           , [reasonId]
                           , [reasonContext]
                           , [baoGongStatus]
+                          , [updateTime]
                            FROM 
                             [DataCache]
                            WHERE
@@ -155,6 +164,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
                           , [reasonId]
                           , [reasonContext]
                           , [baoGongStatus]
+                          , [updateTime]
                            FROM 
                             [DataCache]";
                 SQLiteDataAdapter command = new SQLiteDataAdapter(sql, conn);
@@ -187,8 +197,14 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
         {
             using (SQLiteConnection conn = DbHelper.GetConnection(out SQLiteTransaction trans))
             {
-                String sql = "UPDATE [DataCache] SET [baoGongStatus] = 'Committed'  WHERE [id] = @id";
+                String sql = "UPDATE [DataCache] SET [baoGongStatus] = 'Committed', [updateTime] = @updateTime  WHERE [id] = @id";
                 SQLiteCommand command = new SQLiteCommand(sql, conn, trans);
+
+                SQLiteParameter pUpdateTime =
+                    new SQLiteParameter("updateTime", DbHelper.ConvertToDbNull(DateTime.Now.AddHours(-8).ToString(@"yyyy-MM-dd'T'HH:mm:ss.sssZ")));
+
+                command.Parameters?.Add(pUpdateTime);
+
                 SQLiteParameter pId =
                     new SQLiteParameter("id", DbHelper.ConvertToDbNull(id));
 

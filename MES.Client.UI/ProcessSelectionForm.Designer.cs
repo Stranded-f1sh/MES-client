@@ -74,9 +74,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.flowLayoutPanel1.Controls.Add(this.SensorCalibration_Button);
             this.flowLayoutPanel1.Controls.Add(this.Assembly_Button);
             this.flowLayoutPanel1.Controls.Add(this.WarehouseInspection_Button);
+            this.flowLayoutPanel1.Controls.Add(this.OutBound_Button);
             this.flowLayoutPanel1.Controls.Add(this.OutboundInspection_Button);
             this.flowLayoutPanel1.Controls.Add(this.Pack_Button);
-            this.flowLayoutPanel1.Controls.Add(this.OutBound_Button);
             this.flowLayoutPanel1.Controls.Add(this.Ship_Button);
             this.flowLayoutPanel1.Controls.Add(this.Repair_Button);
             this.flowLayoutPanel1.Controls.Add(this.button12);
@@ -177,7 +177,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.OutboundInspection_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.OutboundInspection_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OutboundInspection_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
-            this.OutboundInspection_Button.Location = new System.Drawing.Point(3, 205);
+            this.OutboundInspection_Button.Location = new System.Drawing.Point(238, 205);
             this.OutboundInspection_Button.Name = "OutboundInspection_Button";
             this.OutboundInspection_Button.Size = new System.Drawing.Size(229, 95);
             this.OutboundInspection_Button.TabIndex = 6;
@@ -191,7 +191,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Pack_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.Pack_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Pack_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
-            this.Pack_Button.Location = new System.Drawing.Point(238, 205);
+            this.Pack_Button.Location = new System.Drawing.Point(473, 205);
             this.Pack_Button.Name = "Pack_Button";
             this.Pack_Button.Size = new System.Drawing.Size(229, 95);
             this.Pack_Button.TabIndex = 7;
@@ -206,12 +206,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.OutBound_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.OutBound_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OutBound_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
-            this.OutBound_Button.Location = new System.Drawing.Point(473, 205);
+            this.OutBound_Button.Location = new System.Drawing.Point(3, 205);
             this.OutBound_Button.Name = "OutBound_Button";
             this.OutBound_Button.Size = new System.Drawing.Size(229, 95);
             this.OutBound_Button.TabIndex = 8;
             this.OutBound_Button.Text = "出库";
             this.OutBound_Button.UseVisualStyleBackColor = false;
+            this.OutBound_Button.Click += new System.EventHandler(this.OutBound_Button_Click);
             // 
             // Ship_Button
             // 

@@ -1,4 +1,5 @@
-﻿using ManufacturingExecutionSystem.MES.Client.Api;
+﻿using System;
+using ManufacturingExecutionSystem.MES.Client.Api;
 using ManufacturingExecutionSystem.MES.Client.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -33,13 +34,14 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
             {
                 saleOrder = new SaleOrder
                 {
+                    Id = JsonConverter.JTokenTransformer(itemToken?["id"]),
                     OrderNo = JsonConverter.JTokenTransformer(itemToken?["orderNo"]),
                     CustomerDeviceName = JsonConverter.JTokenTransformer(itemToken?["customerDeviceName"]),
                     CustomerDeviceModel = JsonConverter.JTokenTransformer(itemToken?["customerDeviceModel"]),
                     CompanyFullName = JsonConverter.JTokenTransformer(itemToken?["companyFullName"]),
                     BuyNumber = int.Parse(JsonConverter.JTokenTransformer(itemToken?["buyNumber"]) ?? string.Empty),
-                    BuyDate = JsonConverter.JTokenTransformer(itemToken?["buyDate"])
-
+                    BuyDate = JsonConverter.JTokenTransformer(itemToken?["buyDate"]),
+                    PlatFormType = JsonConverter.JTokenTransformer(itemToken?["platformType"])
                 };
 
                 string value = JsonConverter.JTokenTransformer(itemToken?["orderDetail"]);
@@ -61,6 +63,15 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
             return saleOrder;
         }
 
+
+
+        public JToken PublishDevice(LoginInfo loginInfo, Device deviceObject)
+        {
+            if (deviceObject == null) return null;
+            JObject jObject = SaleOrderApi.PublishDeviceApi(loginInfo, deviceObject.Imei, deviceObject.SaleOrderId);
+
+            return JsonConverter.GetJToken(jObject);
+        }
 
 
     }

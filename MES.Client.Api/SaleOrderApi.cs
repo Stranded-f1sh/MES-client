@@ -18,7 +18,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         /// <param name="loginInfo"></param>
         /// <param name="saleOrderId"></param>
         /// <returns></returns>
-        public static JObject GetSaleOrderInfoApi(LoginInfo loginInfo, string saleOrderId)
+        public static JObject GetSaleOrderInfoApi(LoginInfo loginInfo, String saleOrderId)
         {
             return Common.BackgroundRequest("/prod-api/order/saleOrders?id=" + saleOrderId, Method.GET, loginInfo?.Token);
         }
@@ -34,6 +34,20 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         {
             return Common.BackgroundRequest("/prod-api/order/monthsaleorders?year=" + selectedYear + "&month=-1", Method.GET, loginInfo?.Token);
             
+        }
+
+
+
+        /// <summary>
+        /// 转正式客户
+        /// </summary>
+        /// <param name="loginInfo"></param>
+        /// <param name="imei"></param>
+        /// <param name="saleOrderId"></param>
+        /// <returns></returns>
+        public static JObject PublishDeviceApi(LoginInfo loginInfo, String imei, String saleOrderId)
+        {
+            return Common.BackgroundRequest("/prod-api/order/publishDevice?imei=" + imei + "&orderId=" + saleOrderId, Method.GET, loginInfo?.Token);
         }
     }
 }

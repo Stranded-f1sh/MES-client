@@ -21,5 +21,12 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
             return MyJsonConverter.GetJToken(jObject);
         }
 
+
+
+        public JToken DelDevice(LoginInfo loginInfo, Device deviceObject, SaleOrder saleOrder)
+        {
+            JObject jObject = DeviceRegistrationApi.DeviceApi(loginInfo, deviceObject?.Imei, saleOrder?.PlatFormType);
+            return MyJsonConverter.GetJToken(jObject);
+        }
     }
 }

@@ -48,3 +48,6 @@ E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.exe.
 E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.PackForm.resources
 E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.SaleOrdersSelectionForm.resources
 E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.SqLiteDataBaseOperateForm.resources
+E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.OutBoundForm.resources
+E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.ScanCodeOutBoundForm.resources
+E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.PCBConnectForm.resources

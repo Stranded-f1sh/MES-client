@@ -171,6 +171,7 @@
     <Compile Include="MES.Client.Api\Common.cs" />
     <Compile Include="MES.Client.Api\DeviceBaoGongApi.cs" />
     <Compile Include="MES.Client.Api\LoginApi.cs" />
+    <Compile Include="MES.Client.Api\OutBoundApi.cs" />
     <Compile Include="MES.Client.Api\ProductOrderApi.cs" />
     <Compile Include="MES.Client.Api\QualifyApi.cs" />
     <Compile Include="MES.Client.Api\DeviceRegistrationApi.cs" />
@@ -188,9 +189,11 @@
     <Compile Include="MES.Client.Model\ProductOrder.cs" />
     <Compile Include="MES.Client.Model\Qualify.cs" />
     <Compile Include="MES.Client.Model\SaleOrder.cs" />
+    <Compile Include="MES.Client.Model\SerialPortConfig.cs" />
     <Compile Include="MES.Client.Service\BaoGongService.cs" />
     <Compile Include="MES.Client.Service\DataCacheService.cs" />
     <Compile Include="MES.Client.Service\LoginService.cs" />
+    <Compile Include="MES.Client.Service\OutBoundService.cs" />
     <Compile Include="MES.Client.Service\ProductOrderService.cs" />
     <Compile Include="MES.Client.Service\QualifyService.cs" />
     <Compile Include="MES.Client.Service\RegistrationService.cs" />
@@ -201,11 +204,23 @@
     <Compile Include="MES.Client.UI\CodeRegistrationForm.Designer.cs">
       <DependentUpon>CodeRegistrationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MES.Client.UI\OutBoundForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MES.Client.UI\OutBoundForm.Designer.cs">
+      <DependentUpon>OutBoundForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MES.Client.UI\PackForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MES.Client.UI\PackForm.Designer.cs">
       <DependentUpon>PackForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MES.Client.UI\PCBConnectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MES.Client.UI\PCBConnectForm.Designer.cs">
+      <DependentUpon>PCBConnectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MES.Client.UI\PrinterSettingsForm.cs">
       <SubType>Form</SubType>
@@ -243,6 +258,12 @@
     <Compile Include="MES.Client.UI\SaleOrdersSelectionForm.Designer.cs">
       <DependentUpon>SaleOrdersSelectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MES.Client.UI\ScanCodeOutBoundForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MES.Client.UI\ScanCodeOutBoundForm.Designer.cs">
+      <DependentUpon>ScanCodeOutBoundForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MES.Client.UI\SqLiteDataBaseOperateForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -258,6 +279,8 @@
     <Compile Include="MES.Client.Utility\Utils\DBHelper.cs" />
     <Compile Include="MES.Client.Utility\Utils\JsonConventer.cs" />
     <Compile Include="MES.Client.Utility\Utils\LogInfoHelper.cs" />
+    <Compile Include="MES.Client.Utility\Utils\PCB\CommandDefinition.cs" />
+    <Compile Include="MES.Client.Utility\Utils\PCB\PCB_NLK_2424.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MES.Client.UI\CodeRegistrationForm.resx">
@@ -269,8 +292,14 @@
     <EmbeddedResource Include="MES.Client.UI\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MES.Client.UI\OutBoundForm.resx">
+      <DependentUpon>OutBoundForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MES.Client.UI\PackForm.resx">
       <DependentUpon>PackForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MES.Client.UI\PCBConnectForm.resx">
+      <DependentUpon>PCBConnectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MES.Client.UI\PrinterSettingsForm.resx">
       <DependentUpon>PrinterSettingsForm.cs</DependentUpon>
@@ -283,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MES.Client.UI\SaleOrdersSelectionForm.resx">
       <DependentUpon>SaleOrdersSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MES.Client.UI\ScanCodeOutBoundForm.resx">
+      <DependentUpon>ScanCodeOutBoundForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MES.Client.UI\SqLiteDataBaseOperateForm.resx">
       <DependentUpon>SqLiteDataBaseOperateForm.cs</DependentUpon>
@@ -342,6 +374,7 @@
     <Content Include="Image\zoom_in.png" />
     <Content Include="Image\zoom_out.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
