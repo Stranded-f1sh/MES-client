@@ -49,5 +49,18 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         {
             return Common.BackgroundRequest("/prod-api/order/publishDevice?imei=" + imei + "&orderId=" + saleOrderId, Method.GET, loginInfo?.Token);
         }
+
+
+
+        /// <summary>
+        /// 根据销售单id获取大箱单
+        /// </summary>
+        /// <param name="loginInfo"></param>
+        /// <param name="saleOrderId"></param>
+        /// <returns></returns>
+        public static JObject GetBigPackApi(LoginInfo loginInfo, String saleOrderId)
+        {
+            return Common.BackgroundRequest("/prod-api/order/orderPack/" + saleOrderId, Method.GET, loginInfo?.Token);
+        }
     }
 }

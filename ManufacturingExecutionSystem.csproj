@@ -172,6 +172,7 @@
     <Compile Include="MES.Client.Api\DeviceBaoGongApi.cs" />
     <Compile Include="MES.Client.Api\LoginApi.cs" />
     <Compile Include="MES.Client.Api\OutBoundApi.cs" />
+    <Compile Include="MES.Client.Api\PackApi.cs" />
     <Compile Include="MES.Client.Api\ProductOrderApi.cs" />
     <Compile Include="MES.Client.Api\QualifyApi.cs" />
     <Compile Include="MES.Client.Api\DeviceRegistrationApi.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="MES.Client.Mapper\DataCacheMapper.cs" />
     <Compile Include="MES.Client.Mapper\LoginMapper.cs" />
     <Compile Include="MES.Client.Mapper\PrinterMapper.cs" />
+    <Compile Include="MES.Client.Model\BigPack.cs" />
     <Compile Include="MES.Client.Model\Device.cs" />
     <Compile Include="MES.Client.Model\LoginInfo.cs" />
     <Compile Include="MES.Client.Model\PrintSetting.cs" />
@@ -194,10 +196,17 @@
     <Compile Include="MES.Client.Service\DataCacheService.cs" />
     <Compile Include="MES.Client.Service\LoginService.cs" />
     <Compile Include="MES.Client.Service\OutBoundService.cs" />
+    <Compile Include="MES.Client.Service\PackService.cs" />
     <Compile Include="MES.Client.Service\ProductOrderService.cs" />
     <Compile Include="MES.Client.Service\QualifyService.cs" />
     <Compile Include="MES.Client.Service\RegistrationService.cs" />
     <Compile Include="MES.Client.Service\SaleOrderService.cs" />
+    <Compile Include="MES.Client.UI\BigPackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MES.Client.UI\BigPackForm.Designer.cs">
+      <DependentUpon>BigPackForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MES.Client.UI\CodeRegistrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,12 +224,6 @@
     </Compile>
     <Compile Include="MES.Client.UI\PackForm.Designer.cs">
       <DependentUpon>PackForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MES.Client.UI\PCBConnectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MES.Client.UI\PCBConnectForm.Designer.cs">
-      <DependentUpon>PCBConnectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MES.Client.UI\PrinterSettingsForm.cs">
       <SubType>Form</SubType>
@@ -280,9 +283,11 @@
     <Compile Include="MES.Client.Utility\Utils\JsonConventer.cs" />
     <Compile Include="MES.Client.Utility\Utils\LogInfoHelper.cs" />
     <Compile Include="MES.Client.Utility\Utils\PCB\CommandDefinition.cs" />
-    <Compile Include="MES.Client.Utility\Utils\PCB\PCB_NLK_2424.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MES.Client.UI\BigPackForm.resx">
+      <DependentUpon>BigPackForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MES.Client.UI\CodeRegistrationForm.resx">
       <DependentUpon>CodeRegistrationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -297,9 +302,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MES.Client.UI\PackForm.resx">
       <DependentUpon>PackForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MES.Client.UI\PCBConnectForm.resx">
-      <DependentUpon>PCBConnectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MES.Client.UI\PrinterSettingsForm.resx">
       <DependentUpon>PrinterSettingsForm.cs</DependentUpon>

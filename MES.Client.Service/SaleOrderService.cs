@@ -65,6 +65,12 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
 
 
 
+        /// <summary>
+        /// 转正式客户
+        /// </summary>
+        /// <param name="loginInfo"></param>
+        /// <param name="deviceObject"></param>
+        /// <returns></returns>
         public JToken PublishDevice(LoginInfo loginInfo, Device deviceObject)
         {
             if (deviceObject == null) return null;
@@ -74,5 +80,18 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         }
 
 
+
+        /// <summary>
+        /// 根据销售单id获取大箱单
+        /// </summary>
+        /// <param name="loginInfo"></param>
+        /// <param name="saleOrderId"></param>
+        /// <returns></returns>
+        public JToken GetBigPack(LoginInfo loginInfo, String saleOrderId)
+        {
+            if (saleOrderId == null) return null;
+            JObject jObject = SaleOrderApi.GetBigPackApi(loginInfo, saleOrderId);
+            return JsonConverter.GetJToken(jObject);
+        }
     }
 }

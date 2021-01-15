@@ -86,6 +86,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.label3 = new System.Windows.Forms.Label();
             this.User_Label = new System.Windows.Forms.Label();
+            this.BigPackFormLoad_Button = new System.Windows.Forms.ToolStripButton();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BaoGongDeviceList)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -538,6 +539,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Find_Button,
             this.DBCache_Button,
             this.PLC_Communication_Button,
+            this.BigPackFormLoad_Button,
             this.toolStripSeparator3,
             this.BackPage_Btn,
             this.NextPage_Btn,
@@ -715,6 +717,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.User_Label.Size = new System.Drawing.Size(0, 12);
             this.User_Label.TabIndex = 38;
             // 
+            // BigPackFormLoad_Button
+            // 
+            this.BigPackFormLoad_Button.AutoSize = false;
+            this.BigPackFormLoad_Button.Image = ((System.Drawing.Image)(resources.GetObject("BigPackFormLoad_Button.Image")));
+            this.BigPackFormLoad_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BigPackFormLoad_Button.Name = "BigPackFormLoad_Button";
+            this.BigPackFormLoad_Button.Size = new System.Drawing.Size(84, 68);
+            this.BigPackFormLoad_Button.Text = "大箱包装";
+            this.BigPackFormLoad_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BigPackFormLoad_Button.Click += new System.EventHandler(this.BigPackFormLoad_Button_Click);
+            // 
             // PackForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -812,5 +825,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private Label label3;
         private Label User_Label;
         private ToolStripButton PLC_Communication_Button;
+        private ToolStripButton BigPackFormLoad_Button;
     }
 }

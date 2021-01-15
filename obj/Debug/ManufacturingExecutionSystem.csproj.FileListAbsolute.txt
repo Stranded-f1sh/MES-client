@@ -50,4 +50,4 @@ E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.
 E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.SqLiteDataBaseOperateForm.resources
 E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.OutBoundForm.resources
 E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.ScanCodeOutBoundForm.resources
-E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.PCBConnectForm.resources
+E:\code\ManufacturingExecutionSystem\obj\Debug\ManufacturingExecutionSystem.MES.Client.UI.BigPackForm.resources

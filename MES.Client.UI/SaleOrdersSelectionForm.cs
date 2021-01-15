@@ -223,10 +223,21 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             switch (_process?.SelectedProcessName)
             {
                 case ProcessNameEnum.Pack:
-                    PackForm packForm = (PackForm) this.Owner;
-                    if (packForm?.SaleOrderInfo != null)
+                    try
                     {
-                        packForm.SaleOrderInfo = saleOrder;
+                        PackForm packForm = (PackForm)this.Owner;
+                        if (packForm?.SaleOrderInfo != null)
+                        {
+                            packForm.SaleOrderInfo = saleOrder;
+                        }
+                    }
+                    catch
+                    {
+                        BigPackForm bigPackForm = (BigPackForm)this.Owner;
+                        if (bigPackForm?.SaleOrderInfo != null)
+                        {
+                            bigPackForm.SaleOrderInfo = saleOrder;
+                        }
                     }
                     break;
                 case ProcessNameEnum.OutBound:

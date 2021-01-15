@@ -634,5 +634,15 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         #endregion
 
+
+        private void BigPackFormLoad_Button_Click(object sender, EventArgs e)
+        {
+            Control.CheckForIllegalCrossThreadCalls = false;
+            this.Close();
+            BigPackForm bigPackForm = new BigPackForm(_loginInfo, _process);
+            Thread invokeThread = new Thread(()=> { bigPackForm.ShowDialog(); });
+            invokeThread.SetApartmentState(ApartmentState.STA);
+            invokeThread.Start();
+        }
     }
 }

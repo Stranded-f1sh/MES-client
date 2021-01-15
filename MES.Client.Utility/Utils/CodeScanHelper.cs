@@ -4,6 +4,7 @@ using System.Data;
 using System.Text.RegularExpressions;
 using FastReport;
 using FastReport.Barcode;
+using FastReport.Preview;
 using FastReport.Table;
 using ManufacturingExecutionSystem.MES.Client.Mapper;
 using ManufacturingExecutionSystem.MES.Client.Model;
@@ -59,7 +60,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
             String mainModuleFileName = System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName;
             String exeName = "ManufacturingExecutionSystem.exe";
             mainModuleFileName = mainModuleFileName?.Substring(0, mainModuleFileName.Length - exeName.Length);
-            mainModuleFileName += frxModelName;
+            mainModuleFileName += ("FrxModelFiles\\" + frxModelName); 
             rep.Load(mainModuleFileName);
             if (rep.FindObject("Text1") is TextObject textObject)
             {
@@ -112,7 +113,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
             String mainModuleFileName = System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName;
             String exeName = "ManufacturingExecutionSystem.exe";
             mainModuleFileName = mainModuleFileName?.Substring(0, mainModuleFileName.Length - exeName.Length);
-            mainModuleFileName += frxModelName;
+            mainModuleFileName += ("FrxModelFiles\\" + frxModelName); ;
             rep.Load(mainModuleFileName);
 
             // 设备名称
@@ -185,11 +186,143 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
                     // 下偏移
                     reportPage.TopMargin = int.Parse(dr[3].ToString());
                 }
+
+                // rep.Show();
                 rep.Print();
                 return;
             }
         }
 
+
+        #endregion
+
+
+
+
+        #region 大箱单预览
+
+        public void PreviewFrxImg(BigPack bigPack, PreviewControl previewControl1)
+        {
+            Report rep = new Report { Preview = previewControl1 };
+            if (bigPack == null) return;
+            rep.Load(bigPack.FrxFileModel);
+
+            // 客户名称
+            if (rep.FindObject("Cell2") is TableCell tableCell1)
+            {
+                tableCell1.Text = bigPack.CompanyFullName;
+
+
+                if (bigPack.CompanyFullName?.Length <= 11)
+                {
+                    tableCell1.FontWidthRatio = 1.0F;
+                }
+                else if (bigPack.CompanyFullName?.Length <= 15 && bigPack.CompanyFullName?.Length > 11)
+                {
+                    tableCell1.FontWidthRatio = 0.8F;
+                }
+                else if (bigPack.CompanyFullName?.Length <= 19 && bigPack.CompanyFullName?.Length > 16)
+                {
+                    tableCell1.FontWidthRatio = 0.6F;
+                }
+            }
+
+
+            // 设备名称
+            if (rep.FindObject("Cell7") is TableCell tableCell2)
+            {
+                tableCell2.Text = bigPack.CustomerDeviceName;
+
+                if (bigPack.CustomerDeviceName?.Length <= 11)
+                {
+                    tableCell2.FontWidthRatio = 1.0F;
+                }
+                else if (bigPack.CustomerDeviceName?.Length <= 15 && bigPack.CustomerDeviceName?.Length > 11)
+                {
+                    tableCell2.FontWidthRatio = 0.6F;
+                }
+                else if (bigPack.CustomerDeviceName?.Length <= 19 && bigPack.CustomerDeviceName?.Length > 16)
+                {
+                    tableCell2.FontWidthRatio = 0.6F;
+                }
+            }
+
+            if (bigPack.CompanyFullName != "深圳市泰和安科技有限公司")
+            {
+                // 设备型号
+                if (rep.FindObject("Cell12") is TableCell tableCell3)
+                {
+                    tableCell3.Text = bigPack.CustomerDeviceModel;
+                }
+
+
+                // 箱号
+                if (rep.FindObject("a2") is TableCell tableCell4)
+                {
+                    tableCell4.Text = bigPack.PackId;
+                }
+            }
+            else
+            {
+                // 设备型号
+                if (rep.FindObject("b2") is TableCell tableCell5)
+                {
+                    tableCell5.Text = bigPack.CustomerDeviceModel;
+                }
+
+                // 发货日期
+                if (rep.FindObject("Text4") is TextObject textObject2)
+                {
+                    textObject2.Text = DateTime.Now.ToString("yyyy/MM/dd");
+                }
+            }
+
+
+            // 设备数量
+            if (rep.FindObject("Text2") is TextObject textObject1)
+            {
+                textObject1.Text = bigPack.DeviceCount;
+            }
+
+            // 订单号
+            if (rep.FindObject("b2") is TableCell tableCell6)
+            {
+                tableCell6.Text = bigPack.OrderNo;
+
+                if (bigPack.OrderNo?.Length <= 24)
+                {
+                    tableCell6.FontWidthRatio = 1.0F;
+                }
+                else if (bigPack.OrderNo?.Length <= 35 && bigPack.OrderNo?.Length > 24)
+                {
+                    tableCell6.FontWidthRatio = 0.8F;
+                }
+                else if (bigPack.OrderNo?.Length <= 40 && bigPack.OrderNo?.Length > 35)
+                {
+                    tableCell6.FontWidthRatio = 0.6F;
+                }
+            }
+
+
+            // 编码
+            if (rep.FindObject("Barcode1") is BarcodeObject barcodeObject)
+            {
+                barcodeObject.Text = bigPack.PackNo;
+                barcodeObject.Barcode = new Barcode128();
+            }
+
+            // 编码号
+            if (rep.FindObject("d2") is TableCell tableCell7)
+            {
+                tableCell7.Text = bigPack.PackNo;
+            }
+
+
+            rep.PrintSettings.ShowDialog = false;
+            rep.Prepare();
+            rep.ShowPrepared();
+            previewControl1?.ZoomWholePage();
+        }
 
         #endregion
     }
