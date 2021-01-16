@@ -10,7 +10,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Model
     {
         [DataMember]
         [Description("订单编号")]
-        public String Id { get; set; } // 订单id
+        public int Id { get; set; } // 订单id
 
         [DataMember]
         [Description("订单编号")]

@@ -45,7 +45,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         /// <param name="imei"></param>
         /// <param name="saleOrderId"></param>
         /// <returns></returns>
-        public static JObject PublishDeviceApi(LoginInfo loginInfo, String imei, String saleOrderId)
+        public static JObject PublishDeviceApi(LoginInfo loginInfo, String imei, int saleOrderId)
         {
             return Common.BackgroundRequest("/prod-api/order/publishDevice?imei=" + imei + "&orderId=" + saleOrderId, Method.GET, loginInfo?.Token);
         }
@@ -58,7 +58,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         /// <param name="loginInfo"></param>
         /// <param name="saleOrderId"></param>
         /// <returns></returns>
-        public static JObject GetBigPackApi(LoginInfo loginInfo, String saleOrderId)
+        public static JObject GetBigPackApi(LoginInfo loginInfo, int saleOrderId)
         {
             return Common.BackgroundRequest("/prod-api/order/orderPack/" + saleOrderId, Method.GET, loginInfo?.Token);
         }

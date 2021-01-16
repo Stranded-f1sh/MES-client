@@ -104,7 +104,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
         #region 小箱单打印
 
         
-        public void PrintSmallPackList(Device device, SaleOrder saleOrder,  String frxModelName)
+        public void PreviewSmallPackList(Device device, SaleOrder saleOrder,  String frxModelName)
         {
             if (device == null) return;
             if (saleOrder == null) return;
@@ -171,10 +171,20 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
                 textObject3.Text = "1";
             }
 
+            PrintLabel(rep);
+        }
+
+
+        #endregion
+
+
+        #region 标签打印
+
+        public void PrintLabel(Report rep)
+        {
             PrinterMapper printerMapper = new PrinterMapper();
             printerMapper.CreateTableIfNotExist();
             DataSet selectPrinters = printerMapper.SelectPrinters();
-
             foreach (DataRow dr in selectPrinters.Tables[0].Rows)
             {
                 rep.PrintSettings.Printer = dr[1].ToString();
@@ -193,18 +203,15 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
             }
         }
 
-
         #endregion
-
-
 
 
         #region 大箱单预览
 
-        public void PreviewFrxImg(BigPack bigPack, PreviewControl previewControl1)
+        public Report PreviewFrxImg(BigPack bigPack, PreviewControl previewControl1)
         {
             Report rep = new Report { Preview = previewControl1 };
-            if (bigPack == null) return;
+            if (bigPack == null) return null;
             rep.Load(bigPack.FrxFileModel);
 
             // 客户名称
@@ -317,11 +324,13 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
                 tableCell7.Text = bigPack.PackNo;
             }
 
-
+            _ = new EnvironmentSettings { ReportSettings = { ShowProgress = false } };
             rep.PrintSettings.ShowDialog = false;
             rep.Prepare();
             rep.ShowPrepared();
             previewControl1?.ZoomWholePage();
+
+            return rep;
         }
 
         #endregion

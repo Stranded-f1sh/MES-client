@@ -42,7 +42,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Model
 
         [DataMember]
         [Description("销售订单号")]
-        public String SaleOrderId { get; set; } // 销售订单号
+        public int SaleOrderId { get; set; } // 销售订单号
 
         [DataMember]
         [Description("箱单id")]

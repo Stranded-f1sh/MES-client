@@ -94,7 +94,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     Thread.Sleep(50);
                     if (canActive)
                     {
-                        JToken jTokenPublishDevice = saleOrderService.PublishDevice(_loginInfo, new Device {Imei = imei, SaleOrderId = _saleOrderInfo?.Id});
+                        JToken jTokenPublishDevice = saleOrderService.PublishDevice(_loginInfo, new Device {Imei = imei, SaleOrderId = _saleOrderInfo.Id});
                         string publishDevice = MyJsonConverter.JTokenTransformer(jTokenPublishDevice);
                         if (publishDevice == "ok")
                         {

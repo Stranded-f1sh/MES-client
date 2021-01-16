@@ -24,26 +24,31 @@ namespace ManufacturingExecutionSystem.MES.Client.Model
 
         [DataMember]
         [Description("箱号")]
-        public String PackId { get; set; } // 设备型号
+        public String PackId { get; set; } // 箱号
 
 
         [DataMember]
         [Description("设备数量")]
-        public String DeviceCount { get; set; } // 设备型号
+        public String DeviceCount { get; set; } // 设备数量
 
 
         [DataMember]
         [Description("订单号")]
-        public String OrderNo { get; set; } // 设备型号
+        public String OrderNo { get; set; } // 订单号
 
 
         [DataMember]
         [Description("编码号")]
-        public String PackNo { get; set; } // 设备型号
+        public String PackNo { get; set; } // 编码号
 
 
         [DataMember]
         [Description("FRX文件")]
         public String FrxFileModel { get; set; } // FRX文件
+
+
+        [DataMember]
+        [Description("操作人员名称")]
+        public String userId { get; set; } // 操作人员名称    
     }
 }

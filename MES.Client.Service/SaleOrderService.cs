@@ -34,18 +34,18 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
             {
                 saleOrder = new SaleOrder
                 {
-                    Id = JsonConverter.JTokenTransformer(itemToken?["id"]),
+                    Id = int.Parse(JsonConverter.JTokenTransformer(itemToken?["id"]) ?? String.Empty),
                     OrderNo = JsonConverter.JTokenTransformer(itemToken?["orderNo"]),
                     CustomerDeviceName = JsonConverter.JTokenTransformer(itemToken?["customerDeviceName"]),
                     CustomerDeviceModel = JsonConverter.JTokenTransformer(itemToken?["customerDeviceModel"]),
                     CompanyFullName = JsonConverter.JTokenTransformer(itemToken?["companyFullName"]),
-                    BuyNumber = int.Parse(JsonConverter.JTokenTransformer(itemToken?["buyNumber"]) ?? string.Empty),
+                    BuyNumber = int.Parse(JsonConverter.JTokenTransformer(itemToken?["buyNumber"]) ?? String.Empty),
                     BuyDate = JsonConverter.JTokenTransformer(itemToken?["buyDate"]),
                     PlatFormType = JsonConverter.JTokenTransformer(itemToken?["platformType"])
                 };
 
                 string value = JsonConverter.JTokenTransformer(itemToken?["orderDetail"]);
-                JObject orderDetail = (JObject)JsonConvert.DeserializeObject(value ?? string.Empty);
+                JObject orderDetail = (JObject)JsonConvert.DeserializeObject(value ?? String.Empty);
 
                 if (orderDetail?["range"] == null) return null;
 
@@ -87,9 +87,8 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         /// <param name="loginInfo"></param>
         /// <param name="saleOrderId"></param>
         /// <returns></returns>
-        public JToken GetBigPack(LoginInfo loginInfo, String saleOrderId)
+        public JToken GetBigPack(LoginInfo loginInfo, int saleOrderId)
         {
-            if (saleOrderId == null) return null;
             JObject jObject = SaleOrderApi.GetBigPackApi(loginInfo, saleOrderId);
             return JsonConverter.GetJToken(jObject);
         }

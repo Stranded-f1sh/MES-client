@@ -450,7 +450,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                         // 打印小箱单
                         string imei = codeScanHelper.CodeScanFilter(dr[1]?.ToString(), out String pinDian);
 
-                        codeScanHelper.PrintSmallPackList(new Device{Imei = imei }, SaleOrderInfo, "packlist.frx");
+                        codeScanHelper.PreviewSmallPackList(new Device{Imei = imei }, SaleOrderInfo, "packlist.frx");
 
                         _mut?.ReleaseMutex(); //释放锁
                     }
