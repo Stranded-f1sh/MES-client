@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ManufacturingExecutionSystem.MES.Client.Model;
+﻿using ManufacturingExecutionSystem.MES.Client.Model;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 

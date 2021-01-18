@@ -31,7 +31,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private String _tipsSaleOrderNo; // 选择销售单时提示的工单id
 
         private StringBuilder _appendStrings; // COM口读取数据缓存buffer
-
+        private StringBuilder _appendImei;
+        private Boolean _scannerIsSent;
 
         public PackForm(LoginInfo loginInfo, Process process, JToken productOrders)
         {
@@ -440,15 +441,15 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
                         if (updateRet != 1)
                         {
-                            MessageBox.Show("未成功更新缓存数据库");
+                            MessageBox.Show(@"未成功更新缓存数据库");
                         }
                         Invoke( new Action(()=> 
                         {
-                            INFO.Text = "设备" + dr[1] + "报工成功";
+                            INFO.Text = @"设备" + dr[1] + @"报工成功";
                         }));
 
                         // 打印小箱单
-                        string imei = codeScanHelper.CodeScanFilter(dr[1]?.ToString(), out String pinDian);
+                        string imei = codeScanHelper.CodeScanFilter(dr[1]?.ToString(), out _);
 
                         codeScanHelper.PreviewSmallPackList(new Device{Imei = imei }, SaleOrderInfo, "packlist.frx");
 
@@ -458,7 +459,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     {
                         Invoke(new Action(() =>
                         {
-                            INFO.Text = "设备" + dr[1] + "报工失败";
+                            INFO.Text = @"设备" + dr[1] + @"报工失败";
                         }));
                     }
                 }
@@ -480,6 +481,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         private void Exit_Form_Click(object sender, EventArgs e)
         {
+            _dataUpLoadThread?.Abort();
             Close();
             Environment.Exit(Environment.ExitCode);
         }
@@ -505,7 +507,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 #region 下位机PLC通讯
 
 
-        private SerialPort Initialize_RS485_IO(SerialPortConfig serialPortConfig)
+        private static SerialPort Initialize_RS485_IO(SerialPortConfig serialPortConfig)
         {
             if (serialPortConfig == null) return null;
             SerialPort serialPort = new SerialPort
@@ -528,10 +530,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         }
 
 
+
+
+        #region readLine
+
         /*
         *  Get String From readBuffer
         */
-        private void ReadLine(SerialPort serialPort)
+        private void DeviceReadLine(SerialPort serialPort)
         {
             if (serialPort == null) return;
             if (!serialPort.IsOpen) return;
@@ -559,32 +565,93 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
 
         /*
+         *  Get String From readBuffer
+         */
+        private void ImeiReadLine(SerialPort serialPort)
+        {
+            if (serialPort == null) return;
+            if (!serialPort.IsOpen) return;
+            if (_appendImei == null) return;
+
+            int bytes = serialPort.BytesToRead;
+
+            byte[] readBuffer = new byte[bytes];
+
+            int count = serialPort.Read(readBuffer, 0, readBuffer.Length);
+
+            if (count <= 0) return;
+
+
+            ASCIIEncoding asciiEncoding = new ASCIIEncoding();
+            string strCharacter = asciiEncoding.GetString(readBuffer);
+
+            if (strCharacter.Contains("\r"))
+            {
+                _scannerIsSent = true;
+            }
+            _appendImei.Append(strCharacter);
+        }
+
+        #endregion
+
+
+
+        #region serialPortReceivedEventHandler
+
+        /*
          * Port Data Receive Event
          */
-        private void serialPort_DataReceivedEventHandler(object sender, SerialDataReceivedEventArgs e)
+        private void devicePort_DataReceivedEventHandler(object sender, SerialDataReceivedEventArgs e)
         {
-            ReadLine((SerialPort)sender);
+            DeviceReadLine((SerialPort)sender);
         }
 
 
+        /*
+         * Port Data Receive Event
+          */
+        private void scannerPort_DataReceivedEventHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            ImeiReadLine((SerialPort)sender);
+        }
 
-        private Boolean OpenPort(SerialPort serialPort)
+        #endregion
+
+
+
+        #region openPort
+
+
+
+        private Boolean OpenPort(SerialPort serialPort, SerialDataReceivedEventHandler handler)
         {
             if (serialPort == null) return false;
             if (!serialPort.IsOpen)
             {
-                serialPort.Open();
+                try
+                {
+                    serialPort.Open();
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
-            serialPort.DataReceived += serialPort_DataReceivedEventHandler;
+            serialPort.DataReceived += handler;
 
             return true;
         }
+
+        #endregion
+
 
 
 
         private void PLC_Communication_Button_Click(object sender, EventArgs e)
         {
-            SerialPortConfig serialPortConfig = new SerialPortConfig
+            #region portConfig
+
+            SerialPortConfig devicePortConfig = new SerialPortConfig
             {
                 PortName = "COM3",
                 BaudRate = 9600,
@@ -597,23 +664,50 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 ReceivedBytesThreshold = 1
             };
 
-            SerialPort serialPort = Initialize_RS485_IO(serialPortConfig);
-            Boolean isOpen = OpenPort(serialPort);
-            if (!isOpen) return;
+            // 设备通讯
+            SerialPort devicePort = Initialize_RS485_IO(devicePortConfig);
+
+
+            SerialPortConfig scannerPortConfig = new SerialPortConfig
+            {
+                PortName = "COM14",
+                BaudRate = 9600,
+                DataBits = 8,
+                ReadTimeout = 2000,
+                WriteBufferSize = 2048,
+                ReadBufferSize = 40480,
+                StopBits = StopBits.One,
+                Parity = Parity.None,
+                ReceivedBytesThreshold = 1
+            };
+
+            // 扫码枪通讯
+            SerialPort scannerPort = Initialize_RS485_IO(scannerPortConfig);
+
+            #endregion
+
+            Boolean deviceIsOpen = OpenPort(devicePort, devicePort_DataReceivedEventHandler);
+            Boolean scannerIsOpen = OpenPort(scannerPort, scannerPort_DataReceivedEventHandler);
+            if (!deviceIsOpen | !scannerIsOpen)
+            {
+                MessageBox.Show(@"端口开启失败");
+                return;
+            }
             _appendStrings = new StringBuilder();
-            AutoPackProgramRun(serialPort);
+            _appendImei = new StringBuilder();
+            AutoPackProgramRun(devicePort, scannerPort);
         }
 
 
 
         // 判断接收的数据是否符合规范
-        private Boolean IsReceivedCorrectData(SerialPort serialPort, byte[] xInput)
+        private Boolean IsReceivedCorrectPcbData(SerialPort serialPort, byte[] xInput)
         {
-            int reTriedTimes = 0;
+            // int reTriedTimes = 0;
             do
             {
-                reTriedTimes++;
-                if (reTriedTimes > 5) return false;
+                // reTriedTimes++; 
+                // if (reTriedTimes > 5) return false;
                 _appendStrings?.Clear();
                 serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 8);
                 Thread.Sleep(700);
@@ -622,13 +716,49 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             return true;
         }
 
-        private void AutoPackProgramRun(SerialPort serialPort)
+
+        // 判断接收的数据是否符合规范
+        private Boolean IsReceivedCorrectScanData(SerialPort serialPort, byte[] xInput)
         {
-            bool isReceivedCorrectData = IsReceivedCorrectData(serialPort, CommandDefinition.X00Input);
+            int reTriedTimes = 0;
+            _scannerIsSent = false;
+            do
+            {
+                reTriedTimes++;
+                if (reTriedTimes > 5) return false;
+                _appendImei?.Clear();
+                serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 7);
+                Thread.Sleep(700);
+            } while (!_scannerIsSent);
+
+            return true;
+        }
+
+
+        private void AutoPackProgramRun(SerialPort devicePort, SerialPort scannerPort)
+        {
+            bool isReceivedCorrectData = IsReceivedCorrectPcbData(devicePort, CommandDefinition.X00Input);
             if (!isReceivedCorrectData) return;
-            Console.WriteLine(Thread.CurrentThread.Name);
+            // 发送的指令如果得到了应答
             Console.WriteLine(_appendStrings);
             Console.WriteLine(@"收到皮带传送表到位信号，发送扫码指令");
+            bool isReceivedCorrectScanData = IsReceivedCorrectScanData(scannerPort, CommandDefinition.ScannerScanCode);
+            if (!isReceivedCorrectScanData) return;
+            Console.WriteLine(_appendImei);
+            Console.WriteLine(@"收到imei");
+
+            Console.WriteLine(@"发送表体扫描完毕信号");
+            devicePort?.Write(CommandDefinition.N1Connect ?? Array.Empty<byte>(), 0, 8);
+            Thread.Sleep(2000);
+            devicePort?.Write(CommandDefinition.N1DisConnect ?? Array.Empty<byte>(), 0, 8);
+            Console.WriteLine(@"表体扫描完毕信号结束");
+
+            DataCacheService dataCacheService = new DataCacheService();
+            Console.WriteLine(@"开始缓存报工");
+            int cacheResult = dataCacheService.DeviceCache(_appendImei.ToString(), _loginInfo.userId, _process.SelectedProcessName, SubmitStatus.UnCommit);
+            _startScan = cacheResult == 1;
+
+
         }
 
 

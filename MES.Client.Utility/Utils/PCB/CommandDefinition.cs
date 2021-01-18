@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils.PCB
 {
     static class CommandDefinition
@@ -147,6 +142,15 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils.PCB
 
         // X017
         public static readonly byte[] X17Input = { 0x01, 0x02, 0x00, 0x0F, 0x00, 0x20, 0x49, 0xD1 };
+
+        #endregion
+
+
+
+        #region scanner
+
+        // 扫码枪
+        public static readonly byte[] ScannerScanCode = { 0x05, 0x57, 0xA0, 0x01, 0x01, 0xFF, 0x02 };
 
         #endregion
     }

@@ -125,9 +125,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             IEnumerable<JToken> enumerable = _jTokenBigPack?.Reverse();
             // 遍历销售单下的所有大箱单
             if (enumerable == null) return -1;
-            if (enumerable.Any())
+            var jTokens = enumerable as JToken[] ?? enumerable.ToArray();
+            if (jTokens.Any())
             {
-                foreach (JToken jToken in enumerable)
+                foreach (JToken jToken in jTokens)
                 {
                     comboBox1?.Items.Add(jToken?.SelectToken("packNo") ?? String.Empty);
                 }
