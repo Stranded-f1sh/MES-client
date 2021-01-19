@@ -653,7 +653,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             SerialPortConfig devicePortConfig = new SerialPortConfig
             {
-                PortName = "COM3",
+                PortName = "COM10",
                 BaudRate = 9600,
                 DataBits = 8,
                 ReadTimeout = 2000,
@@ -670,7 +670,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             SerialPortConfig scannerPortConfig = new SerialPortConfig
             {
-                PortName = "COM14",
+                PortName = "COM13",
                 BaudRate = 9600,
                 DataBits = 8,
                 ReadTimeout = 2000,
@@ -711,6 +711,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 _appendStrings?.Clear();
                 serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 8);
                 Thread.Sleep(700);
+                Console.WriteLine("===");
             } while (!_appendStrings?.ToString().Contains("fa1e") == true && !_appendStrings?.ToString().Contains("fad2") == true);
 
             return true;
@@ -720,12 +721,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         // 判断接收的数据是否符合规范
         private Boolean IsReceivedCorrectScanData(SerialPort serialPort, byte[] xInput)
         {
-            int reTriedTimes = 0;
+            //int reTriedTimes = 0;
             _scannerIsSent = false;
             do
             {
-                reTriedTimes++;
-                if (reTriedTimes > 5) return false;
+                //reTriedTimes++;
+                //if (reTriedTimes > 5) return false;
                 _appendImei?.Clear();
                 serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 7);
                 Thread.Sleep(700);
@@ -748,9 +749,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             Console.WriteLine(@"收到imei");
 
             Console.WriteLine(@"发送表体扫描完毕信号");
-            devicePort?.Write(CommandDefinition.N1Connect ?? Array.Empty<byte>(), 0, 8);
+            devicePort?.Write(CommandDefinition.N5Connect ?? Array.Empty<byte>(), 0, 8);
             Thread.Sleep(2000);
-            devicePort?.Write(CommandDefinition.N1DisConnect ?? Array.Empty<byte>(), 0, 8);
+            devicePort?.Write(CommandDefinition.N5Connect ?? Array.Empty<byte>(), 0, 8);
             Console.WriteLine(@"表体扫描完毕信号结束");
 
             DataCacheService dataCacheService = new DataCacheService();
