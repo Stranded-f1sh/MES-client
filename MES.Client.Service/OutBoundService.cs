@@ -17,5 +17,12 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
             JObject jObject = OutBoundApi.PostOutBoundApi(loginInfo, deviceObject);
             return MyJsonConverter.GetJToken(jObject);
         }
+
+
+        public JToken GetOutBoundProductDevices(LoginInfo loginInfo, int saleOrderId, int processId)
+        {
+            JObject jObject = OutBoundApi.GetOutBoundProductDevicesApi(loginInfo, saleOrderId, processId);
+            return MyJsonConverter.GetJToken(jObject);
+        }
     }
 }

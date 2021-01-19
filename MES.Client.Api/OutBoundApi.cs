@@ -21,5 +21,34 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         {
             return Common.BackgroundRequest("/prod-api/order/outbound", Method.POST, loginInfo?.Token, deviceObject, true);
         }
+
+
+
+        /// <summary>
+        /// 获取设备报工记录接口(出库)
+        /// </summary>
+        /// <param name="loginInfo"></param>
+        /// <param name="processId"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageNo"></param>
+        /// <returns></returns>
+        public static JObject GetOutBoundProductDevicesApi(LoginInfo loginInfo, int saleOrderId, int processId, int pageSize, int pageNo)
+        {
+            return Common.BackgroundRequest("/prod-api/order/productDevices?processId=" + processId + "&pageNo=" + pageNo + "&pageSize=" + pageSize + "saleOrderId=" + saleOrderId, Method.GET, loginInfo?.Token);
+        }
+
+
+        /// <summary>
+        /// 获取设备报工记录接口(出库)
+        /// </summary>
+        /// <param name="loginInfo"></param>
+        /// <param name="processId"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageNo"></param>
+        /// <returns></returns>
+        public static JObject GetOutBoundProductDevicesApi(LoginInfo loginInfo, int saleOrderId, int processId)
+        {
+            return Common.BackgroundRequest("/prod-api/order/productDevices?processId=" + processId + "&saleOrderId=" + saleOrderId, Method.GET, loginInfo?.Token);
+        }
     }
 }

@@ -9,6 +9,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ManufacturingExecutionSystem.MES.Client.Model;
+using ManufacturingExecutionSystem.MES.Client.Service;
+using Newtonsoft.Json.Linq;
 
 namespace ManufacturingExecutionSystem.MES.Client.UI
 {
@@ -49,6 +51,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 Text = @"请选择即将发货设备对应的客户销售订单"
             };
             saleOrdersSelectionForm.ShowDialog();
+            if (SaleOrderInfo.OrderNo == null) return;
+
+            OutBoundService outBoundService = new OutBoundService();
+            JToken ret = outBoundService.GetOutBoundProductDevices(_loginInfo, SaleOrderInfo.Id, (int)_process.SelectedProcessName);
+
+            Console.WriteLine(ret);
+
             InitComponent();
         }
 

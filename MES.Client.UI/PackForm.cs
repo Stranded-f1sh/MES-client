@@ -757,8 +757,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             Console.WriteLine(@"开始缓存报工");
             int cacheResult = dataCacheService.DeviceCache(_appendImei.ToString(), _loginInfo.userId, _process.SelectedProcessName, SubmitStatus.UnCommit);
             _startScan = cacheResult == 1;
-
-
         }
 
 
