@@ -61,8 +61,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         private void outBound_Button_Click(object sender, EventArgs e)
         {
-            // richTextBox1?.Clear();
-            bool canActive = MessageBox.Show(@"出库后是否转客户？", "", MessageBoxButtons.OKCancel) == DialogResult.OK;
+            richTextBox1?.Clear();
             bool canDelete = MessageBox.Show(@"出库后是否删除注册？", "", MessageBoxButtons.OKCancel) == DialogResult.OK;
             if (MessageBox.Show(@"确定要执行此操作吗？", "", MessageBoxButtons.OKCancel) == DialogResult.Cancel) return;
             OutBoundService outBoundService = new OutBoundService();
@@ -92,21 +91,19 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     
                     
                     Thread.Sleep(50);
-                    if (canActive)
+
+                    JToken jTokenPublishDevice = saleOrderService.PublishDevice(_loginInfo, new Device { Imei = imei, SaleOrderId = _saleOrderInfo.Id });
+                    string publishDevice = MyJsonConverter.JTokenTransformer(jTokenPublishDevice);
+                    if (publishDevice == "ok")
                     {
-                        JToken jTokenPublishDevice = saleOrderService.PublishDevice(_loginInfo, new Device {Imei = imei, SaleOrderId = _saleOrderInfo.Id});
-                        string publishDevice = MyJsonConverter.JTokenTransformer(jTokenPublishDevice);
-                        if (publishDevice == "ok")
-                        {
-                            richTextBox1.AppendText("[" + DateTime.Now.ToString(@"yyyy-MM-dd'T'HH:mm:ss.sssZ") + "] 转客户成功 [" + imei + "]\r\n");
-                            
-                        }
-                        else
-                        {
-                            richTextBox1.AppendText("[" + DateTime.Now.ToString(@"yyyy-MM-dd'T'HH:mm:ss.sssZ") + "] 转客户失败 [" + imei + "]\r\n");
-                        }
-                        Thread.Sleep(50);
+                        richTextBox1.AppendText("[" + DateTime.Now.ToString(@"yyyy-MM-dd'T'HH:mm:ss.sssZ") + "] 转客户成功 [" + imei + "]\r\n");
                     }
+                    else
+                    {
+                        richTextBox1.AppendText("[" + DateTime.Now.ToString(@"yyyy-MM-dd'T'HH:mm:ss.sssZ") + "] 转客户失败 [" + imei + "]\r\n");
+                    }
+                    Thread.Sleep(50);
+
 
                     if (canDelete)
                     {

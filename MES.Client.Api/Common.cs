@@ -49,7 +49,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         /// <summary>
         /// 添加Headers
         /// </summary>
-        /// <returns> ICollection&lt;KeyValuePair&lt;string, string&gt;&gt; </returns>
+        /// <returns> ICollection<KeyValuePair<string, string>> </returns>
         private static ICollection<KeyValuePair<string, string>> AddHeaders()
         {
             ICollection<KeyValuePair<string, string>> headers = new List<KeyValuePair<string, string>>();
@@ -114,6 +114,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
             JObject jObject = (JObject)JsonConvert.DeserializeObject(content);
             return jObject;
         }
+
 
 
         /// <summary>

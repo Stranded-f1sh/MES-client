@@ -215,17 +215,35 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             ProductOrderService productOrderService = new ProductOrderService();
 
-            JToken productDeviceRecord = productOrderService.GetProductDeviceRecord(
-                _loginInfo,
-                poi.OrderId.ToString(),
-                ((int)ProcessNameEnum.CodeRegistration).ToString(), 
-                pageSize,
-                _pageNum
-            );
+            JToken productDeviceRecord;
+
+            if (pageSize == -1)
+            {
+                productDeviceRecord = productOrderService.GetProductDeviceRecord(
+                            _loginInfo,
+                            poi.OrderId.ToString(),
+                            ((int)ProcessNameEnum.CodeRegistration).ToString()
+                            );
+            }
+            else
+            {
+                productDeviceRecord = productOrderService.GetProductDeviceRecord(
+                            _loginInfo,
+                            poi.OrderId.ToString(),
+                            ((int)ProcessNameEnum.CodeRegistration).ToString(),
+                            pageSize,
+                            _pageNum
+                            );
+            }
+
 
             RegistNum_TextBox.Text = productDeviceRecord?.SelectToken("count")?.ToString();
 
             _pageCount = (int)Math.Ceiling(double.Parse(productDeviceRecord?.SelectToken("count")?.ToString() ?? String.Empty) / pageSize);
+            if (pageSize == -1)
+            {
+                _pageCount = 1;
+            }
             InitInfoTable();
             UpdateTable(productDeviceRecord, saleOrder);
             INFO.Text = String.Empty;
@@ -486,6 +504,25 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void Exit_Form_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+
+
+        private void export_Button_Click(object sender, EventArgs e)
+        {
+            ExcelHelper excelHelper = new ExcelHelper();
+
+            CutOverProductOrder(ProductOrderInfo, -1);
+
+            excelHelper.ExportDataToExcel(ProductOrderInfo, RegisteredDeviceList);
+
+            CutOverProductOrder(ProductOrderInfo, 20);
+        }
+
+
+        private void ScanAll_Button_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -30,8 +30,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CodeRegistrationForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.CreateProductOrder_Btn = new System.Windows.Forms.ToolStripButton();
             this.LoadWorkOrder_btn = new System.Windows.Forms.ToolStripButton();
@@ -40,7 +40,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.NextPage_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.Setting_Button = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.export_Button = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -80,6 +80,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.label2 = new System.Windows.Forms.Label();
             this.PageNum_Label = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.ScanAll_Button = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -105,9 +106,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStripSeparator3,
             this.BackPage_Btn,
             this.NextPage_Btn,
+            this.ScanAll_Button,
             this.toolStripSeparator1,
             this.Setting_Button,
-            this.toolStripButton2,
+            this.export_Button,
             this.toolStripSeparator,
             this.toolStripButton6,
             this.toolStripSeparator2});
@@ -187,15 +189,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Setting_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.Setting_Button.Click += new System.EventHandler(this.Setting_Button_Click);
             // 
-            // toolStripButton2
+            // export_Button
             // 
-            this.toolStripButton2.AutoSize = false;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(84, 68);
-            this.toolStripButton2.Text = "导出";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.export_Button.AutoSize = false;
+            this.export_Button.Image = ((System.Drawing.Image)(resources.GetObject("export_Button.Image")));
+            this.export_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.export_Button.Name = "export_Button";
+            this.export_Button.Size = new System.Drawing.Size(84, 68);
+            this.export_Button.Text = "导出";
+            this.export_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.export_Button.Click += new System.EventHandler(this.export_Button_Click);
             // 
             // toolStripSeparator
             // 
@@ -588,23 +591,23 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RegisteredDeviceList.BackgroundColor = System.Drawing.Color.White;
             this.RegisteredDeviceList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.RegisteredDeviceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.RegisteredDeviceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.RegisteredDeviceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.RegisteredDeviceList.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.RegisteredDeviceList.DefaultCellStyle = dataGridViewCellStyle4;
             this.RegisteredDeviceList.GridColor = System.Drawing.Color.Gainsboro;
             this.RegisteredDeviceList.Location = new System.Drawing.Point(10, 404);
             this.RegisteredDeviceList.Name = "RegisteredDeviceList";
@@ -669,6 +672,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox5.TabIndex = 26;
             this.groupBox5.TabStop = false;
             // 
+            // ScanAll_Button
+            // 
+            this.ScanAll_Button.AutoSize = false;
+            this.ScanAll_Button.Image = ((System.Drawing.Image)(resources.GetObject("ScanAll_Button.Image")));
+            this.ScanAll_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ScanAll_Button.Name = "ScanAll_Button";
+            this.ScanAll_Button.Size = new System.Drawing.Size(84, 68);
+            this.ScanAll_Button.Text = "查看全部";
+            this.ScanAll_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ScanAll_Button.Click += new System.EventHandler(this.ScanAll_Button_Click);
+            // 
             // CodeRegistrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -721,7 +735,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton BackPage_Btn;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton export_Button;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton CreateProductOrder_Btn;
         private System.Windows.Forms.ToolStripButton NextPage_Btn;
@@ -761,5 +775,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label PageNum_Label;
         private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.ToolStripButton ScanAll_Button;
     }
 }

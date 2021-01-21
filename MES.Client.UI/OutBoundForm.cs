@@ -56,14 +56,43 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             OutBoundService outBoundService = new OutBoundService();
             JToken ret = outBoundService.GetOutBoundProductDevices(_loginInfo, SaleOrderInfo.Id, (int)_process.SelectedProcessName);
 
-            Console.WriteLine(ret);
+            // Console.WriteLine(ret);
 
             InitComponent();
+            DeviceRefresh(ret);
         }
+
+
 
         private void InitComponent()
         {
             label2.Text = SaleOrderInfo?.OrderNo;
+        }
+
+
+
+        private void DeviceRefresh(JToken outboundDevice)
+        {
+            if (outBound_DataGirdView == null) return;
+            outBound_DataGirdView.Rows.Clear();
+
+            int outBoundDeviceCount = 0;
+            if (!outboundDevice.Any()) return;
+            foreach(var item in outboundDevice)
+            {
+                DataGridViewRow rowOne = new DataGridViewRow();
+                rowOne.CreateCells(outBound_DataGirdView);
+                outBoundDeviceCount++;
+                rowOne.Cells[0].Value = outBoundDeviceCount;
+                rowOne.Cells[1].Value = item?.SelectToken("imei");
+                rowOne.Cells[2].Value = item?.SelectToken("imsi");
+                rowOne.Cells[3].Value = item?.SelectToken("userName");
+                rowOne.Cells[4].Value = item?.SelectToken("platform");
+                rowOne.Cells[5].Value = item?.SelectToken("handleResult");
+                rowOne.Cells[6].Value = item?.SelectToken("userId");
+                rowOne.Cells[7].Value = "删除";
+                outBound_DataGirdView.Rows.Add(rowOne);
+            }
         }
     }
 }

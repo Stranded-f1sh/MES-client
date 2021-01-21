@@ -52,6 +52,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             ProductOrderList.Columns.Add("companyFullName", "客户公司名称");
             ProductOrderList.Columns.Add("deviceModel", "设备型号");
             ProductOrderList.Columns.Add("buyNumber", "购买数量");
+            ProductOrderList.Columns.Add("orderDate", "订单日期");
             // ProductOrderList.Columns.Add("customerDeviceName", "产品名称");
 
             // 设置自动列宽
@@ -112,10 +113,15 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 {
                     ProductOrderList.Rows[index].Cells[5].Value = MyJsonConverter.JTokenTransformer(i?["buyNumber"]);
                 }
+
+                if (ProductOrderList.Rows[index].Cells[6] != null)
+                {
+
+                    DateTime _dtStart = new DateTime(1970, 1, 1, 8, 0, 0);
+                    ProductOrderList.Rows[index].Cells[6].Value = _dtStart.AddMilliseconds(Convert.ToInt64(i?["orderDate"]));
+                }
             }
         }
-
-
 
         #endregion
 
@@ -176,7 +182,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 OrderNo = ProductOrderList.Rows[_index].Cells["orderNo"]?.Value?.ToString() ?? string.Empty,
                 CompanyFullName = ProductOrderList.Rows[_index].Cells["companyFullName"]?.Value?.ToString() ?? string.Empty,
                 DeviceModel = ProductOrderList.Rows[_index].Cells["deviceModel"]?.Value?.ToString() ?? string.Empty,
-                BuyNumber = int.Parse(ProductOrderList.Rows[_index].Cells["buyNumber"]?.Value?.ToString() ?? string.Empty)
+                BuyNumber = int.Parse(ProductOrderList.Rows[_index].Cells["buyNumber"]?.Value?.ToString() ?? string.Empty),
+                BuyDate = Convert.ToDateTime(ProductOrderList.Rows[_index].Cells["orderDate"]?.Value?.ToString())
             };
 
 

@@ -253,5 +253,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         }
 
         #endregion
+
+
+
+
+        private void DataCache_ToolTrips_Button_Click(object sender, EventArgs e)
+        {
+            new CodeScanHelper().PrintLabel(_rep);
+        }
     }
 }

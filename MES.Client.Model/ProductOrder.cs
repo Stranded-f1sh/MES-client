@@ -27,5 +27,8 @@ namespace ManufacturingExecutionSystem.MES.Client.Model
 
         [DataMember]
         public int BuyNumber { get; set; }
+
+        [DataMember]
+        public DateTime BuyDate { get; set; }
     }
 }

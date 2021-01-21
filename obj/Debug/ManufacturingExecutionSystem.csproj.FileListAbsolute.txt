@@ -104,3 +104,6 @@ D:\code\mes-client\obj\Debug\ManufacturingExecutionSystem.csproj.CoreCompileInpu
 D:\code\mes-client\obj\Debug\ManufacturingExecutionSystem.csproj.CopyComplete
 D:\code\mes-client\obj\Debug\ManufacturingExecutionSystem.exe
 D:\code\mes-client\obj\Debug\ManufacturingExecutionSystem.pdb
+E:\code\ManufacturingExecutionSystem\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\code\ManufacturingExecutionSystem\bin\Debug\ICSharpCode.SharpZipLib.pdb
+E:\code\ManufacturingExecutionSystem\bin\Debug\ICSharpCode.SharpZipLib.xml

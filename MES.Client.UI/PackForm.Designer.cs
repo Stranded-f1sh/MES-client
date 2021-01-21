@@ -38,7 +38,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.label2 = new System.Windows.Forms.Label();
             this.PageNum_Label = new System.Windows.Forms.Label();
             this.Exit_Form = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.BaoGongDeviceList = new System.Windows.Forms.DataGridView();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -75,6 +74,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Find_Button = new System.Windows.Forms.ToolStripButton();
             this.DBCache_Button = new System.Windows.Forms.ToolStripButton();
             this.PLC_Communication_Button = new System.Windows.Forms.ToolStripButton();
+            this.BigPackFormLoad_Button = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.BackPage_Btn = new System.Windows.Forms.ToolStripButton();
             this.NextPage_Btn = new System.Windows.Forms.ToolStripButton();
@@ -86,7 +86,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.label3 = new System.Windows.Forms.Label();
             this.User_Label = new System.Windows.Forms.Label();
-            this.BigPackFormLoad_Button = new System.Windows.Forms.ToolStripButton();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BaoGongDeviceList)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -100,10 +99,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // groupBox5
             // 
+            this.groupBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox5.BackColor = System.Drawing.Color.LightGray;
             this.groupBox5.Controls.Add(this.label2);
             this.groupBox5.Controls.Add(this.PageNum_Label);
-            this.groupBox5.Location = new System.Drawing.Point(879, 792);
+            this.groupBox5.Location = new System.Drawing.Point(839, 720);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(141, 31);
             this.groupBox5.TabIndex = 36;
@@ -129,11 +129,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // Exit_Form
             // 
+            this.Exit_Form.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Exit_Form.BackColor = System.Drawing.Color.LightGray;
             this.Exit_Form.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.Exit_Form.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Exit_Form.ForeColor = System.Drawing.Color.Black;
-            this.Exit_Form.Location = new System.Drawing.Point(548, 796);
+            this.Exit_Form.Location = new System.Drawing.Point(549, 726);
             this.Exit_Form.Name = "Exit_Form";
             this.Exit_Form.Size = new System.Drawing.Size(108, 23);
             this.Exit_Form.TabIndex = 35;
@@ -141,25 +142,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Exit_Form.UseVisualStyleBackColor = false;
             this.Exit_Form.Click += new System.EventHandler(this.Exit_Form_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Silver;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(1062, 774);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 58);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "MES";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // BaoGongDeviceList
             // 
-            this.BaoGongDeviceList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BaoGongDeviceList.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BaoGongDeviceList.BackgroundColor = System.Drawing.Color.White;
             this.BaoGongDeviceList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -180,23 +165,21 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.BaoGongDeviceList.DefaultCellStyle = dataGridViewCellStyle4;
             this.BaoGongDeviceList.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.BaoGongDeviceList.Location = new System.Drawing.Point(2, 405);
+            this.BaoGongDeviceList.Location = new System.Drawing.Point(3, 380);
             this.BaoGongDeviceList.Name = "BaoGongDeviceList";
             this.BaoGongDeviceList.RowTemplate.Height = 20;
-            this.BaoGongDeviceList.Size = new System.Drawing.Size(1223, 363);
+            this.BaoGongDeviceList.Size = new System.Drawing.Size(1173, 336);
             this.BaoGongDeviceList.TabIndex = 33;
             // 
             // textBox4
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox4.Location = new System.Drawing.Point(1, 382);
+            this.textBox4.Location = new System.Drawing.Point(2, 358);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(1224, 23);
+            this.textBox4.Size = new System.Drawing.Size(1174, 23);
             this.textBox4.TabIndex = 32;
             this.textBox4.TabStop = false;
             this.textBox4.Text = "已报工设备";
@@ -204,9 +187,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox3.Controls.Add(this.groupBox7);
             this.groupBox3.Controls.Add(this.groupBox6);
@@ -215,9 +196,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox3.Controls.Add(this.Qualify_ComboBox);
             this.groupBox3.Controls.Add(this.label_orderId_imei);
             this.groupBox3.Controls.Add(this.Imei_TextBox);
-            this.groupBox3.Location = new System.Drawing.Point(531, 162);
+            this.groupBox3.Location = new System.Drawing.Point(532, 154);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(694, 224);
+            this.groupBox3.Size = new System.Drawing.Size(644, 207);
             this.groupBox3.TabIndex = 31;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "用户输入";
@@ -226,7 +207,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.groupBox7.Controls.Add(this.checkBox3);
             this.groupBox7.Controls.Add(this.checkBox4);
-            this.groupBox7.Location = new System.Drawing.Point(135, 99);
+            this.groupBox7.Location = new System.Drawing.Point(135, 85);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(197, 34);
             this.groupBox7.TabIndex = 17;
@@ -260,7 +241,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.checkBox1);
-            this.groupBox6.Location = new System.Drawing.Point(135, 136);
+            this.groupBox6.Location = new System.Drawing.Point(135, 122);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(197, 34);
             this.groupBox6.TabIndex = 16;
@@ -284,7 +265,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button7.ForeColor = System.Drawing.Color.Black;
-            this.button7.Location = new System.Drawing.Point(486, 109);
+            this.button7.Location = new System.Drawing.Point(486, 95);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(39, 23);
             this.button7.TabIndex = 22;
@@ -295,7 +276,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.isPrint_CheckBox);
-            this.groupBox4.Location = new System.Drawing.Point(136, 173);
+            this.groupBox4.Location = new System.Drawing.Point(136, 159);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(197, 34);
             this.groupBox4.TabIndex = 8;
@@ -319,7 +300,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.Qualify_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Qualify_ComboBox.FormattingEnabled = true;
-            this.Qualify_ComboBox.Location = new System.Drawing.Point(349, 110);
+            this.Qualify_ComboBox.Location = new System.Drawing.Point(349, 96);
             this.Qualify_ComboBox.Name = "Qualify_ComboBox";
             this.Qualify_ComboBox.Size = new System.Drawing.Size(131, 20);
             this.Qualify_ComboBox.TabIndex = 13;
@@ -330,7 +311,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.label_orderId_imei.AutoSize = true;
             this.label_orderId_imei.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_orderId_imei.ForeColor = System.Drawing.Color.Black;
-            this.label_orderId_imei.Location = new System.Drawing.Point(144, 45);
+            this.label_orderId_imei.Location = new System.Drawing.Point(144, 31);
             this.label_orderId_imei.Name = "label_orderId_imei";
             this.label_orderId_imei.Size = new System.Drawing.Size(61, 16);
             this.label_orderId_imei.TabIndex = 4;
@@ -341,7 +322,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.Imei_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.Imei_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.Imei_TextBox.Location = new System.Drawing.Point(273, 42);
+            this.Imei_TextBox.Location = new System.Drawing.Point(273, 28);
             this.Imei_TextBox.Name = "Imei_TextBox";
             this.Imei_TextBox.Size = new System.Drawing.Size(283, 21);
             this.Imei_TextBox.TabIndex = 0;
@@ -349,6 +330,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox1.Controls.Add(this.SaleOrderNo_TextBox);
             this.groupBox1.Controls.Add(this.PackNum_TextBox);
@@ -360,9 +342,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox1.Controls.Add(this.BuyNumber_TextBox);
             this.groupBox1.Controls.Add(this.label_orderno);
             this.groupBox1.Controls.Add(this.DeviceModel_TextBox);
-            this.groupBox1.Location = new System.Drawing.Point(1, 162);
+            this.groupBox1.Location = new System.Drawing.Point(2, 154);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(548, 224);
+            this.groupBox1.Size = new System.Drawing.Size(548, 207);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "销售单信息";
@@ -474,31 +456,27 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // textBox3
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox3.Location = new System.Drawing.Point(1, 90);
+            this.textBox3.Location = new System.Drawing.Point(2, 82);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(1224, 23);
+            this.textBox3.Size = new System.Drawing.Size(1174, 23);
             this.textBox3.TabIndex = 28;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox2.BackColor = System.Drawing.Color.Green;
             this.groupBox2.Controls.Add(this.process_num);
             this.groupBox2.Controls.Add(this.INFO);
             this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox2.ForeColor = System.Drawing.Color.LawnGreen;
-            this.groupBox2.Location = new System.Drawing.Point(1, 105);
+            this.groupBox2.Location = new System.Drawing.Point(2, 97);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1224, 56);
+            this.groupBox2.Size = new System.Drawing.Size(1174, 56);
             this.groupBox2.TabIndex = 29;
             this.groupBox2.TabStop = false;
             // 
@@ -524,9 +502,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.toolStrip1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.toolStrip1.AutoSize = false;
             this.toolStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
@@ -549,10 +525,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStripSeparator,
             this.DataCache_ToolTrips_Button,
             this.toolStripSeparator2});
-            this.toolStrip1.Location = new System.Drawing.Point(2, 2);
+            this.toolStrip1.Location = new System.Drawing.Point(3, -1);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(1223, 85);
+            this.toolStrip1.Size = new System.Drawing.Size(1173, 85);
             this.toolStrip1.TabIndex = 27;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -621,6 +597,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.PLC_Communication_Button.Text = "下位机通讯";
             this.PLC_Communication_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.PLC_Communication_Button.Click += new System.EventHandler(this.PLC_Communication_Button_Click);
+            // 
+            // BigPackFormLoad_Button
+            // 
+            this.BigPackFormLoad_Button.AutoSize = false;
+            this.BigPackFormLoad_Button.Image = ((System.Drawing.Image)(resources.GetObject("BigPackFormLoad_Button.Image")));
+            this.BigPackFormLoad_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BigPackFormLoad_Button.Name = "BigPackFormLoad_Button";
+            this.BigPackFormLoad_Button.Size = new System.Drawing.Size(84, 68);
+            this.BigPackFormLoad_Button.Text = "大箱包装";
+            this.BigPackFormLoad_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BigPackFormLoad_Button.Click += new System.EventHandler(this.BigPackFormLoad_Button_Click);
             // 
             // toolStripSeparator3
             // 
@@ -702,7 +689,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label3.Location = new System.Drawing.Point(1042, 38);
+            this.label3.Location = new System.Drawing.Point(1067, 39);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 12);
             this.label3.TabIndex = 37;
@@ -712,32 +699,20 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.User_Label.AutoSize = true;
             this.User_Label.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.User_Label.Location = new System.Drawing.Point(1121, 37);
+            this.User_Label.Location = new System.Drawing.Point(1146, 50);
             this.User_Label.Name = "User_Label";
             this.User_Label.Size = new System.Drawing.Size(0, 12);
             this.User_Label.TabIndex = 38;
-            // 
-            // BigPackFormLoad_Button
-            // 
-            this.BigPackFormLoad_Button.AutoSize = false;
-            this.BigPackFormLoad_Button.Image = ((System.Drawing.Image)(resources.GetObject("BigPackFormLoad_Button.Image")));
-            this.BigPackFormLoad_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BigPackFormLoad_Button.Name = "BigPackFormLoad_Button";
-            this.BigPackFormLoad_Button.Size = new System.Drawing.Size(84, 68);
-            this.BigPackFormLoad_Button.Text = "大箱包装";
-            this.BigPackFormLoad_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.BigPackFormLoad_Button.Click += new System.EventHandler(this.BigPackFormLoad_Button_Click);
             // 
             // PackForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1227, 845);
+            this.ClientSize = new System.Drawing.Size(1179, 753);
             this.Controls.Add(this.User_Label);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.Exit_Form);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.BaoGongDeviceList);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.groupBox3);
@@ -777,7 +752,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label PageNum_Label;
         private System.Windows.Forms.Button Exit_Form;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView BaoGongDeviceList;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.GroupBox groupBox3;

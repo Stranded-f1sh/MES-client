@@ -22,7 +22,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         public JToken GetOutBoundProductDevices(LoginInfo loginInfo, int saleOrderId, int processId)
         {
             JObject jObject = OutBoundApi.GetOutBoundProductDevicesApi(loginInfo, saleOrderId, processId);
-            return MyJsonConverter.GetJToken(jObject);
+            return MyJsonConverter.GetJTokenList(jObject);
         }
     }
 }

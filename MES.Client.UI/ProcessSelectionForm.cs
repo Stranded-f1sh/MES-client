@@ -195,7 +195,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         {
             Process process = new Process {SelectedProcessName = ProcessNameEnum.CodeRegistration};
             CodeRegistrationForm codeRegistrationForm = new CodeRegistrationForm(_loginInfo, process, _productOrders);
-            new Thread(delegate () { codeRegistrationForm.ShowDialog(); }).Start();
+            new Thread(delegate () 
+            {
+                codeRegistrationForm.ShowDialog();
+                    
+            }).Start();
             this.Close();
         }
 

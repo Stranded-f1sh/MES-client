@@ -30,8 +30,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OutBoundForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.CreateProductOrder_Btn = new System.Windows.Forms.ToolStripButton();
             this.LoadSaleOrders_btn = new System.Windows.Forms.ToolStripButton();
@@ -58,19 +58,21 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.label5 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.storageList = new System.Windows.Forms.DataGridView();
+            this.outBound_DataGirdView = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imei = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deviceModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.inBoundTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.inBoundUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imsi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.platform = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.handleResult = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.outBoundUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.operate = new System.Windows.Forms.DataGridViewButtonColumn();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.storageList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outBound_DataGirdView)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -331,49 +333,51 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel6.Controls.Add(this.storageList);
+            this.panel6.Controls.Add(this.outBound_DataGirdView);
             this.panel6.Location = new System.Drawing.Point(218, 130);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(763, 488);
             this.panel6.TabIndex = 33;
             // 
-            // storageList
+            // outBound_DataGirdView
             // 
-            this.storageList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.outBound_DataGirdView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.storageList.BackgroundColor = System.Drawing.Color.White;
-            this.storageList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.storageList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.storageList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.storageList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.outBound_DataGirdView.BackgroundColor = System.Drawing.Color.White;
+            this.outBound_DataGirdView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.outBound_DataGirdView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.outBound_DataGirdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.outBound_DataGirdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.imei,
-            this.deviceModel,
-            this.inBoundTime,
-            this.inBoundUser,
+            this.imsi,
+            this.userName,
+            this.platform,
+            this.handleResult,
+            this.outBoundUser,
             this.operate});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.storageList.DefaultCellStyle = dataGridViewCellStyle10;
-            this.storageList.GridColor = System.Drawing.Color.Gainsboro;
-            this.storageList.Location = new System.Drawing.Point(2, 2);
-            this.storageList.Name = "storageList";
-            this.storageList.RowTemplate.Height = 20;
-            this.storageList.Size = new System.Drawing.Size(754, 479);
-            this.storageList.TabIndex = 17;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.outBound_DataGirdView.DefaultCellStyle = dataGridViewCellStyle4;
+            this.outBound_DataGirdView.GridColor = System.Drawing.Color.Gainsboro;
+            this.outBound_DataGirdView.Location = new System.Drawing.Point(2, 2);
+            this.outBound_DataGirdView.Name = "outBound_DataGirdView";
+            this.outBound_DataGirdView.RowTemplate.Height = 20;
+            this.outBound_DataGirdView.Size = new System.Drawing.Size(754, 479);
+            this.outBound_DataGirdView.TabIndex = 17;
             // 
             // id
             // 
@@ -385,20 +389,30 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.imei.HeaderText = "imei号";
             this.imei.Name = "imei";
             // 
-            // deviceModel
+            // imsi
             // 
-            this.deviceModel.HeaderText = "设备型号";
-            this.deviceModel.Name = "deviceModel";
+            this.imsi.HeaderText = "imsi号";
+            this.imsi.Name = "imsi";
             // 
-            // inBoundTime
+            // userName
             // 
-            this.inBoundTime.HeaderText = "入库时间";
-            this.inBoundTime.Name = "inBoundTime";
+            this.userName.HeaderText = "客户名";
+            this.userName.Name = "userName";
             // 
-            // inBoundUser
+            // platform
             // 
-            this.inBoundUser.HeaderText = "入库操作员";
-            this.inBoundUser.Name = "inBoundUser";
+            this.platform.HeaderText = "平台类型";
+            this.platform.Name = "platform";
+            // 
+            // handleResult
+            // 
+            this.handleResult.HeaderText = "注册状态";
+            this.handleResult.Name = "handleResult";
+            // 
+            // outBoundUser
+            // 
+            this.outBoundUser.HeaderText = "出库操作员";
+            this.outBoundUser.Name = "outBoundUser";
             // 
             // operate
             // 
@@ -434,7 +448,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.storageList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outBound_DataGirdView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -466,13 +480,15 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.DataGridView storageList;
+        private System.Windows.Forms.DataGridView outBound_DataGirdView;
+        private System.Windows.Forms.ToolStripButton ScanCode_Button;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn imei;
-        private System.Windows.Forms.DataGridViewTextBoxColumn deviceModel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn inBoundTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn inBoundUser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imsi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn platform;
+        private System.Windows.Forms.DataGridViewTextBoxColumn handleResult;
+        private System.Windows.Forms.DataGridViewTextBoxColumn outBoundUser;
         private System.Windows.Forms.DataGridViewButtonColumn operate;
-        private System.Windows.Forms.ToolStripButton ScanCode_Button;
     }
 }
