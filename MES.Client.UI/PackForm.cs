@@ -13,6 +13,7 @@ using ManufacturingExecutionSystem.MES.Client.Utility.Enum;
 using ManufacturingExecutionSystem.MES.Client.Utility.Utils;
 using ManufacturingExecutionSystem.MES.Client.Utility.Utils.PCB;
 using Newtonsoft.Json.Linq;
+using ObjectDetectionProgram;
 
 namespace ManufacturingExecutionSystem.MES.Client.UI
 {
@@ -126,17 +127,38 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             ProductOrderService productOrderService = new ProductOrderService();
 
-            JToken productDeviceRecord = productOrderService.GetProductDeviceRecord(
-                _loginInfo,
-                poi.OrderId.ToString(),
-                ((int)_process.SelectedProcessName).ToString(),
-                pageSize,
-                _pageNum
-            );
+            JToken productDeviceRecord;
+
+            if (pageSize == -1)
+            {
+                productDeviceRecord = productOrderService.GetProductDeviceRecord(
+                            _loginInfo,
+                            poi.OrderId.ToString(),
+                            ((int)_process.SelectedProcessName).ToString()
+                            );
+            }
+            else
+            {
+                productDeviceRecord = productOrderService.GetProductDeviceRecord(
+                            _loginInfo,
+                            poi.OrderId.ToString(),
+                            ((int)_process.SelectedProcessName).ToString(),
+                            pageSize,
+                            _pageNum
+                            );
+            }
+
 
             PackNum_TextBox.Text = productDeviceRecord?.SelectToken("count")?.ToString();
 
             _pageCount = (int)Math.Ceiling(double.Parse(productDeviceRecord?.SelectToken("count")?.ToString() ?? String.Empty) / pageSize);
+
+            if (pageSize == -1)
+            {
+                _pageCount = 1;
+                _pageNum = 1;
+            }
+
             InitInfoTable();
             UpdateTable(productDeviceRecord, saleOrder);
             INFO.Text = String.Empty;
@@ -776,9 +798,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
 
             }).Start();
-            
-        }
 
+
+            // objectDetection
+
+           
+            new Thread(delegate () { cameraApplication.ShowDialog(); }).Start();
+        }
+        CameraApplication cameraApplication = new CameraApplication();
 
 
         #region 判断接收的数据是否符合规范
@@ -904,6 +931,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     MessageBox.Show(@"比对失败");
                 }));
             }
+            this.Invoke(new Action(() =>
+            {
+                MessageBox.Show(@"相机开始检测");
+            }));
+            if (!IsReceivedCorrectPcbData(devicePort, CommandDefinition.X02Input)) return;
+
+            cameraApplication.detectionStatus = true;
+
         }
 
 
@@ -918,6 +953,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             Thread invokeThread = new Thread(()=> { bigPackForm.ShowDialog(); });
             invokeThread.SetApartmentState(ApartmentState.STA);
             invokeThread.Start();
+        }
+
+
+
+        private void Export_Button_Click(object sender, EventArgs e)
+        {
+            ExcelHelper excelHelper = new ExcelHelper();
+            SelectProductOrder(ProductOrderInfo, -1);
+            excelHelper.ExportDataToExcel(ProductOrderInfo, BaoGongDeviceList);
+            SelectProductOrder(ProductOrderInfo, 100);
         }
     }
 }

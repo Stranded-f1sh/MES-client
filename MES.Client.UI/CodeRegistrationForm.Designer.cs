@@ -38,6 +38,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.BackPage_Btn = new System.Windows.Forms.ToolStripButton();
             this.NextPage_Btn = new System.Windows.Forms.ToolStripButton();
+            this.ScanAll_Button = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.Setting_Button = new System.Windows.Forms.ToolStripButton();
             this.export_Button = new System.Windows.Forms.ToolStripButton();
@@ -80,7 +81,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.label2 = new System.Windows.Forms.Label();
             this.PageNum_Label = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.ScanAll_Button = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -172,6 +172,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.NextPage_Btn.Text = "下一页";
             this.NextPage_Btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.NextPage_Btn.Click += new System.EventHandler(this.NextPage_Btn_Click);
+            // 
+            // ScanAll_Button
+            // 
+            this.ScanAll_Button.AutoSize = false;
+            this.ScanAll_Button.Image = ((System.Drawing.Image)(resources.GetObject("ScanAll_Button.Image")));
+            this.ScanAll_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ScanAll_Button.Name = "ScanAll_Button";
+            this.ScanAll_Button.Size = new System.Drawing.Size(84, 68);
+            this.ScanAll_Button.Text = "查看全部";
+            this.ScanAll_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ScanAll_Button.Click += new System.EventHandler(this.ScanAll_Button_Click);
             // 
             // toolStripSeparator1
             // 
@@ -423,6 +434,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.ForeColor = System.Drawing.Color.Black;
             this.checkBox2.Location = new System.Drawing.Point(235, 144);
             this.checkBox2.Name = "checkBox2";
@@ -469,6 +482,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // isPrint_CheckBox
             // 
             this.isPrint_CheckBox.AutoSize = true;
+            this.isPrint_CheckBox.Checked = true;
+            this.isPrint_CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.isPrint_CheckBox.ForeColor = System.Drawing.Color.Black;
             this.isPrint_CheckBox.Location = new System.Drawing.Point(34, 14);
             this.isPrint_CheckBox.Name = "isPrint_CheckBox";
@@ -671,17 +686,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox5.Size = new System.Drawing.Size(141, 31);
             this.groupBox5.TabIndex = 26;
             this.groupBox5.TabStop = false;
-            // 
-            // ScanAll_Button
-            // 
-            this.ScanAll_Button.AutoSize = false;
-            this.ScanAll_Button.Image = ((System.Drawing.Image)(resources.GetObject("ScanAll_Button.Image")));
-            this.ScanAll_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ScanAll_Button.Name = "ScanAll_Button";
-            this.ScanAll_Button.Size = new System.Drawing.Size(84, 68);
-            this.ScanAll_Button.Text = "查看全部";
-            this.ScanAll_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.ScanAll_Button.Click += new System.EventHandler(this.ScanAll_Button_Click);
             // 
             // CodeRegistrationForm
             // 

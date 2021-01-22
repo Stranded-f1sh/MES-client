@@ -243,6 +243,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             if (pageSize == -1)
             {
                 _pageCount = 1;
+                _pageNum = 1;
             }
             InitInfoTable();
             UpdateTable(productDeviceRecord, saleOrder);
@@ -272,7 +273,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
                 if (RegisteredDeviceList.Rows[index].Cells[0] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[0].Value = MyJsonConverter.JTokenTransformer((_pageNum - 1) * 20 + index + 1);
+                    RegisteredDeviceList.Rows[index].Cells[0].Value = MyJsonConverter.JTokenTransformer((_pageNum - 1) * 100 + index + 1);
                 }
 
                 if (RegisteredDeviceList.Rows[index].Cells[1] != null)
@@ -410,7 +411,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             };
             productOrdersSelectionForm.ShowDialog();
             _pageNum = 1;
-            CutOverProductOrder(ProductOrderInfo, 20);
+            CutOverProductOrder(ProductOrderInfo, 100);
         }
 
 
@@ -427,6 +428,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void Imei_TextBox_KeyPress(object sender, KeyPressEventArgs eventArgs)
         {
             if (eventArgs != null && eventArgs.KeyChar != Convert.ToChar(13)) return;
+            INFO.Text = "正在执行，请稍后。。。。";
+            Application.DoEvents();
             CodeScanHelper codeScanHelper = new CodeScanHelper();
             string imei = codeScanHelper.CodeScanFilter(Imei_TextBox?.Text, out String pinDian);
             
@@ -443,12 +446,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 报工到烧录配置工序3
             baoGongService.DeviceBaoGong(_loginInfo, imei, ProductOrderInfo.OrderId, ProcessNameEnum.BurnConfiguration, String.Empty);
 
-            if (checkBox1.Checked)
-            {
-                // 报工到编码注册工序
-                JToken baoGongResult = baoGongService.DeviceBaoGong(_loginInfo, imei, ProductOrderInfo.OrderId, _process.SelectedProcessName, String.Empty);
-                INFO.Text = imei + @"报工:" + baoGongResult;
-            }
 
             if (checkBox2.Checked)
             {
@@ -458,16 +455,22 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 INFO.Text = imei + @"注册:" + registerResult;
             }
 
+            // 报工到编码注册工序
+            JToken baoGongResult = baoGongService.DeviceBaoGong(_loginInfo, imei, ProductOrderInfo.OrderId, _process.SelectedProcessName, String.Empty);
+            INFO.Text = imei + @"报工:" + baoGongResult;
+
+
             if (isPrint_CheckBox.Checked)
             {
                 codeScanHelper.PrintQrCode(device, pinDian != String.Empty ? @"loraQrCode.frx" : @"generalQrCode.frx");
             }
-            CutOverProductOrder(ProductOrderInfo, 20);
+            CutOverProductOrder(ProductOrderInfo, 100);
 
             Imei_TextBox?.Clear();
         }
 
         #endregion
+
 
 
         private void Qualify_ComboBox_SelectedValueChanged(object sender, EventArgs e)
@@ -489,14 +492,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void BackPage_Btn_Click(object sender, EventArgs e)
         {
             _pageNum -= 1;
-            CutOverProductOrder(ProductOrderInfo, 20);
+            CutOverProductOrder(ProductOrderInfo, 100);
         }
 
 
         private void NextPage_Btn_Click(object sender, EventArgs e)
         {
             _pageNum += 1;
-            CutOverProductOrder(ProductOrderInfo, 20);
+            CutOverProductOrder(ProductOrderInfo, 100);
         }
 
 
@@ -516,7 +519,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             excelHelper.ExportDataToExcel(ProductOrderInfo, RegisteredDeviceList);
 
-            CutOverProductOrder(ProductOrderInfo, 20);
+            CutOverProductOrder(ProductOrderInfo, 100);
         }
 
 

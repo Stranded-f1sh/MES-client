@@ -1,0 +1,16 @@
+item {
+  name: "antenna"
+  id: 1
+  display_name: " "
+}
+item {
+  name: "certificate"
+  id: 2
+  display_name: " "
+}
+item {
+  name: "others"
+  id: 3
+  display_name: " "
+}
+

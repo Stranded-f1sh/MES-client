@@ -117,6 +117,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btn_OpenDevice_Click_label_MessageInfo" xml:space="preserve">
+    <value>OPENING DEVICE...</value>
+  </data>
+  <data name="btn_ScanDevice_Click_Label_MessageInfo" xml:space="preserve">
+    <value>ENUMERATING DEVICES...</value>
+  </data>
+  <data name="CameraApplication_FormClose" xml:space="preserve">
+    <value>CLOSING APPLICATION...</value>
+  </data>
+  <data name="CloseDeviceSucceed" xml:space="preserve">
+    <value>CLOSE DEVICE SUCCEED</value>
+  </data>
+  <data name="Device_Open_Failed" xml:space="preserve">
+    <value>DIVICE OPEN FAILED!</value>
+  </data>
+  <data name="Device_Open_Succeed" xml:space="preserve">
+    <value>DIVICE OPEN SUCCEED</value>
+  </data>
+  <data name="Enum_Devices_Failed" xml:space="preserve">
+    <value>ENUMERATE DEVICES FAILED!</value>
+  </data>
+  <data name="Enum_Devices_Succeed" xml:space="preserve">
+    <value>ENUMERATE DEVICES SUCCEED</value>
+  </data>
+  <data name="ExposureTime" xml:space="preserve">
+    <value>曝光时间</value>
+  </data>
+  <data name="ExposureTimeUnit" xml:space="preserve">
+    <value>帧/秒</value>
+  </data>
+  <data name="FrameRate" xml:space="preserve">
+    <value>采集帧率：</value>
+  </data>
+  <data name="Gain" xml:space="preserve">
+    <value>增益：</value>
+  </data>
+  <data name="GetPayloadSizeFailed" xml:space="preserve">
+    <value>GET PAYLOADSIZE FAILED!</value>
+  </data>
   <data name="LoginPassWordErro" xml:space="preserve">
     <value>请求超时或密码错误！请重试。</value>
   </data>

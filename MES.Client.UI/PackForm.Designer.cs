@@ -31,8 +31,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackForm));
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -80,7 +80,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.NextPage_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.Setting_Button = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.export_Button = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.DataCache_ToolTrips_Button = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -103,7 +103,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox5.BackColor = System.Drawing.Color.LightGray;
             this.groupBox5.Controls.Add(this.label2);
             this.groupBox5.Controls.Add(this.PageNum_Label);
-            this.groupBox5.Location = new System.Drawing.Point(839, 720);
+            this.groupBox5.Location = new System.Drawing.Point(839, 727);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(141, 31);
             this.groupBox5.TabIndex = 36;
@@ -134,7 +134,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Exit_Form.FlatAppearance.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.Exit_Form.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Exit_Form.ForeColor = System.Drawing.Color.Black;
-            this.Exit_Form.Location = new System.Drawing.Point(549, 726);
+            this.Exit_Form.Location = new System.Drawing.Point(549, 732);
             this.Exit_Form.Name = "Exit_Form";
             this.Exit_Form.Size = new System.Drawing.Size(108, 23);
             this.Exit_Form.TabIndex = 35;
@@ -147,25 +147,25 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.BaoGongDeviceList.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BaoGongDeviceList.BackgroundColor = System.Drawing.Color.White;
             this.BaoGongDeviceList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.BaoGongDeviceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.BaoGongDeviceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.BaoGongDeviceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.BaoGongDeviceList.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.BaoGongDeviceList.DefaultCellStyle = dataGridViewCellStyle2;
             this.BaoGongDeviceList.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.BaoGongDeviceList.Location = new System.Drawing.Point(3, 380);
+            this.BaoGongDeviceList.Location = new System.Drawing.Point(3, 384);
             this.BaoGongDeviceList.Name = "BaoGongDeviceList";
             this.BaoGongDeviceList.RowTemplate.Height = 20;
             this.BaoGongDeviceList.Size = new System.Drawing.Size(1173, 336);
@@ -177,7 +177,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox4.Location = new System.Drawing.Point(2, 358);
+            this.textBox4.Location = new System.Drawing.Point(2, 362);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(1174, 23);
             this.textBox4.TabIndex = 32;
@@ -196,7 +196,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox3.Controls.Add(this.Qualify_ComboBox);
             this.groupBox3.Controls.Add(this.label_orderId_imei);
             this.groupBox3.Controls.Add(this.Imei_TextBox);
-            this.groupBox3.Location = new System.Drawing.Point(532, 154);
+            this.groupBox3.Location = new System.Drawing.Point(532, 158);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(644, 207);
             this.groupBox3.TabIndex = 31;
@@ -342,7 +342,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox1.Controls.Add(this.BuyNumber_TextBox);
             this.groupBox1.Controls.Add(this.label_orderno);
             this.groupBox1.Controls.Add(this.DeviceModel_TextBox);
-            this.groupBox1.Location = new System.Drawing.Point(2, 154);
+            this.groupBox1.Location = new System.Drawing.Point(2, 158);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(548, 207);
             this.groupBox1.TabIndex = 30;
@@ -460,7 +460,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox3.Location = new System.Drawing.Point(2, 82);
+            this.textBox3.Location = new System.Drawing.Point(2, 86);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(1174, 23);
             this.textBox3.TabIndex = 28;
@@ -474,7 +474,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox2.Controls.Add(this.INFO);
             this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox2.ForeColor = System.Drawing.Color.LawnGreen;
-            this.groupBox2.Location = new System.Drawing.Point(2, 97);
+            this.groupBox2.Location = new System.Drawing.Point(2, 101);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1174, 56);
             this.groupBox2.TabIndex = 29;
@@ -521,11 +521,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.NextPage_Btn,
             this.toolStripSeparator1,
             this.Setting_Button,
-            this.toolStripButton2,
+            this.export_Button,
             this.toolStripSeparator,
             this.DataCache_ToolTrips_Button,
             this.toolStripSeparator2});
-            this.toolStrip1.Location = new System.Drawing.Point(3, -1);
+            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStrip1.Size = new System.Drawing.Size(1173, 85);
@@ -655,15 +655,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Setting_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.Setting_Button.Click += new System.EventHandler(this.Setting_Button_Click);
             // 
-            // toolStripButton2
+            // export_Button
             // 
-            this.toolStripButton2.AutoSize = false;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(84, 68);
-            this.toolStripButton2.Text = "导出";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.export_Button.AutoSize = false;
+            this.export_Button.Image = ((System.Drawing.Image)(resources.GetObject("export_Button.Image")));
+            this.export_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.export_Button.Name = "export_Button";
+            this.export_Button.Size = new System.Drawing.Size(84, 68);
+            this.export_Button.Text = "导出";
+            this.export_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.export_Button.Click += new System.EventHandler(this.Export_Button_Click);
             // 
             // toolStripSeparator
             // 
@@ -689,7 +690,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label3.Location = new System.Drawing.Point(1067, 39);
+            this.label3.Location = new System.Drawing.Point(1052, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 12);
             this.label3.TabIndex = 37;
@@ -699,7 +700,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.User_Label.AutoSize = true;
             this.User_Label.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.User_Label.Location = new System.Drawing.Point(1146, 50);
+            this.User_Label.Location = new System.Drawing.Point(1126, 36);
             this.User_Label.Name = "User_Label";
             this.User_Label.Size = new System.Drawing.Size(0, 12);
             this.User_Label.TabIndex = 38;
@@ -708,7 +709,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1179, 753);
+            this.ClientSize = new System.Drawing.Size(1179, 766);
             this.Controls.Add(this.User_Label);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox5);
@@ -787,7 +788,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.ToolStripButton NextPage_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton Setting_Button;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton export_Button;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripButton DataCache_ToolTrips_Button;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

@@ -61,6 +61,123 @@ namespace ManufacturingExecutionSystem.Properties {
         }
         
         /// <summary>
+        ///   查找类似 OPENING DEVICE... 的本地化字符串。
+        /// </summary>
+        internal static string btn_OpenDevice_Click_label_MessageInfo {
+            get {
+                return ResourceManager.GetString("btn_OpenDevice_Click_label_MessageInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ENUMERATING DEVICES... 的本地化字符串。
+        /// </summary>
+        internal static string btn_ScanDevice_Click_Label_MessageInfo {
+            get {
+                return ResourceManager.GetString("btn_ScanDevice_Click_Label_MessageInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 CLOSING APPLICATION... 的本地化字符串。
+        /// </summary>
+        internal static string CameraApplication_FormClose {
+            get {
+                return ResourceManager.GetString("CameraApplication_FormClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 CLOSE DEVICE SUCCEED 的本地化字符串。
+        /// </summary>
+        internal static string CloseDeviceSucceed {
+            get {
+                return ResourceManager.GetString("CloseDeviceSucceed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 DIVICE OPEN FAILED! 的本地化字符串。
+        /// </summary>
+        internal static string Device_Open_Failed {
+            get {
+                return ResourceManager.GetString("Device_Open_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 DIVICE OPEN SUCCEED 的本地化字符串。
+        /// </summary>
+        internal static string Device_Open_Succeed {
+            get {
+                return ResourceManager.GetString("Device_Open_Succeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ENUMERATE DEVICES FAILED! 的本地化字符串。
+        /// </summary>
+        internal static string Enum_Devices_Failed {
+            get {
+                return ResourceManager.GetString("Enum_Devices_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ENUMERATE DEVICES SUCCEED 的本地化字符串。
+        /// </summary>
+        internal static string Enum_Devices_Succeed {
+            get {
+                return ResourceManager.GetString("Enum_Devices_Succeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 曝光时间 的本地化字符串。
+        /// </summary>
+        internal static string ExposureTime {
+            get {
+                return ResourceManager.GetString("ExposureTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 帧/秒 的本地化字符串。
+        /// </summary>
+        internal static string ExposureTimeUnit {
+            get {
+                return ResourceManager.GetString("ExposureTimeUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 采集帧率： 的本地化字符串。
+        /// </summary>
+        internal static string FrameRate {
+            get {
+                return ResourceManager.GetString("FrameRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 增益： 的本地化字符串。
+        /// </summary>
+        internal static string Gain {
+            get {
+                return ResourceManager.GetString("Gain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 GET PAYLOADSIZE FAILED! 的本地化字符串。
+        /// </summary>
+        internal static string GetPayloadSizeFailed {
+            get {
+                return ResourceManager.GetString("GetPayloadSizeFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 请求超时或密码错误！请重试。 的本地化字符串。
         /// </summary>
         internal static string LoginPassWordErro {
