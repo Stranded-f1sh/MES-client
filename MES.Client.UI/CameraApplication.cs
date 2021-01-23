@@ -793,13 +793,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void btn_SaveAsBmp_Click(object sender, EventArgs e)
         {
             //string path = FileSavePath();
-            /*            Bitmap imgBmp = SaveImgAsBmp();
-                        MsgInfoClear_Timer?.Start();
-                        if (imgBmp == null)
-                        {
-                            MessageBox.Show("未检测到图像输入");
-                        }*/
-            ObjectDetectionProgram.ImageIdentification.ObjectDetection.Run();
+            Bitmap imgBmp = SaveImgAsBmp();
+            MsgInfoClear_Timer?.Start();
+            if (imgBmp == null)
+            {
+                MessageBox.Show("未检测到图像输入");
+            }
+            ObjectDetectionProgram.ImageIdentification.ObjectDetection.Run(imgBmp);
         }
 
 

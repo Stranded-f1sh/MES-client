@@ -557,6 +557,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         #region readLine
 
+
+
+
+
+
         /*
         *  Get String From readBuffer
         */
@@ -810,22 +815,61 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         #region 判断接收的数据是否符合规范
         // ==============================判断接收的数据是否符合规范=================================
-        private Boolean IsReceivedCorrectPcbData(SerialPort serialPort, byte[] xInput)
+        private String IsReceivedCorrectPcbData()
         {
-            // int reTriedTimes = 0;
-            _appendStrings?.Clear();
-            do
-            {
-                // reTriedTimes++; 
-                // if (reTriedTimes > 5) return false;
-                
-                serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 8);
-                Thread.Sleep(1000);
-                Console.WriteLine("===");
-            } while (!_appendStrings?.ToString().Contains("fa1e") == true & !_appendStrings?.ToString().Contains("fad2") == true);
+            string data = _appendStrings.ToString();
+            data = data.Replace("\r", String.Empty);
+            data = data.Replace("\n", String.Empty);
 
-            return true;
+            if (data.StartsWith("010304") && data.Length == 18)
+            {
+
+            }
+            else if (data.Contains("010304") && data.Length > 18)
+            {
+                int dataStartIndex = data.IndexOf("010304");
+                data = data.Substring(dataStartIndex, 18);
+            }
+            else
+            {
+                signStatus = SignStatusEnum.None;
+                return String.Empty;
+            }
+
+            switch(data.Substring(12, 2))
+            {
+                case "01":
+                    signStatus = SignStatusEnum.ScannerI;
+                    break;
+                case "08":
+                    signStatus = SignStatusEnum.ScannerII;
+                    break;
+                case "02":
+                    signStatus = SignStatusEnum.Camera;
+                    break;
+                case "09":
+                    signStatus = SignStatusEnum.ScannerIAndScannerII;
+                    break;
+                case "0b":
+                    signStatus = SignStatusEnum.ScannerIAndScannerIIAndCamera;
+                    break;
+                case "0a":
+                    signStatus = SignStatusEnum.ScannerIIAndCamera;
+                    break;
+                case "03":
+                    signStatus = SignStatusEnum.ScannerIAndCamera;
+                    break;
+            }
+
+                
+
+                    
+
+            return data;
         }
+
+        public SignStatusEnum signStatus;
+
 
 
         private Boolean IsScanner1ReceivedCorrectScanData(SerialPort serialPort, byte[] xInput)
@@ -869,76 +913,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         private void AutoPackProgramRun(SerialPort devicePort, SerialPort scannerPort1, SerialPort scannerPort2)
         {
-            if (!IsReceivedCorrectPcbData(devicePort, CommandDefinition.X00Input)) return;
-            // 发送的指令如果得到了应答
-            Console.WriteLine(_appendStrings);
-            this.Invoke(new Action(() =>
+            while (true)
             {
-                MessageBox.Show(@"收到皮带传送表到位信号，发送扫码指令");
-            }));
-            if (!IsScanner1ReceivedCorrectScanData(scannerPort1, CommandDefinition.ScannerScanCode)) return;
-            Console.WriteLine();
-            this.Invoke(new Action(() =>
-            {
-                MessageBox.Show(_appendImei1.ToString());
-            }));
 
-            Console.WriteLine(@"收到imei");
-            this.Invoke(new Action(() =>
-            {
-                MessageBox.Show(@"发送表体扫描完毕信号N5");
-            }));
-            Console.WriteLine(@"发送表体扫描完毕信号");
-            devicePort?.Write(CommandDefinition.N5Connect ?? Array.Empty<byte>(), 0, 8);
-            Thread.Sleep(2000);
-            devicePort?.Write(CommandDefinition.N5Connect ?? Array.Empty<byte>(), 0, 8);
-            Console.WriteLine(@"表体扫描完毕信号结束");
-
-            this.Invoke(new Action(() =>
-            {
-                MessageBox.Show(@"开始缓存报工并打印");
-            }));
-            DataCacheService dataCacheService = new DataCacheService();
-            Console.WriteLine(@"开始缓存报工");
-            int cacheResult = dataCacheService.DeviceCache(_appendImei1.ToString(), _loginInfo.userId, _process.SelectedProcessName, SubmitStatus.UnCommit);
-            _startScan = cacheResult == 1;
-
-            this.Invoke(new Action(() =>
-            {
-                MessageBox.Show(@"开始搜索扫描信号X02");
-            }));
-            Console.WriteLine(@"开始搜索扫描信号X02");
-            if (!IsReceivedCorrectPcbData(devicePort, CommandDefinition.X03Input)) return;
-            Console.WriteLine(@"收到机械臂到位信号，发送扫码指令");
-            this.Invoke(new Action(() =>
-            {
-                MessageBox.Show(@"收到机械臂到位信号，发送扫码指令");
-            }));
-            if (!IsScanner2ReceivedCorrectScanData(scannerPort2, CommandDefinition.ScannerScanCode)) return;
-            Console.WriteLine(_appendImei2);
-            if (_appendImei1.ToString() == _appendImei2.ToString())
-            {
-                this.Invoke(new Action(() =>
-                {
-                    MessageBox.Show(@"比对成功一致");
-                }));
 
             }
-            else
-            {
-                this.Invoke(new Action(() =>
-                {
-                    MessageBox.Show(@"比对失败");
-                }));
-            }
-            this.Invoke(new Action(() =>
-            {
-                MessageBox.Show(@"相机开始检测");
-            }));
-            if (!IsReceivedCorrectPcbData(devicePort, CommandDefinition.X02Input)) return;
-
-            cameraApplication.detectionStatus = true;
-
         }
 
 

@@ -25,11 +25,9 @@ namespace ObjectDetectionProgram.ImageIdentification
 
 
 
-        static string img_input = "E:/Tensorflow+FasterRCNN+KITTI/models/research/object_detection/000001.bmp";
-        public static void Run()
-        {
-            Bitmap bmp = new Bitmap(img_input);
 
+        public static void Run(Bitmap imgInput)
+        {
             // 解析pbtxt
             _catalog = CatalogUtil.ReadCatalogItems(CatalogPath ?? string.Empty);
 
@@ -46,7 +44,7 @@ namespace ObjectDetectionProgram.ImageIdentification
                 using (TFSession session = new TFSession(graph))
                 {
                     // 将输入的图片调整参数，处理为符合要求的形式，并转换为张量
-                    TFTensor tensor = ImageUtil.CreateTensorFromImageFileAlt(bmp, TFDataType.UInt8);
+                    TFTensor tensor = ImageUtil.CreateTensorFromImageFileAlt(imgInput, TFDataType.UInt8);
                     var runner = session.GetRunner();
                     runner ?
                         .AddInput(graph["image_tensor"][0], tensor)
@@ -65,7 +63,7 @@ namespace ObjectDetectionProgram.ImageIdentification
                     float[] num = (float[])output[3].GetValue(jagged: false);
 
                     // 绘制识别框和准确度并输出
-                    ImageEditor.DrawBoxes(boxes, scores, classes, bmp, ImgOutput, 0.1, _catalog);
+                    ImageEditor.DrawBoxes(boxes, scores, classes, imgInput, ImgOutput, 0.1, _catalog);
                     Mat img = Cv2.ImRead(ImgOutput, ImreadModes.AnyColor);
                     OpenCvSharp.Size size = new OpenCvSharp.Size(img.Width / 2, img.Height / 2);
                     Cv2.Resize(img, img, size, 0, 0);
