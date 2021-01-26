@@ -17,5 +17,4 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Enum
         ScannerIAndCamera,
         ScannerIIAndCamera
     }
-
 }

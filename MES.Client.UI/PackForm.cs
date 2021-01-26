@@ -37,6 +37,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private StringBuilder _appendImei2; // 扫码枪内容2缓存buffer
         private Boolean _scanner1IsSent; // 扫码枪1是否发送
         private Boolean _scanner2IsSent; // 扫码枪2是否发送
+        public SignStatusEnum signStatus;
+
 
         public PackForm(LoginInfo loginInfo, Process process, JToken productOrders)
         {
@@ -613,12 +615,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             ASCIIEncoding asciiEncoding = new ASCIIEncoding();
             string strCharacter = asciiEncoding.GetString(readBuffer);
-
-            if (strCharacter.Contains("\r"))
+            _appendImei1.Append(strCharacter);
+            if (strCharacter.Contains("\r") | _appendImei1.Length >= 15)
             {
                 _scanner1IsSent = true;
             }
-            _appendImei1.Append(strCharacter);
         }
 
 
@@ -780,27 +781,26 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 Boolean deviceIsOpen = OpenPort(devicePort, devicePort_DataReceivedEventHandler);
                 Boolean scanner1IsOpen = OpenPort(scannerPort1, scannerPort1_DataReceivedEventHandler);
                 Boolean scanner2IsOpen = OpenPort(scannerPort2, scannerPort2_DataReceivedEventHandler);
+                Application.DoEvents();
                 if (!deviceIsOpen | !scanner1IsOpen | !scanner2IsOpen)
                 {
-                    this.Invoke(new Action(() =>
-                    {
-                        MessageBox.Show(@"端口开启失败");
-                    }));
-
-                    return;
+                    INFO.Text = @"端口开启失败";
+                    // return;
                 }
                 else
                 {
-                    this.Invoke(new Action(() =>
-                    {
-                        MessageBox.Show(@"端口开启成功");
-                    }));
+                    INFO.Text = @"端口开启成功";
                 }
                 _appendStrings = new StringBuilder();
                 _appendImei1 = new StringBuilder();
                 _appendImei2 = new StringBuilder();
-                AutoPackProgramRun(devicePort, scannerPort1, scannerPort2);
-
+                try
+                {
+                    AutoPackProgramRun(devicePort, scannerPort1, scannerPort2);
+                }catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
 
             }).Start();
 
@@ -815,8 +815,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         #region 判断接收的数据是否符合规范
         // ==============================判断接收的数据是否符合规范=================================
-        private String IsReceivedCorrectPcbData()
+        private void IsReceivedCorrectPcbData(SerialPort serialPort)
         {
+            _appendStrings.Clear();
+            INFO.Text = "开始发送";
+            serialPort?.Write(CommandDefinition.XReadDI ?? Array.Empty<byte>(), 0, 8);
+            Thread.Sleep(1000);
+            if (_appendStrings.Length < 14) return;
             string data = _appendStrings.ToString();
             data = data.Replace("\r", String.Empty);
             data = data.Replace("\n", String.Empty);
@@ -833,9 +838,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             else
             {
                 signStatus = SignStatusEnum.None;
-                return String.Empty;
             }
 
+            Thread.Sleep(1000);
             switch(data.Substring(12, 2))
             {
                 case "01":
@@ -859,16 +864,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 case "03":
                     signStatus = SignStatusEnum.ScannerIAndCamera;
                     break;
+                case "00":
+                    signStatus = SignStatusEnum.None;
+                    break;
             }
-
-                
-
-                    
-
-            return data;
         }
-
-        public SignStatusEnum signStatus;
 
 
 
@@ -876,12 +876,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         {
             //int reTriedTimes = 0;
             _scanner1IsSent = false;
-            _appendImei1?.Clear();
             do
             {
+                _appendImei1?.Clear();
                 //reTriedTimes++;
                 //if (reTriedTimes > 5) return false;
-                
+
                 serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 7);
                 Thread.Sleep(1000);
             } while (!_scanner1IsSent);
@@ -915,8 +915,47 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         {
             while (true)
             {
+                Application.DoEvents();
+                IsReceivedCorrectPcbData(devicePort);
+                INFO.Text = "_appendStrings的值是{" + _appendStrings + "}并且信号是" + signStatus.ToString();
+                Thread.Sleep(1000);
+                switch (signStatus)
+                {
+                    case SignStatusEnum.None:
 
+                        INFO.Text = String.Empty;
 
+                        break;
+                    case SignStatusEnum.ScannerI:
+                        INFO.Text = @"收到皮带传送表到位信号，发送扫码指令";
+                        IsScanner1ReceivedCorrectScanData(scannerPort1, CommandDefinition.ScannerScanCode);
+                        MessageBox.Show("收到" + _appendImei1.ToString() + "并发送N5");
+                        devicePort?.Write(CommandDefinition.N5Connect ?? Array.Empty<byte>(), 0, 8);
+                        Thread.Sleep(2000);
+                        devicePort?.Write(CommandDefinition.N5DisConnect ?? Array.Empty<byte>(), 0, 8);
+                        MessageBox.Show("N5发送结束，并缓存报工打印");
+                        INFO.Text = String.Empty;
+                        DataCacheService dataCacheService = new DataCacheService();
+                        int cacheResult = dataCacheService.DeviceCache(_appendImei1.ToString(), _loginInfo.userId, _process.SelectedProcessName, SubmitStatus.UnCommit);
+                        _startScan = cacheResult == 1;
+                        break;
+                    case SignStatusEnum.ScannerII:
+                        INFO.Text = @"收到机械臂到位信号，发送扫码指令";
+                        IsScanner2ReceivedCorrectScanData(scannerPort2, CommandDefinition.ScannerScanCode);
+                        if (_appendImei1.ToString() == _appendImei2.ToString())
+                        {
+                            INFO.Text = @"信息比对成功一致";
+                        }
+                        else
+                        {
+                            INFO.Text = @"信息比对失败";
+                        }
+                        break;
+                    case SignStatusEnum.Camera:
+                        INFO.Text = @"收到调用相机指令";
+                        cameraApplication.detectionStatus = true;
+                        break;
+                }
             }
         }
 

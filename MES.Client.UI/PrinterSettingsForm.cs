@@ -33,23 +33,25 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             DataSet selectPrinters = printerMapper.SelectPrinters();
 
+
             foreach (DataRow dr in selectPrinters.Tables[0].Rows)
             {
                 PrinterName_ComboBox.Items.Add(dr[1]);
                 HorizontalOffset_TextBox.Text = dr[2].ToString();
                 VerticalOffset_TextBox.Text = dr[3].ToString();
-                foreach (string sPrint in PrinterSettings.InstalledPrinters)
-                {
-                    if (sPrint != dr[1].ToString())
-                    {
-                        PrinterName_ComboBox.Items.Add(sPrint ?? String.Empty);
-                    }
-                    else
-                    {
-                        PrinterName_ComboBox.SelectedIndex = PrinterName_ComboBox.Items.IndexOf(sPrint);
-                    }
-                }
                 break;
+            }
+
+            foreach (string sPrint in PrinterSettings.InstalledPrinters)
+            {
+                if (sPrint != PrinterName_ComboBox.Text)
+                {
+                    PrinterName_ComboBox.Items.Add(sPrint ?? String.Empty);
+                }
+                else
+                {
+                    PrinterName_ComboBox.SelectedIndex = PrinterName_ComboBox.Items.IndexOf(sPrint);
+                }
             }
         }
 

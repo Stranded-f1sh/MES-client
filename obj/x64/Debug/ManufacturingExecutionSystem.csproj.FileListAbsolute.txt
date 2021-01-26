@@ -71,7 +71,6 @@ E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\dll\x86\OpenCvSharpExtern
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\dll\x86\opencv_videoio_ffmpeg451.dll
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\dll\x64\OpenCvSharpExtern.dll
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\dll\x64\opencv_videoio_ffmpeg451_64.dll
-E:\code\MES\ManufacturingExecutionSystem\obj\x64\Debug\ManufacturingExecutionSystem.csprojAssemblyReference.cache
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\OpenCvSharp.Blob.dll
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\OpenCvSharp.dll
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\OpenCvSharp.Extensions.dll

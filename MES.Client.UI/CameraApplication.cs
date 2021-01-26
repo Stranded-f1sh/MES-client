@@ -833,6 +833,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 Application.DoEvents();
                 if (detectionStatus)
                 {
+                    MessageBox.Show("调用btn_SaveAsBmp_Click");
                     btn_SaveAsBmp_Click(null, null);
                 }
             }

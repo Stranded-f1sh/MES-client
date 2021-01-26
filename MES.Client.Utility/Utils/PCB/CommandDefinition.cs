@@ -143,6 +143,10 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils.PCB
         // X017
         public static readonly byte[] X17Input = { 0x01, 0x02, 0x00, 0x0F, 0x00, 0x20, 0x49, 0xD1 };
 
+
+        // ReadDI
+        public static readonly byte[] XReadDI = { 0x01, 0x03, 0x80, 0x40, 0x00, 0x02, 0xEC, 0x1F };
+
         #endregion
 
 
