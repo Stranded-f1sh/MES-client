@@ -9,6 +9,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Enum
     public enum SignStatusEnum
     {
         None,
+
         ScannerI,
         ScannerII,
         Camera,

@@ -13,6 +13,7 @@ namespace ObjectDetectionProgram.Common
         /// <param name="inputFileName"></param>
         /// <param name="destinationDataType"></param>
         /// <returns></returns>
+        /// 将输入的图片调整参数，处理为符合要求的尺寸和类型，return出张量
         public static unsafe TFTensor CreateTensorFromImageFileAlt(Bitmap inputFileName, TFDataType destinationDataType = TFDataType.Float)
         {
             BitmapData data = inputFileName.LockBits(new Rectangle(0, 0, inputFileName.Width, inputFileName.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);

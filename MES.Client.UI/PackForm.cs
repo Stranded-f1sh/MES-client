@@ -38,6 +38,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private Boolean _scanner1IsSent; // 扫码枪1是否发送
         private Boolean _scanner2IsSent; // 扫码枪2是否发送
         public SignStatusEnum signStatus;
+        public SignStatusEnum lastSignStatus;
+
+
+        public String Sign;
+
+        public DateTime scannerILastSignDate;
+        public DateTime scannerIILastSignDate;
+        public DateTime CameraLastSignDate;
+
+
 
 
         public PackForm(LoginInfo loginInfo, Process process, JToken productOrders)
@@ -434,7 +444,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
 
 
-
         #region 缓存报工
 
         private void ThreadCache()
@@ -785,7 +794,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 if (!deviceIsOpen | !scanner1IsOpen | !scanner2IsOpen)
                 {
                     INFO.Text = @"端口开启失败";
-                    // return;
+                    return;
                 }
                 else
                 {
@@ -807,22 +816,39 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             // objectDetection
 
-           
             new Thread(delegate () { cameraApplication.ShowDialog(); }).Start();
         }
         CameraApplication cameraApplication = new CameraApplication();
 
 
+
         #region 判断接收的数据是否符合规范
+
+
+        public static bool TimeTest(DateTime lastTime)
+        {
+            DateTime nowTime = DateTime.Now;
+
+            if (nowTime.Subtract(lastTime).TotalSeconds > 20)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
         // ==============================判断接收的数据是否符合规范=================================
         private void IsReceivedCorrectPcbData(SerialPort serialPort)
         {
             _appendStrings.Clear();
-            INFO.Text = "开始发送";
             serialPort?.Write(CommandDefinition.XReadDI ?? Array.Empty<byte>(), 0, 8);
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
             if (_appendStrings.Length < 14) return;
             string data = _appendStrings.ToString();
+            // data = "010304000000023BF3";
             data = data.Replace("\r", String.Empty);
             data = data.Replace("\n", String.Empty);
 
@@ -840,32 +866,134 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 signStatus = SignStatusEnum.None;
             }
 
-            Thread.Sleep(1000);
             switch(data.Substring(12, 2))
             {
                 case "01":
-                    signStatus = SignStatusEnum.ScannerI;
+                    if (TimeTest(scannerILastSignDate))
+                    {
+                        Sign = "1";
+                        scannerILastSignDate = DateTime.Now;
+                        break;
+                    }
+                    Sign = "";
                     break;
                 case "08":
-                    signStatus = SignStatusEnum.ScannerII;
+                    if (TimeTest(scannerIILastSignDate))
+                    {
+                        Sign = "2";
+                        scannerIILastSignDate = DateTime.Now;
+                        break;
+                    }
+                    Sign = "";
                     break;
                 case "02":
-                    signStatus = SignStatusEnum.Camera;
+                    if (TimeTest(CameraLastSignDate))
+                    {
+                        // MessageBox.Show("================================进了02");
+                        Sign = "3";
+                        CameraLastSignDate = DateTime.Now;
+                        break;
+                    }
+                    Sign = "";
                     break;
                 case "09":
-                    signStatus = SignStatusEnum.ScannerIAndScannerII;
+                    Sign = "12";
+
+                    if (!TimeTest(scannerILastSignDate))
+                    {
+                        Sign = Sign.Replace("1", "");
+                    }
+                    else
+                    {
+                        scannerILastSignDate = DateTime.Now;
+                    }
+
+                    if (!TimeTest(scannerIILastSignDate))
+                    {
+                        Sign = Sign.Replace("2", "");
+                    }
+                    else
+                    {
+                        scannerIILastSignDate = DateTime.Now;
+                    }
                     break;
                 case "0b":
-                    signStatus = SignStatusEnum.ScannerIAndScannerIIAndCamera;
+                    Sign = "123";
+
+                    if (!TimeTest(scannerILastSignDate))
+                    {
+                        Sign = Sign.Replace("1", "");
+                    }
+                    else
+                    {
+                        scannerILastSignDate = DateTime.Now;
+                    }
+
+                    if (!TimeTest(scannerIILastSignDate))
+                    {
+                        Sign = Sign.Replace("2", "");
+                    }
+                    else
+                    {
+                        scannerIILastSignDate = DateTime.Now;
+                    }
+
+                    if (!TimeTest(CameraLastSignDate))
+                    {
+                        Sign = Sign.Replace("3", "");
+                    }
+                    else
+                    {
+                        CameraLastSignDate = DateTime.Now;
+                    }
                     break;
                 case "0a":
-                    signStatus = SignStatusEnum.ScannerIIAndCamera;
+                    Sign = "23";
+
+                    if (!TimeTest(scannerILastSignDate))
+                    {
+                        Sign = Sign.Replace("2", "");
+                    }
+                    else
+                    {
+                        scannerILastSignDate = DateTime.Now;
+                    }
+
+                    if (!TimeTest(CameraLastSignDate))
+                    {
+                        Sign = Sign.Replace("3", "");
+                    }
+                    else
+                    {
+                        CameraLastSignDate = DateTime.Now;
+                    }
                     break;
                 case "03":
-                    signStatus = SignStatusEnum.ScannerIAndCamera;
+                    Sign = "13";
+
+                    if (!TimeTest(scannerILastSignDate))
+                    {
+                        Sign = Sign.Replace("1", "");
+                    }
+                    else
+                    {
+                        scannerILastSignDate = DateTime.Now;
+                    }
+
+                    if (!TimeTest(CameraLastSignDate))
+                    {
+                        Sign = Sign.Replace("3", "");
+                    }
+                    else
+                    {
+                        CameraLastSignDate = DateTime.Now;
+                    }
                     break;
                 case "00":
-                    signStatus = SignStatusEnum.None;
+                    Sign = "";
+                    scannerILastSignDate = new DateTime(0001, 1, 1, 0, 00, 00);
+                    scannerILastSignDate = new DateTime(0001, 1, 1, 0, 00, 00);
+                    CameraLastSignDate = new DateTime(0001, 1, 1, 0, 00, 00);
                     break;
             }
         }
@@ -892,12 +1020,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         private Boolean IsScanner2ReceivedCorrectScanData(SerialPort serialPort, byte[] xInput)
         {
-            //int reTriedTimes = 0;
+            int reTriedTimes = 0;
             _scanner2IsSent = false;
             do
             {
-                //reTriedTimes++;
-                //if (reTriedTimes > 5) return false;
+                reTriedTimes++;
+                if (reTriedTimes > 10) return false;
                 _appendImei2?.Clear();
                 serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 7);
                 Thread.Sleep(1000);
@@ -910,57 +1038,124 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
 
 
-
         private void AutoPackProgramRun(SerialPort devicePort, SerialPort scannerPort1, SerialPort scannerPort2)
         {
+/*            for (int i = 0; i <30; i++)
+            {
+                Thread.Sleep(1000);
+                IsReceivedCorrectPcbData(devicePort);
+                Console.WriteLine(Sign);
+                Console.WriteLine(scannerILastSignDate);
+                Console.WriteLine(scannerIILastSignDate);
+                Console.WriteLine(CameraLastSignDate);
+                Console.WriteLine(DateTime.Now);
+                Console.WriteLine("============");
+            }
+*/
+
             while (true)
             {
                 Application.DoEvents();
+                Sign = "";
                 IsReceivedCorrectPcbData(devicePort);
-                INFO.Text = "_appendStrings的值是{" + _appendStrings + "}并且信号是" + signStatus.ToString();
-                Thread.Sleep(1000);
-                switch (signStatus)
+                INFO.Text = "_appendStrings的值是{" + _appendStrings + "}并且信号是" + Sign;
+                Thread.Sleep(500);
+
+                Console.WriteLine("Sign:" + Sign);
+                Console.WriteLine("scannerILastSignDate:" + scannerILastSignDate);
+                Console.WriteLine("scannerIILastSignDate:" + scannerIILastSignDate);
+                Console.WriteLine("CameraLastSignDate" + CameraLastSignDate);
+                Console.WriteLine("now" + DateTime.Now);
+
+                if (Sign.Contains("1"))
                 {
-                    case SignStatusEnum.None:
-
-                        INFO.Text = String.Empty;
-
-                        break;
-                    case SignStatusEnum.ScannerI:
-                        INFO.Text = @"收到皮带传送表到位信号，发送扫码指令";
-                        IsScanner1ReceivedCorrectScanData(scannerPort1, CommandDefinition.ScannerScanCode);
-                        MessageBox.Show("收到" + _appendImei1.ToString() + "并发送N5");
-                        devicePort?.Write(CommandDefinition.N5Connect ?? Array.Empty<byte>(), 0, 8);
-                        Thread.Sleep(2000);
-                        devicePort?.Write(CommandDefinition.N5DisConnect ?? Array.Empty<byte>(), 0, 8);
-                        MessageBox.Show("N5发送结束，并缓存报工打印");
-                        INFO.Text = String.Empty;
-                        DataCacheService dataCacheService = new DataCacheService();
-                        int cacheResult = dataCacheService.DeviceCache(_appendImei1.ToString(), _loginInfo.userId, _process.SelectedProcessName, SubmitStatus.UnCommit);
-                        _startScan = cacheResult == 1;
-                        break;
-                    case SignStatusEnum.ScannerII:
-                        INFO.Text = @"收到机械臂到位信号，发送扫码指令";
-                        IsScanner2ReceivedCorrectScanData(scannerPort2, CommandDefinition.ScannerScanCode);
-                        if (_appendImei1.ToString() == _appendImei2.ToString())
-                        {
-                            INFO.Text = @"信息比对成功一致";
-                        }
-                        else
-                        {
-                            INFO.Text = @"信息比对失败";
-                        }
-                        break;
-                    case SignStatusEnum.Camera:
-                        INFO.Text = @"收到调用相机指令";
-                        cameraApplication.detectionStatus = true;
-                        break;
+                    // MessageBox.Show("ScannerIFuncExcute");
+                    ScannerIFuncExcute(devicePort, scannerPort1);
+                }
+                if (Sign.Contains("2"))
+                {
+                    // MessageBox.Show("ScannerIIFuncExcute");
+                    ScannerIIFuncExcute(scannerPort2);
+                }
+                if (Sign.Contains("3"))
+                {
+                    // MessageBox.Show("CameraFuncExcute");
+                    CameraFuncExcute(devicePort);
                 }
             }
         }
 
 
-#endregion
+
+
+        #region 扫码枪1调用方法
+        public void ScannerIFuncExcute(SerialPort devicePort, SerialPort scannerPort1)
+        {
+            INFO.Text = @"收到皮带传送表到位信号，发送扫码指令";
+            IsScanner1ReceivedCorrectScanData(scannerPort1, CommandDefinition.ScannerScanCode);
+            INFO.Text = "收到" + _appendImei1.ToString() + "并发送N5";
+            devicePort?.Write(CommandDefinition.N5Connect ?? Array.Empty<byte>(), 0, 8);
+            Thread.Sleep(2000);
+            devicePort?.Write(CommandDefinition.N5DisConnect ?? Array.Empty<byte>(), 0, 8);
+            INFO.Text = "N5发送结束，并缓存报工打印";
+            DataCacheService dataCacheService = new DataCacheService();
+            int cacheResult = dataCacheService.DeviceCache(_appendImei1.ToString(), _loginInfo.userId, _process.SelectedProcessName, SubmitStatus.UnCommit);
+            _startScan = cacheResult == 1;
+        }
+        #endregion
+
+
+        #region 扫码枪2调用方法
+        public void ScannerIIFuncExcute(SerialPort scannerPort2)
+        {
+            INFO.Text = @"收到机械臂到位信号，发送扫码指令";
+            bool ret = IsScanner2ReceivedCorrectScanData(scannerPort2, CommandDefinition.ScannerScanCode);
+            if (!ret)
+            {
+                INFO.Text = @"未识别到内容";
+                return;
+            }
+            String imei1;
+            String imei2;
+            imei1 = _appendImei1.ToString();
+            imei1 = imei1.Replace("\r", "");
+            imei1 = imei1.Replace("\n", "");
+
+            imei2 = _appendImei2.ToString();
+            imei2 = imei2.Replace("\r", "");
+            imei2 = imei2.Replace("\n", "");
+
+
+            if (imei1 == imei2)
+            {
+                INFO.Text = @"信息比对成功一致";
+                MediaHandler.SyncPlayWAV_Succ();
+            }
+            else
+            {
+                MessageBox.Show(_appendImei1 + @"信息比对失败" + _appendImei2);
+            }
+        }
+        #endregion
+
+
+        #region 相机调用方法
+        public void CameraFuncExcute(SerialPort devicePort)
+        {
+            INFO.Text = @"收到调用相机指令";
+            //MessageBox.Show(@"收到调用相机指令");
+            cameraApplication.btn_SaveAsBmp_Click(null, null);
+            Thread.Sleep(2000);
+            INFO.Text = "准备发送N6";
+            devicePort?.Write(CommandDefinition.N6Connect ?? Array.Empty<byte>(), 0, 8);
+            Thread.Sleep(2000);
+            devicePort?.Write(CommandDefinition.N6DisConnect ?? Array.Empty<byte>(), 0, 8);
+            INFO.Text = "发送N6完成";
+        }
+        #endregion
+
+
+        #endregion
 
 
         private void BigPackFormLoad_Button_Click(object sender, EventArgs e)

@@ -357,6 +357,7 @@
     <Compile Include="MES.Client.Utility\Utils\ExcelHelper.cs" />
     <Compile Include="MES.Client.Utility\Utils\JsonConventer.cs" />
     <Compile Include="MES.Client.Utility\Utils\LogInfoHelper.cs" />
+    <Compile Include="MES.Client.Utility\Utils\MediaHandler.cs" />
     <Compile Include="MES.Client.Utility\Utils\PCB\CommandDefinition.cs" />
     <Compile Include="MES.Client.Utility\Utils\NetServiceTools.cs" />
     <Compile Include="Program.cs" />

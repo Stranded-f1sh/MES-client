@@ -23,11 +23,9 @@ namespace ObjectDetectionProgram.ImageIdentification
         private static readonly string ImgOutput = Path.Combine(CurrentDir ?? string.Empty, config.AppSettings.Settings["OutputPath"].Value);
         // private static readonly double MIN_SCORE_FOR_OBJECT_HIGHLIGHTING = double.Parse(Path.Combine(CurrentDir ?? string.Empty, config.AppSettings.Settings["MIN_SCORE_FOR_OBJECT_HIGHLIGHTING"].Value));
 
-
-
-
         public static void Run(Bitmap imgInput)
         {
+            Console.WriteLine("开始目标检测................................................");
             // 解析pbtxt
             _catalog = CatalogUtil.ReadCatalogItems(CatalogPath ?? string.Empty);
 
@@ -40,12 +38,14 @@ namespace ObjectDetectionProgram.ImageIdentification
                 // Initializes a new instance of the TensorFlow.TFBuffer by making a copy of the provided byte array.
                 graph.Import(new TFBuffer(model));
 
+               
                 // 开启会话
                 using (TFSession session = new TFSession(graph))
                 {
                     // 将输入的图片调整参数，处理为符合要求的形式，并转换为张量
                     TFTensor tensor = ImageUtil.CreateTensorFromImageFileAlt(imgInput, TFDataType.UInt8);
                     var runner = session.GetRunner();
+                    
                     runner ?
                         .AddInput(graph["image_tensor"][0], tensor)
                         .Fetch(

@@ -57,12 +57,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 尽量不要用这个，一般用
             // Invoke(new Action(() => { }));
             Control.CheckForIllegalCrossThreadCalls = false;
-
-            Thread detectionRunThread = new Thread(detectionRun);
-            if (detectionRunThread.ThreadState != ThreadState.Running)
-            {
-                detectionRunThread.Start();
-            }
         }
 
 
@@ -629,7 +623,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private string FileSavePath()
         {
             string path = System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName;
-            string exeFileName = "ObjectDetectionProgram.exe";
+            string exeFileName = "ManufacturingExecutionSystem.exe";
             path = path.Substring(0, path.Length - exeFileName.Length);
             path += "BitMaps\\";
 
@@ -661,7 +655,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             else
             {
                 Directory.CreateDirectory(path);
-                return string.Empty;
+                return path;
             }
         }
 
@@ -790,16 +784,18 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         }
 
 
-        private void btn_SaveAsBmp_Click(object sender, EventArgs e)
+        public void btn_SaveAsBmp_Click(object sender, EventArgs e)
         {
-            //string path = FileSavePath();
+            string path = FileSavePath();
             Bitmap imgBmp = SaveImgAsBmp();
             MsgInfoClear_Timer?.Start();
             if (imgBmp == null)
             {
                 MessageBox.Show("未检测到图像输入");
+                return;
             }
-            ObjectDetectionProgram.ImageIdentification.ObjectDetection.Run(imgBmp);
+            imgBmp.Save(path, ImageFormat.Bmp);
+            new Thread(delegate () { ObjectDetectionProgram.ImageIdentification.ObjectDetection.Run(imgBmp); }).Start();
         }
 
 
@@ -821,21 +817,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             else if (result == DialogResult.Cancel)
             {
                 e.Cancel = true;
-            }
-        }
-
-
-        private void detectionRun()
-        {
-            while (true)
-            {
-                Thread.Sleep(500);
-                Application.DoEvents();
-                if (detectionStatus)
-                {
-                    MessageBox.Show("调用btn_SaveAsBmp_Click");
-                    btn_SaveAsBmp_Click(null, null);
-                }
             }
         }
     }

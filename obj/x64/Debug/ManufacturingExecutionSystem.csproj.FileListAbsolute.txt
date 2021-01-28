@@ -79,3 +79,4 @@ E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\System.ValueTuple.dll
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\OpenCvSharp.Blob.xml
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\OpenCvSharp.Extensions.xml
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\System.ValueTuple.xml
+E:\code\MES\ManufacturingExecutionSystem\obj\x64\Debug\ManufacturingExecutionSystem.csprojAssemblyReference.cache

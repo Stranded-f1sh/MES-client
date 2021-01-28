@@ -192,7 +192,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
                 if (rep.FindObject("Page1") is ReportPage reportPage)
                 {
                     // 右偏移
-                    reportPage.LeftMargin = int.Parse(dr[2].ToString());
+                    reportPage.LeftMargin = 3;
                     // 下偏移
                     reportPage.TopMargin = int.Parse(dr[3].ToString());
                 }

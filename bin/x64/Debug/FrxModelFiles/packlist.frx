@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Report ScriptLanguage="CSharp" ReportInfo.Created="05/13/2020 10:19:14" ReportInfo.Modified="09/13/2020 10:22:36" ReportInfo.CreatorVersion="2020.1.26.0">
   <Dictionary/>
-  <ReportPage Name="Page1" PaperWidth="60" PaperHeight="40" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" FirstPageSource="256" OtherPagesSource="256" Watermark.Font="宋体, 60pt">
-    <DataBand Name="Data1" Width="226.8" Height="143.45">
-      <TableObject Name="Table1" Left="19.9" Top="14.9" Width="188.95" Height="127.86">
+  <ReportPage Name="Page1" PaperWidth="85" PaperHeight="40" LeftMargin="8" TopMargin="0" RightMargin="0" BottomMargin="0" FirstPageSource="256" OtherPagesSource="256" Watermark.Font="宋体, 60pt">
+    <DataBand Name="Data1" Width="256.8" Height="143.45">
+      <TableObject Name="Table1" Left="30" Top="14.9" Width="210.95" Height="127.86">
         <TableColumn Name="Column1" Width="56.67"/>
         <TableColumn Name="Column2" Width="132.28"/>
         <TableRow Name="Row1" Height="27.69">
