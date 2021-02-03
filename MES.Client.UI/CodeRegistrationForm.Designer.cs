@@ -209,7 +209,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.export_Button.Size = new System.Drawing.Size(84, 68);
             this.export_Button.Text = "导出";
             this.export_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.export_Button.Click += new System.EventHandler(this.export_Button_Click);
+            this.export_Button.Click += new System.EventHandler(this.Export_Button_Click);
             // 
             // toolStripSeparator
             // 

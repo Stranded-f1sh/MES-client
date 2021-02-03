@@ -14,6 +14,6 @@ namespace ManufacturingExecutionSystem.MES.Client.IMapper
 
         DataSet SelectPrinters();
 
-        int SelectByPrinterId(PrintSetting printSetting);
+        DataSet SelectByPrinterId(PrintSetting printSetting);
     }
 }

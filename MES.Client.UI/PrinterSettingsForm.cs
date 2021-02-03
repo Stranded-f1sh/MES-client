@@ -39,6 +39,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 PrinterName_ComboBox.Items.Add(dr[1]);
                 HorizontalOffset_TextBox.Text = dr[2].ToString();
                 VerticalOffset_TextBox.Text = dr[3].ToString();
+                PrinterName_ComboBox.SelectedIndex = PrinterName_ComboBox.Items.IndexOf(dr[1]);
                 break;
             }
 
@@ -61,7 +62,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         {
 /*            Console.WriteLine(PrinterName_ComboBox.SelectedIndex);
             PrinterMapper printerMapper = new PrinterMapper();
-            printerMapper.SelectByPrinterId(new PrintSetting {PrintSettingId = PrinterName_ComboBox.SelectedIndex});*/
+            DataSet ds = printerMapper.SelectByPrinterId(new PrintSetting { PrintSettingId = PrinterName_ComboBox.SelectedIndex });
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                PrinterName_ComboBox.Items.Add(dr[1]);
+                HorizontalOffset_TextBox.Text = dr[2].ToString();
+                VerticalOffset_TextBox.Text = dr[3].ToString();
+                PrinterName_ComboBox.SelectedIndex = PrinterName_ComboBox.Items.IndexOf(dr[1]);
+                break;
+            }*/
         }
 
 
@@ -71,7 +81,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             PrinterMapper printerMapper = new PrinterMapper();
             PrintSetting printSetting = new PrintSetting
             {
-                PrintSettingId = 0,
+                // PrintSettingId = 0,
                 PrinterName = PrinterName_ComboBox.Text,
                 HorizontalOffset = int.Parse(HorizontalOffset_TextBox.Text),
                 VerticalOffset = int.Parse(VerticalOffset_TextBox.Text)

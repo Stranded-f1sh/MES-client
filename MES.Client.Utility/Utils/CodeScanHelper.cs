@@ -42,6 +42,9 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
                     case 16 when Regex.Match(wordsCell, @"^.{16}").Success:
                         words = wordsCell;
                         break;
+                    default:
+                        words = null;
+                        break;
                 }
             }
 
@@ -93,6 +96,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
                     // 下偏移
                     reportPage.TopMargin = int.Parse(dr[3].ToString());
                 }
+                _ = new EnvironmentSettings { ReportSettings = { ShowProgress = false } };
                 rep.Print();
                 return;
             }

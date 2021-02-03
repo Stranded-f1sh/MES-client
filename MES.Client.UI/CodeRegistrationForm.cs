@@ -424,49 +424,54 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
 
         #region 报工或注册
-        
+        object objLock = new object();
+
         private void Imei_TextBox_KeyPress(object sender, KeyPressEventArgs eventArgs)
         {
-            if (eventArgs != null && eventArgs.KeyChar != Convert.ToChar(13)) return;
-            INFO.Text = "正在执行，请稍后。。。。";
-            Application.DoEvents();
-            CodeScanHelper codeScanHelper = new CodeScanHelper();
-            string imei = codeScanHelper.CodeScanFilter(Imei_TextBox?.Text, out String pinDian);
-            
-            if (imei == null) return;
-            
-            BaoGongService baoGongService = new BaoGongService();
-            if (_qualify == null)
+            lock (objLock)
             {
-                _qualify = new Qualify {Id = 0, Reason = "无"};
+                if (eventArgs != null && eventArgs.KeyChar != Convert.ToChar(13)) return;
+                INFO.Text = "正在执行，请稍后。。。。";
+
+                Application.DoEvents();
+                CodeScanHelper codeScanHelper = new CodeScanHelper();
+                string imei = codeScanHelper.CodeScanFilter(Imei_TextBox?.Text, out String pinDian);
+
+                if (imei == null) return;
+
+                BaoGongService baoGongService = new BaoGongService();
+                if (_qualify == null)
+                {
+                    _qualify = new Qualify { Id = 0, Reason = "无" };
+                }
+
+                PassJudge passJudge = checkBox3.Checked ? PassJudge.Qualified : PassJudge.Unqualified;
+                Device device = new Device { Imei = imei, Imsi = Imsi_TextBox?.Text, PinDian = pinDian };
+                // 报工到烧录配置工序3
+                baoGongService.DeviceBaoGong(_loginInfo, imei, ProductOrderInfo.OrderId, ProcessNameEnum.BurnConfiguration, String.Empty);
+
+
+                if (checkBox2.Checked)
+                {
+                    RegistrationService registrationService = new RegistrationService();
+                    // 设备注册
+                    JToken registerResult = registrationService.PostRegisterDevice(_loginInfo, ProductOrderInfo?.SaleOrderId.ToString(), device);
+                    INFO.Text = imei + @"注册:" + registerResult;
+                }
+
+                // 报工到编码注册工序
+                JToken baoGongResult = baoGongService.DeviceBaoGong(_loginInfo, imei, ProductOrderInfo.OrderId, _process.SelectedProcessName, String.Empty);
+                INFO.Text = imei + @"报工:" + baoGongResult;
+
+
+                if (isPrint_CheckBox.Checked)
+                {
+                    codeScanHelper.PrintQrCode(device, pinDian != String.Empty ? @"loraQrCode.frx" : @"generalQrCode.frx");
+                }
+                CutOverProductOrder(ProductOrderInfo, 100);
+                INFO.Text = string.Empty;
+                Imei_TextBox?.Clear();
             }
-
-            PassJudge passJudge = checkBox3.Checked ? PassJudge.Qualified : PassJudge.Unqualified;
-            Device device = new Device {Imei = imei, Imsi = Imsi_TextBox?.Text, PinDian = pinDian};
-            // 报工到烧录配置工序3
-            baoGongService.DeviceBaoGong(_loginInfo, imei, ProductOrderInfo.OrderId, ProcessNameEnum.BurnConfiguration, String.Empty);
-
-
-            if (checkBox2.Checked)
-            {
-                RegistrationService registrationService = new RegistrationService();
-                // 设备注册
-                JToken registerResult = registrationService.PostRegisterDevice(_loginInfo, ProductOrderInfo?.SaleOrderId.ToString(), device);
-                INFO.Text = imei + @"注册:" + registerResult;
-            }
-
-            // 报工到编码注册工序
-            JToken baoGongResult = baoGongService.DeviceBaoGong(_loginInfo, imei, ProductOrderInfo.OrderId, _process.SelectedProcessName, String.Empty);
-            INFO.Text = imei + @"报工:" + baoGongResult;
-
-
-            if (isPrint_CheckBox.Checked)
-            {
-                codeScanHelper.PrintQrCode(device, pinDian != String.Empty ? @"loraQrCode.frx" : @"generalQrCode.frx");
-            }
-            CutOverProductOrder(ProductOrderInfo, 100);
-
-            Imei_TextBox?.Clear();
         }
 
         #endregion
@@ -507,11 +512,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void Exit_Form_Click(object sender, EventArgs e)
         {
             this.Close();
+            Environment.Exit(Environment.ExitCode);
         }
 
 
 
-        private void export_Button_Click(object sender, EventArgs e)
+        private void Export_Button_Click(object sender, EventArgs e)
         {
             ExcelHelper excelHelper = new ExcelHelper();
 

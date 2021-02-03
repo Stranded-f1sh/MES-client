@@ -63,7 +63,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         {
             DataCacheService dataCacheService = new DataCacheService();
             DataSet ds = dataCacheService.FindAllDataRecord();
-
+            
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
                 ListViewItem item = new ListViewItem();

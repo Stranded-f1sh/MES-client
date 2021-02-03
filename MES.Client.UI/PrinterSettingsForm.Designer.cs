@@ -141,6 +141,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.VerticalOffset_TextBox.Name = "VerticalOffset_TextBox";
             this.VerticalOffset_TextBox.Size = new System.Drawing.Size(49, 21);
             this.VerticalOffset_TextBox.TabIndex = 3;
+            this.VerticalOffset_TextBox.Text = "0";
             // 
             // label3
             // 
@@ -166,6 +167,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.HorizontalOffset_TextBox.Name = "HorizontalOffset_TextBox";
             this.HorizontalOffset_TextBox.Size = new System.Drawing.Size(46, 21);
             this.HorizontalOffset_TextBox.TabIndex = 1;
+            this.HorizontalOffset_TextBox.Text = "0";
             // 
             // label4
             // 

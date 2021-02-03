@@ -169,6 +169,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
                             [DataCache]";
                 SQLiteDataAdapter command = new SQLiteDataAdapter(sql, conn);
                 command.Fill(ds);
+                
                 return ds;
             }
         }

@@ -46,6 +46,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         public DateTime scannerILastSignDate;
         public DateTime scannerIILastSignDate;
         public DateTime CameraLastSignDate;
+        Thread ObjectDetectionFuncThread;
 
 
 
@@ -160,6 +161,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                             );
             }
 
+            if (productDeviceRecord == null) return;
 
             PackNum_TextBox.Text = productDeviceRecord?.SelectToken("count")?.ToString();
 
@@ -641,7 +643,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             if (serialPort == null) return;
             if (!serialPort.IsOpen) return;
-            if (_appendImei2 == null) return;
+            if (_appendImei2 == null ) return;
 
             int bytes = serialPort.BytesToRead;
 
@@ -806,7 +808,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 try
                 {
                     AutoPackProgramRun(devicePort, scannerPort1, scannerPort2);
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
@@ -816,7 +819,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             // objectDetection
 
-            new Thread(delegate () { cameraApplication.ShowDialog(); }).Start();
+            new Thread(delegate () { cameraApplication.ShowDialog(); ObjectDetectionFuncThread?.Abort(); }).Start();
+            ObjectDetectionFuncExcute();
         }
         CameraApplication cameraApplication = new CameraApplication();
 
@@ -844,7 +848,26 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void IsReceivedCorrectPcbData(SerialPort serialPort)
         {
             _appendStrings.Clear();
-            serialPort?.Write(CommandDefinition.XReadDI ?? Array.Empty<byte>(), 0, 8);
+            try
+            {
+                serialPort?.Write(CommandDefinition.XReadDI ?? Array.Empty<byte>(), 0, 8);
+            }catch(Exception ex)
+            {
+                INFO.Text = ex.Message;
+                Console.WriteLine(ex.Message);
+                try
+                {
+                    Boolean deviceIsOpen = OpenPort(serialPort, devicePort_DataReceivedEventHandler);
+                }
+                catch (Exception exc)
+                {
+                    INFO.Text = exc.Message;
+                }
+                
+                Sign = "";
+                return;
+            }
+            
             Thread.Sleep(500);
             if (_appendStrings.Length < 14) return;
             string data = _appendStrings.ToString();
@@ -1009,8 +1032,15 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 _appendImei1?.Clear();
                 //reTriedTimes++;
                 //if (reTriedTimes > 5) return false;
-
-                serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 7);
+                try
+                {
+                    serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 7);
+                }catch(Exception ex)
+                {
+                    INFO.Text = ex.Message;
+                    Console.WriteLine(ex.Message);
+                }
+                
                 Thread.Sleep(1000);
             } while (!_scanner1IsSent);
 
@@ -1027,7 +1057,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 reTriedTimes++;
                 if (reTriedTimes > 10) return false;
                 _appendImei2?.Clear();
-                serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 7);
+                try
+                {
+                    serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 7);
+                }
+                catch (Exception ex)
+                {
+                    INFO.Text = ex.Message;
+                    Console.WriteLine(ex.Message);
+                }
+                
                 Thread.Sleep(1000);
             } while (!_scanner2IsSent);
 
@@ -1126,14 +1165,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             imei2 = imei2.Replace("\n", "");
 
 
-            if (imei1 == imei2)
+            if (imei2.Contains(imei1) | imei1.Contains(imei2))
             {
                 INFO.Text = @"信息比对成功一致";
                 MediaHandler.SyncPlayWAV_Succ();
             }
             else
             {
-                MessageBox.Show(_appendImei1 + @"信息比对失败" + _appendImei2);
+                MessageBox.Show(imei1 + @"信息比对失败" + imei2);
             }
         }
         #endregion
@@ -1145,14 +1184,44 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             INFO.Text = @"收到调用相机指令";
             //MessageBox.Show(@"收到调用相机指令");
             cameraApplication.btn_SaveAsBmp_Click(null, null);
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             INFO.Text = "准备发送N6";
-            devicePort?.Write(CommandDefinition.N6Connect ?? Array.Empty<byte>(), 0, 8);
-            Thread.Sleep(2000);
-            devicePort?.Write(CommandDefinition.N6DisConnect ?? Array.Empty<byte>(), 0, 8);
+            try
+            {
+                devicePort?.Write(CommandDefinition.N6Connect ?? Array.Empty<byte>(), 0, 8);
+                Thread.Sleep(2000);
+                devicePort?.Write(CommandDefinition.N6DisConnect ?? Array.Empty<byte>(), 0, 8);
+            }
+            catch
+            {
+                try
+                {
+                    Boolean deviceIsOpen = OpenPort(devicePort, devicePort_DataReceivedEventHandler);
+                    devicePort?.Write(CommandDefinition.N6DisConnect ?? Array.Empty<byte>(), 0, 8);
+                }
+                catch (Exception exc)
+                {
+                    INFO.Text = exc.Message;
+                }
+            }
+
             INFO.Text = "发送N6完成";
         }
         #endregion
+
+
+
+        #region 目标检测调用
+
+        public void ObjectDetectionFuncExcute()
+        {
+            ObjectDetectionFuncThread = new Thread(delegate () { ObjectDetectionProgram.ImageIdentification.ObjectDetection.Run(); });
+
+            ObjectDetectionFuncThread.Start();
+            Application.DoEvents();
+        }
+        #endregion
+
 
 
         #endregion
@@ -1163,12 +1232,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             Control.CheckForIllegalCrossThreadCalls = false;
             this.Close();
             BigPackForm bigPackForm = new BigPackForm(_loginInfo, _process);
-            Thread invokeThread = new Thread(()=> { bigPackForm.ShowDialog(); });
+            Thread invokeThread = new Thread(() => { bigPackForm.ShowDialog(); });
             invokeThread.SetApartmentState(ApartmentState.STA);
             invokeThread.Start();
         }
-
-
 
         private void Export_Button_Click(object sender, EventArgs e)
         {

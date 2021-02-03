@@ -148,11 +148,11 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
         }
 
 
-
-        public int SelectByPrinterId(PrintSetting printSetting)
+        public DataSet SelectByPrinterId(PrintSetting printSetting)
         {
             using (SQLiteConnection conn = DbHelper.GetConnection(out SQLiteTransaction trans))
             {
+                DataSet ds = new DataSet();
                 String sql = @"SELECT 
                             [PrintSettingId]
                           , [PrinterName]
@@ -165,37 +165,17 @@ namespace ManufacturingExecutionSystem.MES.Client.Mapper
 
                 SQLiteCommand command = new SQLiteCommand(sql, conn, trans);
 
-                SqlParameter pPrintSettingId =
-                    new SqlParameter("PrintSettingId", DbHelper.ConvertToDbNull(printSetting?.PrintSettingId))
-                    {
-                        SqlDbType = SqlDbType.UniqueIdentifier
-                    };
-                command.Parameters?.Add(pPrintSettingId);
-                int ret = 0;
-                trans?.Commit();
+                SQLiteParameter pPrintSettingId = new SQLiteParameter("PrintSettingId", DbHelper.ConvertToDbNull(printSetting?.PrintSettingId));
 
-                using (SQLiteDataReader sqLiteDataReader = command.ExecuteReader(CommandBehavior.CloseConnection))
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter
                 {
-                    try
-                    {
-                        if (sqLiteDataReader == null) return 0;
-                        while (sqLiteDataReader.Read())
-                        {
-                            ret++;
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                        trans?.Rollback();
-                    }
-                    finally
-                    {
-                        sqLiteDataReader?.Close();
-                    }
-                    return ret;
-                }
-                
+                    SelectCommand = command
+                };
+
+                command.Parameters?.Add(pPrintSettingId);
+
+                adapter.Fill(ds);
+                return ds;
             }
         }
 
