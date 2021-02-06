@@ -80,4 +80,8 @@ E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\OpenCvSharp.Blob.xml
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\OpenCvSharp.Extensions.xml
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\System.ValueTuple.xml
 E:\code\MES\ManufacturingExecutionSystem\obj\x64\Debug\ManufacturingExecutionSystem.MES.Client.UI.WarehouseInspectionForm.resources
-E:\code\MES\ManufacturingExecutionSystem\obj\x64\Debug\ManufacturingExecutionSystem.csprojAssemblyReference.cache
+E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\Numpy.dll
+E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\Python.Deployment.dll
+E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\Python.Included.dll
+E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\Python.Runtime.dll
+E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\Python.Runtime.xml

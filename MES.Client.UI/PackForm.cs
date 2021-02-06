@@ -13,7 +13,6 @@ using ManufacturingExecutionSystem.MES.Client.Utility.Enum;
 using ManufacturingExecutionSystem.MES.Client.Utility.Utils;
 using ManufacturingExecutionSystem.MES.Client.Utility.Utils.PCB;
 using Newtonsoft.Json.Linq;
-using ObjectDetectionProgram;
 
 namespace ManufacturingExecutionSystem.MES.Client.UI
 {
@@ -584,6 +583,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             if (!serialPort.IsOpen) return;
             if (_appendStrings == null) return;
 
+
             int bytes = serialPort.BytesToRead;
 
             byte[] readBuffer = new byte[bytes];
@@ -848,24 +848,23 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void IsReceivedCorrectPcbData(SerialPort serialPort)
         {
             _appendStrings.Clear();
+
             try
             {
                 serialPort?.Write(CommandDefinition.XReadDI ?? Array.Empty<byte>(), 0, 8);
             }catch(Exception ex)
             {
-                INFO.Text = ex.Message;
-                Console.WriteLine(ex.Message);
-                try
+                INFO.Text = "IsReceivedCorrectPcbData" + ex.Message;
+                // Console.WriteLine(ex.Message);
+                while(!OpenPort(serialPort, devicePort_DataReceivedEventHandler))
                 {
-                    Boolean deviceIsOpen = OpenPort(serialPort, devicePort_DataReceivedEventHandler);
+                    Thread.Sleep(100);
+                    INFO.Text = "IsReceivedCorrectPcbData" + ex.Message;
                 }
-                catch (Exception exc)
-                {
-                    INFO.Text = exc.Message;
-                }
-                
-                Sign = "";
-                return;
+
+                serialPort?.Write(CommandDefinition.XReadDI ?? Array.Empty<byte>(), 0, 8);
+                // Sign = "";
+                // return;
             }
             
             Thread.Sleep(500);
@@ -1037,7 +1036,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 7);
                 }catch(Exception ex)
                 {
-                    INFO.Text = ex.Message;
+                    INFO.Text = "IsScanner1ReceivedCorrectScanData" + ex.Message;
+                    if (serialPort != null)
+                    {
+                        OpenPort(serialPort, scannerPort1_DataReceivedEventHandler);
+                    }
+
                     Console.WriteLine(ex.Message);
                 }
                 
@@ -1063,8 +1067,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 }
                 catch (Exception ex)
                 {
-                    INFO.Text = ex.Message;
-                    Console.WriteLine(ex.Message);
+                    INFO.Text = "IsScanner2ReceivedCorrectScanData" + ex.Message;
+                    if (serialPort != null)
+                    {
+                        OpenPort(serialPort, scannerPort1_DataReceivedEventHandler);
+                    }
+                    // Console.WriteLine(ex.Message);
                 }
                 
                 Thread.Sleep(1000);
@@ -1076,22 +1084,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         #endregion
 
 
-
+        CatalogItemList catalogItemList;
         private void AutoPackProgramRun(SerialPort devicePort, SerialPort scannerPort1, SerialPort scannerPort2)
         {
-/*            for (int i = 0; i <30; i++)
-            {
-                Thread.Sleep(1000);
-                IsReceivedCorrectPcbData(devicePort);
-                Console.WriteLine(Sign);
-                Console.WriteLine(scannerILastSignDate);
-                Console.WriteLine(scannerIILastSignDate);
-                Console.WriteLine(CameraLastSignDate);
-                Console.WriteLine(DateTime.Now);
-                Console.WriteLine("============");
-            }
-*/
-
             while (true)
             {
                 Application.DoEvents();
@@ -1100,26 +1095,60 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 INFO.Text = "_appendStrings的值是{" + _appendStrings + "}并且信号是" + Sign;
                 Thread.Sleep(500);
 
-                Console.WriteLine("Sign:" + Sign);
-                Console.WriteLine("scannerILastSignDate:" + scannerILastSignDate);
-                Console.WriteLine("scannerIILastSignDate:" + scannerIILastSignDate);
-                Console.WriteLine("CameraLastSignDate" + CameraLastSignDate);
-                Console.WriteLine("now" + DateTime.Now);
-
                 if (Sign.Contains("1"))
                 {
-                    // MessageBox.Show("ScannerIFuncExcute");
                     ScannerIFuncExcute(devicePort, scannerPort1);
                 }
                 if (Sign.Contains("2"))
                 {
-                    // MessageBox.Show("ScannerIIFuncExcute");
                     ScannerIIFuncExcute(scannerPort2);
                 }
                 if (Sign.Contains("3"))
                 {
-                    // MessageBox.Show("CameraFuncExcute");
                     CameraFuncExcute(devicePort);
+                }
+                if (catalogItemList?.catalogItemList != null)
+                {
+                    bool detectionRes = false;
+                    var items = catalogItemList.catalogItemList.GetEnumerator();
+                    while (items.MoveNext())
+                    {
+                        if (items.Current.Name == "certificate")
+                        {
+                            detectionRes = true;
+                            // MessageBox.Show(items.Current.id + " " + items.Current.Name + " " + items.Current.Score);
+                            INFO.Text = items.Current.id + " " + items.Current.Name + " " + items.Current.Score;
+                            try
+                            {
+                                MessageBox.Show("准备发N6");
+                                devicePort?.Write(CommandDefinition.N6Connect ?? Array.Empty<byte>(), 0, 8);
+                                Thread.Sleep(2000);
+                                devicePort?.Write(CommandDefinition.N6DisConnect ?? Array.Empty<byte>(), 0, 8);
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    // MessageBox.Show("N6 exception");
+                                    Boolean deviceIsOpen = OpenPort(devicePort, devicePort_DataReceivedEventHandler);
+                                    devicePort?.Write(CommandDefinition.N6DisConnect ?? Array.Empty<byte>(), 0, 8);
+                                }
+                                catch (Exception exc)
+                                {
+                                    INFO.Text = exc.Message;
+                                }
+                            }
+                            INFO.Text = "发送N6完成";
+                            break;
+                        }
+                    }
+                    catalogItemList.catalogItemList = null;
+                    if (detectionRes == false)
+                    {
+                        INFO.Text = "检测完成，未检测到目标合格证";
+                        Thread.Sleep(1000);
+                        CameraFuncExcute(devicePort);
+                    }
                 }
             }
         }
@@ -1182,40 +1211,18 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         public void CameraFuncExcute(SerialPort devicePort)
         {
             INFO.Text = @"收到调用相机指令";
-            //MessageBox.Show(@"收到调用相机指令");
             cameraApplication.btn_SaveAsBmp_Click(null, null);
-            Thread.Sleep(5000);
-            INFO.Text = "准备发送N6";
-            try
-            {
-                devicePort?.Write(CommandDefinition.N6Connect ?? Array.Empty<byte>(), 0, 8);
-                Thread.Sleep(2000);
-                devicePort?.Write(CommandDefinition.N6DisConnect ?? Array.Empty<byte>(), 0, 8);
-            }
-            catch
-            {
-                try
-                {
-                    Boolean deviceIsOpen = OpenPort(devicePort, devicePort_DataReceivedEventHandler);
-                    devicePort?.Write(CommandDefinition.N6DisConnect ?? Array.Empty<byte>(), 0, 8);
-                }
-                catch (Exception exc)
-                {
-                    INFO.Text = exc.Message;
-                }
-            }
-
-            INFO.Text = "发送N6完成";
+            //Thread.Sleep(5000);
+            //INFO.Text = "准备发送N6";
         }
         #endregion
-
 
 
         #region 目标检测调用
 
         public void ObjectDetectionFuncExcute()
         {
-            ObjectDetectionFuncThread = new Thread(delegate () { ObjectDetectionProgram.ImageIdentification.ObjectDetection.Run(); });
+            ObjectDetectionFuncThread = new Thread(delegate () { ObjectDetectionProgram.ImageIdentification.ObjectDetection.Run(out catalogItemList); });
 
             ObjectDetectionFuncThread.Start();
             Application.DoEvents();

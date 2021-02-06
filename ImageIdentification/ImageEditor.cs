@@ -3,6 +3,7 @@ using System.Linq;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Collections.Generic;
+using ManufacturingExecutionSystem.MES.Client.Model;
 
 namespace ObjectDetectionProgram.ImageIdentification
 {
@@ -69,7 +70,7 @@ namespace ObjectDetectionProgram.ImageIdentification
 
 
 
-        public static void DrawBoxes(float[,,] boxes, float[,] scores, float[,] classes, Bitmap inputFile, string outputFile, double minScore, IEnumerable<CatalogItem> catalog)
+        public static CatalogItemList DrawBoxes(float[,,] boxes, float[,] scores, float[,] classes, Bitmap inputFile, string outputFile, double minScore, IEnumerable<CatalogItem> catalog)
         {
             var x = boxes.GetLength(0);
             var y = boxes.GetLength(1);
@@ -79,6 +80,9 @@ namespace ObjectDetectionProgram.ImageIdentification
 
             using (var editor = new ImageEditor(inputFile, outputFile))
             {
+                
+                CatalogItemList catalogItemList = new CatalogItemList();
+                catalogItemList.list = new List<ObjectDetectionCatalogItem>();
                 IEnumerable<CatalogItem> catalogItems = catalog as CatalogItem[] ?? catalog.ToArray();
                 for (int i = 0; i < x; i++)
                 {
@@ -110,9 +114,21 @@ namespace ObjectDetectionProgram.ImageIdentification
                         }
                         int value = Convert.ToInt32(classes[i, j]);
                         CatalogItem catalogItem = catalogItems.FirstOrDefault(item => item.Id == value);
-                        editor.AddBox(xMin, xMax, yMin, yMax, $"{catalogItem?.Name} : {(scores[i, j] * 100):0}%");
+                        // editor.AddBox(xMin, xMax, yMin, yMax, $"{catalogItem?.Name} : {(scores[i, j] * 100):0}%");
+                        ObjectDetectionCatalogItem objectDetectionCatalogItem = new ObjectDetectionCatalogItem
+                        {
+                            id = catalogItem.Id,
+                            Name = catalogItem.Name,
+                            Score = scores[i, j] * 100,
+                            XMin = xMin,
+                            XMax = xMax,
+                            YMin = yMin,
+                            YMax = yMax
+                        };
+                        catalogItemList.catalogItemList.Add(objectDetectionCatalogItem);
                     }
                 }
+                return catalogItemList;
             }
         }
 

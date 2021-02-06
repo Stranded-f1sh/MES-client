@@ -41,8 +41,6 @@ namespace ObjectDetectionProgram.Common
         }
 
 
-
-
         /// <summary>
         /// This function constructs a graph of TensorFlow operations which takes as
         /// input a JPEG-encoded string and returns a tensor suitable as input to the

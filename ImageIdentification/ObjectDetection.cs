@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Drawing;
 using ObjectDetectionProgram.Common;
 using System.Threading;
+using ManufacturingExecutionSystem.MES.Client.Model;
 
 namespace ObjectDetectionProgram.ImageIdentification
 {
@@ -25,9 +26,8 @@ namespace ObjectDetectionProgram.ImageIdentification
         private static readonly string ImgOutput = Path.Combine(CurrentDir ?? string.Empty, config.AppSettings.Settings["OutputPath"].Value);
         // private static readonly double MIN_SCORE_FOR_OBJECT_HIGHLIGHTING = double.Parse(Path.Combine(CurrentDir ?? string.Empty, config.AppSettings.Settings["MIN_SCORE_FOR_OBJECT_HIGHLIGHTING"].Value));
 
-        public static void Run()
+        public static void Run( out CatalogItemList catalogItemList)
         {
-            Console.WriteLine("目标检测程序开启................................................");
             // 解析pbtxt
             _catalog = CatalogUtil.ReadCatalogItems(CatalogPath ?? string.Empty);
 
@@ -40,23 +40,17 @@ namespace ObjectDetectionProgram.ImageIdentification
                 // Initializes a new instance of the TensorFlow.TFBuffer by making a copy of the provided byte array.
                 graph.Import(new TFBuffer(model));
 
-               
                 // 开启会话
                 using (TFSession session = new TFSession(graph))
                 {
                     while (true)
                     {
                         Thread.Sleep(1000);
-                        Console.WriteLine("查找检测对象...");
                         if (imgInput == null) continue;
-
                         Bitmap inputImg = imgInput;
                         imgInput = null;
-                        Console.WriteLine("检测对象找到，正在检测...");
                         // 将输入的图片调整参数，处理为符合要求的形式，并转换为张量
                         TFTensor tensor = ImageUtil.CreateTensorFromImageFileAlt(inputImg, TFDataType.UInt8);
-
-                       
 
                         var runner = session.GetRunner();
 
@@ -77,13 +71,7 @@ namespace ObjectDetectionProgram.ImageIdentification
                         float[] num = (float[])output[3].GetValue(jagged: false);
 
                         // 绘制识别框和准确度并输出
-                        ImageEditor.DrawBoxes(boxes, scores, classes, inputImg, ImgOutput, 0.1, _catalog);
-                        Mat img = Cv2.ImRead(ImgOutput, ImreadModes.AnyColor);
-                        OpenCvSharp.Size size = new OpenCvSharp.Size(img.Width / 2, img.Height / 2);
-                        Cv2.Resize(img, img, size, 0, 0);
-                        Cv2.ImShow("img1", img);
-                        Cv2.WaitKey(3000);
-                        Cv2.DestroyAllWindows();
+                        catalogItemList = ImageEditor.DrawBoxes(boxes, scores, classes, inputImg, ImgOutput, 0.1, _catalog);
                         inputImg = null;
                     }
                 }
