@@ -80,9 +80,8 @@ namespace ObjectDetectionProgram.ImageIdentification
 
             using (var editor = new ImageEditor(inputFile, outputFile))
             {
-                
                 CatalogItemList catalogItemList = new CatalogItemList();
-                catalogItemList.list = new List<ObjectDetectionCatalogItem>();
+                catalogItemList.catalogItemList = new List<ObjectDetectionCatalogItem>();
                 IEnumerable<CatalogItem> catalogItems = catalog as CatalogItem[] ?? catalog.ToArray();
                 for (int i = 0; i < x; i++)
                 {
@@ -114,7 +113,7 @@ namespace ObjectDetectionProgram.ImageIdentification
                         }
                         int value = Convert.ToInt32(classes[i, j]);
                         CatalogItem catalogItem = catalogItems.FirstOrDefault(item => item.Id == value);
-                        // editor.AddBox(xMin, xMax, yMin, yMax, $"{catalogItem?.Name} : {(scores[i, j] * 100):0}%");
+                        editor.AddBox(xMin, xMax, yMin, yMax, $"{catalogItem?.Name} : {(scores[i, j] * 100):0}%");
                         ObjectDetectionCatalogItem objectDetectionCatalogItem = new ObjectDetectionCatalogItem
                         {
                             id = catalogItem.Id,
@@ -149,9 +148,9 @@ namespace ObjectDetectionProgram.ImageIdentification
             var top = ymin * _bitmap.Height;
             var bottom = ymax * _bitmap.Height;
 
-            Color color = Color.Gold;
+            Color color = Color.Red;
             Brush brush = new SolidBrush(color);
-            Pen pen = new Pen(brush) { Width = 10 };
+            Pen pen = new Pen(brush) { Width = 5 };
             _graphics.DrawRectangle(pen, left, top, right - left, bottom - top);
             var font = new Font(_fontFamily, _fontSize);
             SizeF size = _graphics.MeasureString(text, font);

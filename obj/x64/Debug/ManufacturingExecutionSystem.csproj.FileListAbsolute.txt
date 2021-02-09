@@ -2,7 +2,6 @@ E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\ManufacturingExecutionSys
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\ManufacturingExecutionSystem.exe
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\ManufacturingExecutionSystem.pdb
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\EntityFramework.dll
-E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\EntityFramework.SqlServer.dll
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\FastReport.Bars.dll
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\FastReport.dll
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\FastReport.Editor.dll
@@ -27,10 +26,8 @@ E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\System.Security.AccessCon
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\System.Security.Permissions.dll
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\System.Security.Principal.Windows.dll
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\TensorFlowSharp.dll
-E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\XPTable.dll
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\ICSharpCode.SharpZipLib.dll
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\EntityFramework.xml
-E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\EntityFramework.SqlServer.xml
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\MvCameraControl.Net.xml
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\Newtonsoft.Json.xml
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\OpenCvSharp.xml
@@ -45,7 +42,6 @@ E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\System.Runtime.CompilerSe
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\System.Security.AccessControl.xml
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\System.Security.Permissions.xml
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\System.Security.Principal.Windows.xml
-E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\TensorFlowSharp.xml
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\ICSharpCode.SharpZipLib.pdb
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\ICSharpCode.SharpZipLib.xml
 E:\code\MES\ManufacturingExecutionSystem\obj\x64\Debug\ManufacturingExecutionSystem.MES.Client.UI.BigPackForm.resources
@@ -80,8 +76,4 @@ E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\OpenCvSharp.Blob.xml
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\OpenCvSharp.Extensions.xml
 E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\System.ValueTuple.xml
 E:\code\MES\ManufacturingExecutionSystem\obj\x64\Debug\ManufacturingExecutionSystem.MES.Client.UI.WarehouseInspectionForm.resources
-E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\Numpy.dll
-E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\Python.Deployment.dll
-E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\Python.Included.dll
-E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\Python.Runtime.dll
-E:\code\MES\ManufacturingExecutionSystem\bin\x64\Debug\Python.Runtime.xml
+E:\code\MES\ManufacturingExecutionSystem\obj\x64\Debug\ManufacturingExecutionSystem.csprojAssemblyReference.cache

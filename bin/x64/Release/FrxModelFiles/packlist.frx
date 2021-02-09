@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="05/13/2020 10:19:14" ReportInfo.Modified="09/13/2020 10:22:36" ReportInfo.CreatorVersion="2020.1.26.0">
+  <Dictionary/>
+  <ReportPage Name="Page1" PaperWidth="85" PaperHeight="40" LeftMargin="8" TopMargin="0" RightMargin="0" BottomMargin="0" FirstPageSource="256" OtherPagesSource="256" Watermark.Font="宋体, 60pt">
+    <DataBand Name="Data1" Width="256.8" Height="143.45">
+      <TableObject Name="Table1" Left="30" Top="14.9" Width="210.95" Height="127.86">
+        <TableColumn Name="Column1" Width="56.67"/>
+        <TableColumn Name="Column2" Width="132.28"/>
+        <TableRow Name="Row1" Height="27.69">
+          <TableCell Name="Cell1" Border.Lines="All" Border.Width="1.5" Text="设备名称&#13;&#10;" Padding="5, 0, 0, 0" HorzAlign="Justify" VertAlign="Center" Font="微软雅黑, 8pt"/>
+          <TableCell Name="Cell2" Border.Lines="All" Border.Width="1.5" Text="无线远程压力采集终端" Padding="5, 0, 0, 0" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 8pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="27.69">
+          <TableCell Name="Cell6" Border.Lines="All" Border.Width="1.5" Text="设备型号" Padding="5, 0, 0, 0" HorzAlign="Justify" VertAlign="Center" Font="微软雅黑, 8pt"/>
+          <TableCell Name="Cell7" Border.Lines="All" Border.Width="1.5" Text="TSM-01P" Padding="5, 0, 0, 0" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 8pt"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="44.79">
+          <TableCell Name="Cell11" Border.Lines="All" Border.Width="1.5" Text="设备编码&#13;&#10;" Padding="5, 0, 0, 0" HorzAlign="Justify" VertAlign="Center" Font="微软雅黑, 8pt"/>
+          <TableCell Name="Cell12" Border.Lines="All" Border.Width="1.5" Padding="5, 0, 0, 0" VertAlign="Center" Font="微软雅黑, 3pt">
+            <TextObject Name="Text5" Left="41.35" Top="14.9" Width="94.5" Height="18.9" Text="868474042903938" VertAlign="Center" Font="宋体, 9pt, style=Bold" FontWidthRatio="0.8"/>
+            <BarcodeObject Name="Barcode1" Left="0.35" Top="2.55" Width="42.34" Height="39.31" AutoSize="false" Text="868474042903938" ShowText="false" AllowExpressions="true" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row4" Height="27.69">
+          <TableCell Name="Cell21" Border.Lines="All" Border.Width="1.5" Text="设备量程&#13;&#10;" Padding="5, 0, 0, 0" HorzAlign="Justify" VertAlign="Center" Font="微软雅黑, 8pt">
+            <TextObject Name="Text6" Left="49.8" Top="7.45" Width="66.15" Height="18.9" Text="0-2.5MPa&#13;&#10;" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold" FontWidthRatio="0.7"/>
+          </TableCell>
+          <TableCell Name="Text3" Border.Lines="All" Border.Width="1.5" VertAlign="Center" Font="微软雅黑, 6pt">
+            <TextObject Name="Text1" Left="56.25" Top="6.9" Width="56.7" Height="13.23" Text="设备数量" Font="微软雅黑, 8pt"/>
+            <TextObject Name="Text2" Left="113.5" Top="10" Width="9.45" Height="9.45" Text="1" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 6pt"/>
+            <LineObject Name="Line2" Left="106.6" Height="28.35"/>
+            <LineObject Name="Line1" Left="54.8" Top="0.1" Height="28.35"/>
+          </TableCell>
+        </TableRow>
+      </TableObject>
+      <TextObject Name="Text4" Left="58.25" Top="-0.1" Width="113.4" Height="20.25" Text="装箱清单" HorzAlign="Center" Font="微软雅黑, 8pt"/>
+    </DataBand>
+  </ReportPage>
+</Report>

@@ -2,14 +2,8 @@
 using System.Windows.Forms;
 using ManufacturingExecutionSystem.MES.Client.UI;
 using OpenCvSharp;
-using TensorFlow;
-using Numpy;
 using ObjectDetectionProgram.ImageIdentification;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Runtime.InteropServices;
-using ManufacturingExecutionSystem.MES.Client.Model;
-using System.Threading;
 
 namespace ManufacturingExecutionSystem
 {
@@ -28,8 +22,6 @@ namespace ManufacturingExecutionSystem
             //Mat img = Cv2.ImRead("C:\\Users\\Jinyu\\Desktop\\tra\\000049.bmp");
             //Cv2.Resize(img, img, new OpenCvSharp.Size(600, 600), interpolation: InterpolationFlags.Area);
             //gaussian_filter(img);
-
-
         }
 
 

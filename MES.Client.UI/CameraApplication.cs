@@ -1,34 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MvCamCtrl.NET;
-using ManufacturingExecutionSystem;
-
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Reflection;
-using OpenCvSharp;
-using TensorFlow;
-using System.IO;
-using System.Configuration;
-using System.Drawing;
-using ObjectDetectionProgram.Common;
 using ObjectDetectionProgram.ImageIdentification;
-using System.Numerics;
+
 
 namespace ManufacturingExecutionSystem.MES.Client.UI
 {
@@ -801,41 +782,24 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         public void btn_SaveAsBmp_Click(object sender, EventArgs e)
         {
-            string path = FileSavePath();
-            Bitmap imgBmp = SaveImgAsBmp();
-            MsgInfoClear_Timer?.Start();
-            if (imgBmp == null)
+            /*            string path = FileSavePath();
+                        Bitmap imgBmp = SaveImgAsBmp();
+                        MsgInfoClear_Timer?.Start();
+                        if (imgBmp == null)
+                        {
+                            MessageBox.Show("未检测到图像输入");
+                            return;
+                        }
+                        imgBmp.Save(path, ImageFormat.Bmp);
+
+                        ObjectDetection.imgInput = imgBmp;*/
+
+            ObjectDetection.imgInput = new Bitmap("C:\\Users\\Jinyu\\Desktop\\bitm\\000021.bmp");
+/*            for (int i = 10; i <100; i++)
             {
-                MessageBox.Show("未检测到图像输入");
-                return;
-            }
-            imgBmp.Save(path, ImageFormat.Bmp);
-
-            ObjectDetection.imgInput = imgBmp;
-
-/*            DirectoryInfo dir = new DirectoryInfo("C:\\Users\\Jinyu\\Desktop\\bitm");
-            FileInfo[] finfo = dir.GetFiles();
-            string fnames = string.Empty;
-            string name1;
-            for (int i = 0; i < finfo.Length; i++)
-            {
-                name1 = finfo[i].Name.ToLower();
-                if (name1.EndsWith(".tif") || name1.EndsWith(".bmp"))
-                {
-                    // fnames += finfo[i].FullName + " \r\n ";
-                    new Thread(() => 
-                    {
-                        Run(new Bitmap(finfo[i].FullName));
-                        Application.DoEvents();
-                    }).Start();
-
-                    Thread.Sleep(2000);
-                    Application.DoEvents();
-                }
+                
+                Thread.Sleep(1000);
             }*/
-
-            // new Thread(delegate () { ObjectDetectionProgram.ImageIdentification.ObjectDetection.Run(imgBmp); }).Start();
-
 
         }
 

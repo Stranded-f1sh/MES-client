@@ -71,6 +71,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // groupBox4
             // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.trackBar_Gain);
             this.groupBox4.Controls.Add(this.trackBar_FrameRate);
             this.groupBox4.Controls.Add(this.label4);
@@ -78,31 +80,35 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox4.Controls.Add(this.trackBar_ExposureTime);
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox4.Location = new System.Drawing.Point(871, 458);
+            this.groupBox4.Location = new System.Drawing.Point(818, 468);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(280, 142);
+            this.groupBox4.Size = new System.Drawing.Size(259, 142);
             this.groupBox4.TabIndex = 24;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "参数调节";
             // 
             // trackBar_Gain
             // 
-            this.trackBar_Gain.Location = new System.Drawing.Point(73, 91);
+            this.trackBar_Gain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBar_Gain.Location = new System.Drawing.Point(62, 91);
             this.trackBar_Gain.Name = "trackBar_Gain";
-            this.trackBar_Gain.Size = new System.Drawing.Size(195, 45);
+            this.trackBar_Gain.Size = new System.Drawing.Size(196, 45);
             this.trackBar_Gain.TabIndex = 16;
             // 
             // trackBar_FrameRate
             // 
-            this.trackBar_FrameRate.Location = new System.Drawing.Point(73, 54);
+            this.trackBar_FrameRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBar_FrameRate.Location = new System.Drawing.Point(62, 54);
             this.trackBar_FrameRate.Name = "trackBar_FrameRate";
-            this.trackBar_FrameRate.Size = new System.Drawing.Size(195, 45);
+            this.trackBar_FrameRate.Size = new System.Drawing.Size(196, 45);
             this.trackBar_FrameRate.TabIndex = 15;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 94);
+            this.label4.Location = new System.Drawing.Point(24, 94);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 12);
             this.label4.TabIndex = 14;
@@ -111,7 +117,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 59);
+            this.label3.Location = new System.Drawing.Point(3, 59);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 13;
@@ -119,16 +125,18 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // trackBar_ExposureTime
             // 
-            this.trackBar_ExposureTime.Location = new System.Drawing.Point(72, 19);
+            this.trackBar_ExposureTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBar_ExposureTime.Location = new System.Drawing.Point(61, 19);
             this.trackBar_ExposureTime.Name = "trackBar_ExposureTime";
-            this.trackBar_ExposureTime.Size = new System.Drawing.Size(196, 45);
+            this.trackBar_ExposureTime.Size = new System.Drawing.Size(197, 45);
             this.trackBar_ExposureTime.TabIndex = 11;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(11, 24);
+            this.label1.Location = new System.Drawing.Point(3, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 12;
@@ -138,7 +146,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.label_MessageInfo.AutoSize = true;
             this.label_MessageInfo.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.label_MessageInfo.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_MessageInfo.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_MessageInfo.ForeColor = System.Drawing.Color.Lavender;
             this.label_MessageInfo.Location = new System.Drawing.Point(24, 14);
             this.label_MessageInfo.Name = "label_MessageInfo";
@@ -148,20 +156,22 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.textBox1.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox1.Font = new System.Drawing.Font("SimSun", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox1.Location = new System.Drawing.Point(1, 1);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(839, 46);
+            this.textBox1.Size = new System.Drawing.Size(814, 46);
             this.textBox1.TabIndex = 22;
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.btn_SaveAsBmp);
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox3.Location = new System.Drawing.Point(871, 318);
+            this.groupBox3.Location = new System.Drawing.Point(820, 323);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(280, 124);
+            this.groupBox3.Size = new System.Drawing.Size(257, 124);
             this.groupBox3.TabIndex = 21;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "bitmap图像";
@@ -169,7 +179,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // btn_SaveAsBmp
             // 
             this.btn_SaveAsBmp.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_SaveAsBmp.Location = new System.Drawing.Point(45, 52);
+            this.btn_SaveAsBmp.Location = new System.Drawing.Point(46, 52);
             this.btn_SaveAsBmp.Name = "btn_SaveAsBmp";
             this.btn_SaveAsBmp.Size = new System.Drawing.Size(75, 23);
             this.btn_SaveAsBmp.TabIndex = 0;
@@ -201,23 +211,26 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.btn_StopCollect);
             this.groupBox2.Controls.Add(this.btn_StartCollect);
             this.groupBox2.Controls.Add(this.radio_TriggerAcquisitionMode);
             this.groupBox2.Controls.Add(this.Radio_ContinuousAcquisitionMode);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox2.Location = new System.Drawing.Point(871, 177);
+            this.groupBox2.Location = new System.Drawing.Point(820, 179);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(280, 121);
+            this.groupBox2.Size = new System.Drawing.Size(257, 121);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "图像采集";
             // 
             // btn_StopCollect
             // 
+            this.btn_StopCollect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_StopCollect.Enabled = false;
             this.btn_StopCollect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_StopCollect.Location = new System.Drawing.Point(160, 51);
+            this.btn_StopCollect.Location = new System.Drawing.Point(148, 51);
             this.btn_StopCollect.Name = "btn_StopCollect";
             this.btn_StopCollect.Size = new System.Drawing.Size(83, 23);
             this.btn_StopCollect.TabIndex = 4;
@@ -229,7 +242,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.btn_StartCollect.Enabled = false;
             this.btn_StartCollect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_StartCollect.Location = new System.Drawing.Point(45, 51);
+            this.btn_StartCollect.Location = new System.Drawing.Point(32, 51);
             this.btn_StartCollect.Name = "btn_StartCollect";
             this.btn_StartCollect.Size = new System.Drawing.Size(83, 23);
             this.btn_StartCollect.TabIndex = 3;
@@ -239,10 +252,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // radio_TriggerAcquisitionMode
             // 
+            this.radio_TriggerAcquisitionMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radio_TriggerAcquisitionMode.AutoSize = true;
             this.radio_TriggerAcquisitionMode.Enabled = false;
             this.radio_TriggerAcquisitionMode.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.radio_TriggerAcquisitionMode.Location = new System.Drawing.Point(160, 20);
+            this.radio_TriggerAcquisitionMode.Location = new System.Drawing.Point(148, 20);
             this.radio_TriggerAcquisitionMode.Name = "radio_TriggerAcquisitionMode";
             this.radio_TriggerAcquisitionMode.Size = new System.Drawing.Size(95, 16);
             this.radio_TriggerAcquisitionMode.TabIndex = 1;
@@ -254,7 +268,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.Radio_ContinuousAcquisitionMode.AutoSize = true;
             this.Radio_ContinuousAcquisitionMode.Enabled = false;
-            this.Radio_ContinuousAcquisitionMode.Location = new System.Drawing.Point(33, 20);
+            this.Radio_ContinuousAcquisitionMode.Location = new System.Drawing.Point(20, 20);
             this.Radio_ContinuousAcquisitionMode.Name = "Radio_ContinuousAcquisitionMode";
             this.Radio_ContinuousAcquisitionMode.Size = new System.Drawing.Size(95, 16);
             this.Radio_ContinuousAcquisitionMode.TabIndex = 0;
@@ -286,26 +300,31 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.btn_ShutDevice);
             this.groupBox1.Controls.Add(this.comb_DeviceList);
             this.groupBox1.Controls.Add(this.btn_OpenDevice);
             this.groupBox1.Controls.Add(this.btn_ScanDevice);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox1.Location = new System.Drawing.Point(871, 7);
+            this.groupBox1.Location = new System.Drawing.Point(820, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(280, 150);
+            this.groupBox1.Size = new System.Drawing.Size(256, 150);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "初始化";
             // 
             // btn_ShutDevice
             // 
+            this.btn_ShutDevice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ShutDevice.AutoSize = true;
+            this.btn_ShutDevice.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btn_ShutDevice.Enabled = false;
             this.btn_ShutDevice.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_ShutDevice.Location = new System.Drawing.Point(160, 108);
+            this.btn_ShutDevice.Location = new System.Drawing.Point(145, 108);
             this.btn_ShutDevice.Name = "btn_ShutDevice";
-            this.btn_ShutDevice.Size = new System.Drawing.Size(83, 23);
+            this.btn_ShutDevice.Size = new System.Drawing.Size(63, 22);
             this.btn_ShutDevice.TabIndex = 2;
             this.btn_ShutDevice.Text = "关闭设备";
             this.btn_ShutDevice.UseVisualStyleBackColor = true;
@@ -313,11 +332,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // comb_DeviceList
             // 
+            this.comb_DeviceList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comb_DeviceList.BackColor = System.Drawing.SystemColors.Menu;
             this.comb_DeviceList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comb_DeviceList.ForeColor = System.Drawing.SystemColors.InfoText;
             this.comb_DeviceList.FormattingEnabled = true;
-            this.comb_DeviceList.Location = new System.Drawing.Point(18, 20);
+            this.comb_DeviceList.Location = new System.Drawing.Point(5, 20);
             this.comb_DeviceList.Name = "comb_DeviceList";
             this.comb_DeviceList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.comb_DeviceList.Size = new System.Drawing.Size(245, 20);
@@ -325,11 +346,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // btn_OpenDevice
             // 
+            this.btn_OpenDevice.AutoSize = true;
+            this.btn_OpenDevice.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btn_OpenDevice.Enabled = false;
             this.btn_OpenDevice.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_OpenDevice.Location = new System.Drawing.Point(45, 108);
+            this.btn_OpenDevice.Location = new System.Drawing.Point(30, 108);
             this.btn_OpenDevice.Name = "btn_OpenDevice";
-            this.btn_OpenDevice.Size = new System.Drawing.Size(83, 23);
+            this.btn_OpenDevice.Size = new System.Drawing.Size(63, 22);
             this.btn_OpenDevice.TabIndex = 1;
             this.btn_OpenDevice.Text = "打开设备";
             this.btn_OpenDevice.UseVisualStyleBackColor = true;
@@ -337,8 +360,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // btn_ScanDevice
             // 
+            this.btn_ScanDevice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ScanDevice.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_ScanDevice.Location = new System.Drawing.Point(45, 60);
+            this.btn_ScanDevice.Location = new System.Drawing.Point(30, 60);
             this.btn_ScanDevice.Name = "btn_ScanDevice";
             this.btn_ScanDevice.Size = new System.Drawing.Size(198, 23);
             this.btn_ScanDevice.TabIndex = 0;
@@ -351,7 +376,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.pictureBox1.BackColor = System.Drawing.Color.Black;
             this.pictureBox1.Location = new System.Drawing.Point(2, 45);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(840, 586);
+            this.pictureBox1.Size = new System.Drawing.Size(813, 567);
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
@@ -370,7 +395,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.ClientSize = new System.Drawing.Size(1168, 633);
+            this.ClientSize = new System.Drawing.Size(1089, 617);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label_MessageInfo);
             this.Controls.Add(this.textBox1);
@@ -383,6 +408,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "CameraApplication";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CameraApplication";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CameraApplication_FormClosing);
             this.groupBox4.ResumeLayout(false);
@@ -394,6 +420,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

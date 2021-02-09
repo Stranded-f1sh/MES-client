@@ -58,8 +58,8 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
                 ReasonId = reasonId,
                 ReasonContext = reasonContext,
                 BaoGongStatus = baoGongStatus
-            };
 
+            };
             return InsertDataRecord(device);
         }
 

@@ -1120,7 +1120,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                             INFO.Text = items.Current.id + " " + items.Current.Name + " " + items.Current.Score;
                             try
                             {
-                                MessageBox.Show("准备发N6");
+                                // MessageBox.Show("准备发N6");
                                 devicePort?.Write(CommandDefinition.N6Connect ?? Array.Empty<byte>(), 0, 8);
                                 Thread.Sleep(2000);
                                 devicePort?.Write(CommandDefinition.N6DisConnect ?? Array.Empty<byte>(), 0, 8);
