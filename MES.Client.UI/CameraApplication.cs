@@ -782,24 +782,24 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         public void btn_SaveAsBmp_Click(object sender, EventArgs e)
         {
-            /*            string path = FileSavePath();
-                        Bitmap imgBmp = SaveImgAsBmp();
-                        MsgInfoClear_Timer?.Start();
-                        if (imgBmp == null)
-                        {
-                            MessageBox.Show("未检测到图像输入");
-                            return;
-                        }
-                        imgBmp.Save(path, ImageFormat.Bmp);
-
-                        ObjectDetection.imgInput = imgBmp;*/
-
-            ObjectDetection.imgInput = new Bitmap("C:\\Users\\Jinyu\\Desktop\\bitm\\000021.bmp");
-/*            for (int i = 10; i <100; i++)
+            string path = FileSavePath();
+            Bitmap imgBmp = SaveImgAsBmp();
+            MsgInfoClear_Timer?.Start();
+            if (imgBmp == null)
             {
-                
-                Thread.Sleep(1000);
-            }*/
+                MessageBox.Show("未检测到图像输入");
+                return;
+            }
+            imgBmp.Save(path, ImageFormat.Bmp);
+
+            ObjectDetection.imgInput = imgBmp;
+
+            // ObjectDetection.imgInput = new Bitmap("C:\\Users\\Jinyu\\Desktop\\bitm\\000021.bmp");
+            /*            for (int i = 10; i <100; i++)
+                        {
+
+                            Thread.Sleep(1000);
+                        }*/
 
         }
 

@@ -94,8 +94,8 @@ namespace ObjectDetectionProgram.ImageIdentification
                         Cv2.NamedWindow("目标检测", WindowMode.Normal);
                         Cv2.SetWindowProperty("目标检测", WindowProperty.Fullscreen, 1);
                         Cv2.ImShow("目标检测", img);
-                        Cv2.WaitKey(0);
-                        // Cv2.DestroyAllWindows();
+                        Cv2.WaitKey(3000);
+                        Cv2.DestroyAllWindows();
                         inputImg = null;
                     }
                 }

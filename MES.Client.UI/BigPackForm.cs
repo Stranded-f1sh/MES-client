@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using FastReport;
 using ManufacturingExecutionSystem.MES.Client.Model;
@@ -109,6 +110,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             }
             textBox1.Enabled = true;
             textBox1.Clear();
+            textBox1.Focus();
         }
 
 
@@ -231,7 +233,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 如果当前切换的大箱单绑定的设备数量小于最大装箱数量，并且该销售订单并没有生成新的大箱单(有可绑定设备的大箱单)
             if (deviceCount < Int32.Parse(textBox2.Text) && _bigPackContext?.PackId != string.Empty)
             {
-                packService.LinkDeviceToBigPack(_loginInfo, imei, _bigPackContext?.PackId);
+                JToken ret = packService.LinkDeviceToBigPack(_loginInfo, imei, _bigPackContext?.PackId);
+                if (ret.ToString() != "ok")
+                {
+                    MessageBox.Show("此设备已绑定进当前大箱单");
+                }
                 deviceCount = DeviceRefresh(_bigPackContext);
             }
 
@@ -260,6 +266,15 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void DataCache_ToolTrips_Button_Click(object sender, EventArgs e)
         {
             new CodeScanHelper().PrintLabel(_rep);
+        }
+
+
+
+        private void BackProcessSelection_Click(object sender, EventArgs e)
+        {
+            ProcessSelectionForm processSelectionForm = new ProcessSelectionForm(_loginInfo);
+            new Thread(delegate () { processSelectionForm.ShowDialog(); }).Start();
+            this.Close();
         }
     }
 }

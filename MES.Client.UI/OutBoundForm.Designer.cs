@@ -30,8 +30,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OutBoundForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.CreateProductOrder_Btn = new System.Windows.Forms.ToolStripButton();
             this.LoadSaleOrders_btn = new System.Windows.Forms.ToolStripButton();
@@ -47,6 +47,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.DataCache_ToolTrips_Button = new System.Windows.Forms.ToolStripButton();
+            this.BackProcessSelection = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -67,10 +68,24 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.handleResult = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.outBoundUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.operate = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Exit_Form = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.outBound_DataGirdView)).BeginInit();
             this.SuspendLayout();
@@ -100,6 +115,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStripButton2,
             this.toolStripSeparator,
             this.DataCache_ToolTrips_Button,
+            this.BackProcessSelection,
             this.toolStripSeparator2});
             this.toolStrip1.Location = new System.Drawing.Point(0, -5);
             this.toolStrip1.Name = "toolStrip1";
@@ -241,6 +257,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.DataCache_ToolTrips_Button.Text = "数据缓存";
             this.DataCache_ToolTrips_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
+            // BackProcessSelection
+            // 
+            this.BackProcessSelection.AutoSize = false;
+            this.BackProcessSelection.Image = ((System.Drawing.Image)(resources.GetObject("BackProcessSelection.Image")));
+            this.BackProcessSelection.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BackProcessSelection.Name = "BackProcessSelection";
+            this.BackProcessSelection.Size = new System.Drawing.Size(84, 68);
+            this.BackProcessSelection.Text = "返回工序选择";
+            this.BackProcessSelection.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BackProcessSelection.Click += new System.EventHandler(this.BackProcessSelection_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -325,6 +352,18 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.Controls.Add(this.label16);
+            this.panel5.Controls.Add(this.label15);
+            this.panel5.Controls.Add(this.label14);
+            this.panel5.Controls.Add(this.label13);
+            this.panel5.Controls.Add(this.label12);
+            this.panel5.Controls.Add(this.label11);
+            this.panel5.Controls.Add(this.label10);
+            this.panel5.Controls.Add(this.label9);
+            this.panel5.Controls.Add(this.label8);
+            this.panel5.Controls.Add(this.label7);
+            this.panel5.Controls.Add(this.label6);
+            this.panel5.Controls.Add(this.label4);
             this.panel5.Location = new System.Drawing.Point(1, 172);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(216, 326);
@@ -346,14 +385,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.outBound_DataGirdView.BackgroundColor = System.Drawing.Color.White;
             this.outBound_DataGirdView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.outBound_DataGirdView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle43.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.outBound_DataGirdView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle43;
             this.outBound_DataGirdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.outBound_DataGirdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -364,14 +403,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.handleResult,
             this.outBoundUser,
             this.operate});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.outBound_DataGirdView.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle44.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle44.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.outBound_DataGirdView.DefaultCellStyle = dataGridViewCellStyle44;
             this.outBound_DataGirdView.GridColor = System.Drawing.Color.Gainsboro;
             this.outBound_DataGirdView.Location = new System.Drawing.Point(2, 2);
             this.outBound_DataGirdView.Name = "outBound_DataGirdView";
@@ -423,11 +462,141 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.operate.ToolTipText = "出库";
             this.operate.UseColumnTextForButtonValue = true;
             // 
+            // Exit_Form
+            // 
+            this.Exit_Form.BackColor = System.Drawing.Color.Ivory;
+            this.Exit_Form.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.Exit_Form.FlatAppearance.BorderSize = 2;
+            this.Exit_Form.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Exit_Form.ForeColor = System.Drawing.Color.Black;
+            this.Exit_Form.Location = new System.Drawing.Point(561, 643);
+            this.Exit_Form.Name = "Exit_Form";
+            this.Exit_Form.Size = new System.Drawing.Size(108, 27);
+            this.Exit_Form.TabIndex = 34;
+            this.Exit_Form.Text = "退出程序";
+            this.Exit_Form.UseVisualStyleBackColor = false;
+            this.Exit_Form.Click += new System.EventHandler(this.Exit_Form_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "客户名称：";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.Maroon;
+            this.label6.Location = new System.Drawing.Point(71, 14);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 12);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "北京安立泰";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 12);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "产品型号：";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Maroon;
+            this.label8.Location = new System.Drawing.Point(73, 44);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 12);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "TSM-04L";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 72);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 12);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "设备数量：";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.Maroon;
+            this.label10.Location = new System.Drawing.Point(75, 72);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(11, 12);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "5";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 101);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 12);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "订单日期：";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.Maroon;
+            this.label12.Location = new System.Drawing.Point(73, 101);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 12);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "2021-02-05";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 128);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 12);
+            this.label13.TabIndex = 8;
+            this.label13.Text = "平台类型：";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.Color.Maroon;
+            this.label14.Location = new System.Drawing.Point(73, 128);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(41, 12);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "电信oc";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(18, 157);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(53, 12);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "IP地址：";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.Color.Maroon;
+            this.label16.Location = new System.Drawing.Point(73, 157);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(95, 12);
+            this.label16.TabIndex = 11;
+            this.label16.Text = "101.200.129.183";
+            // 
             // OutBoundForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1227, 694);
+            this.Controls.Add(this.Exit_Form);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
@@ -447,6 +616,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.outBound_DataGirdView)).EndInit();
             this.ResumeLayout(false);
@@ -490,5 +661,19 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.DataGridViewTextBoxColumn handleResult;
         private System.Windows.Forms.DataGridViewTextBoxColumn outBoundUser;
         private System.Windows.Forms.DataGridViewButtonColumn operate;
+        private System.Windows.Forms.ToolStripButton BackProcessSelection;
+        private System.Windows.Forms.Button Exit_Form;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
     }
 }

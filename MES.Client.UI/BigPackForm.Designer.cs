@@ -29,8 +29,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BigPackForm));
             this.panel6 = new System.Windows.Forms.Panel();
             this.PackLinkDeviceList_DataGridView = new System.Windows.Forms.DataGridView();
@@ -79,6 +79,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.command_TextBox = new System.Windows.Forms.RichTextBox();
+            this.BackProcessSelection = new System.Windows.Forms.ToolStripButton();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PackLinkDeviceList_DataGridView)).BeginInit();
             this.panel4.SuspendLayout();
@@ -109,28 +110,28 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PackLinkDeviceList_DataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
             this.PackLinkDeviceList_DataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.PackLinkDeviceList_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.PackLinkDeviceList_DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.PackLinkDeviceList_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PackLinkDeviceList_DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.imei,
             this.BigPackId,
             this.operate});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.PackLinkDeviceList_DataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.PackLinkDeviceList_DataGridView.DefaultCellStyle = dataGridViewCellStyle6;
             this.PackLinkDeviceList_DataGridView.GridColor = System.Drawing.Color.Gainsboro;
             this.PackLinkDeviceList_DataGridView.Location = new System.Drawing.Point(5, 2);
             this.PackLinkDeviceList_DataGridView.Name = "PackLinkDeviceList_DataGridView";
@@ -262,6 +263,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStripButton2,
             this.toolStripSeparator,
             this.DataCache_ToolTrips_Button,
+            this.BackProcessSelection,
             this.toolStripSeparator2});
             this.toolStrip1.Location = new System.Drawing.Point(4, 2);
             this.toolStrip1.Name = "toolStrip1";
@@ -576,6 +578,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.command_TextBox.TabIndex = 43;
             this.command_TextBox.Text = "command 命令";
             // 
+            // BackProcessSelection
+            // 
+            this.BackProcessSelection.AutoSize = false;
+            this.BackProcessSelection.Image = ((System.Drawing.Image)(resources.GetObject("BackProcessSelection.Image")));
+            this.BackProcessSelection.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BackProcessSelection.Name = "BackProcessSelection";
+            this.BackProcessSelection.Size = new System.Drawing.Size(84, 68);
+            this.BackProcessSelection.Text = "返回工序选择";
+            this.BackProcessSelection.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BackProcessSelection.Click += new System.EventHandler(this.BackProcessSelection_Click);
+            // 
             // BigPackForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -666,5 +679,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RichTextBox command_TextBox;
+        private System.Windows.Forms.ToolStripButton BackProcessSelection;
     }
 }

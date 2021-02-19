@@ -58,7 +58,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             
             InitializeComponent();
 
-            User_Label.Text = _loginInfo.User;
+            //User_Label.Text = _loginInfo.User ?? String.Empty;
         }
 
 
@@ -129,7 +129,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void SelectProductOrder(ProductOrder poi, int pageSize)
         {
             if (poi?.OrderNo == null) return;
-            INFO.Text = @"刷新中.......";
+            // INFO.Text = @"刷新中.......";
             Application.DoEvents();
 
             SaleOrderService saleOrderService = new SaleOrderService();
@@ -463,7 +463,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 }
 
                 DataSet ds = dataCacheService.FindUnUploadDataRecord();
-                DataCache_ToolTrips_Button.Name = "数据缓存(" + ds.Tables[0].Rows.Count + ")";
+                BackProcessSelection.Name = "数据缓存(" + ds.Tables[0].Rows.Count + ")";
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
                     JToken ret = baoGongService.DeviceBaoGong(_loginInfo,
@@ -486,9 +486,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                         }));
 
                         // 打印小箱单
-                        string imei = codeScanHelper.CodeScanFilter(dr[1]?.ToString(), out _);
+                        if (isPrint_CheckBox.Checked)
+                        {
+                            string imei = codeScanHelper.CodeScanFilter(dr[1]?.ToString(), out _);
 
-                        codeScanHelper.PreviewSmallPackList(new Device{Imei = imei }, SaleOrderInfo, "packlist.frx");
+                            codeScanHelper.PreviewSmallPackList(new Device { Imei = imei }, SaleOrderInfo, "packlist.frx");
+                        }
 
                         _mut?.ReleaseMutex(); //释放锁
                     }
@@ -1250,6 +1253,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             SelectProductOrder(ProductOrderInfo, -1);
             excelHelper.ExportDataToExcel(ProductOrderInfo, BaoGongDeviceList);
             SelectProductOrder(ProductOrderInfo, 100);
+        }
+
+
+        private void BackProcessSelection_Click(object sender, EventArgs e)
+        {
+            ProcessSelectionForm processSelectionForm = new ProcessSelectionForm(_loginInfo);
+            new Thread(delegate () { processSelectionForm.ShowDialog(); }).Start();
+            this.Close();
         }
     }
 }

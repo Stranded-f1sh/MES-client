@@ -34,6 +34,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BatchActivate = new System.Windows.Forms.Label();
+            this.BatchDelete = new System.Windows.Forms.Label();
             this.imeiInput_TextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.outBound_Button = new System.Windows.Forms.Button();
@@ -53,12 +55,36 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.BatchActivate);
+            this.panel1.Controls.Add(this.BatchDelete);
             this.panel1.Controls.Add(this.imeiInput_TextBox);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(865, 96);
             this.panel1.TabIndex = 0;
+            // 
+            // BatchActivate
+            // 
+            this.BatchActivate.AutoSize = true;
+            this.BatchActivate.ForeColor = System.Drawing.Color.Brown;
+            this.BatchActivate.Location = new System.Drawing.Point(779, 70);
+            this.BatchActivate.Name = "BatchActivate";
+            this.BatchActivate.Size = new System.Drawing.Size(65, 12);
+            this.BatchActivate.TabIndex = 4;
+            this.BatchActivate.Text = "批量转客户";
+            this.BatchActivate.Click += new System.EventHandler(this.BatchActivate_Click);
+            // 
+            // BatchDelete
+            // 
+            this.BatchDelete.AutoSize = true;
+            this.BatchDelete.ForeColor = System.Drawing.Color.Brown;
+            this.BatchDelete.Location = new System.Drawing.Point(779, 48);
+            this.BatchDelete.Name = "BatchDelete";
+            this.BatchDelete.Size = new System.Drawing.Size(53, 12);
+            this.BatchDelete.TabIndex = 3;
+            this.BatchDelete.Text = "批量注销";
+            this.BatchDelete.Click += new System.EventHandler(this.BatchDelete_Click);
             // 
             // imeiInput_TextBox
             // 
@@ -71,7 +97,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(32, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 21);
@@ -82,7 +108,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.outBound_Button.BackColor = System.Drawing.Color.Aquamarine;
             this.outBound_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.outBound_Button.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.outBound_Button.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.outBound_Button.Location = new System.Drawing.Point(400, 472);
             this.outBound_Button.Name = "outBound_Button";
             this.outBound_Button.Size = new System.Drawing.Size(84, 28);
@@ -121,7 +147,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.cacheList_DataGirdView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -135,7 +161,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.operate});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -208,5 +234,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.DataGridViewTextBoxColumn inBoundUser;
         private System.Windows.Forms.DataGridViewButtonColumn operate;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private Label BatchActivate;
+        private Label BatchDelete;
     }
 }

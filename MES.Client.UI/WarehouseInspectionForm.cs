@@ -22,12 +22,20 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         private void WarehouseInspectionForm_Load(object sender, EventArgs e)
         {
-            comboBox1.Items.AddRange(SerialPort.GetPortNames());
-            comboBox1.SelectedItem = comboBox1.Items[0]?.ToString();
+            PortName_ComboBox.Items.AddRange(SerialPort.GetPortNames());
+            try
+            {
+                PortName_ComboBox.SelectedIndex = 0;
+                RoutePosition_ComboBox.Text = "1";
+                PortStatus.ForeColor = Color.Red;
+            }
+            catch
+            {
 
+            }
         }
 
-        private SerialPort SerialPortComImplement(SerialPortConfig serialPortConfig)
+        private SerialPort SerialPortInit(SerialPortConfig serialPortConfig)
         {
             if (serialPortConfig == null) return null;
             SerialPort serialPort = new SerialPort

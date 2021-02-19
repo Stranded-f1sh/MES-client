@@ -47,10 +47,9 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
                         sp.PlaySync();
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    string errStr = ex.Message;
-                    throw ex;
+
                 }
             }).Start();
         }

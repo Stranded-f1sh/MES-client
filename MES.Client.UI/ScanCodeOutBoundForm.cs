@@ -1,10 +1,13 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using ManufacturingExecutionSystem.MES.Client.Model;
 using ManufacturingExecutionSystem.MES.Client.Service;
 using ManufacturingExecutionSystem.MES.Client.Utility.Utils;
 using Newtonsoft.Json.Linq;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 
 namespace ManufacturingExecutionSystem.MES.Client.UI
 {
@@ -41,7 +44,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             rowOne.CreateCells(cacheList_DataGirdView);
             rowOne.Cells[0].Value = _insertId;
             rowOne.Cells[1].Value = imei;
-            rowOne.Cells[2].Value = "金宇";
+            rowOne.Cells[2].Value = _loginInfo.User;
             rowOne.Cells[3].Value = "删除";
 
             cacheList_DataGirdView.Rows.Add(rowOne);
@@ -77,7 +80,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     richTextBox1.AppendText("*************************** \r\n");
                     string imei = cacheList_DataGirdView.Rows[i].Cells[1]?.Value?.ToString();
 
-                    JToken jTokenPostOutBound = outBoundService.PostOutBound(_loginInfo, new Device{Imei = imei });
+                    JToken jTokenPostOutBound = outBoundService.PostOutBound(_loginInfo, new Device{Imei = imei, SaleOrderId = _saleOrderInfo.Id});
                     string postOutBound = MyJsonConverter.JTokenTransformer(jTokenPostOutBound);
 
                     if (postOutBound == "ok")
@@ -88,7 +91,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     {
                         richTextBox1.AppendText("[" + DateTime.Now.ToString(@"yyyy-MM-dd'T'HH:mm:ss.sssZ") + "] 出库失败 [" + imei + "]\r\n");
                     }
-                    
                     
                     Thread.Sleep(50);
 
@@ -123,6 +125,98 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 }
                 richTextBox1.AppendText(" Done！ \r\n");
             }).Start();
+        }
+
+
+
+        private void BatchDelete_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = "C:\\Users\\Administrator\\Desktop"
+                ,Filter = "图片文件|*.xlsx"
+                ,RestoreDirectory = true
+                ,FilterIndex = 1
+            };
+            openFileDialog.ShowDialog();
+
+            try
+            {
+                FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
+                XSSFWorkbook workbook = new XSSFWorkbook(fs);
+                ISheet sheet = workbook.GetSheetAt(0);
+                richTextBox1.HideSelection = false;
+                RegistrationService registrationService = new RegistrationService();
+                for (int i = 0; i <= sheet.LastRowNum; i++)
+                {
+                    String eachImei = sheet.GetRow(i).GetCell(0).ToString();
+                    JToken jTokenDelDevice = registrationService.DelDevice(_loginInfo, new Device { Imei = eachImei }, _saleOrderInfo);
+                    string delDevice = MyJsonConverter.JTokenTransformer(jTokenDelDevice);
+                    if (delDevice == "ok")
+                    {
+                        richTextBox1.AppendText("#" + i + "[" + DateTime.Now.ToString(@"yyyy-MM-dd' 'HH:mm:ss.sss") + "] 删除成功[" + eachImei + "]\r\n");
+                    }
+                    else
+                    {
+                        richTextBox1.AppendText("#" + i + "[" + DateTime.Now.ToString(@"yyyy-MM-dd' 'HH:mm:ss.sss") + "] 删除失败[" + eachImei + "]\r\n");
+                    } 
+                    Application.DoEvents();
+                    Thread.Sleep(500);
+                }
+                richTextBox1.AppendText("done!");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        private void BatchActivate_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = "C:\\Users\\Administrator\\Desktop"
+                ,Filter = "图片文件|*.xlsx"
+                ,RestoreDirectory = true
+                ,FilterIndex = 1
+            };
+            openFileDialog.ShowDialog();
+
+            try
+            {
+                FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
+                XSSFWorkbook workbook = new XSSFWorkbook(fs);
+                ISheet sheet = workbook.GetSheetAt(0);
+                SaleOrderService saleOrderService = new SaleOrderService();
+                for (int i = 0; i <= sheet.LastRowNum; i++)
+                {
+                    String eachImei = sheet.GetRow(i).GetCell(0).ToString();
+                    JToken jTokenPublishDevice = saleOrderService.PublishDevice(_loginInfo, new Device { Imei = eachImei, SaleOrderId = _saleOrderInfo.Id });
+                    string publishDevice = MyJsonConverter.JTokenTransformer(jTokenPublishDevice);
+                    if (publishDevice == "ok")
+                    {
+                        richTextBox1.AppendText("#" + i + "[" + DateTime.Now.ToString(@"yyyy-MM-dd' 'HH:mm:ss.sss") + "] 转客户成功[" + eachImei + "]\r\n");
+                    }
+                    else
+                    {
+                        richTextBox1.AppendText("#" + i + "[" + DateTime.Now.ToString(@"yyyy-MM-dd' 'HH:mm:ss.sss") + "] 转客户失败[" + eachImei + "]\r\n");
+                    }
+                    //让文本框获取焦点 
+                    this.richTextBox1.Focus();
+                    //设置光标的位置到文本尾 
+                    this.richTextBox1.Select(this.richTextBox1.TextLength, 0);
+                    //滚动到控件光标处 
+                    this.richTextBox1.ScrollToCaret();
+                    Application.DoEvents();
+                    Thread.Sleep(500);
+                }
+                richTextBox1.AppendText("done!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

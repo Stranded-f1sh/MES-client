@@ -38,7 +38,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void ScanCode_Button_Click(object sender, EventArgs e)
         {
             ScanCodeOutBoundForm scanCodeOutBoundForm = new ScanCodeOutBoundForm(_loginInfo, SaleOrderInfo);
-            new Thread(delegate () { scanCodeOutBoundForm.ShowDialog(); }).Start();
+            Thread thr = new Thread(delegate () { scanCodeOutBoundForm.ShowDialog(); });
+            thr.SetApartmentState(ApartmentState.STA);
+            thr.Start();
+
         }
 
 
@@ -93,6 +96,23 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 rowOne.Cells[7].Value = "删除";
                 outBound_DataGirdView.Rows.Add(rowOne);
             }
+        }
+
+
+
+        private void BackProcessSelection_Click(object sender, EventArgs e)
+        {
+            ProcessSelectionForm processSelectionForm = new ProcessSelectionForm(_loginInfo);
+            new Thread(delegate () { processSelectionForm.ShowDialog(); }).Start();
+            this.Close();
+        }
+
+
+
+        private void Exit_Form_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Environment.Exit(Environment.ExitCode);
         }
     }
 }

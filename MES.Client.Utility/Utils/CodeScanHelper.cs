@@ -191,7 +191,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
             DataSet selectPrinters = printerMapper.SelectPrinters();
             foreach (DataRow dr in selectPrinters.Tables[0].Rows)
             {
-                // rep.PrintSettings.Printer = dr[1].ToString();
+                rep.PrintSettings.Printer = dr[1].ToString();
                 rep.PrintSettings.ShowDialog = false;
                 if (rep.FindObject("Page1") is ReportPage reportPage)
                 {
