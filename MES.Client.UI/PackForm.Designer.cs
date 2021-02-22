@@ -737,6 +737,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PackForm";
             this.Load += new System.EventHandler(this.PackForm_Load);
+            this.Shown += new System.EventHandler(this.PackForm_Shown);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BaoGongDeviceList)).EndInit();

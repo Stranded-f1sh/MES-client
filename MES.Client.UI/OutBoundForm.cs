@@ -19,7 +19,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         public SaleOrder SaleOrderInfo;
         private readonly Process _process;
         private readonly LoginInfo _loginInfo;
-
+        JToken outBoundDeviceRet;
 
         public OutBoundForm(LoginInfo loginInfo, Process process)
         {
@@ -29,16 +29,15 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             InitializeComponent();
         }
 
-        private void OutBoundForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void ScanCode_Button_Click(object sender, EventArgs e)
         {
             ScanCodeOutBoundForm scanCodeOutBoundForm = new ScanCodeOutBoundForm(_loginInfo, SaleOrderInfo);
-            Thread thr = new Thread(delegate () { scanCodeOutBoundForm.ShowDialog(); });
+            Thread thr = new Thread(delegate () { 
+                scanCodeOutBoundForm.ShowDialog(); 
+                InitComponent();
+                DeviceRefresh(outBoundDeviceRet);
+            });
             thr.SetApartmentState(ApartmentState.STA);
             thr.Start();
 
@@ -57,12 +56,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             if (SaleOrderInfo.OrderNo == null) return;
 
             OutBoundService outBoundService = new OutBoundService();
-            JToken ret = outBoundService.GetOutBoundProductDevices(_loginInfo, SaleOrderInfo.Id, (int)_process.SelectedProcessName);
+            outBoundDeviceRet = outBoundService.GetOutBoundProductDevices(_loginInfo, SaleOrderInfo.Id, (int)_process.SelectedProcessName);
 
             // Console.WriteLine(ret);
-
+            JToken jTokenOrderConfig = outBoundService.GetIpAddressByUserName(_loginInfo, SaleOrderInfo);
+            SaleOrderInfo.IpAddress = jTokenOrderConfig.SelectToken("ip") +":"+ jTokenOrderConfig.SelectToken("port");
             InitComponent();
-            DeviceRefresh(ret);
+            DeviceRefresh(outBoundDeviceRet);
         }
 
 
@@ -70,6 +70,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void InitComponent()
         {
             label2.Text = SaleOrderInfo?.OrderNo;
+            CompanyFullName_Label.Text = SaleOrderInfo.CompanyFullName;
+            DeviceModel_Label.Text = SaleOrderInfo.CustomerDeviceModel;
+            BuyNumber_Label.Text = SaleOrderInfo.BuyNumber.ToString();
+            BuyDate_Label.Text = SaleOrderInfo.BuyDate;
+            PlatformType_Label.Text = SaleOrderInfo.PlatFormType;
+            IPAddress_Label.Text = SaleOrderInfo.IpAddress;
         }
 
 
@@ -113,6 +119,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         {
             this.Close();
             Environment.Exit(Environment.ExitCode);
+        }
+
+
+        private void OutBoundForm_Shown(object sender, EventArgs e)
+        {
+            Application.DoEvents();
+            LoadSaleOrders_btn_Click(sender, e);
         }
     }
 }

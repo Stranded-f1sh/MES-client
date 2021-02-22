@@ -50,5 +50,15 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         {
             return Common.BackgroundRequest("/prod-api/order/productDevices?processId=" + processId + "&saleOrderId=" + saleOrderId, Method.GET, loginInfo?.Token);
         }
+
+
+        /// <summary>
+        /// 根据用户名获取转发地址
+        /// </summary>
+        /// <returns></returns>
+        public static JObject GetIpAddressByUserNameApi(LoginInfo loginInfo, String userName, String platFormType)
+        {
+            return Common.BackgroundRequest("/prod-api/order/getIpAddressByUsername?userName=" + userName + "&platformType=" + platFormType, Method.GET, loginInfo?.Token);
+        }
     }
 }

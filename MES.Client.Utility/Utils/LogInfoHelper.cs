@@ -11,9 +11,25 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
 {
     class LogInfoHelper
     {
-        private static LogInfoHelper _instance;
+        private StreamWriter LogFile = null;
+        private static LogInfoHelper _instance = null;
+        private string LogFilePath = null;
 
-        private static LogInfoHelper GetInstance()
+
+        /// <summary>
+        /// 日志类型
+        /// </summary>
+        public enum LOG_TYPE
+        {
+            LOG_FAIL = 0,    //致命错误
+            LOG_ERROR,       //一般错误
+            LOG_EXCEPTION,   //异常
+            LOG_WARN,        //警告
+            LOG_INFO,        //一般信息
+        }
+
+
+        public static LogInfoHelper GetInstence()
         {
             if (null == _instance)
             {
@@ -23,66 +39,86 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
         }
 
 
-        private LogInfoHelper() { }
+        public LogInfoHelper() { }
 
 
         /// <summary>
-        /// 数据转换
+        /// 创建日志文件
         /// </summary>
-        /// <param name="str"></param>
+        public void CreateLogFile()
+        {
+            string LogFilePath = AppDomain.CurrentDomain.BaseDirectory;
+            string LogFileName = (DateTime.Now.Year).ToString() + '-' + (DateTime.Now.Month).ToString() + '-' + (DateTime.Now.Day).ToString() + "_Log.log";
+            LogFilePath += "logFile\\";
+            if (!Directory.Exists(LogFilePath))
+            {
+                Directory.CreateDirectory(LogFilePath);
+            }
+            this.LogFilePath = LogFilePath + LogFileName;
+        }
+
+
+
+        /// <summary>
+        /// 信息写入日志
+        /// </summary>
+        /// <param name="strLogInfo"></param>
         /// <param name="logType"></param>
-        private static string StrTrans(string str, LogInfoEnum.LOG_TYPE logType)
+        public void WriteInfoToLogFile(string strLogInfo, LOG_TYPE logType)
         {
             try
             {
-                string strLogInfo = null;
+                LogFile = new StreamWriter(LogFilePath, true);
+                string strlogInfo = null;
                 switch (logType)
                 {
-                    case LogInfoEnum.LOG_TYPE.LOG_FAIL:
-                    {
-                        strLogInfo = $"[{DateTime.Now}] FAIL:{str}";
-                    }
+                    case LOG_TYPE.LOG_FAIL:
+                        {
+                            strlogInfo = String.Format("[{0}] FAIL:{1}", DateTime.Now.ToString(), strLogInfo);
+                        }
                         break;
 
-                    case LogInfoEnum.LOG_TYPE.LOG_ERROR:
-                    {
-                        strLogInfo = $"[{DateTime.Now}] ERROR:{str}";
-                    }
+                    case LOG_TYPE.LOG_ERROR:
+                        {
+                            strlogInfo = String.Format("[{0}] ERROR:{1}", DateTime.Now.ToString(), strLogInfo);
+                        }
                         break;
 
-                    case LogInfoEnum.LOG_TYPE.LOG_EXCEPTION:
-                    {
-                        strLogInfo = $"[{DateTime.Now}] EXCEPTION:{str}";
-                    }
+                    case LOG_TYPE.LOG_EXCEPTION:
+                        {
+                            strlogInfo = String.Format("[{0}] EXCEPTION:{1}", DateTime.Now.ToString(), strLogInfo);
+                        }
                         break;
 
-                    case LogInfoEnum.LOG_TYPE.LOG_WARN:
-                    {
-                        strLogInfo = $"[{DateTime.Now}] WARN:{str}";
-                    }
+                    case LOG_TYPE.LOG_WARN:
+                        {
+                            strlogInfo = String.Format("[{0}] WARN:{1}", DateTime.Now.ToString(), strLogInfo);
+                        }
                         break;
 
-                    case LogInfoEnum.LOG_TYPE.LOG_INFO:
-                    {
-                        strLogInfo = $"[{DateTime.Now}] INFO:{str}";
-                    }
+                    case LOG_TYPE.LOG_INFO:
+                        {
+                            strlogInfo = String.Format("[{0}] INFO:{1}", DateTime.Now.ToString(), strLogInfo);
+                        }
                         break;
                 }
 
-                return strLogInfo;
+                LogFile.WriteLine(strlogInfo);
+                LogFile.Close();
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                Console.WriteLine(ex);
             }
         }
 
 
-        public static String PrintLog(string strLogInfo, LogInfoEnum.LOG_TYPE logType)
+
+        public void printLog(string strLogInfo, LOG_TYPE logType)
         {
-            GetInstance();
-            
-            return StrTrans(strLogInfo, logType);
+            GetInstence();
+            CreateLogFile();
+            WriteInfoToLogFile(strLogInfo, logType);
         }
     }
 }

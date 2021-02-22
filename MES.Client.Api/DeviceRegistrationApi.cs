@@ -29,7 +29,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         /// <param name="imei"></param>
         /// <param name="platForm"></param>
         /// <returns></returns>
-        public static JObject DeviceApi(LoginInfo loginInfo, String imei, String platForm)
+        public static JObject delDeviceApi(LoginInfo loginInfo, String imei, String platForm)
         {
             return Common.BackgroundRequest("/prod-api/order/delDevice?imei=" + imei + "&platformType=" + platForm, Method.GET, loginInfo?.Token);
         }

@@ -30,11 +30,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CodeRegistrationForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.CreateProductOrder_Btn = new System.Windows.Forms.ToolStripButton();
             this.LoadWorkOrder_btn = new System.Windows.Forms.ToolStripButton();
+            this.RefreshOrder_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.BackPage_Btn = new System.Windows.Forms.ToolStripButton();
             this.NextPage_Btn = new System.Windows.Forms.ToolStripButton();
@@ -44,6 +45,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.export_Button = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.BackProcessSelection = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -103,6 +105,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CreateProductOrder_Btn,
             this.LoadWorkOrder_btn,
+            this.RefreshOrder_Btn,
             this.toolStripSeparator3,
             this.BackPage_Btn,
             this.NextPage_Btn,
@@ -112,6 +115,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.export_Button,
             this.toolStripSeparator,
             this.toolStripButton6,
+            this.BackProcessSelection,
             this.toolStripSeparator2});
             this.toolStrip1.Location = new System.Drawing.Point(-1, 1);
             this.toolStrip1.Name = "toolStrip1";
@@ -142,6 +146,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.LoadWorkOrder_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.LoadWorkOrder_btn.ToolTipText = "加载工单(N)";
             this.LoadWorkOrder_btn.Click += new System.EventHandler(this.LoadWorkOrder_btn_Click);
+            // 
+            // RefreshOrder_Btn
+            // 
+            this.RefreshOrder_Btn.AutoSize = false;
+            this.RefreshOrder_Btn.Image = ((System.Drawing.Image)(resources.GetObject("RefreshOrder_Btn.Image")));
+            this.RefreshOrder_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RefreshOrder_Btn.Name = "RefreshOrder_Btn";
+            this.RefreshOrder_Btn.Size = new System.Drawing.Size(84, 68);
+            this.RefreshOrder_Btn.Text = "刷新工单";
+            this.RefreshOrder_Btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.RefreshOrder_Btn.Click += new System.EventHandler(this.RefreshOrder_Btn_Click);
             // 
             // toolStripSeparator3
             // 
@@ -226,6 +241,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStripButton6.Text = "帮助";
             this.toolStripButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
+            // BackProcessSelection
+            // 
+            this.BackProcessSelection.AutoSize = false;
+            this.BackProcessSelection.Image = ((System.Drawing.Image)(resources.GetObject("BackProcessSelection.Image")));
+            this.BackProcessSelection.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BackProcessSelection.Name = "BackProcessSelection";
+            this.BackProcessSelection.Size = new System.Drawing.Size(84, 68);
+            this.BackProcessSelection.Text = "返回工序选择";
+            this.BackProcessSelection.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BackProcessSelection.Click += new System.EventHandler(this.BackProcessSelection_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -304,21 +330,25 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // OrderNo_TextBox
             // 
             this.OrderNo_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.OrderNo_TextBox.Font = new System.Drawing.Font("DengXian", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.OrderNo_TextBox.Enabled = false;
+            this.OrderNo_TextBox.Font = new System.Drawing.Font("NSimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.OrderNo_TextBox.ForeColor = System.Drawing.Color.Maroon;
             this.OrderNo_TextBox.Location = new System.Drawing.Point(102, 33);
             this.OrderNo_TextBox.Name = "OrderNo_TextBox";
             this.OrderNo_TextBox.ReadOnly = true;
-            this.OrderNo_TextBox.Size = new System.Drawing.Size(241, 22);
+            this.OrderNo_TextBox.Size = new System.Drawing.Size(241, 23);
             this.OrderNo_TextBox.TabIndex = 5;
             // 
             // RegistNum_TextBox
             // 
             this.RegistNum_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.RegistNum_TextBox.Font = new System.Drawing.Font("DengXian", 10.5F);
+            this.RegistNum_TextBox.Enabled = false;
+            this.RegistNum_TextBox.Font = new System.Drawing.Font("NSimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.RegistNum_TextBox.ForeColor = System.Drawing.Color.Maroon;
             this.RegistNum_TextBox.Location = new System.Drawing.Point(102, 166);
             this.RegistNum_TextBox.Name = "RegistNum_TextBox";
             this.RegistNum_TextBox.ReadOnly = true;
-            this.RegistNum_TextBox.Size = new System.Drawing.Size(241, 22);
+            this.RegistNum_TextBox.Size = new System.Drawing.Size(241, 23);
             this.RegistNum_TextBox.TabIndex = 9;
             // 
             // label_region
@@ -346,11 +376,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // CompanyFullName_TextBox
             // 
             this.CompanyFullName_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.CompanyFullName_TextBox.Font = new System.Drawing.Font("DengXian", 10.5F);
+            this.CompanyFullName_TextBox.Enabled = false;
+            this.CompanyFullName_TextBox.Font = new System.Drawing.Font("NSimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CompanyFullName_TextBox.ForeColor = System.Drawing.Color.Maroon;
             this.CompanyFullName_TextBox.Location = new System.Drawing.Point(102, 67);
             this.CompanyFullName_TextBox.Name = "CompanyFullName_TextBox";
             this.CompanyFullName_TextBox.ReadOnly = true;
-            this.CompanyFullName_TextBox.Size = new System.Drawing.Size(241, 22);
+            this.CompanyFullName_TextBox.Size = new System.Drawing.Size(241, 23);
             this.CompanyFullName_TextBox.TabIndex = 6;
             // 
             // label_deviceModel
@@ -378,11 +410,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // BuyNumber_TextBox
             // 
             this.BuyNumber_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BuyNumber_TextBox.Font = new System.Drawing.Font("DengXian", 10.5F);
+            this.BuyNumber_TextBox.Enabled = false;
+            this.BuyNumber_TextBox.Font = new System.Drawing.Font("NSimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.BuyNumber_TextBox.ForeColor = System.Drawing.Color.Maroon;
             this.BuyNumber_TextBox.Location = new System.Drawing.Point(102, 134);
             this.BuyNumber_TextBox.Name = "BuyNumber_TextBox";
             this.BuyNumber_TextBox.ReadOnly = true;
-            this.BuyNumber_TextBox.Size = new System.Drawing.Size(241, 22);
+            this.BuyNumber_TextBox.Size = new System.Drawing.Size(241, 23);
             this.BuyNumber_TextBox.TabIndex = 8;
             // 
             // label_orderno
@@ -399,11 +433,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // DeviceModel_TextBox
             // 
             this.DeviceModel_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.DeviceModel_TextBox.Font = new System.Drawing.Font("DengXian", 10.5F);
+            this.DeviceModel_TextBox.Enabled = false;
+            this.DeviceModel_TextBox.Font = new System.Drawing.Font("NSimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DeviceModel_TextBox.ForeColor = System.Drawing.Color.Maroon;
             this.DeviceModel_TextBox.Location = new System.Drawing.Point(102, 101);
             this.DeviceModel_TextBox.Name = "DeviceModel_TextBox";
             this.DeviceModel_TextBox.ReadOnly = true;
-            this.DeviceModel_TextBox.Size = new System.Drawing.Size(241, 22);
+            this.DeviceModel_TextBox.Size = new System.Drawing.Size(241, 23);
             this.DeviceModel_TextBox.TabIndex = 7;
             // 
             // groupBox3
@@ -539,7 +575,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.btn_delDevice.TabIndex = 8;
             this.btn_delDevice.Text = "注册注销";
             this.btn_delDevice.UseVisualStyleBackColor = false;
-            this.btn_delDevice.Visible = false;
+            this.btn_delDevice.Click += new System.EventHandler(this.btn_delDevice_Click);
             // 
             // label_orderId_imei
             // 
@@ -606,23 +642,23 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RegisteredDeviceList.BackgroundColor = System.Drawing.Color.White;
             this.RegisteredDeviceList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.RegisteredDeviceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.RegisteredDeviceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.RegisteredDeviceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.RegisteredDeviceList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.RegisteredDeviceList.DefaultCellStyle = dataGridViewCellStyle4;
             this.RegisteredDeviceList.GridColor = System.Drawing.Color.Gainsboro;
             this.RegisteredDeviceList.Location = new System.Drawing.Point(10, 404);
             this.RegisteredDeviceList.Name = "RegisteredDeviceList";
@@ -705,11 +741,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.toolStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "CodeRegistrationForm";
+            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.CodeRegistrationForm_Load);
+            this.Shown += new System.EventHandler(this.CodeRegistrationForm_Shown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -781,5 +819,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.Label PageNum_Label;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.ToolStripButton ScanAll_Button;
+        private System.Windows.Forms.ToolStripButton BackProcessSelection;
+        private System.Windows.Forms.ToolStripButton RefreshOrder_Btn;
     }
 }

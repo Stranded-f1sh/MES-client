@@ -1,0 +1,26 @@
+[2021/2/22 17:20:37] INFO:[注册]扫描imei: System.Windows.Forms.TextBox, Text: 868474043251105
+
+[2021/2/22 17:20:38] INFO:注册接口调用：{
+  "code": -1,
+  "info": "注册失败",
+  "reason": "IMEI号已存在",
+  "deviceId": null
+}
+868474043251105
+
+[2021/2/22 17:20:50] INFO:删除接口调用：{
+  "code": 0,
+  "msg": null,
+  "data": "删除成功"
+}
+868474043251105
+
+[2021/2/22 17:21:23] INFO:[注册]扫描imei: System.Windows.Forms.TextBox, Text: 868474043251105
+
+[2021/2/22 17:21:23] INFO:注册接口调用：{
+  "msg": "success",
+  "code": 0,
+  "data": "注册到iot.device_detail成功"
+}
+868474043251105
+

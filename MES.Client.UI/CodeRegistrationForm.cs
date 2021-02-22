@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Drawing;
 using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
 using ManufacturingExecutionSystem.MES.Client.Model;
 using ManufacturingExecutionSystem.MES.Client.Service;
@@ -18,7 +19,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private readonly Process _process;
         private readonly LoginInfo _loginInfo;
         public ProductOrder ProductOrderInfo; // 切换的工单实体类
-        private readonly JToken _productOrders; // 缓存的所有工单
+        private JToken _productOrders; // 缓存的所有工单
         private Qualify _qualify;
         private int _pageCount; // 总页数
         private int _pageNum;  // 当前页
@@ -31,13 +32,26 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             _appSettingsSection = config.AppSettings;
             InitializeComponent();
+            
+        }
+
+        private const int CP_NOCLOSE_BUTTON = 0x200;
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ClassStyle |= CP_NOCLOSE_BUTTON;
+                return myCp;
+            }
         }
 
 
 
         #region FormLoad
 
-        
+
         private void CodeRegistrationForm_Load(object sender, EventArgs e)
         {
             QualifyService qualifyService = new QualifyService();
@@ -430,7 +444,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         {
             lock (objLock)
             {
+                bool canPrint = false;
                 if (eventArgs != null && eventArgs.KeyChar != Convert.ToChar(13)) return;
+
+                LogInfoHelper _logger = new LogInfoHelper();
+                _logger.printLog("[注册]扫描imei: " + Imei_TextBox?.Text + "\r\n", LogInfoHelper.LOG_TYPE.LOG_INFO);
+
                 INFO.Text = "正在执行，请稍后。。。。";
 
                 Application.DoEvents();
@@ -456,15 +475,36 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     RegistrationService registrationService = new RegistrationService();
                     // 设备注册
                     JToken registerResult = registrationService.PostRegisterDevice(_loginInfo, ProductOrderInfo?.SaleOrderId.ToString(), device);
-                    INFO.Text = imei + @"注册:" + registerResult;
+                    
+                    if (registerResult != null && registerResult.ToString() == "注册到iot.device_detail成功")
+                    {
+                        canPrint = true;
+                        INFO.Text = imei + @"注册到iot成功";
+                        Application.DoEvents();
+                    }
+                    else
+                    {
+                        canPrint = false;
+                        MessageBox.Show("注册失败");
+                        INFO.Text = string.Empty;
+                        Imei_TextBox?.Clear();
+                        return;
+                    }
                 }
 
                 // 报工到编码注册工序
                 JToken baoGongResult = baoGongService.DeviceBaoGong(_loginInfo, imei, ProductOrderInfo.OrderId, _process.SelectedProcessName, String.Empty);
                 INFO.Text = imei + @"报工:" + baoGongResult;
-
-
-                if (isPrint_CheckBox.Checked)
+                if (baoGongResult != null && baoGongResult.ToString() == "ok")
+                {
+                    canPrint = true;
+                }
+                else
+                {
+                    canPrint = false;
+                }
+                
+                if (isPrint_CheckBox.Checked && canPrint)
                 {
                     codeScanHelper.PrintQrCode(device, pinDian != String.Empty ? @"loraQrCode.frx" : @"generalQrCode.frx");
                 }
@@ -526,12 +566,60 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             excelHelper.ExportDataToExcel(ProductOrderInfo, RegisteredDeviceList);
 
             CutOverProductOrder(ProductOrderInfo, 100);
+            MessageBox.Show("已导出至项目文件夹。");
         }
 
 
         private void ScanAll_Button_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void CodeRegistrationForm_Shown(object sender, EventArgs e)
+        {
+            Application.DoEvents();
+            LoadWorkOrder_btn_Click(sender, e);
+        }
+
+
+        private void BackProcessSelection_Click(object sender, EventArgs e)
+        {
+            ProcessSelectionForm processSelectionForm = new ProcessSelectionForm(_loginInfo);
+            new Thread(delegate () { processSelectionForm.ShowDialog(); }).Start();
+            this.Close();
+        }
+
+
+        private void RefreshOrder_Btn_Click(object sender, EventArgs e)
+        {
+            // 加载缓存工单
+            ProductOrderService productOrderService = new ProductOrderService();
+            _productOrders = productOrderService.GetProductOrders(_loginInfo);
+            MessageBox.Show("工单刷新完成!");
+        }
+
+
+
+        private void btn_delDevice_Click(object sender, EventArgs e)
+        {
+            CodeScanHelper codeScanHelper = new CodeScanHelper();
+            string imei = codeScanHelper.CodeScanFilter(RegisteredDeviceList.CurrentCell.Value.ToString(), out String pinDian);
+            if (imei == string.Empty) 
+            {
+                MessageBox.Show("必须选中需要删除的设备号!");
+                return;
+             };
+            string PlatFormType = RegisteredDeviceList.Rows[RegisteredDeviceList.CurrentRow.Index].Cells[9].Value.ToString();
+            if (PlatFormType == string.Empty)
+            {
+                MessageBox.Show("平台类型不能为空!");
+                return;
+            }
+            RegistrationService registrationService = new RegistrationService();
+            JToken jTokenDelDevice = registrationService.DelDevice(_loginInfo, new Device { Imei = imei }, new SaleOrder { PlatFormType = PlatFormType });
+            MessageBox.Show(jTokenDelDevice.ToString());
+            CutOverProductOrder(ProductOrderInfo, 100);
         }
     }
 }

@@ -47,5 +47,9 @@ namespace ManufacturingExecutionSystem.MES.Client.Model
         [DataMember]
         [Description("平台类型")]
         public String PlatFormType { get; set; } // 平台类型
+
+        [DataMember]
+        [Description("ip地址")]
+        public String IpAddress { get; set; } // ip地址
     }
 }

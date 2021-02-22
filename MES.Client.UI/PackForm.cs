@@ -58,7 +58,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             
             InitializeComponent();
 
-            //User_Label.Text = _loginInfo.User ?? String.Empty;
+            User_Label.Text = _loginInfo.User ?? String.Empty;
         }
 
 
@@ -71,6 +71,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             }
 
             _mut = new Mutex();
+
+            
         }
 
 
@@ -571,11 +573,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
 
         #region readLine
-
-
-
-
-
 
         /*
         *  Get String From readBuffer
@@ -1261,6 +1258,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             ProcessSelectionForm processSelectionForm = new ProcessSelectionForm(_loginInfo);
             new Thread(delegate () { processSelectionForm.ShowDialog(); }).Start();
             this.Close();
+        }
+
+
+        private void PackForm_Shown(object sender, EventArgs e)
+        {
+            Application.DoEvents();
+            LoadSaleOrders_btn_Click(null, null);
         }
     }
 }

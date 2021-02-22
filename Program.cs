@@ -4,6 +4,7 @@ using ManufacturingExecutionSystem.MES.Client.UI;
 using OpenCvSharp;
 using ObjectDetectionProgram.ImageIdentification;
 using System.Drawing;
+using System.Text;
 
 namespace ManufacturingExecutionSystem
 {
@@ -17,11 +18,7 @@ namespace ManufacturingExecutionSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
-
-            //Mat img = Cv2.ImRead("C:\\Users\\Jinyu\\Desktop\\tra\\000049.bmp");
-            //Cv2.Resize(img, img, new OpenCvSharp.Size(600, 600), interpolation: InterpolationFlags.Area);
-            //gaussian_filter(img);
+            Application.Run(new WarehouseInspectionForm());
         }
 
 

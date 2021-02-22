@@ -30,8 +30,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OutBoundForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.CreateProductOrder_Btn = new System.Windows.Forms.ToolStripButton();
             this.LoadSaleOrders_btn = new System.Windows.Forms.ToolStripButton();
@@ -58,6 +58,18 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.panel4 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.IPAddress_Label = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.PlatformType_Label = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.BuyDate_Label = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.BuyNumber_Label = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.DeviceModel_Label = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.CompanyFullName_Label = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.outBound_DataGirdView = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,18 +81,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.outBoundUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.operate = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Exit_Form = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -254,7 +254,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.DataCache_ToolTrips_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DataCache_ToolTrips_Button.Name = "DataCache_ToolTrips_Button";
             this.DataCache_ToolTrips_Button.Size = new System.Drawing.Size(84, 68);
-            this.DataCache_ToolTrips_Button.Text = "数据缓存";
+            this.DataCache_ToolTrips_Button.Text = "帮助";
             this.DataCache_ToolTrips_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // BackProcessSelection
@@ -281,7 +281,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(1, 86);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(216, 43);
+            this.panel1.Size = new System.Drawing.Size(266, 43);
             this.panel1.TabIndex = 29;
             // 
             // label2
@@ -307,7 +307,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(218, 86);
+            this.panel2.Location = new System.Drawing.Point(269, 86);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(763, 43);
             this.panel2.TabIndex = 30;
@@ -319,15 +319,15 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 0;
-            this.label3.Text = "库存列表";
+            this.label3.Text = "出库列表";
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Location = new System.Drawing.Point(982, 86);
+            this.panel3.Location = new System.Drawing.Point(1034, 86);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(244, 43);
+            this.panel3.Size = new System.Drawing.Size(192, 43);
             this.panel3.TabIndex = 31;
             // 
             // panel4
@@ -337,7 +337,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.panel4.Controls.Add(this.label5);
             this.panel4.Location = new System.Drawing.Point(1, 130);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(216, 43);
+            this.panel4.Size = new System.Drawing.Size(266, 43);
             this.panel4.TabIndex = 30;
             // 
             // label5
@@ -351,29 +351,138 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // panel5
             // 
+            this.panel5.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel5.Controls.Add(this.label16);
+            this.panel5.Controls.Add(this.IPAddress_Label);
             this.panel5.Controls.Add(this.label15);
-            this.panel5.Controls.Add(this.label14);
+            this.panel5.Controls.Add(this.PlatformType_Label);
             this.panel5.Controls.Add(this.label13);
-            this.panel5.Controls.Add(this.label12);
+            this.panel5.Controls.Add(this.BuyDate_Label);
             this.panel5.Controls.Add(this.label11);
-            this.panel5.Controls.Add(this.label10);
+            this.panel5.Controls.Add(this.BuyNumber_Label);
             this.panel5.Controls.Add(this.label9);
-            this.panel5.Controls.Add(this.label8);
+            this.panel5.Controls.Add(this.DeviceModel_Label);
             this.panel5.Controls.Add(this.label7);
-            this.panel5.Controls.Add(this.label6);
+            this.panel5.Controls.Add(this.CompanyFullName_Label);
             this.panel5.Controls.Add(this.label4);
             this.panel5.Location = new System.Drawing.Point(1, 172);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(216, 326);
+            this.panel5.Size = new System.Drawing.Size(266, 326);
             this.panel5.TabIndex = 32;
+            // 
+            // IPAddress_Label
+            // 
+            this.IPAddress_Label.AutoSize = true;
+            this.IPAddress_Label.ForeColor = System.Drawing.Color.Maroon;
+            this.IPAddress_Label.Location = new System.Drawing.Point(73, 157);
+            this.IPAddress_Label.Name = "IPAddress_Label";
+            this.IPAddress_Label.Size = new System.Drawing.Size(0, 12);
+            this.IPAddress_Label.TabIndex = 11;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(18, 157);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(53, 12);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "IP地址：";
+            // 
+            // PlatformType_Label
+            // 
+            this.PlatformType_Label.AutoSize = true;
+            this.PlatformType_Label.ForeColor = System.Drawing.Color.Maroon;
+            this.PlatformType_Label.Location = new System.Drawing.Point(73, 128);
+            this.PlatformType_Label.Name = "PlatformType_Label";
+            this.PlatformType_Label.Size = new System.Drawing.Size(0, 12);
+            this.PlatformType_Label.TabIndex = 9;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 128);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 12);
+            this.label13.TabIndex = 8;
+            this.label13.Text = "平台类型：";
+            // 
+            // BuyDate_Label
+            // 
+            this.BuyDate_Label.AutoSize = true;
+            this.BuyDate_Label.ForeColor = System.Drawing.Color.Maroon;
+            this.BuyDate_Label.Location = new System.Drawing.Point(73, 101);
+            this.BuyDate_Label.Name = "BuyDate_Label";
+            this.BuyDate_Label.Size = new System.Drawing.Size(0, 12);
+            this.BuyDate_Label.TabIndex = 7;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 101);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 12);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "订单日期：";
+            // 
+            // BuyNumber_Label
+            // 
+            this.BuyNumber_Label.AutoSize = true;
+            this.BuyNumber_Label.ForeColor = System.Drawing.Color.Maroon;
+            this.BuyNumber_Label.Location = new System.Drawing.Point(75, 72);
+            this.BuyNumber_Label.Name = "BuyNumber_Label";
+            this.BuyNumber_Label.Size = new System.Drawing.Size(0, 12);
+            this.BuyNumber_Label.TabIndex = 5;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 72);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 12);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "设备数量：";
+            // 
+            // DeviceModel_Label
+            // 
+            this.DeviceModel_Label.AutoSize = true;
+            this.DeviceModel_Label.ForeColor = System.Drawing.Color.Maroon;
+            this.DeviceModel_Label.Location = new System.Drawing.Point(73, 44);
+            this.DeviceModel_Label.Name = "DeviceModel_Label";
+            this.DeviceModel_Label.Size = new System.Drawing.Size(0, 12);
+            this.DeviceModel_Label.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 12);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "产品型号：";
+            // 
+            // CompanyFullName_Label
+            // 
+            this.CompanyFullName_Label.AutoSize = true;
+            this.CompanyFullName_Label.ForeColor = System.Drawing.Color.Maroon;
+            this.CompanyFullName_Label.Location = new System.Drawing.Point(71, 14);
+            this.CompanyFullName_Label.Name = "CompanyFullName_Label";
+            this.CompanyFullName_Label.Size = new System.Drawing.Size(0, 12);
+            this.CompanyFullName_Label.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "客户名称：";
             // 
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel6.Controls.Add(this.outBound_DataGirdView);
-            this.panel6.Location = new System.Drawing.Point(218, 130);
+            this.panel6.Location = new System.Drawing.Point(269, 130);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(763, 488);
             this.panel6.TabIndex = 33;
@@ -385,14 +494,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.outBound_DataGirdView.BackgroundColor = System.Drawing.Color.White;
             this.outBound_DataGirdView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle43.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle43.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.outBound_DataGirdView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle43;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.outBound_DataGirdView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.outBound_DataGirdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.outBound_DataGirdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -403,14 +512,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.handleResult,
             this.outBoundUser,
             this.operate});
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle44.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle44.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.outBound_DataGirdView.DefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.outBound_DataGirdView.DefaultCellStyle = dataGridViewCellStyle12;
             this.outBound_DataGirdView.GridColor = System.Drawing.Color.Gainsboro;
             this.outBound_DataGirdView.Location = new System.Drawing.Point(2, 2);
             this.outBound_DataGirdView.Name = "outBound_DataGirdView";
@@ -469,127 +578,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Exit_Form.FlatAppearance.BorderSize = 2;
             this.Exit_Form.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Exit_Form.ForeColor = System.Drawing.Color.Black;
-            this.Exit_Form.Location = new System.Drawing.Point(561, 643);
+            this.Exit_Form.Location = new System.Drawing.Point(562, 643);
             this.Exit_Form.Name = "Exit_Form";
             this.Exit_Form.Size = new System.Drawing.Size(108, 27);
             this.Exit_Form.TabIndex = 34;
             this.Exit_Form.Text = "退出程序";
             this.Exit_Form.UseVisualStyleBackColor = false;
             this.Exit_Form.Click += new System.EventHandler(this.Exit_Form_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 12);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "客户名称：";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.Maroon;
-            this.label6.Location = new System.Drawing.Point(71, 14);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 12);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "北京安立泰";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 44);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 12);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "产品型号：";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.Maroon;
-            this.label8.Location = new System.Drawing.Point(73, 44);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 12);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "TSM-04L";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 72);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 12);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "设备数量：";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.Maroon;
-            this.label10.Location = new System.Drawing.Point(75, 72);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(11, 12);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "5";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 101);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 12);
-            this.label11.TabIndex = 6;
-            this.label11.Text = "订单日期：";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.Maroon;
-            this.label12.Location = new System.Drawing.Point(73, 101);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 12);
-            this.label12.TabIndex = 7;
-            this.label12.Text = "2021-02-05";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 128);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(65, 12);
-            this.label13.TabIndex = 8;
-            this.label13.Text = "平台类型：";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.Color.Maroon;
-            this.label14.Location = new System.Drawing.Point(73, 128);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(41, 12);
-            this.label14.TabIndex = 9;
-            this.label14.Text = "电信oc";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(18, 157);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(53, 12);
-            this.label15.TabIndex = 10;
-            this.label15.Text = "IP地址：";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.Color.Maroon;
-            this.label16.Location = new System.Drawing.Point(73, 157);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(95, 12);
-            this.label16.TabIndex = 11;
-            this.label16.Text = "101.200.129.183";
             // 
             // OutBoundForm
             // 
@@ -607,7 +602,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Name = "OutBoundForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "OutBoundForm";
-            this.Load += new System.EventHandler(this.OutBoundForm_Load);
+            this.Shown += new System.EventHandler(this.OutBoundForm_Shown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -664,16 +659,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.ToolStripButton BackProcessSelection;
         private System.Windows.Forms.Button Exit_Form;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label CompanyFullName_Label;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label DeviceModel_Label;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label BuyNumber_Label;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label BuyDate_Label;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label PlatformType_Label;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label IPAddress_Label;
     }
 }
