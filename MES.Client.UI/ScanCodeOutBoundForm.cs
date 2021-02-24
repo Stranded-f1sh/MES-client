@@ -80,7 +80,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     richTextBox1.AppendText("*************************** \r\n");
                     string imei = cacheList_DataGirdView.Rows[i].Cells[1]?.Value?.ToString();
 
-                    JToken jTokenPostOutBound = outBoundService.PostOutBound(_loginInfo, new Device{Imei = imei, SaleOrderId = _saleOrderInfo.Id});
+                    JToken jTokenPostOutBound = outBoundService.PostOutBound(_loginInfo, new Device{Imei = imei, SaleOrderId = _saleOrderInfo.Id, UserId = _loginInfo .userId});
                     string postOutBound = MyJsonConverter.JTokenTransformer(jTokenPostOutBound);
 
                     if (postOutBound == "ok")

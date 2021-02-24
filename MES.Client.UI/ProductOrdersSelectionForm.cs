@@ -24,6 +24,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             if (tipsSaleOrderNo == String.Empty || _productOrders == null || ProductOrder_TextBox == null) return;
             foreach (var jTokenItem in _productOrders)
             {
+                Console.WriteLine(jTokenItem?.SelectToken("saleOrderno"));
                 if (jTokenItem?.SelectToken("saleOrderno")?.ToString() != tipsSaleOrderNo) continue;
                 ProductOrder_TextBox.Text = jTokenItem?.SelectToken("id")?.ToString();
                 break;

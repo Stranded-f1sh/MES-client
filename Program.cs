@@ -18,7 +18,7 @@ namespace ManufacturingExecutionSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WarehouseInspectionForm());
+            Application.Run(new LoginForm());
         }
 
 

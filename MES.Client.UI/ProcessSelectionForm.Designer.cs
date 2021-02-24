@@ -29,6 +29,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProcessSelectionForm));
             this.ProcessSelectionTitle_Label = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -267,6 +268,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.ProcessSelectionTitle_Label);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ProcessSelectionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

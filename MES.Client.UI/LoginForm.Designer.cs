@@ -70,7 +70,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(276, 75);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 19);
@@ -218,12 +218,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Controls.Add(this.Titie);
             this.Controls.Add(this.TopsailLogo_PictureBox);
             this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(3, 1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.Padding = new System.Windows.Forms.Padding(5);
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.LoginForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.TopsailLogo_PictureBox)).EndInit();
