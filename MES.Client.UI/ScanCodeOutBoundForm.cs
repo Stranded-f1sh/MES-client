@@ -32,7 +32,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void imeiInput_TextBox_KeyPress(object sender, KeyPressEventArgs eventArgs)
         {
             if (eventArgs != null && eventArgs.KeyChar != Convert.ToChar(13)) return;
-            DataGridViewInsert(imeiInput_TextBox?.Text);
+
+            CodeScanHelper codeScanHelper = new CodeScanHelper();
+            string imei = codeScanHelper.CodeScanFilter(imeiInput_TextBox?.Text, out String pinDian);
+
+            if (imei == string.Empty | imei == null) return;
+
+            DataGridViewInsert(imei);
         }
 
 
@@ -96,7 +102,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
                     JToken jTokenPublishDevice = saleOrderService.PublishDevice(_loginInfo, new Device { Imei = imei, SaleOrderId = _saleOrderInfo.Id });
                     string publishDevice = MyJsonConverter.JTokenTransformer(jTokenPublishDevice);
-                    if (publishDevice == "ok")
+                    if (publishDevice == "发布成功")
                     {
                         richTextBox1.AppendText("[" + DateTime.Now.ToString(@"yyyy-MM-dd'T'HH:mm:ss.sssZ") + "] 转客户成功 [" + imei + "]\r\n");
                     }

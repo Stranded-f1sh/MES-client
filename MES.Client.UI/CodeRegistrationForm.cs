@@ -65,6 +65,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             }
             
             checkBox3.Checked = true;
+            ProcessProductRefresh();
         }
         #endregion
 
@@ -187,7 +188,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             PageNum_Label.Text = _pageNum.ToString();
 
             // 设置自动列宽
-            RegisteredDeviceList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            RegisteredDeviceList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             RegisteredDeviceList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedHeaders;
             // 设置字体样式
             Font font = new Font("宋体", 9);
@@ -378,13 +379,18 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
                 if (RegisteredDeviceList.Rows[index].Cells[12] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[12].Value = _loginInfo.User;
+                    foreach (var itm in _loginInfo.UserList)
+                    {
+                        if (itm?["userId"]?.ToString() == MyJsonConverter.JTokenTransformer(i["userId"]))
+                        {
+                            RegisteredDeviceList.Rows[index].Cells[12].Value = itm?["username"]?.ToString();
+                            break;
+                        }
+                    }
                 }
 
                 if (RegisteredDeviceList.Rows[index].Cells[13] != null)
                 {
-                    RegisteredDeviceList.Rows[index].Cells[13].Value = _loginInfo.User;
-
                     var time = MyJsonConverter.JTokenTransformer(i["startTime"]);
                     if (time.Length == 0)
                     {
@@ -419,7 +425,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void LoadWorkOrder_btn_Click(object sender, EventArgs e)
         {
             ProductOrderInfo = new ProductOrder();
-            ProductOrdersSelectionForm productOrdersSelectionForm = new ProductOrdersSelectionForm(_productOrders, _process, String.Empty)
+            ProductOrdersSelectionForm productOrdersSelectionForm = new ProductOrdersSelectionForm(_productOrders, _process, 0)
             {
                 Owner = this
             };
@@ -450,13 +456,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 LogInfoHelper _logger = new LogInfoHelper();
                 _logger.printLog("[注册]扫描imei: " + Imei_TextBox?.Text + "\r\n", LogInfoHelper.LOG_TYPE.LOG_INFO);
 
-                INFO.Text = "正在执行，请稍后。。。。";
-
                 Application.DoEvents();
                 CodeScanHelper codeScanHelper = new CodeScanHelper();
                 string imei = codeScanHelper.CodeScanFilter(Imei_TextBox?.Text, out String pinDian);
 
                 if (imei == null) return;
+
+                INFO.Text = "正在执行，请稍后。。。。";
 
                 BaoGongService baoGongService = new BaoGongService();
                 if (_qualify == null)
@@ -502,6 +508,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 else
                 {
                     canPrint = false;
+                    MessageBox.Show(baoGongResult.ToString());
                 }
                 
                 if (isPrint_CheckBox.Checked && canPrint)
@@ -509,6 +516,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     codeScanHelper.PrintQrCode(device, pinDian != String.Empty ? @"loraQrCode.frx" : @"generalQrCode.frx");
                 }
                 CutOverProductOrder(ProductOrderInfo, 100);
+                ProcessProductRefresh();
                 INFO.Text = string.Empty;
                 Imei_TextBox?.Clear();
             }
@@ -620,6 +628,32 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             JToken jTokenDelDevice = registrationService.DelDevice(_loginInfo, new Device { Imei = imei }, new SaleOrder { PlatFormType = PlatFormType });
             MessageBox.Show(jTokenDelDevice.ToString());
             CutOverProductOrder(ProductOrderInfo, 100);
+        }
+
+
+        /// <summary>
+        /// 工序日产量刷新
+        /// </summary>
+        private void ProcessProductRefresh()
+        {
+            Thread threadProcessProdcueNum = new Thread(() =>
+            {
+                BaoGongService bgService = new BaoGongService();
+
+                var msgs = bgService.ProcessProdcueNum(_loginInfo);
+
+                foreach (var i in msgs)
+                {
+                    if (DateTime.Now.ToString("yyyy-MM-dd") == i["day"].ToString())
+                    {
+                        if ((int)_process.SelectedProcessName == (int)i["process_id"])
+                        {
+                            Invoke(new Action(() => { process_num.Text = "工序日产量：" + i["num"]; }));
+                        }
+                    }
+                }
+            });
+            threadProcessProdcueNum.Start();
         }
     }
 }

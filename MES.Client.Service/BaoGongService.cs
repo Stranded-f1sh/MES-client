@@ -111,5 +111,13 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
             }
             return PostProductDevice(loginInfo, device);
         }
+
+
+
+        public JToken ProcessProdcueNum(LoginInfo loginInfo)
+        {
+            JObject jObject = DeviceBaoGongApi.ProcessProdcueNumApi(loginInfo);
+            return MyJsonConverter.GetJToken(jObject);
+        }
     }
 }

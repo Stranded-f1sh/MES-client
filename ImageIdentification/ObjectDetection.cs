@@ -27,7 +27,7 @@ namespace ObjectDetectionProgram.ImageIdentification
         private static readonly double MIN_SCORE_FOR_OBJECT_HIGHLIGHTING = double.Parse(config.AppSettings.Settings["MIN_SCORE_FOR_OBJECT_HIGHLIGHTING"].Value);
 
 
-        public static void Run( out CatalogItemList catalogItemList)
+        public static void Run(out CatalogItemList catalogItemList)
         {
             // 解析pbtxt
             _catalog = CatalogUtil.ReadCatalogItems(CatalogPath ?? string.Empty);
@@ -80,10 +80,6 @@ namespace ObjectDetectionProgram.ImageIdentification
                         float[,] scores = (float[,])output[1].GetValue(jagged: false);
                         float[,] classes = (float[,])output[2].GetValue(jagged: false);
                         float[] num = (float[])output[3].GetValue(jagged: false);
-                        Console.WriteLine(boxes);
-                        Console.WriteLine(scores);
-                        Console.WriteLine(classes);
-                        Console.WriteLine(num);
                         tensor.Dispose();
 
                         // 绘制识别框和准确度并输出

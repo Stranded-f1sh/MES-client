@@ -215,7 +215,13 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
         public Report PreviewFrxImg(BigPack bigPack, PreviewControl previewControl1)
         {
             Report rep = new Report { Preview = previewControl1 };
-            if (bigPack == null) return null;
+            if (bigPack?.PackNo == null) 
+            {
+                rep.Prepare();
+                rep.ShowPrepared();
+                previewControl1?.ZoomWholePage();
+                return null;
+            }
             rep.Load(bigPack.FrxFileModel);
 
             // 客户名称

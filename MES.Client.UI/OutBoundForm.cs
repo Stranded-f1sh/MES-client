@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ManufacturingExecutionSystem.MES.Client.Model;
 using ManufacturingExecutionSystem.MES.Client.Service;
+using ManufacturingExecutionSystem.MES.Client.Utility.Utils;
 using Newtonsoft.Json.Linq;
 
 namespace ManufacturingExecutionSystem.MES.Client.UI
@@ -36,7 +37,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             Thread thr = new Thread(delegate () { 
                 scanCodeOutBoundForm.ShowDialog(); 
                 InitComponent();
-                DeviceRefresh(outBoundDeviceRet);
+                Invoke(new Action(() => { DeviceRefresh(outBoundDeviceRet); }));
             });
             thr.SetApartmentState(ApartmentState.STA);
             thr.Start();
@@ -84,7 +85,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         {
             if (outBound_DataGirdView == null) return;
             outBound_DataGirdView.Rows.Clear();
-
+            Console.WriteLine(outboundDevice);
             int outBoundDeviceCount = 0;
             if (!outboundDevice.Any()) return;
             foreach(var item in outboundDevice)
@@ -98,7 +99,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 rowOne.Cells[3].Value = item?.SelectToken("userName");
                 rowOne.Cells[4].Value = item?.SelectToken("platform");
                 rowOne.Cells[5].Value = item?.SelectToken("handleResult");
-                rowOne.Cells[6].Value = item?.SelectToken("userId");
+
+                foreach (var itm in _loginInfo.UserList)
+                {
+                    if (itm?["userId"]?.ToString() == item?.SelectToken("userId").ToString())
+                    {
+                        rowOne.Cells[6].Value = itm?["username"]?.ToString();
+                        break;
+                    }
+                }
+
                 rowOne.Cells[7].Value = "删除";
                 outBound_DataGirdView.Rows.Add(rowOne);
             }

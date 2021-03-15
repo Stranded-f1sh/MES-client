@@ -123,6 +123,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 {
                     loginInfo.User = i["username"]?.ToString();
                     loginInfo.UserProcessPrivilege = i["processnames"]?.ToString();
+                    loginInfo.UserList = userList;
                     ProcessSelectionForm processSelectionForm = new ProcessSelectionForm(loginInfo);
                     new Thread(delegate () { processSelectionForm.ShowDialog(); }).Start();
                     if (RecordPassWd_CheckBox.Checked)

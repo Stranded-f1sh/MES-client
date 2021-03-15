@@ -12,9 +12,12 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
 {
     class OutBoundService
     {
+        LogInfoHelper _logger = new LogInfoHelper();
+
         public JToken PostOutBound(LoginInfo loginInfo, Device deviceObject)
         {
             JObject jObject = OutBoundApi.PostOutBoundApi(loginInfo, deviceObject);
+            _logger.printLog("出库：" + jObject + "\r\n" + deviceObject?.Imei + "\r\n 销售单id：" + deviceObject.SaleOrderId + "\r\n", LogInfoHelper.LOG_TYPE.LOG_INFO);
             return MyJsonConverter.GetJToken(jObject);
         }
 

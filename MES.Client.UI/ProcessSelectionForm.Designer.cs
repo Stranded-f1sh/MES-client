@@ -45,6 +45,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Ship_Button = new System.Windows.Forms.Button();
             this.Repair_Button = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -257,13 +258,28 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.button12.Text = "无";
             this.button12.UseVisualStyleBackColor = false;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Ivory;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.button1.FlatAppearance.BorderSize = 2;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(459, 592);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 24);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "退出";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ProcessSelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1005, 599);
+            this.ClientSize = new System.Drawing.Size(1005, 628);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.ProcessSelectionTitle_Label);
@@ -297,5 +313,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.Button Ship_Button;
         private System.Windows.Forms.Button Repair_Button;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button1;
     }
 }

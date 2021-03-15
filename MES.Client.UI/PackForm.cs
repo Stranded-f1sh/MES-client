@@ -29,13 +29,15 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private Thread _dataUpLoadThread; // 缓存数据上传线程
         private static Mutex _mut; // 互斥锁
         private bool _startScan; // 为true时缓存数据上传线程开始检索缓存数据库
-        private String _tipsSaleOrderNo; // 选择销售单时提示的工单id
+        private int _tipsSaleOrderId; // 选择销售单时提示的工单id
 
         private StringBuilder _appendStrings; // COM口读取数据缓存buffer
         private StringBuilder _appendImei1; // 扫码枪内容1缓存buffer
         private StringBuilder _appendImei2; // 扫码枪内容2缓存buffer
+        private StringBuilder _appendImei3; // 扫码枪内容3缓存buffer
         private Boolean _scanner1IsSent; // 扫码枪1是否发送
         private Boolean _scanner2IsSent; // 扫码枪2是否发送
+        private Boolean _scanner3IsSent; // 扫码枪2是否发送
         public SignStatusEnum signStatus;
         public SignStatusEnum lastSignStatus;
 
@@ -44,6 +46,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         public DateTime scannerILastSignDate;
         public DateTime scannerIILastSignDate;
+        public DateTime scannerIIILastSignDate;
         public DateTime CameraLastSignDate;
         Thread ObjectDetectionFuncThread;
 
@@ -87,11 +90,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             saleOrdersSelectionForm.ShowDialog();
 
             SelectSaleOrder(SaleOrderInfo);
-            if (ProductOrderInfo != null) return;
-            if (SaleOrderInfo?.OrderNo == null) return;
+            // if (ProductOrderInfo != null) return;
+            if (SaleOrderInfo?.Id == 0) return;
 
             if (MessageBox.Show(@"是否显示对应工单报工信息？", "", MessageBoxButtons.OKCancel) != DialogResult.OK) return;
-            _tipsSaleOrderNo = SaleOrderInfo?.OrderNo;
+            _tipsSaleOrderId = SaleOrderInfo.Id;
             OrderSelect_Btn_Click(sender, e);
         }
 
@@ -99,7 +102,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void OrderSelect_Btn_Click(object sender, EventArgs e)
         {
             ProductOrderInfo = new ProductOrder();
-            ProductOrdersSelectionForm productOrdersSelectionForm = new ProductOrdersSelectionForm(_productOrders, _process, _tipsSaleOrderNo)
+            ProductOrdersSelectionForm productOrdersSelectionForm = new ProductOrdersSelectionForm(_productOrders, _process, _tipsSaleOrderId)
             {
                 Owner = this
             };
@@ -360,13 +363,18 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
                 if (BaoGongDeviceList.Rows[index].Cells[12] != null)
                 {
-                    BaoGongDeviceList.Rows[index].Cells[12].Value = _loginInfo.User;
+                    foreach (var itm in _loginInfo.UserList)
+                    {
+                        if (itm?["userId"]?.ToString() == MyJsonConverter.JTokenTransformer(i["userId"]))
+                        {
+                            BaoGongDeviceList.Rows[index].Cells[12].Value = itm?["username"]?.ToString();
+                            break;
+                        }
+                    }
                 }
 
                 if (BaoGongDeviceList.Rows[index].Cells[13] != null)
                 {
-                    BaoGongDeviceList.Rows[index].Cells[13].Value = _loginInfo.User;
-
                     var time = MyJsonConverter.JTokenTransformer(i["startTime"]);
                     if (time.Length == 0)
                     {
@@ -416,16 +424,20 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void Imei_TextBox_KeyPress(object sender, KeyPressEventArgs eventArgs)
         {
             if (eventArgs != null && eventArgs.KeyChar != Convert.ToChar(13)) return;
-
+            eventArgs.Handled = true;
             _startScan = false;
 
             DataCacheService dataCacheService = new DataCacheService();
+            CodeScanHelper codeScanHelper = new CodeScanHelper();
+            string imei = codeScanHelper.CodeScanFilter(Imei_TextBox?.Text, out String pinDian);
+
+            if (imei == null) return;
 
             if (checkBox3.Checked)
             {
                 _mut?.WaitOne();
 
-                int cacheResult = dataCacheService.DeviceCache(Imei_TextBox.Text, _loginInfo.userId, _process.SelectedProcessName, SubmitStatus.UnCommit);
+                int cacheResult = dataCacheService.DeviceCache(imei, _loginInfo.userId, _process.SelectedProcessName, SubmitStatus.UnCommit);
 
                 _mut?.ReleaseMutex();
 
@@ -434,7 +446,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             else if (checkBox4.Checked)
             {
                 dataCacheService.DeviceCache(
-                    Imei_TextBox.Text,
+                    imei,
                     0,
                     String.Empty,
                     _loginInfo.userId,
@@ -468,9 +480,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 BackProcessSelection.Name = "数据缓存(" + ds.Tables[0].Rows.Count + ")";
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
+                    String context = dr[1].ToString().Replace("\r", "");
                     JToken ret = baoGongService.DeviceBaoGong(_loginInfo,
-                        dr[1].ToString(),
+                        context,
                         (ProcessNameEnum)Enum.ToObject(typeof(ProcessNameEnum), int.Parse(dr[6].ToString())), dr[10]?.ToString());
+
+                    LogInfoHelper _logger = new LogInfoHelper();
+
+                    _logger.printLog("小箱单报工info："+ context + "\r\n" + ret + "\r\n", LogInfoHelper.LOG_TYPE.LOG_INFO);
 
                     if ("ok" == ret?.ToString())
                     {
@@ -482,19 +499,23 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                         {
                             MessageBox.Show(@"未成功更新缓存数据库");
                         }
-                        Invoke( new Action(()=> 
+                        else
                         {
-                            INFO.Text = @"设备" + dr[1] + @"报工成功";
-                        }));
+                            Invoke(new Action(() =>
+                            {
+                                INFO.Text = @"设备" + dr[1] + @"报工成功";
+                            }));
+                        }
 
                         // 打印小箱单
                         if (isPrint_CheckBox.Checked)
                         {
-                            string imei = codeScanHelper.CodeScanFilter(dr[1]?.ToString(), out _);
+                            string imei = codeScanHelper.CodeScanFilter(context, out _);
 
                             codeScanHelper.PreviewSmallPackList(new Device { Imei = imei }, SaleOrderInfo, "packlist.frx");
                         }
 
+                        MediaHandler.SyncPlayWAV_Succ();
                         _mut?.ReleaseMutex(); //释放锁
                     }
                     else
@@ -503,6 +524,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                         {
                             INFO.Text = @"设备" + dr[1] + @"报工失败";
                         }));
+                        MediaHandler.SyncPlayWAV_Fail();
                     }
                 }
                 _startScan = false;
@@ -664,6 +686,37 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             _appendImei2.Append(strCharacter);
         }
 
+
+
+        /*
+          *  Get String From readBuffer
+          */
+        private void Imei3ReadLine(SerialPort serialPort)
+        {
+
+            if (serialPort == null) return;
+            if (!serialPort.IsOpen) return;
+            if (_appendImei3 == null) return;
+
+            int bytes = serialPort.BytesToRead;
+
+            byte[] readBuffer = new byte[bytes];
+
+            int count = serialPort.Read(readBuffer, 0, readBuffer.Length);
+
+            if (count <= 0) return;
+
+
+            ASCIIEncoding asciiEncoding = new ASCIIEncoding();
+            string strCharacter = asciiEncoding.GetString(readBuffer);
+
+            if (strCharacter.Contains("\r"))
+            {
+                _scanner3IsSent = true;
+            }
+            _appendImei3.Append(strCharacter);
+        }
+
         #endregion
 
 
@@ -695,6 +748,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             Imei2ReadLine((SerialPort)sender);
         }
 
+
+        /*
+          * Port Data Receive Event
+          */
+        private void scannerPort3_DataReceivedEventHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            Imei3ReadLine((SerialPort)sender);
+        }
         #endregion
 
 
@@ -785,29 +846,58 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             SerialPort scannerPort2 = Initialize_RS485_IO(scannerPortConfig2);
             #endregion
 
+
+            #region 扫码枪3通讯
+            SerialPortConfig scannerPortConfig3 = new SerialPortConfig
+            {
+                PortName = config.AppSettings.Settings["scanner3PortName"].Value,
+                BaudRate = 9600,
+                DataBits = 8,
+                ReadTimeout = 2000,
+                WriteBufferSize = 2048,
+                ReadBufferSize = 40480,
+                StopBits = StopBits.One,
+                Parity = Parity.None,
+                ReceivedBytesThreshold = 1
+            };
+
+            SerialPort scannerPort3 = Initialize_RS485_IO(scannerPortConfig3);
+
+            #endregion
+
             #endregion
 
             new Thread(() =>
             {
-                Boolean deviceIsOpen = OpenPort(devicePort, devicePort_DataReceivedEventHandler);
-                Boolean scanner1IsOpen = OpenPort(scannerPort1, scannerPort1_DataReceivedEventHandler);
-                Boolean scanner2IsOpen = OpenPort(scannerPort2, scannerPort2_DataReceivedEventHandler);
-                Application.DoEvents();
-                if (!deviceIsOpen | !scanner1IsOpen | !scanner2IsOpen)
-                {
-                    INFO.Text = @"端口开启失败";
-                    return;
-                }
-                else
-                {
-                    INFO.Text = @"端口开启成功";
-                }
-                _appendStrings = new StringBuilder();
-                _appendImei1 = new StringBuilder();
-                _appendImei2 = new StringBuilder();
                 try
                 {
-                    AutoPackProgramRun(devicePort, scannerPort1, scannerPort2);
+                    Boolean deviceIsOpen = OpenPort(devicePort, devicePort_DataReceivedEventHandler);
+                    Boolean scanner1IsOpen = OpenPort(scannerPort1, scannerPort1_DataReceivedEventHandler);
+                    Boolean scanner2IsOpen = OpenPort(scannerPort2, scannerPort2_DataReceivedEventHandler);
+                    Boolean scanner3IsOpen = OpenPort(scannerPort3, scannerPort3_DataReceivedEventHandler);
+                    Application.DoEvents();
+                    if (!deviceIsOpen | !scanner1IsOpen | !scanner2IsOpen | !scanner3IsOpen)
+                    {
+                        INFO.Text = @"端口开启失败";
+                        return;
+                    }
+                    else
+                    {
+                        INFO.Text = @"端口开启成功";
+                    }
+                    _appendStrings = new StringBuilder();
+                    _appendImei1 = new StringBuilder();
+                    _appendImei2 = new StringBuilder();
+                    _appendImei3 = new StringBuilder();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                try
+                {
+                    AutoPackProgramRun(devicePort, scannerPort1, scannerPort2, scannerPort3);
                 }
                 catch (Exception ex)
                 {
@@ -1014,8 +1104,90 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 case "00":
                     Sign = "";
                     scannerILastSignDate = new DateTime(0001, 1, 1, 0, 00, 00);
-                    scannerILastSignDate = new DateTime(0001, 1, 1, 0, 00, 00);
+                    scannerIILastSignDate = new DateTime(0001, 1, 1, 0, 00, 00);
+                    scannerIIILastSignDate = new DateTime(0001, 1, 1, 0, 00, 00);
                     CameraLastSignDate = new DateTime(0001, 1, 1, 0, 00, 00);
+                    break;
+                case "20":
+                    if (TimeTest(scannerIIILastSignDate))
+                    {
+                        Sign = "4";
+                        scannerIIILastSignDate = DateTime.Now;
+                        break;
+                    }
+                    Sign = "";
+                    break;
+                case "28":
+                    Sign = "42";
+
+                    if (!TimeTest(scannerIIILastSignDate))
+                    {
+                        Sign = Sign.Replace("4", "");
+                    }
+                    else
+                    {
+                        scannerIIILastSignDate = DateTime.Now;
+                    }
+
+                    if (!TimeTest(scannerIILastSignDate))
+                    {
+                        Sign = Sign.Replace("2", "");
+                    }
+                    else
+                    {
+                        scannerIILastSignDate = DateTime.Now;
+                    }
+                    break;
+                case "2a":
+                    Sign = "423";
+
+                    if (!TimeTest(scannerIIILastSignDate))
+                    {
+                        Sign = Sign.Replace("4", "");
+                    }
+                    else
+                    {
+                        scannerIIILastSignDate = DateTime.Now;
+                    }
+
+                    if (!TimeTest(scannerIILastSignDate))
+                    {
+                        Sign = Sign.Replace("2", "");
+                    }
+                    else
+                    {
+                        scannerIILastSignDate = DateTime.Now;
+                    }
+
+                    if (!TimeTest(CameraLastSignDate))
+                    {
+                        Sign = Sign.Replace("3", "");
+                    }
+                    else
+                    {
+                        CameraLastSignDate = DateTime.Now;
+                    }
+                    break;
+                case "22":
+                    Sign = "43";
+
+                    if (!TimeTest(scannerIIILastSignDate))
+                    {
+                        Sign = Sign.Replace("4", "");
+                    }
+                    else
+                    {
+                        scannerIIILastSignDate = DateTime.Now;
+                    }
+
+                    if (!TimeTest(CameraLastSignDate))
+                    {
+                        Sign = Sign.Replace("3", "");
+                    }
+                    else
+                    {
+                        CameraLastSignDate = DateTime.Now;
+                    }
                     break;
             }
         }
@@ -1036,6 +1208,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 7);
                 }catch(Exception ex)
                 {
+                    MessageBox.Show(ex.Message);
                     INFO.Text = "IsScanner1ReceivedCorrectScanData" + ex.Message;
                     if (serialPort != null)
                     {
@@ -1080,12 +1253,44 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
             return true;
         }
+
+
+        private Boolean IsScanner3ReceivedCorrectScanData(SerialPort serialPort, byte[] xInput)
+        {
+            //int reTriedTimes = 0;
+            _scanner3IsSent = false;
+            do
+            {
+                _appendImei3?.Clear();
+                //reTriedTimes++;
+                //if (reTriedTimes > 5) return false;
+                try
+                {
+                    serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 7);
+                }
+                catch (Exception ex)
+                {
+                    INFO.Text = "IsScanner3ReceivedCorrectScanData" + ex.Message;
+                    if (serialPort != null)
+                    {
+                        OpenPort(serialPort, scannerPort3_DataReceivedEventHandler);
+                    }
+
+                    Console.WriteLine(ex.Message);
+                }
+
+                Thread.Sleep(1000);
+            } while (!_scanner3IsSent);
+
+            return true;
+        }
+
         // ==============================判断接收的数据是否符合规范=================================
         #endregion
 
 
         CatalogItemList catalogItemList;
-        private void AutoPackProgramRun(SerialPort devicePort, SerialPort scannerPort1, SerialPort scannerPort2)
+        private void AutoPackProgramRun(SerialPort devicePort, SerialPort scannerPort1, SerialPort scannerPort2, SerialPort scannerPort3)
         {
             while (true)
             {
@@ -1099,6 +1304,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 {
                     ScannerIFuncExcute(devicePort, scannerPort1);
                 }
+                if (Sign.Contains("4"))
+                {
+                    ScannerIIIFuncExcute(devicePort, scannerPort3);
+                }
                 if (Sign.Contains("2"))
                 {
                     ScannerIIFuncExcute(scannerPort2);
@@ -1107,6 +1316,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 {
                     CameraFuncExcute(devicePort);
                 }
+
                 if (catalogItemList?.catalogItemList != null)
                 {
                     bool detectionRes = false;
@@ -1167,7 +1377,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             devicePort?.Write(CommandDefinition.N5DisConnect ?? Array.Empty<byte>(), 0, 8);
             INFO.Text = "N5发送结束，并缓存报工打印";
             DataCacheService dataCacheService = new DataCacheService();
-            int cacheResult = dataCacheService.DeviceCache(_appendImei1.ToString(), _loginInfo.userId, _process.SelectedProcessName, SubmitStatus.UnCommit);
+            String imei1;
+            imei1 = _appendImei1.ToString();
+            imei1 = imei1.Replace("\r", "");
+            imei1 = imei1.Replace("\n", "");
+            int cacheResult = dataCacheService.DeviceCache(imei1, _loginInfo.userId, _process.SelectedProcessName, SubmitStatus.UnCommit);
             _startScan = cacheResult == 1;
         }
         #endregion
@@ -1218,11 +1432,44 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         #endregion
 
 
+        #region 扫码枪3调用方法
+        public void ScannerIIIFuncExcute(SerialPort devicePort, SerialPort scannerPort3)
+        {
+            INFO.Text = @"收到皮带传送表到位信号，发送扫码指令";
+            IsScanner3ReceivedCorrectScanData(scannerPort3, CommandDefinition.ScannerScanCode);
+            INFO.Text = "收到" + _appendImei3.ToString() + "并发送N8";
+            devicePort?.Write(CommandDefinition.N8Connect ?? Array.Empty<byte>(), 0, 8);
+            Thread.Sleep(2000);
+            devicePort?.Write(CommandDefinition.N8DisConnect ?? Array.Empty<byte>(), 0, 8);
+            INFO.Text = "N5发送结束，并缓存报工打印";
+            DataCacheService dataCacheService = new DataCacheService();
+            String imei3;
+            imei3 = _appendImei3.ToString();
+            imei3 = imei3.Replace("\r", "");
+            imei3 = imei3.Replace("\n", "");
+            int cacheResult = dataCacheService.DeviceCache(imei3, _loginInfo.userId, _process.SelectedProcessName, SubmitStatus.UnCommit);
+            _startScan = cacheResult == 1;
+        }
+
+
+        #endregion
+
+
         #region 目标检测调用
 
         public void ObjectDetectionFuncExcute()
         {
-            ObjectDetectionFuncThread = new Thread(delegate () { ObjectDetectionProgram.ImageIdentification.ObjectDetection.Run(out catalogItemList); });
+            ObjectDetectionFuncThread = new Thread(delegate () 
+            {
+                try
+                {
+                    ObjectDetectionProgram.ImageIdentification.ObjectDetection.Run(out catalogItemList);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("视觉："+ex.Message);
+                }
+            });
 
             ObjectDetectionFuncThread.Start();
             Application.DoEvents();

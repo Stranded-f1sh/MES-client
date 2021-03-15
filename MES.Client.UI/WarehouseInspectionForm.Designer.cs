@@ -72,13 +72,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button8 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.DataReceive_Btn = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.DeviceClean_Btn = new System.Windows.Forms.Button();
-            this.DeviceScan_Btn = new System.Windows.Forms.Button();
+            this.DeviceLimitAndScan_Btn = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.PortStatus = new System.Windows.Forms.Label();
             this.RoutePosition_ComboBox = new System.Windows.Forms.ComboBox();
@@ -168,6 +167,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // toolStrip1
             // 
+            this.toolStrip1.AutoSize = false;
             this.toolStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(50, 50);
@@ -190,7 +190,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(955, 71);
+            this.toolStrip1.Size = new System.Drawing.Size(1055, 75);
             this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 35;
             this.toolStrip1.Text = "toolStrip1";
@@ -271,7 +271,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 71);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 75);
             // 
             // BackPage_Btn
             // 
@@ -299,7 +299,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 71);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 75);
             // 
             // Setting_Button
             // 
@@ -324,16 +324,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(6, 71);
+            this.toolStripSeparator.Size = new System.Drawing.Size(6, 75);
             // 
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox3.Location = new System.Drawing.Point(4, 69);
+            this.textBox3.Location = new System.Drawing.Point(3, 74);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(947, 23);
+            this.textBox3.Size = new System.Drawing.Size(1051, 23);
             this.textBox3.TabIndex = 36;
             this.textBox3.Text = "INFO";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -343,18 +343,18 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox2.BackColor = System.Drawing.Color.Green;
             this.groupBox2.Controls.Add(this.process_num);
             this.groupBox2.Controls.Add(this.INFO);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft YaHei", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox2.ForeColor = System.Drawing.Color.LawnGreen;
-            this.groupBox2.Location = new System.Drawing.Point(4, 84);
+            this.groupBox2.Location = new System.Drawing.Point(3, 89);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(947, 56);
+            this.groupBox2.Size = new System.Drawing.Size(1051, 56);
             this.groupBox2.TabIndex = 37;
             this.groupBox2.TabStop = false;
             // 
             // process_num
             // 
             this.process_num.AutoSize = true;
-            this.process_num.Font = new System.Drawing.Font("MingHei", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.process_num.Font = new System.Drawing.Font("明黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.process_num.ForeColor = System.Drawing.Color.Lime;
             this.process_num.Location = new System.Drawing.Point(742, 27);
             this.process_num.Name = "process_num";
@@ -365,8 +365,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // INFO
             // 
             this.INFO.AutoSize = true;
-            this.INFO.Font = new System.Drawing.Font("NSimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.INFO.Location = new System.Drawing.Point(7, 17);
+            this.INFO.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.INFO.Location = new System.Drawing.Point(7, 22);
             this.INFO.Name = "INFO";
             this.INFO.Size = new System.Drawing.Size(0, 14);
             this.INFO.TabIndex = 0;
@@ -376,9 +376,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox5.BackColor = System.Drawing.Color.LightGray;
             this.groupBox5.Controls.Add(this.textBox12);
             this.groupBox5.Controls.Add(this.groupBox8);
-            this.groupBox5.Location = new System.Drawing.Point(4, 141);
+            this.groupBox5.Location = new System.Drawing.Point(3, 146);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(476, 154);
+            this.groupBox5.Size = new System.Drawing.Size(580, 154);
             this.groupBox5.TabIndex = 38;
             this.groupBox5.TabStop = false;
             // 
@@ -420,7 +420,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label12.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label12.ForeColor = System.Drawing.Color.Red;
             this.label12.Location = new System.Drawing.Point(104, 12);
             this.label12.Name = "label12";
@@ -458,7 +458,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label11.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label11.ForeColor = System.Drawing.Color.Red;
             this.label11.Location = new System.Drawing.Point(74, 12);
             this.label11.Name = "label11";
@@ -478,7 +478,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label13.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label13.ForeColor = System.Drawing.Color.Red;
             this.label13.Location = new System.Drawing.Point(136, 12);
             this.label13.Name = "label13";
@@ -498,7 +498,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label15.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label15.ForeColor = System.Drawing.Color.Red;
             this.label15.Location = new System.Drawing.Point(166, 12);
             this.label15.Name = "label15";
@@ -518,7 +518,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label16.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label16.ForeColor = System.Drawing.Color.Red;
             this.label16.Location = new System.Drawing.Point(196, 12);
             this.label16.Name = "label16";
@@ -538,7 +538,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label17.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label17.ForeColor = System.Drawing.Color.Red;
             this.label17.Location = new System.Drawing.Point(226, 12);
             this.label17.Name = "label17";
@@ -558,7 +558,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label18.ForeColor = System.Drawing.Color.Red;
             this.label18.Location = new System.Drawing.Point(256, 12);
             this.label18.Name = "label18";
@@ -578,7 +578,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label19.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label19.ForeColor = System.Drawing.Color.Red;
             this.label19.Location = new System.Drawing.Point(286, 12);
             this.label19.Name = "label19";
@@ -598,7 +598,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label20.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label20.ForeColor = System.Drawing.Color.Red;
             this.label20.Location = new System.Drawing.Point(316, 12);
             this.label20.Name = "label20";
@@ -609,7 +609,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LightGray;
-            this.groupBox1.Controls.Add(this.button8);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.groupBox7);
             this.groupBox1.Controls.Add(this.groupBox6);
@@ -620,26 +619,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.PortName_ComboBox);
             this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Location = new System.Drawing.Point(480, 140);
+            this.groupBox1.Location = new System.Drawing.Point(479, 145);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(471, 155);
+            this.groupBox1.Size = new System.Drawing.Size(575, 155);
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "通讯区";
             // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(71, 118);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 16;
-            this.button8.Text = "打印机设置";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(144, 59);
+            this.checkBox1.Location = new System.Drawing.Point(240, 79);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(72, 16);
             this.checkBox1.TabIndex = 15;
@@ -652,9 +642,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox7.Controls.Add(this.DataReceive_Btn);
             this.groupBox7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBox7.ForeColor = System.Drawing.Color.Black;
-            this.groupBox7.Location = new System.Drawing.Point(234, 106);
+            this.groupBox7.Location = new System.Drawing.Point(369, 106);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(220, 41);
+            this.groupBox7.Size = new System.Drawing.Size(187, 41);
             this.groupBox7.TabIndex = 14;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "数据接收";
@@ -665,23 +655,24 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.DataReceive_Btn.FlatAppearance.BorderColor = System.Drawing.Color.Green;
             this.DataReceive_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DataReceive_Btn.ForeColor = System.Drawing.Color.Black;
-            this.DataReceive_Btn.Location = new System.Drawing.Point(74, 12);
+            this.DataReceive_Btn.Location = new System.Drawing.Point(57, 12);
             this.DataReceive_Btn.Name = "DataReceive_Btn";
             this.DataReceive_Btn.Size = new System.Drawing.Size(75, 23);
             this.DataReceive_Btn.TabIndex = 9;
             this.DataReceive_Btn.Text = "数据接收";
             this.DataReceive_Btn.UseVisualStyleBackColor = false;
+            this.DataReceive_Btn.Click += new System.EventHandler(this.DataReceive_Btn_Click);
             // 
             // groupBox6
             // 
             this.groupBox6.BackColor = System.Drawing.Color.Silver;
             this.groupBox6.Controls.Add(this.DeviceClean_Btn);
-            this.groupBox6.Controls.Add(this.DeviceScan_Btn);
+            this.groupBox6.Controls.Add(this.DeviceLimitAndScan_Btn);
             this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBox6.ForeColor = System.Drawing.Color.Black;
-            this.groupBox6.Location = new System.Drawing.Point(234, 59);
+            this.groupBox6.Location = new System.Drawing.Point(369, 59);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(220, 49);
+            this.groupBox6.Size = new System.Drawing.Size(187, 49);
             this.groupBox6.TabIndex = 13;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "限定连接";
@@ -692,30 +683,32 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.DeviceClean_Btn.FlatAppearance.BorderColor = System.Drawing.Color.Green;
             this.DeviceClean_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeviceClean_Btn.ForeColor = System.Drawing.Color.Black;
-            this.DeviceClean_Btn.Location = new System.Drawing.Point(127, 17);
+            this.DeviceClean_Btn.Location = new System.Drawing.Point(102, 17);
             this.DeviceClean_Btn.Name = "DeviceClean_Btn";
             this.DeviceClean_Btn.Size = new System.Drawing.Size(75, 23);
             this.DeviceClean_Btn.TabIndex = 10;
             this.DeviceClean_Btn.Text = "IMEI清除";
             this.DeviceClean_Btn.UseVisualStyleBackColor = false;
+            this.DeviceClean_Btn.Click += new System.EventHandler(this.DeviceClean_Btn_Click);
             // 
-            // DeviceScan_Btn
+            // DeviceLimitAndScan_Btn
             // 
-            this.DeviceScan_Btn.BackColor = System.Drawing.Color.Ivory;
-            this.DeviceScan_Btn.FlatAppearance.BorderColor = System.Drawing.Color.Green;
-            this.DeviceScan_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DeviceScan_Btn.ForeColor = System.Drawing.Color.Black;
-            this.DeviceScan_Btn.Location = new System.Drawing.Point(17, 17);
-            this.DeviceScan_Btn.Name = "DeviceScan_Btn";
-            this.DeviceScan_Btn.Size = new System.Drawing.Size(75, 23);
-            this.DeviceScan_Btn.TabIndex = 7;
-            this.DeviceScan_Btn.Text = "限定搜索";
-            this.DeviceScan_Btn.UseVisualStyleBackColor = false;
+            this.DeviceLimitAndScan_Btn.BackColor = System.Drawing.Color.Ivory;
+            this.DeviceLimitAndScan_Btn.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.DeviceLimitAndScan_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DeviceLimitAndScan_Btn.ForeColor = System.Drawing.Color.Black;
+            this.DeviceLimitAndScan_Btn.Location = new System.Drawing.Point(11, 17);
+            this.DeviceLimitAndScan_Btn.Name = "DeviceLimitAndScan_Btn";
+            this.DeviceLimitAndScan_Btn.Size = new System.Drawing.Size(75, 23);
+            this.DeviceLimitAndScan_Btn.TabIndex = 7;
+            this.DeviceLimitAndScan_Btn.Text = "限定搜索";
+            this.DeviceLimitAndScan_Btn.UseVisualStyleBackColor = false;
+            this.DeviceLimitAndScan_Btn.Click += new System.EventHandler(this.DeviceLimitAndScan_Btn_Click);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(163, 34);
+            this.label10.Location = new System.Drawing.Point(256, 32);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 12);
             this.label10.TabIndex = 12;
@@ -724,8 +717,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // PortStatus
             // 
             this.PortStatus.AutoSize = true;
-            this.PortStatus.Font = new System.Drawing.Font("SimSun", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.PortStatus.Location = new System.Drawing.Point(137, 31);
+            this.PortStatus.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.PortStatus.Location = new System.Drawing.Point(230, 30);
             this.PortStatus.Name = "PortStatus";
             this.PortStatus.Size = new System.Drawing.Size(28, 19);
             this.PortStatus.TabIndex = 11;
@@ -746,16 +739,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             "7",
             "8",
             "9"});
-            this.RoutePosition_ComboBox.Location = new System.Drawing.Point(70, 56);
+            this.RoutePosition_ComboBox.Location = new System.Drawing.Point(51, 78);
             this.RoutePosition_ComboBox.Name = "RoutePosition_ComboBox";
             this.RoutePosition_ComboBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.RoutePosition_ComboBox.Size = new System.Drawing.Size(61, 20);
+            this.RoutePosition_ComboBox.Size = new System.Drawing.Size(94, 20);
             this.RoutePosition_ComboBox.TabIndex = 6;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(24, 59);
+            this.label8.Location = new System.Drawing.Point(5, 81);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 12);
             this.label8.TabIndex = 5;
@@ -764,7 +757,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(24, 34);
+            this.label7.Location = new System.Drawing.Point(6, 34);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 12);
             this.label7.TabIndex = 4;
@@ -773,13 +766,15 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // PortName_ComboBox
             // 
             this.PortName_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PortName_ComboBox.Font = new System.Drawing.Font("宋体", 9F);
             this.PortName_ComboBox.FormattingEnabled = true;
             this.PortName_ComboBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.PortName_ComboBox.Location = new System.Drawing.Point(71, 30);
+            this.PortName_ComboBox.Location = new System.Drawing.Point(50, 30);
             this.PortName_ComboBox.Name = "PortName_ComboBox";
             this.PortName_ComboBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.PortName_ComboBox.Size = new System.Drawing.Size(60, 20);
+            this.PortName_ComboBox.Size = new System.Drawing.Size(165, 20);
             this.PortName_ComboBox.TabIndex = 3;
+            this.PortName_ComboBox.SelectedIndexChanged += new System.EventHandler(this.PortName_ComboBox_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -788,9 +783,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox3.Controls.Add(this.OpenDangle_Btn);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox3.ForeColor = System.Drawing.Color.Black;
-            this.groupBox3.Location = new System.Drawing.Point(234, 13);
+            this.groupBox3.Location = new System.Drawing.Point(369, 13);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(220, 47);
+            this.groupBox3.Size = new System.Drawing.Size(187, 47);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "串口通讯开关";
@@ -801,12 +796,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.CloseDangle_Btn.FlatAppearance.BorderColor = System.Drawing.Color.Green;
             this.CloseDangle_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseDangle_Btn.ForeColor = System.Drawing.Color.Black;
-            this.CloseDangle_Btn.Location = new System.Drawing.Point(128, 14);
+            this.CloseDangle_Btn.Location = new System.Drawing.Point(103, 14);
             this.CloseDangle_Btn.Name = "CloseDangle_Btn";
             this.CloseDangle_Btn.Size = new System.Drawing.Size(75, 23);
             this.CloseDangle_Btn.TabIndex = 1;
             this.CloseDangle_Btn.Text = "关闭";
             this.CloseDangle_Btn.UseVisualStyleBackColor = false;
+            this.CloseDangle_Btn.Click += new System.EventHandler(this.CloseDangle_Btn_Click);
             // 
             // OpenDangle_Btn
             // 
@@ -814,7 +810,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.OpenDangle_Btn.FlatAppearance.BorderColor = System.Drawing.Color.Green;
             this.OpenDangle_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpenDangle_Btn.ForeColor = System.Drawing.Color.Black;
-            this.OpenDangle_Btn.Location = new System.Drawing.Point(17, 15);
+            this.OpenDangle_Btn.Location = new System.Drawing.Point(12, 15);
             this.OpenDangle_Btn.Name = "OpenDangle_Btn";
             this.OpenDangle_Btn.Size = new System.Drawing.Size(75, 23);
             this.OpenDangle_Btn.TabIndex = 0;
@@ -855,9 +851,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox4.Controls.Add(this.Imei_3_TextBox);
             this.groupBox4.Controls.Add(this.Imei_2_TextBox);
             this.groupBox4.Controls.Add(this.Imei_1_TextBox);
-            this.groupBox4.Location = new System.Drawing.Point(4, 293);
+            this.groupBox4.Location = new System.Drawing.Point(3, 298);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(947, 164);
+            this.groupBox4.Size = new System.Drawing.Size(1051, 164);
             this.groupBox4.TabIndex = 40;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "扫码区";
@@ -1207,9 +1203,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.textBox7.CausesValidation = false;
             this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox7.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox7.Location = new System.Drawing.Point(4, 452);
+            this.textBox7.Location = new System.Drawing.Point(3, 457);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(947, 23);
+            this.textBox7.Size = new System.Drawing.Size(1051, 23);
             this.textBox7.TabIndex = 42;
             this.textBox7.TabStop = false;
             this.textBox7.Text = "已检验设备";
@@ -1287,9 +1283,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(4, 475);
+            this.listView1.Location = new System.Drawing.Point(3, 480);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(947, 254);
+            this.listView1.Size = new System.Drawing.Size(1051, 254);
             this.listView1.TabIndex = 14;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -1301,7 +1297,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Exit_Form.FlatAppearance.BorderSize = 2;
             this.Exit_Form.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Exit_Form.ForeColor = System.Drawing.Color.Black;
-            this.Exit_Form.Location = new System.Drawing.Point(424, 735);
+            this.Exit_Form.Location = new System.Drawing.Point(498, 752);
             this.Exit_Form.Name = "Exit_Form";
             this.Exit_Form.Size = new System.Drawing.Size(108, 27);
             this.Exit_Form.TabIndex = 43;
@@ -1313,7 +1309,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(955, 791);
+            this.ClientSize = new System.Drawing.Size(1055, 791);
             this.Controls.Add(this.Exit_Form);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBox7);
@@ -1391,13 +1387,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button DataReceive_Btn;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button DeviceClean_Btn;
-        private System.Windows.Forms.Button DeviceScan_Btn;
+        private System.Windows.Forms.Button DeviceLimitAndScan_Btn;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label PortStatus;
         private System.Windows.Forms.ComboBox RoutePosition_ComboBox;

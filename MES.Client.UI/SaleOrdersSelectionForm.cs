@@ -194,7 +194,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             }
             else
             {
-                MessageBox.Show(@"妈的把在");
+                MessageBox.Show(@"");
             }
         }
 
@@ -202,6 +202,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private void SaleOrder_TextBox_KeyPress(object sender, KeyPressEventArgs eventArgs)
         {
             if (eventArgs != null && eventArgs.KeyChar != Convert.ToChar(13)) return;
+            eventArgs.Handled = true;
             Go_Button_Click(sender, eventArgs);
         }
 

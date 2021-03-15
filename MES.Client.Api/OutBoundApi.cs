@@ -42,10 +42,9 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         /// 获取设备报工记录接口(出库)
         /// </summary>
         /// <param name="loginInfo"></param>
+        /// <param name="saleOrderId"></param>
         /// <param name="processId"></param>
-        /// <param name="pageSize"></param>
-        /// <param name="pageNo"></param>
-        /// <returns></returns>
+        /// <returns> outBoundDeviceRet </returns>
         public static JObject GetOutBoundProductDevicesApi(LoginInfo loginInfo, int saleOrderId, int processId)
         {
             return Common.BackgroundRequest("/prod-api/order/productDevices?processId=" + processId + "&saleOrderId=" + saleOrderId, Method.GET, loginInfo?.Token);

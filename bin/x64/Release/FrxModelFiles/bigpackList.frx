@@ -3,7 +3,7 @@
   <Dictionary/>
   <ReportPage Name="Page1" PaperWidth="60" PaperHeight="40" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" FirstPageSource="256" OtherPagesSource="256">
     <DataBand Name="Data1" Width="226.8" Height="143.45">
-      <TableObject Name="Table1" Left="13.9" Top="8.45" Width="204.4" Height="132">
+      <TableObject Name="Table1" Left="3.9" Top="8.45" Width="204.4" Height="132">
         <TableColumn Name="Column1" Width="47.22"/>
         <TableColumn Name="Column2" Width="157.18"/>
         <TableRow Name="Row1" Height="20">

@@ -68,10 +68,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.process_num = new System.Windows.Forms.Label();
             this.INFO = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.CreateProductOrder_Btn = new System.Windows.Forms.ToolStripButton();
             this.LoadSaleOrders_btn = new System.Windows.Forms.ToolStripButton();
             this.OrderSelect_Btn = new System.Windows.Forms.ToolStripButton();
-            this.Find_Button = new System.Windows.Forms.ToolStripButton();
             this.DBCache_Button = new System.Windows.Forms.ToolStripButton();
             this.PLC_Communication_Button = new System.Windows.Forms.ToolStripButton();
             this.BigPackFormLoad_Button = new System.Windows.Forms.ToolStripButton();
@@ -103,7 +101,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox5.BackColor = System.Drawing.Color.LightGray;
             this.groupBox5.Controls.Add(this.label2);
             this.groupBox5.Controls.Add(this.PageNum_Label);
-            this.groupBox5.Location = new System.Drawing.Point(839, 722);
+            this.groupBox5.Location = new System.Drawing.Point(748, 648);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(141, 31);
             this.groupBox5.TabIndex = 36;
@@ -122,7 +120,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // PageNum_Label
             // 
             this.PageNum_Label.AutoSize = true;
-            this.PageNum_Label.Location = new System.Drawing.Point(87, 14);
+            this.PageNum_Label.Location = new System.Drawing.Point(87, 12);
             this.PageNum_Label.Name = "PageNum_Label";
             this.PageNum_Label.Size = new System.Drawing.Size(11, 12);
             this.PageNum_Label.TabIndex = 25;
@@ -136,7 +134,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Exit_Form.FlatAppearance.BorderSize = 2;
             this.Exit_Form.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Exit_Form.ForeColor = System.Drawing.Color.Black;
-            this.Exit_Form.Location = new System.Drawing.Point(537, 725);
+            this.Exit_Form.Location = new System.Drawing.Point(446, 651);
             this.Exit_Form.Name = "Exit_Form";
             this.Exit_Form.Size = new System.Drawing.Size(108, 28);
             this.Exit_Form.TabIndex = 35;
@@ -153,7 +151,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.BaoGongDeviceList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -162,7 +160,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.BaoGongDeviceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -172,7 +170,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.BaoGongDeviceList.Location = new System.Drawing.Point(3, 383);
             this.BaoGongDeviceList.Name = "BaoGongDeviceList";
             this.BaoGongDeviceList.RowTemplate.Height = 20;
-            this.BaoGongDeviceList.Size = new System.Drawing.Size(1172, 336);
+            this.BaoGongDeviceList.Size = new System.Drawing.Size(991, 258);
             this.BaoGongDeviceList.TabIndex = 33;
             // 
             // textBox4
@@ -184,7 +182,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.textBox4.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.textBox4.Location = new System.Drawing.Point(2, 361);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(1173, 23);
+            this.textBox4.Size = new System.Drawing.Size(992, 23);
             this.textBox4.TabIndex = 32;
             this.textBox4.TabStop = false;
             this.textBox4.Text = "已报工设备";
@@ -202,9 +200,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox3.Controls.Add(this.Qualify_ComboBox);
             this.groupBox3.Controls.Add(this.label_orderId_imei);
             this.groupBox3.Controls.Add(this.Imei_TextBox);
-            this.groupBox3.Location = new System.Drawing.Point(573, 157);
+            this.groupBox3.Location = new System.Drawing.Point(467, 157);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(602, 207);
+            this.groupBox3.Size = new System.Drawing.Size(527, 207);
             this.groupBox3.TabIndex = 31;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "用户输入";
@@ -315,7 +313,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_orderId_imei
             // 
             this.label_orderId_imei.AutoSize = true;
-            this.label_orderId_imei.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_orderId_imei.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_orderId_imei.ForeColor = System.Drawing.Color.Black;
             this.label_orderId_imei.Location = new System.Drawing.Point(54, 31);
             this.label_orderId_imei.Name = "label_orderId_imei";
@@ -349,7 +347,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox1.Controls.Add(this.DeviceModel_TextBox);
             this.groupBox1.Location = new System.Drawing.Point(2, 157);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(574, 207);
+            this.groupBox1.Size = new System.Drawing.Size(465, 207);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "销售单信息";
@@ -357,7 +355,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // SaleOrderNo_TextBox
             // 
             this.SaleOrderNo_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.SaleOrderNo_TextBox.Font = new System.Drawing.Font("DengXian", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SaleOrderNo_TextBox.Font = new System.Drawing.Font("等线", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.SaleOrderNo_TextBox.Location = new System.Drawing.Point(102, 32);
             this.SaleOrderNo_TextBox.Name = "SaleOrderNo_TextBox";
             this.SaleOrderNo_TextBox.ReadOnly = true;
@@ -367,7 +365,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // PackNum_TextBox
             // 
             this.PackNum_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.PackNum_TextBox.Font = new System.Drawing.Font("DengXian", 10.5F);
+            this.PackNum_TextBox.Font = new System.Drawing.Font("等线", 10.5F);
             this.PackNum_TextBox.Location = new System.Drawing.Point(102, 165);
             this.PackNum_TextBox.Name = "PackNum_TextBox";
             this.PackNum_TextBox.ReadOnly = true;
@@ -377,7 +375,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_region
             // 
             this.label_region.AutoSize = true;
-            this.label_region.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_region.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_region.ForeColor = System.Drawing.Color.Black;
             this.label_region.Location = new System.Drawing.Point(5, 170);
             this.label_region.Name = "label_region";
@@ -388,7 +386,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_buynum
             // 
             this.label_buynum.AutoSize = true;
-            this.label_buynum.Font = new System.Drawing.Font("NSimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_buynum.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_buynum.ForeColor = System.Drawing.Color.Black;
             this.label_buynum.Location = new System.Drawing.Point(6, 138);
             this.label_buynum.Name = "label_buynum";
@@ -399,7 +397,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // CompanyFullName_TextBox
             // 
             this.CompanyFullName_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.CompanyFullName_TextBox.Font = new System.Drawing.Font("DengXian", 10.5F);
+            this.CompanyFullName_TextBox.Font = new System.Drawing.Font("等线", 10.5F);
             this.CompanyFullName_TextBox.Location = new System.Drawing.Point(102, 66);
             this.CompanyFullName_TextBox.Name = "CompanyFullName_TextBox";
             this.CompanyFullName_TextBox.ReadOnly = true;
@@ -409,7 +407,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_deviceModel
             // 
             this.label_deviceModel.AutoSize = true;
-            this.label_deviceModel.Font = new System.Drawing.Font("NSimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_deviceModel.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_deviceModel.ForeColor = System.Drawing.Color.Black;
             this.label_deviceModel.Location = new System.Drawing.Point(6, 105);
             this.label_deviceModel.Name = "label_deviceModel";
@@ -420,7 +418,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_companyName
             // 
             this.label_companyName.AutoSize = true;
-            this.label_companyName.Font = new System.Drawing.Font("NSimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_companyName.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_companyName.ForeColor = System.Drawing.Color.Black;
             this.label_companyName.Location = new System.Drawing.Point(6, 71);
             this.label_companyName.Name = "label_companyName";
@@ -431,7 +429,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // BuyNumber_TextBox
             // 
             this.BuyNumber_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BuyNumber_TextBox.Font = new System.Drawing.Font("DengXian", 10.5F);
+            this.BuyNumber_TextBox.Font = new System.Drawing.Font("等线", 10.5F);
             this.BuyNumber_TextBox.Location = new System.Drawing.Point(102, 133);
             this.BuyNumber_TextBox.Name = "BuyNumber_TextBox";
             this.BuyNumber_TextBox.ReadOnly = true;
@@ -441,7 +439,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // label_orderno
             // 
             this.label_orderno.AutoSize = true;
-            this.label_orderno.Font = new System.Drawing.Font("NSimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_orderno.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_orderno.ForeColor = System.Drawing.Color.Black;
             this.label_orderno.Location = new System.Drawing.Point(6, 37);
             this.label_orderno.Name = "label_orderno";
@@ -452,7 +450,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // DeviceModel_TextBox
             // 
             this.DeviceModel_TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.DeviceModel_TextBox.Font = new System.Drawing.Font("DengXian", 10.5F);
+            this.DeviceModel_TextBox.Font = new System.Drawing.Font("等线", 10.5F);
             this.DeviceModel_TextBox.Location = new System.Drawing.Point(102, 100);
             this.DeviceModel_TextBox.Name = "DeviceModel_TextBox";
             this.DeviceModel_TextBox.ReadOnly = true;
@@ -468,7 +466,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.textBox3.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.textBox3.Location = new System.Drawing.Point(2, 85);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(1173, 23);
+            this.textBox3.Size = new System.Drawing.Size(992, 23);
             this.textBox3.TabIndex = 28;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -479,11 +477,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox2.BackColor = System.Drawing.Color.Green;
             this.groupBox2.Controls.Add(this.process_num);
             this.groupBox2.Controls.Add(this.INFO);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft YaHei", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox2.ForeColor = System.Drawing.Color.LawnGreen;
             this.groupBox2.Location = new System.Drawing.Point(2, 100);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1173, 56);
+            this.groupBox2.Size = new System.Drawing.Size(992, 56);
             this.groupBox2.TabIndex = 29;
             this.groupBox2.TabStop = false;
             // 
@@ -491,9 +489,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.process_num.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.process_num.AutoSize = true;
-            this.process_num.Font = new System.Drawing.Font("MingHei", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.process_num.Font = new System.Drawing.Font("明黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.process_num.ForeColor = System.Drawing.Color.Lime;
-            this.process_num.Location = new System.Drawing.Point(901, 27);
+            this.process_num.Location = new System.Drawing.Point(720, 27);
             this.process_num.Name = "process_num";
             this.process_num.Size = new System.Drawing.Size(121, 23);
             this.process_num.TabIndex = 7;
@@ -502,7 +500,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // INFO
             // 
             this.INFO.AutoSize = true;
-            this.INFO.Font = new System.Drawing.Font("NSimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.INFO.Font = new System.Drawing.Font("新宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.INFO.Location = new System.Drawing.Point(7, 24);
             this.INFO.Name = "INFO";
             this.INFO.Size = new System.Drawing.Size(22, 14);
@@ -519,10 +517,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(50, 50);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CreateProductOrder_Btn,
             this.LoadSaleOrders_btn,
             this.OrderSelect_Btn,
-            this.Find_Button,
             this.DBCache_Button,
             this.PLC_Communication_Button,
             this.BigPackFormLoad_Button,
@@ -538,19 +534,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(1172, 85);
+            this.toolStrip1.Size = new System.Drawing.Size(991, 85);
             this.toolStrip1.TabIndex = 27;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // CreateProductOrder_Btn
-            // 
-            this.CreateProductOrder_Btn.AutoSize = false;
-            this.CreateProductOrder_Btn.Image = ((System.Drawing.Image)(resources.GetObject("CreateProductOrder_Btn.Image")));
-            this.CreateProductOrder_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CreateProductOrder_Btn.Name = "CreateProductOrder_Btn";
-            this.CreateProductOrder_Btn.Size = new System.Drawing.Size(84, 68);
-            this.CreateProductOrder_Btn.Text = "创建工单";
-            this.CreateProductOrder_Btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // LoadSaleOrders_btn
             // 
@@ -575,16 +561,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.OrderSelect_Btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.OrderSelect_Btn.ToolTipText = "工单查询";
             this.OrderSelect_Btn.Click += new System.EventHandler(this.OrderSelect_Btn_Click);
-            // 
-            // Find_Button
-            // 
-            this.Find_Button.AutoSize = false;
-            this.Find_Button.Image = ((System.Drawing.Image)(resources.GetObject("Find_Button.Image")));
-            this.Find_Button.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Find_Button.Name = "Find_Button";
-            this.Find_Button.Size = new System.Drawing.Size(84, 68);
-            this.Find_Button.Text = "IMEI查找";
-            this.Find_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // DBCache_Button
             // 
@@ -701,7 +677,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label3.Location = new System.Drawing.Point(1052, 36);
+            this.label3.Location = new System.Drawing.Point(888, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 12);
             this.label3.TabIndex = 37;
@@ -711,7 +687,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.User_Label.AutoSize = true;
             this.User_Label.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.User_Label.Location = new System.Drawing.Point(1126, 36);
+            this.User_Label.Location = new System.Drawing.Point(963, 36);
             this.User_Label.Name = "User_Label";
             this.User_Label.Size = new System.Drawing.Size(0, 12);
             this.User_Label.TabIndex = 38;
@@ -720,7 +696,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1178, 766);
+            this.ClientSize = new System.Drawing.Size(997, 698);
             this.ControlBox = false;
             this.Controls.Add(this.User_Label);
             this.Controls.Add(this.label3);
@@ -794,7 +770,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.Label process_num;
         private System.Windows.Forms.Label INFO;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton CreateProductOrder_Btn;
         private System.Windows.Forms.ToolStripButton LoadSaleOrders_btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton BackPage_Btn;
@@ -808,7 +783,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.ToolStripButton OrderSelect_Btn;
-        private ToolStripButton Find_Button;
         private ToolStripButton DBCache_Button;
         private Label label3;
         private Label User_Label;

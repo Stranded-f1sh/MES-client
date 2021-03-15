@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using ManufacturingExecutionSystem.MES.Client.Utility.Enum;
+using Newtonsoft.Json.Linq;
 
 namespace ManufacturingExecutionSystem.MES.Client.Model
 {
@@ -36,5 +37,9 @@ namespace ManufacturingExecutionSystem.MES.Client.Model
         [DataMember]
         [Description("接口调用权限")]
         public String Token { get; set; }
+
+        [DataMember]
+        [Description("用户组")]
+        public JToken UserList { get; set; }
     }
 }

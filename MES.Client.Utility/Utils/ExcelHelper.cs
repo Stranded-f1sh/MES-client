@@ -9,6 +9,10 @@ using NPOI.SS.Util;
 using NPOI.XSSF.UserModel;
 using System.Windows.Forms;
 using System.IO;
+using NPOI.XSSF.Streaming;
+using System.Web;
+using NPOI.POIFS.FileSystem;
+using NPOI.HSSF.UserModel;
 
 namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
 {
@@ -28,6 +32,8 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
 
             int RowIndex; // 行索引
             int ColumIndex; // 列索引
+
+            
 
             // 创建第一行
             IRow row = sheet1.CreateRow(0);
@@ -72,6 +78,12 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
             }
 
             excelFilePath += excelFileName;
+
+
+            while (File.Exists(excelFilePath + ".xlsx"))
+            {
+                excelFilePath += "I";
+            }
 
             FileStream sw = File.Create(excelFilePath + ".xlsx");
 

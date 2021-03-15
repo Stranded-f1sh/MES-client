@@ -40,6 +40,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             mainModuleFileName += "FrxModelFiles\\bigpackList.frx";
 
             _bigPackContext = new BigPack {FrxFileModel = mainModuleFileName};
+            _mut = new Mutex();
         }
 
 
@@ -74,6 +75,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         // 加载销售单
         private void LoadSaleOrders_btn_Click(object sender, EventArgs e)
         {
+            _jTokenBigPack = null;
+            PackLinkDeviceList_DataGridView.Rows.Clear();
+            BigPackForm_Load(sender, e);
+
             SaleOrderInfo = new SaleOrder();
             
             SaleOrdersSelectionForm saleOrdersSelectionForm = new SaleOrdersSelectionForm(_process, _loginInfo)
@@ -83,7 +88,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             };
             saleOrdersSelectionForm.ShowDialog();
 
-            if (SaleOrderInfo.OrderNo == String.Empty) return;
+            if (SaleOrderInfo.Id < uint.MinValue) return;
             label2.Text = SaleOrderInfo.OrderNo;
 
             // 预设计划大箱包装数量
@@ -93,11 +98,19 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         }
 
 
-
+        private static Mutex _mut; // 互斥锁
         private void textBox1_KeyPress(object sender, KeyPressEventArgs eventArgs)
         {
             if (eventArgs != null && eventArgs.KeyChar != Convert.ToChar(13)) return;
-            String imei = textBox1.Text;
+            eventArgs.Handled = true;
+
+            _mut?.WaitOne();
+
+            CodeScanHelper codeScanHelper = new CodeScanHelper();
+            string imei = codeScanHelper.CodeScanFilter(textBox1.Text, out String pinDian);
+
+            if (imei == string.Empty | imei == null) return;
+
             textBox1.Enabled = false;
             bool ret = NetServiceTools.InternetGetConnectedState();
             if (ret)
@@ -108,6 +121,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             {
                 MessageBox.Show(@"服务器连接不稳定");
             }
+            _mut?.ReleaseMutex();
             textBox1.Enabled = true;
             textBox1.Clear();
             textBox1.Focus();
@@ -136,6 +150,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 }
                 comboBox1.Text = comboBox1?.Items[0]?.ToString();
                 comboBox1_SelectionChangeCommitted(sender, e);
+            }
+            else
+            {
+                _rep = new CodeScanHelper().PreviewFrxImg(_bigPackContext, previewControl1);
             }
             return (_jTokenBigPack ?? -1).Count();
         }
@@ -210,11 +228,15 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         private void PackLink(String imei)
         {
+            LogInfoHelper _logger = new LogInfoHelper();
+
+            _logger.printLog("大箱绑定，IMEI扫描：" + imei + "\r\n" + "大箱id:"+_bigPackContext.PackId + "\r\n", LogInfoHelper.LOG_TYPE.LOG_INFO);
+
             int deviceCount = DeviceRefresh(_bigPackContext);
             PackService packService = new PackService();
 
             // 如果大箱单下没有，并且销售单没有大箱单，说明此销售订单没有大箱单记录
-            if (deviceCount <= 0 && !_jTokenBigPack.HasValues)
+            if (deviceCount <= 0 && _jTokenBigPack != null && !_jTokenBigPack.HasValues )
             {
                 if (SaleOrderInfo == null) return;
                 // 调用生成大箱单的接口，并且刷新UI
@@ -237,6 +259,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 if (ret.ToString() != "ok")
                 {
                     MessageBox.Show("此设备已绑定进当前大箱单");
+                    MediaHandler.SyncPlayWAV_Fail();
+                }
+                else
+                {
+                    MediaHandler.SyncPlayWAV_Succ();
                 }
                 deviceCount = DeviceRefresh(_bigPackContext);
             }
@@ -275,6 +302,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             ProcessSelectionForm processSelectionForm = new ProcessSelectionForm(_loginInfo);
             new Thread(delegate () { processSelectionForm.ShowDialog(); }).Start();
             this.Close();
+        }
+
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e != null && e.KeyChar != Convert.ToChar(13)) return;
+            comboBox1_SelectionChangeCommitted(sender, e);
         }
     }
 }

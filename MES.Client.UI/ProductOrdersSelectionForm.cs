@@ -15,17 +15,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private readonly Process _process;
         private int _index = -1;
         private bool _isFond;
-        public ProductOrdersSelectionForm(JToken productOrders, Process process, String tipsSaleOrderNo)
+        public ProductOrdersSelectionForm(JToken productOrders, Process process, int tipsSaleOrderId)
         {
             _productOrders = productOrders;
             _process = process;
             InitializeComponent();
 
-            if (tipsSaleOrderNo == String.Empty || _productOrders == null || ProductOrder_TextBox == null) return;
+            if (tipsSaleOrderId == 0 || _productOrders == null || ProductOrder_TextBox == null) return;
             foreach (var jTokenItem in _productOrders)
             {
-                Console.WriteLine(jTokenItem?.SelectToken("saleOrderno"));
-                if (jTokenItem?.SelectToken("saleOrderno")?.ToString() != tipsSaleOrderNo) continue;
+                if (jTokenItem?.SelectToken("saleOrderid")?.ToString() != tipsSaleOrderId.ToString()) continue;
                 ProductOrder_TextBox.Text = jTokenItem?.SelectToken("id")?.ToString();
                 break;
             }

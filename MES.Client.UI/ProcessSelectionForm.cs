@@ -224,5 +224,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             new Thread(delegate () { packForm.ShowDialog(); }).Start();
             this.Close();
         }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Environment.Exit(Environment.ExitCode);
+        }
     }
 }

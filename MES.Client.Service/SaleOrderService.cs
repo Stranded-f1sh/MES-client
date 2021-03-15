@@ -1,6 +1,7 @@
 ﻿using System;
 using ManufacturingExecutionSystem.MES.Client.Api;
 using ManufacturingExecutionSystem.MES.Client.Model;
+using ManufacturingExecutionSystem.MES.Client.Utility.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using JsonConverter = ManufacturingExecutionSystem.MES.Client.Utility.Utils.MyJsonConverter;
@@ -9,6 +10,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
 {
     class SaleOrderService
     {
+        LogInfoHelper _logger = new LogInfoHelper();
 
         public JToken GetSaleOrderInfo(LoginInfo loginInfo, string saleOrderId)
         {
@@ -74,8 +76,9 @@ namespace ManufacturingExecutionSystem.MES.Client.Service
         public JToken PublishDevice(LoginInfo loginInfo, Device deviceObject)
         {
             if (deviceObject == null) return null;
-            JObject jObject = SaleOrderApi.PublishDeviceApi(loginInfo, deviceObject.Imei, deviceObject.SaleOrderId);
 
+            JObject jObject = SaleOrderApi.PublishDeviceApi(loginInfo, deviceObject.Imei, deviceObject.SaleOrderId);
+            _logger.printLog("转正式客户：" + jObject + "\r\n" + deviceObject?.Imei + "\r\n 销售单id："+ deviceObject.SaleOrderId + "\r\n", LogInfoHelper.LOG_TYPE.LOG_INFO);
             return JsonConverter.GetJToken(jObject);
         }
 

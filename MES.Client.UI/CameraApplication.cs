@@ -547,6 +547,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
 
 
+        public void ObjectDetectionFunc(IntPtr _bufferForDriver)
+        {
+            Bitmap CameraMovieStreamBmp = SaveImgAsBmp();
+
+        }
+
+
+
         // ch:去除自定义的像素格式 | en:Remove custom pixel formats
         private static bool RemoveCustomPixelFormats(MyCamera.MvGvspPixelType enPixelFormat)
         {
@@ -782,24 +790,38 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         public void btn_SaveAsBmp_Click(object sender, EventArgs e)
         {
-            string path = FileSavePath();
-            Bitmap imgBmp = SaveImgAsBmp();
-            MsgInfoClear_Timer?.Start();
-            if (imgBmp == null)
+            try
             {
-                MessageBox.Show("未检测到图像输入");
-                return;
+                string path = FileSavePath();
+                Bitmap imgBmp = SaveImgAsBmp();
+                MsgInfoClear_Timer?.Start();
+                if (imgBmp == null)
+                {
+                    MessageBox.Show("未检测到图像输入");
+                    return;
+                }
+                imgBmp.Save(path, ImageFormat.Bmp);
+
+                /*            string p = System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName;
+                            string exeFileName = "ManufacturingExecutionSystem.exe";
+                            p = p.Substring(0, p.Length - exeFileName.Length);
+                            p += "BitMaps\\";
+                            var files = Directory.GetFiles(p);
+                            label_MessageInfo.Text = "已经过的设备数量：" + files.Length.ToString();*/
+                ObjectDetection.imgInput = imgBmp;
+
+                // ObjectDetection.imgInput = new Bitmap("C:\\Users\\Jinyu\\Desktop\\bitm\\000021.bmp");
+                /*            for (int i = 10; i <100; i++)
+                            {
+
+                                Thread.Sleep(1000);
+                            }*/
             }
-            imgBmp.Save(path, ImageFormat.Bmp);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-            ObjectDetection.imgInput = imgBmp;
-
-            // ObjectDetection.imgInput = new Bitmap("C:\\Users\\Jinyu\\Desktop\\bitm\\000021.bmp");
-            /*            for (int i = 10; i <100; i++)
-                        {
-
-                            Thread.Sleep(1000);
-                        }*/
 
         }
 

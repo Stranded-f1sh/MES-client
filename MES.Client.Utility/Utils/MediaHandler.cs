@@ -27,7 +27,7 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
         }
 
 
-        public static void SyncPlayWAV(string status)
+        private static void SyncPlayWAV(string status)
         {
             new Thread(() =>
             {

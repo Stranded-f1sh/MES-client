@@ -45,5 +45,17 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         {
             return Common.BackgroundRequest("/prod-api/order/productDevices?orderId=" + orderId + "&processId=" + processId + "&pageNo="+ pageNo + "&pageSize="+ pageSize, Method.GET, loginInfo?.Token);
         }
+
+
+
+        /// <summary>
+        /// 工序日产量
+        /// </summary>
+        /// <param name="loginInfo"></param>
+        /// <returns></returns>
+        public static JObject ProcessProdcueNumApi(LoginInfo loginInfo)
+        {
+            return Common.BackgroundRequest("/prod-api/order/querytable?table=process_day_count", Method.GET, loginInfo?.Token);
+        }
     }
 }
