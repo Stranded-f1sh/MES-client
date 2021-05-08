@@ -145,13 +145,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 Assembly_Button.ForeColor = Color.DarkGreen;
                 Assembly_Button.BackColor = Color.WhiteSmoke;
             }
-            if (_loginInfo.UserProcessPrivilege.Contains("检验") && !_loginInfo.UserProcessPrivilege.Contains("成品"))
+            if (_loginInfo.UserProcessPrivilege.Contains("检验"))
             {
                 WarehouseInspection_Button.Enabled = true;
                 WarehouseInspection_Button.ForeColor = Color.DarkGreen;
                 WarehouseInspection_Button.BackColor = Color.WhiteSmoke;
             }
-            if (_loginInfo.UserProcessPrivilege.Contains("成品"))
+            if (_loginInfo.UserProcessPrivilege.Contains("成品检验"))
             {
                 OutboundInspection_Button.Enabled = true;
                 OutboundInspection_Button.ForeColor = Color.DarkGreen;
@@ -203,7 +203,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Close();
         }
 
+        //入库检验
+        private void WarehouseInspection_Button_Click(object sender, EventArgs e)
+        {
+            Process process = new Process { SelectedProcessName = ProcessNameEnum.WarehouseInspection};
+            WarehouseInspectionForm warehouseInspectionForm = new WarehouseInspectionForm(_loginInfo);
 
+            Thread invokeThread = new Thread(delegate () { warehouseInspectionForm.ShowDialog(); });
+            invokeThread.SetApartmentState(ApartmentState.STA);
+            invokeThread.Start();
+            this.Close();
+        }
 
         // 出库
         private void OutBound_Button_Click(object sender, EventArgs e)
@@ -213,6 +223,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             new Thread(delegate () { outBoundForm.ShowDialog(); }).Start();
             this.Close();
         }
+
 
 
 
@@ -231,5 +242,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Close();
             Environment.Exit(Environment.ExitCode);
         }
+
+
     }
 }

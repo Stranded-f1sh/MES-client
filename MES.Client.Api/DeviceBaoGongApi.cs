@@ -18,7 +18,6 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         }
 
 
-
         /// <summary>
         /// 获取所有设备报工记录接口
         /// </summary>

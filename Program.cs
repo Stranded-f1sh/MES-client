@@ -5,45 +5,24 @@ using OpenCvSharp;
 using ObjectDetectionProgram.ImageIdentification;
 using System.Drawing;
 using System.Text;
-using System.IO;
-using ManufacturingExecutionSystem.MES.Client.Utility.Utils;
-using System.Text.RegularExpressions;
+using ManufacturingExecutionSystem.ImageIdentification;
+using System.Collections.Generic;
+using FastReport;
 
 namespace ManufacturingExecutionSystem
 {
     internal static class Program
     {
-        private static StringBuilder _appendStrings; // COM口读取数据缓存buffer
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
+        ///
         [STAThread]
         public static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
-
-
-            /*            String BLECONN_PATTERN = @"[#]*\r\n+\b+battery_level:\d*\r\n+\b+CSQ:\d*\r\n+\b+IMEI:\d*\r\n+\b+IMSI:\d*\r\n+\b+sensor_value:\d*\r\n+\b+warn_upper:\d*\D\s+\b+warn_lower:\d*\D\s+\b+warn_dt:\d*\r\n+\b+IOT_COM\s+\b+cmd_index:\d*\r\n";
-                        _appendStrings = new StringBuilder();
-                        _appendStrings.Append("############################\r\nbattery_level:94\r\nCSQ:0\r\nIMEI:868474043251105\r\nIMSI:4601130152619060\r\nsensor_value:1\r\nwarn_upper:0, warn_lower:0, warn_dt:0\r\nIOT_COM cmd_index:14\r\n############################\r\nbattery_level:55\r\nCSQ:10\r\nIMEI:123456789123456\r\nIMSI:4601130152619061\r\nsensor_value:1");
-
-
-                        Console.WriteLine("输出缓存区内容");
-                        Console.WriteLine(_appendStrings);
-
-                        foreach (Match match in Regex.Matches(_appendStrings.ToString(), BLECONN_PATTERN))
-                        {
-
-                            Console.WriteLine("输出值");
-                            Console.WriteLine(match.Value);
-
-                            _appendStrings = _appendStrings.Remove(match.Index, match.Length);
-
-                            Console.WriteLine("输出删减后的缓存区内容");
-                            Console.WriteLine(_appendStrings);
-                        }*/
         }
 
 

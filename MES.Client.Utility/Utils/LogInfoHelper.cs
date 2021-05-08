@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,9 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
 {
     class LogInfoHelper
     {
-        private StreamWriter LogFile = null;
-        private static LogInfoHelper _instance = null;
-        private string LogFilePath = null;
+        private StreamWriter LogFile;
+        private static LogInfoHelper _instance;
+        private string LogFilePath;
 
 
         /// <summary>
@@ -31,30 +32,23 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
 
         public static LogInfoHelper GetInstence()
         {
-            if (null == _instance)
-            {
-                _instance = new LogInfoHelper();
-            }
-            return _instance;
+            return _instance ?? (_instance = new LogInfoHelper());
         }
-
-
-        public LogInfoHelper() { }
-
+        
 
         /// <summary>
         /// 创建日志文件
         /// </summary>
         public void CreateLogFile()
         {
-            string LogFilePath = AppDomain.CurrentDomain.BaseDirectory;
-            string LogFileName = (DateTime.Now.Year).ToString() + '-' + (DateTime.Now.Month).ToString() + '-' + (DateTime.Now.Day).ToString() + "_Log.log";
-            LogFilePath += "logFile\\";
-            if (!Directory.Exists(LogFilePath))
+            string logFilePath = AppDomain.CurrentDomain.BaseDirectory;
+            string LogFileName = (DateTime.Now.Year).ToString() + '-' + (DateTime.Now.Month) + '-' + (DateTime.Now.Day) + "_Log.log";
+            logFilePath += "logFile\\";
+            if (!Directory.Exists(logFilePath))
             {
-                Directory.CreateDirectory(LogFilePath);
+                Directory.CreateDirectory(logFilePath);
             }
-            this.LogFilePath = LogFilePath + LogFileName;
+            this.LogFilePath = logFilePath + LogFileName;
         }
 
 
@@ -74,35 +68,36 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
                 {
                     case LOG_TYPE.LOG_FAIL:
                         {
-                            strlogInfo = String.Format("[{0}] FAIL:{1}", DateTime.Now.ToString(), strLogInfo);
+                            strlogInfo = $"[{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] FAIL:{strLogInfo}";
                         }
                         break;
 
                     case LOG_TYPE.LOG_ERROR:
                         {
-                            strlogInfo = String.Format("[{0}] ERROR:{1}", DateTime.Now.ToString(), strLogInfo);
+                            strlogInfo = $"[{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] ERROR:{strLogInfo}";
                         }
                         break;
 
                     case LOG_TYPE.LOG_EXCEPTION:
                         {
-                            strlogInfo = String.Format("[{0}] EXCEPTION:{1}", DateTime.Now.ToString(), strLogInfo);
+                            strlogInfo = $"[{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] EXCEPTION:{strLogInfo}";
                         }
                         break;
 
                     case LOG_TYPE.LOG_WARN:
                         {
-                            strlogInfo = String.Format("[{0}] WARN:{1}", DateTime.Now.ToString(), strLogInfo);
+                            strlogInfo = $"[{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] WARN:{strLogInfo}";
                         }
                         break;
 
                     case LOG_TYPE.LOG_INFO:
                         {
-                            strlogInfo = String.Format("[{0}] INFO:{1}", DateTime.Now.ToString(), strLogInfo);
+                            strlogInfo = $"[{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] INFO:{strLogInfo}";
                         }
                         break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(logType), logType, null);
                 }
-
                 LogFile.WriteLine(strlogInfo);
                 LogFile.Close();
             }

@@ -33,7 +33,6 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         public static JObject GetSaleOrdersApi(LoginInfo loginInfo, int selectedYear)
         {
             return Common.BackgroundRequest("/prod-api/order/monthsaleorders?year=" + selectedYear + "&month=-1", Method.GET, loginInfo?.Token);
-            
         }
 
 

@@ -50,7 +50,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.process_num = new System.Windows.Forms.Label();
             this.INFO = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.FindData_TextBox = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -72,8 +72,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.DeviceType_ComboBox = new System.Windows.Forms.ComboBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.DataUpon_Btn = new System.Windows.Forms.Button();
             this.DataReceive_Btn = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.DeviceClean_Btn = new System.Windows.Forms.Button();
@@ -152,7 +155,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader32 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.InspactData_ListView = new System.Windows.Forms.ListView();
             this.Exit_Form = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -320,6 +323,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.toolStripButton2.Size = new System.Drawing.Size(84, 68);
             this.toolStripButton2.Text = "导出";
             this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripSeparator
             // 
@@ -374,7 +378,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.LightGray;
-            this.groupBox5.Controls.Add(this.textBox12);
+            this.groupBox5.Controls.Add(this.FindData_TextBox);
             this.groupBox5.Controls.Add(this.groupBox8);
             this.groupBox5.Location = new System.Drawing.Point(3, 146);
             this.groupBox5.Name = "groupBox5";
@@ -382,12 +386,13 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox5.TabIndex = 38;
             this.groupBox5.TabStop = false;
             // 
-            // textBox12
+            // FindData_TextBox
             // 
-            this.textBox12.Location = new System.Drawing.Point(107, 25);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(256, 21);
-            this.textBox12.TabIndex = 20;
+            this.FindData_TextBox.Location = new System.Drawing.Point(107, 25);
+            this.FindData_TextBox.Name = "FindData_TextBox";
+            this.FindData_TextBox.Size = new System.Drawing.Size(256, 21);
+            this.FindData_TextBox.TabIndex = 20;
+            this.FindData_TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FindData_TextBox_KeyPress);
             // 
             // groupBox8
             // 
@@ -609,6 +614,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LightGray;
+            this.groupBox1.Controls.Add(this.DeviceType_ComboBox);
+            this.groupBox1.Controls.Add(this.label33);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.groupBox7);
             this.groupBox1.Controls.Add(this.groupBox6);
@@ -626,6 +633,28 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "通讯区";
             // 
+            // DeviceType_ComboBox
+            // 
+            this.DeviceType_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DeviceType_ComboBox.FormattingEnabled = true;
+            this.DeviceType_ComboBox.Items.AddRange(new object[] {
+            "01P",
+            "04P"});
+            this.DeviceType_ComboBox.Location = new System.Drawing.Point(82, 106);
+            this.DeviceType_ComboBox.Name = "DeviceType_ComboBox";
+            this.DeviceType_ComboBox.Size = new System.Drawing.Size(94, 20);
+            this.DeviceType_ComboBox.TabIndex = 17;
+            this.DeviceType_ComboBox.SelectedIndexChanged += new System.EventHandler(this.DeviceType_ComboBox_SelectedIndexChanged);
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(5, 109);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(53, 12);
+            this.label33.TabIndex = 16;
+            this.label33.Text = "设备型号";
+            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -639,6 +668,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // groupBox7
             // 
             this.groupBox7.BackColor = System.Drawing.Color.Silver;
+            this.groupBox7.Controls.Add(this.DataUpon_Btn);
             this.groupBox7.Controls.Add(this.DataReceive_Btn);
             this.groupBox7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBox7.ForeColor = System.Drawing.Color.Black;
@@ -647,15 +677,31 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.groupBox7.Size = new System.Drawing.Size(187, 41);
             this.groupBox7.TabIndex = 14;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "数据接收";
+            this.groupBox7.Text = "数据接收/上传";
+            // 
+            // DataUpon_Btn
+            // 
+            this.DataUpon_Btn.BackColor = System.Drawing.Color.Ivory;
+            this.DataUpon_Btn.Enabled = false;
+            this.DataUpon_Btn.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.DataUpon_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DataUpon_Btn.ForeColor = System.Drawing.Color.Black;
+            this.DataUpon_Btn.Location = new System.Drawing.Point(102, 14);
+            this.DataUpon_Btn.Name = "DataUpon_Btn";
+            this.DataUpon_Btn.Size = new System.Drawing.Size(75, 23);
+            this.DataUpon_Btn.TabIndex = 10;
+            this.DataUpon_Btn.Text = "数据上传";
+            this.DataUpon_Btn.UseVisualStyleBackColor = false;
+            this.DataUpon_Btn.Click += new System.EventHandler(this.DataUpon_Btn_Click);
             // 
             // DataReceive_Btn
             // 
             this.DataReceive_Btn.BackColor = System.Drawing.Color.Ivory;
+            this.DataReceive_Btn.Enabled = false;
             this.DataReceive_Btn.FlatAppearance.BorderColor = System.Drawing.Color.Green;
             this.DataReceive_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DataReceive_Btn.ForeColor = System.Drawing.Color.Black;
-            this.DataReceive_Btn.Location = new System.Drawing.Point(57, 12);
+            this.DataReceive_Btn.Location = new System.Drawing.Point(11, 14);
             this.DataReceive_Btn.Name = "DataReceive_Btn";
             this.DataReceive_Btn.Size = new System.Drawing.Size(75, 23);
             this.DataReceive_Btn.TabIndex = 9;
@@ -680,6 +726,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // DeviceClean_Btn
             // 
             this.DeviceClean_Btn.BackColor = System.Drawing.Color.Ivory;
+            this.DeviceClean_Btn.Enabled = false;
             this.DeviceClean_Btn.FlatAppearance.BorderColor = System.Drawing.Color.Green;
             this.DeviceClean_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeviceClean_Btn.ForeColor = System.Drawing.Color.Black;
@@ -694,6 +741,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // DeviceLimitAndScan_Btn
             // 
             this.DeviceLimitAndScan_Btn.BackColor = System.Drawing.Color.Ivory;
+            this.DeviceLimitAndScan_Btn.Enabled = false;
             this.DeviceLimitAndScan_Btn.FlatAppearance.BorderColor = System.Drawing.Color.Green;
             this.DeviceLimitAndScan_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeviceLimitAndScan_Btn.ForeColor = System.Drawing.Color.Black;
@@ -739,16 +787,17 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             "7",
             "8",
             "9"});
-            this.RoutePosition_ComboBox.Location = new System.Drawing.Point(51, 78);
+            this.RoutePosition_ComboBox.Location = new System.Drawing.Point(82, 67);
             this.RoutePosition_ComboBox.Name = "RoutePosition_ComboBox";
             this.RoutePosition_ComboBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.RoutePosition_ComboBox.Size = new System.Drawing.Size(94, 20);
             this.RoutePosition_ComboBox.TabIndex = 6;
+            this.RoutePosition_ComboBox.SelectedIndexChanged += new System.EventHandler(this.RoutePosition_ComboBox_SelectedIndexChanged);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 81);
+            this.label8.Location = new System.Drawing.Point(5, 70);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 12);
             this.label8.TabIndex = 5;
@@ -865,10 +914,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Value10_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Value10_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Value10_TextBox.Location = new System.Drawing.Point(850, 133);
-            this.Value10_TextBox.Multiline = true;
             this.Value10_TextBox.Name = "Value10_TextBox";
-            this.Value10_TextBox.Size = new System.Drawing.Size(60, 21);
+            this.Value10_TextBox.Size = new System.Drawing.Size(60, 24);
             this.Value10_TextBox.TabIndex = 34;
+            this.Value10_TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Value10_TextBox_KeyPress);
             // 
             // label9
             // 
@@ -886,7 +935,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Imei_10_TextBox.Font = new System.Drawing.Font("Times New Roman", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Imei_10_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Imei_10_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.Imei_10_TextBox.Location = new System.Drawing.Point(544, 134);
+            this.Imei_10_TextBox.Location = new System.Drawing.Point(544, 132);
             this.Imei_10_TextBox.Name = "Imei_10_TextBox";
             this.Imei_10_TextBox.Size = new System.Drawing.Size(291, 24);
             this.Imei_10_TextBox.TabIndex = 32;
@@ -898,10 +947,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Value9_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Value9_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Value9_TextBox.Location = new System.Drawing.Point(850, 106);
-            this.Value9_TextBox.Multiline = true;
             this.Value9_TextBox.Name = "Value9_TextBox";
-            this.Value9_TextBox.Size = new System.Drawing.Size(60, 21);
+            this.Value9_TextBox.Size = new System.Drawing.Size(60, 24);
             this.Value9_TextBox.TabIndex = 30;
+            this.Value9_TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Value9_TextBox_KeyPress);
             // 
             // Value8_TextBox
             // 
@@ -910,10 +959,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Value8_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Value8_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Value8_TextBox.Location = new System.Drawing.Point(850, 77);
-            this.Value8_TextBox.Multiline = true;
             this.Value8_TextBox.Name = "Value8_TextBox";
-            this.Value8_TextBox.Size = new System.Drawing.Size(60, 21);
+            this.Value8_TextBox.Size = new System.Drawing.Size(60, 24);
             this.Value8_TextBox.TabIndex = 31;
+            this.Value8_TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Value8_TextBox_KeyPress);
             // 
             // Value7_TextBox
             // 
@@ -922,10 +971,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Value7_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Value7_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Value7_TextBox.Location = new System.Drawing.Point(850, 46);
-            this.Value7_TextBox.Multiline = true;
             this.Value7_TextBox.Name = "Value7_TextBox";
-            this.Value7_TextBox.Size = new System.Drawing.Size(60, 21);
+            this.Value7_TextBox.Size = new System.Drawing.Size(60, 24);
             this.Value7_TextBox.TabIndex = 29;
+            this.Value7_TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Value7_TextBox_KeyPress);
             // 
             // Value6_TextBox
             // 
@@ -934,10 +983,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Value6_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Value6_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Value6_TextBox.Location = new System.Drawing.Point(850, 16);
-            this.Value6_TextBox.Multiline = true;
             this.Value6_TextBox.Name = "Value6_TextBox";
-            this.Value6_TextBox.Size = new System.Drawing.Size(60, 21);
+            this.Value6_TextBox.Size = new System.Drawing.Size(60, 24);
             this.Value6_TextBox.TabIndex = 20;
+            this.Value6_TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Value6_TextBox_KeyPress);
             // 
             // label14
             // 
@@ -985,7 +1034,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Imei_9_TextBox.Font = new System.Drawing.Font("Times New Roman", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Imei_9_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Imei_9_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.Imei_9_TextBox.Location = new System.Drawing.Point(544, 107);
+            this.Imei_9_TextBox.Location = new System.Drawing.Point(544, 105);
             this.Imei_9_TextBox.Name = "Imei_9_TextBox";
             this.Imei_9_TextBox.Size = new System.Drawing.Size(291, 24);
             this.Imei_9_TextBox.TabIndex = 24;
@@ -997,7 +1046,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Imei_8_TextBox.Font = new System.Drawing.Font("Times New Roman", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Imei_8_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Imei_8_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.Imei_8_TextBox.Location = new System.Drawing.Point(544, 78);
+            this.Imei_8_TextBox.Location = new System.Drawing.Point(544, 76);
             this.Imei_8_TextBox.Name = "Imei_8_TextBox";
             this.Imei_8_TextBox.Size = new System.Drawing.Size(291, 24);
             this.Imei_8_TextBox.TabIndex = 23;
@@ -1009,7 +1058,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Imei_7_TextBox.Font = new System.Drawing.Font("Times New Roman", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Imei_7_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Imei_7_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.Imei_7_TextBox.Location = new System.Drawing.Point(544, 47);
+            this.Imei_7_TextBox.Location = new System.Drawing.Point(544, 45);
             this.Imei_7_TextBox.Name = "Imei_7_TextBox";
             this.Imei_7_TextBox.Size = new System.Drawing.Size(291, 24);
             this.Imei_7_TextBox.TabIndex = 22;
@@ -1021,7 +1070,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Imei_6_TextBox.Font = new System.Drawing.Font("Times New Roman", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Imei_6_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Imei_6_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.Imei_6_TextBox.Location = new System.Drawing.Point(544, 17);
+            this.Imei_6_TextBox.Location = new System.Drawing.Point(544, 15);
             this.Imei_6_TextBox.Name = "Imei_6_TextBox";
             this.Imei_6_TextBox.Size = new System.Drawing.Size(291, 24);
             this.Imei_6_TextBox.TabIndex = 21;
@@ -1034,10 +1083,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Value5_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Value5_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Value5_TextBox.Location = new System.Drawing.Point(372, 133);
-            this.Value5_TextBox.Multiline = true;
             this.Value5_TextBox.Name = "Value5_TextBox";
-            this.Value5_TextBox.Size = new System.Drawing.Size(60, 21);
+            this.Value5_TextBox.Size = new System.Drawing.Size(60, 24);
             this.Value5_TextBox.TabIndex = 19;
+            this.Value5_TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Value5_TextBox_KeyPress);
             // 
             // label6
             // 
@@ -1055,7 +1104,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Imei_5_TextBox.Font = new System.Drawing.Font("Times New Roman", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Imei_5_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Imei_5_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.Imei_5_TextBox.Location = new System.Drawing.Point(66, 134);
+            this.Imei_5_TextBox.Location = new System.Drawing.Point(66, 131);
             this.Imei_5_TextBox.Name = "Imei_5_TextBox";
             this.Imei_5_TextBox.Size = new System.Drawing.Size(291, 24);
             this.Imei_5_TextBox.TabIndex = 17;
@@ -1068,10 +1117,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Value4_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Value4_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Value4_TextBox.Location = new System.Drawing.Point(372, 106);
-            this.Value4_TextBox.Multiline = true;
             this.Value4_TextBox.Name = "Value4_TextBox";
-            this.Value4_TextBox.Size = new System.Drawing.Size(60, 21);
+            this.Value4_TextBox.Size = new System.Drawing.Size(60, 24);
             this.Value4_TextBox.TabIndex = 16;
+            this.Value4_TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Value4_TextBox_KeyPress);
             // 
             // Value3_TextBox
             // 
@@ -1080,10 +1129,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Value3_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Value3_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Value3_TextBox.Location = new System.Drawing.Point(372, 77);
-            this.Value3_TextBox.Multiline = true;
             this.Value3_TextBox.Name = "Value3_TextBox";
-            this.Value3_TextBox.Size = new System.Drawing.Size(60, 21);
+            this.Value3_TextBox.Size = new System.Drawing.Size(60, 24);
             this.Value3_TextBox.TabIndex = 16;
+            this.Value3_TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Value3_TextBox_KeyPress);
             // 
             // Value2_TextBox
             // 
@@ -1092,10 +1141,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Value2_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Value2_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Value2_TextBox.Location = new System.Drawing.Point(372, 46);
-            this.Value2_TextBox.Multiline = true;
             this.Value2_TextBox.Name = "Value2_TextBox";
-            this.Value2_TextBox.Size = new System.Drawing.Size(60, 21);
+            this.Value2_TextBox.Size = new System.Drawing.Size(60, 24);
             this.Value2_TextBox.TabIndex = 9;
+            this.Value2_TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Value2_TextBox_KeyPress);
             // 
             // Value1_TextBox
             // 
@@ -1104,10 +1153,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Value1_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Value1_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Value1_TextBox.Location = new System.Drawing.Point(372, 16);
-            this.Value1_TextBox.Multiline = true;
             this.Value1_TextBox.Name = "Value1_TextBox";
-            this.Value1_TextBox.Size = new System.Drawing.Size(60, 21);
+            this.Value1_TextBox.Size = new System.Drawing.Size(60, 24);
             this.Value1_TextBox.TabIndex = 0;
+            this.Value1_TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Value1_TextBox_KeyPress);
             // 
             // label4
             // 
@@ -1155,7 +1204,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Imei_4_TextBox.Font = new System.Drawing.Font("Times New Roman", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Imei_4_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Imei_4_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.Imei_4_TextBox.Location = new System.Drawing.Point(66, 107);
+            this.Imei_4_TextBox.Location = new System.Drawing.Point(66, 104);
             this.Imei_4_TextBox.Name = "Imei_4_TextBox";
             this.Imei_4_TextBox.Size = new System.Drawing.Size(291, 24);
             this.Imei_4_TextBox.TabIndex = 3;
@@ -1167,7 +1216,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Imei_3_TextBox.Font = new System.Drawing.Font("Times New Roman", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Imei_3_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Imei_3_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.Imei_3_TextBox.Location = new System.Drawing.Point(66, 78);
+            this.Imei_3_TextBox.Location = new System.Drawing.Point(66, 75);
             this.Imei_3_TextBox.Name = "Imei_3_TextBox";
             this.Imei_3_TextBox.Size = new System.Drawing.Size(291, 24);
             this.Imei_3_TextBox.TabIndex = 2;
@@ -1179,7 +1228,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Imei_2_TextBox.Font = new System.Drawing.Font("Times New Roman", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Imei_2_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Imei_2_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.Imei_2_TextBox.Location = new System.Drawing.Point(66, 47);
+            this.Imei_2_TextBox.Location = new System.Drawing.Point(66, 44);
             this.Imei_2_TextBox.Name = "Imei_2_TextBox";
             this.Imei_2_TextBox.Size = new System.Drawing.Size(291, 24);
             this.Imei_2_TextBox.TabIndex = 1;
@@ -1191,7 +1240,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Imei_1_TextBox.Font = new System.Drawing.Font("Times New Roman", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Imei_1_TextBox.ForeColor = System.Drawing.Color.DarkRed;
             this.Imei_1_TextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.Imei_1_TextBox.Location = new System.Drawing.Point(66, 17);
+            this.Imei_1_TextBox.Location = new System.Drawing.Point(66, 14);
             this.Imei_1_TextBox.Name = "Imei_1_TextBox";
             this.Imei_1_TextBox.Size = new System.Drawing.Size(291, 24);
             this.Imei_1_TextBox.TabIndex = 0;
@@ -1265,10 +1314,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             this.columnHeader11.Text = "下行程_1";
             // 
-            // listView1
+            // InspactData_ListView
             // 
-            this.listView1.BackColor = System.Drawing.Color.White;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.InspactData_ListView.BackColor = System.Drawing.Color.White;
+            this.InspactData_ListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
@@ -1280,15 +1329,15 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.columnHeader9,
             this.columnHeader10,
             this.columnHeader11});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 480);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1051, 254);
-            this.listView1.TabIndex = 14;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.InspactData_ListView.FullRowSelect = true;
+            this.InspactData_ListView.GridLines = true;
+            this.InspactData_ListView.HideSelection = false;
+            this.InspactData_ListView.Location = new System.Drawing.Point(3, 480);
+            this.InspactData_ListView.Name = "InspactData_ListView";
+            this.InspactData_ListView.Size = new System.Drawing.Size(1051, 254);
+            this.InspactData_ListView.TabIndex = 14;
+            this.InspactData_ListView.UseCompatibleStateImageBehavior = false;
+            this.InspactData_ListView.View = System.Windows.Forms.View.Details;
             // 
             // Exit_Form
             // 
@@ -1311,7 +1360,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1055, 791);
             this.Controls.Add(this.Exit_Form);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.InspactData_ListView);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
@@ -1365,7 +1414,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.Label process_num;
         private System.Windows.Forms.Label INFO;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox FindData_TextBox;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label29;
@@ -1449,7 +1498,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.ColumnHeader columnHeader31;
         private System.Windows.Forms.ColumnHeader columnHeader32;
         private System.Windows.Forms.ColumnHeader columnHeader33;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView InspactData_ListView;
         private System.Windows.Forms.Button Exit_Form;
         private System.Windows.Forms.TextBox Value5_TextBox;
         private System.Windows.Forms.Label label6;
@@ -1469,5 +1518,8 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         private System.Windows.Forms.TextBox Imei_8_TextBox;
         private System.Windows.Forms.TextBox Imei_7_TextBox;
         private System.Windows.Forms.TextBox Imei_6_TextBox;
+        private System.Windows.Forms.Button DataUpon_Btn;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.ComboBox DeviceType_ComboBox;
     }
 }

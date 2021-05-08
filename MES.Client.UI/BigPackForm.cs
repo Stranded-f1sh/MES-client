@@ -290,13 +290,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
 
 
-        private void DataCache_ToolTrips_Button_Click(object sender, EventArgs e)
-        {
-            new CodeScanHelper().PrintLabel(_rep);
-        }
-
-
-
         private void BackProcessSelection_Click(object sender, EventArgs e)
         {
             ProcessSelectionForm processSelectionForm = new ProcessSelectionForm(_loginInfo);
@@ -309,6 +302,11 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         {
             if (e != null && e.KeyChar != Convert.ToChar(13)) return;
             comboBox1_SelectionChangeCommitted(sender, e);
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            new CodeScanHelper().PrintLabel(_rep);
         }
     }
 }

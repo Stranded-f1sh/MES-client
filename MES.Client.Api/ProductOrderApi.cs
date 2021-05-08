@@ -19,6 +19,17 @@ namespace ManufacturingExecutionSystem.MES.Client.Api
         }
 
 
+        public static JObject GetProductOrderInfoApi(LoginInfo loginInfo, int orderId)
+        {
+            return Common.BackgroundRequest("/prod-api/order/productOrders?id=" + orderId, Method.GET, loginInfo?.Token);
+        }
+
+        /// <summary>
+        /// 根据IMEI号获取工单号
+        /// </summary>
+        /// <param name="loginInfo"></param>
+        /// <param name="imei"></param>
+        /// <returns></returns>
         public static JObject FindProductOrderIdByImeiApi(LoginInfo loginInfo, String imei)
         {
             return Common.BackgroundRequest("/prod-api/order/deviceOrder?imei=" + imei, Method.GET, loginInfo?.Token);

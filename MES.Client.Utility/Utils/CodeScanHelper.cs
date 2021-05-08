@@ -302,23 +302,27 @@ namespace ManufacturingExecutionSystem.MES.Client.Utility.Utils
             }
 
             // 订单号
-            if (rep.FindObject("b2") is TableCell tableCell6)
+            if (bigPack.CompanyFullName != "深圳市泰和安科技有限公司")
             {
-                tableCell6.Text = bigPack.OrderNo;
+                if (rep.FindObject("b2") is TableCell tableCell6)
+                {
+                    tableCell6.Text = bigPack.OrderNo;
 
-                if (bigPack.OrderNo?.Length <= 24)
-                {
-                    tableCell6.FontWidthRatio = 1.0F;
-                }
-                else if (bigPack.OrderNo?.Length <= 35 && bigPack.OrderNo?.Length > 24)
-                {
-                    tableCell6.FontWidthRatio = 0.8F;
-                }
-                else if (bigPack.OrderNo?.Length <= 40 && bigPack.OrderNo?.Length > 35)
-                {
-                    tableCell6.FontWidthRatio = 0.6F;
+                    if (bigPack.OrderNo?.Length <= 24)
+                    {
+                        tableCell6.FontWidthRatio = 1.0F;
+                    }
+                    else if (bigPack.OrderNo?.Length <= 35 && bigPack.OrderNo?.Length > 24)
+                    {
+                        tableCell6.FontWidthRatio = 0.8F;
+                    }
+                    else if (bigPack.OrderNo?.Length <= 40 && bigPack.OrderNo?.Length > 35)
+                    {
+                        tableCell6.FontWidthRatio = 0.6F;
+                    }
                 }
             }
+
 
 
             // 编码

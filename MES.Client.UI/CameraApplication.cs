@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using ManufacturingExecutionSystem.ImageIdentification;
 using MvCamCtrl.NET;
 using ObjectDetectionProgram.ImageIdentification;
 
@@ -544,22 +545,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             }
             btn_StartCollect.Enabled = true;
         }
-
-
-
-        public void ObjectDetectionFunc(IntPtr _bufferForDriver)
-        {
-            Bitmap CameraMovieStreamBmp = SaveImgAsBmp();
-
-        }
-
-
-
+        
         // ch:去除自定义的像素格式 | en:Remove custom pixel formats
         private static bool RemoveCustomPixelFormats(MyCamera.MvGvspPixelType enPixelFormat)
         {
             Int32 nResult = ((int)enPixelFormat) & (unchecked((Int32)0x80000000));
-            return 0x80000000 == nResult;
+            return 0x80000000 == (uint)nResult;
         }
 
 
@@ -792,37 +783,20 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         {
             try
             {
-                string path = FileSavePath();
                 Bitmap imgBmp = SaveImgAsBmp();
                 MsgInfoClear_Timer?.Start();
                 if (imgBmp == null)
                 {
-                    MessageBox.Show("未检测到图像输入");
+                    MessageBox.Show(@"未检测到图像输入");
                     return;
                 }
-                imgBmp.Save(path, ImageFormat.Bmp);
 
-                /*            string p = System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName;
-                            string exeFileName = "ManufacturingExecutionSystem.exe";
-                            p = p.Substring(0, p.Length - exeFileName.Length);
-                            p += "BitMaps\\";
-                            var files = Directory.GetFiles(p);
-                            label_MessageInfo.Text = "已经过的设备数量：" + files.Length.ToString();*/
                 ObjectDetection.imgInput = imgBmp;
-
-                // ObjectDetection.imgInput = new Bitmap("C:\\Users\\Jinyu\\Desktop\\bitm\\000021.bmp");
-                /*            for (int i = 10; i <100; i++)
-                            {
-
-                                Thread.Sleep(1000);
-                            }*/
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-
         }
 
         private void CameraApplication_FormClosing(object sender, FormClosingEventArgs e)

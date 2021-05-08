@@ -52,7 +52,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // ProcessSelectionTitle_Label
             // 
             this.ProcessSelectionTitle_Label.AutoSize = true;
-            this.ProcessSelectionTitle_Label.Font = new System.Drawing.Font("Microsoft YaHei", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ProcessSelectionTitle_Label.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ProcessSelectionTitle_Label.Location = new System.Drawing.Point(452, 36);
             this.ProcessSelectionTitle_Label.Name = "ProcessSelectionTitle_Label";
             this.ProcessSelectionTitle_Label.Size = new System.Drawing.Size(110, 31);
@@ -61,7 +61,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("SimSun", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox1.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox1.Location = new System.Drawing.Point(350, 95);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -93,7 +93,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.BurnConfigurition_Button.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.BurnConfigurition_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.BurnConfigurition_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BurnConfigurition_Button.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.BurnConfigurition_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.BurnConfigurition_Button.Location = new System.Drawing.Point(3, 3);
             this.BurnConfigurition_Button.Name = "BurnConfigurition_Button";
             this.BurnConfigurition_Button.Size = new System.Drawing.Size(229, 95);
@@ -107,7 +107,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.CodeRegistration_Button.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.CodeRegistration_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.CodeRegistration_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CodeRegistration_Button.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
+            this.CodeRegistration_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
             this.CodeRegistration_Button.Location = new System.Drawing.Point(238, 3);
             this.CodeRegistration_Button.Name = "CodeRegistration_Button";
             this.CodeRegistration_Button.Size = new System.Drawing.Size(229, 95);
@@ -122,7 +122,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.PowerConsumption_Button.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.PowerConsumption_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.PowerConsumption_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PowerConsumption_Button.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
+            this.PowerConsumption_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
             this.PowerConsumption_Button.Location = new System.Drawing.Point(473, 3);
             this.PowerConsumption_Button.Name = "PowerConsumption_Button";
             this.PowerConsumption_Button.Size = new System.Drawing.Size(229, 95);
@@ -136,7 +136,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.SensorCalibration_Button.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.SensorCalibration_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.SensorCalibration_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SensorCalibration_Button.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SensorCalibration_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.SensorCalibration_Button.Location = new System.Drawing.Point(3, 104);
             this.SensorCalibration_Button.Name = "SensorCalibration_Button";
             this.SensorCalibration_Button.Size = new System.Drawing.Size(229, 95);
@@ -150,7 +150,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Assembly_Button.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.Assembly_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.Assembly_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Assembly_Button.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
+            this.Assembly_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
             this.Assembly_Button.Location = new System.Drawing.Point(238, 104);
             this.Assembly_Button.Name = "Assembly_Button";
             this.Assembly_Button.Size = new System.Drawing.Size(229, 95);
@@ -164,13 +164,14 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.WarehouseInspection_Button.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.WarehouseInspection_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.WarehouseInspection_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WarehouseInspection_Button.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.WarehouseInspection_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.WarehouseInspection_Button.Location = new System.Drawing.Point(473, 104);
             this.WarehouseInspection_Button.Name = "WarehouseInspection_Button";
             this.WarehouseInspection_Button.Size = new System.Drawing.Size(229, 95);
             this.WarehouseInspection_Button.TabIndex = 5;
             this.WarehouseInspection_Button.Text = "入库检验";
             this.WarehouseInspection_Button.UseVisualStyleBackColor = false;
+            this.WarehouseInspection_Button.Click += new System.EventHandler(this.WarehouseInspection_Button_Click);
             // 
             // OutBound_Button
             // 
@@ -178,7 +179,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.OutBound_Button.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.OutBound_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.OutBound_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OutBound_Button.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
+            this.OutBound_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
             this.OutBound_Button.Location = new System.Drawing.Point(3, 205);
             this.OutBound_Button.Name = "OutBound_Button";
             this.OutBound_Button.Size = new System.Drawing.Size(229, 95);
@@ -193,7 +194,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.OutboundInspection_Button.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.OutboundInspection_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.OutboundInspection_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OutboundInspection_Button.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
+            this.OutboundInspection_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
             this.OutboundInspection_Button.Location = new System.Drawing.Point(238, 205);
             this.OutboundInspection_Button.Name = "OutboundInspection_Button";
             this.OutboundInspection_Button.Size = new System.Drawing.Size(229, 95);
@@ -207,7 +208,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Pack_Button.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.Pack_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.Pack_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Pack_Button.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
+            this.Pack_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
             this.Pack_Button.Location = new System.Drawing.Point(473, 205);
             this.Pack_Button.Name = "Pack_Button";
             this.Pack_Button.Size = new System.Drawing.Size(229, 95);
@@ -222,7 +223,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Ship_Button.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.Ship_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.Ship_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Ship_Button.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
+            this.Ship_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
             this.Ship_Button.Location = new System.Drawing.Point(3, 306);
             this.Ship_Button.Name = "Ship_Button";
             this.Ship_Button.Size = new System.Drawing.Size(229, 95);
@@ -236,7 +237,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.Repair_Button.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.Repair_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.Repair_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Repair_Button.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
+            this.Repair_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
             this.Repair_Button.Location = new System.Drawing.Point(238, 306);
             this.Repair_Button.Name = "Repair_Button";
             this.Repair_Button.Size = new System.Drawing.Size(229, 95);
@@ -250,7 +251,7 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             this.button12.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.button12.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
+            this.button12.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
             this.button12.Location = new System.Drawing.Point(473, 306);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(229, 95);

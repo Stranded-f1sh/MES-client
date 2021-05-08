@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using ManufacturingExecutionSystem.ImageIdentification;
 using ManufacturingExecutionSystem.MES.Client.Model;
 using ManufacturingExecutionSystem.MES.Client.Service;
 using ManufacturingExecutionSystem.MES.Client.Utility.Enum;
@@ -892,16 +893,16 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    INFO.Text = ex.Message;
                 }
 
                 try
                 {
                     AutoPackProgramRun(devicePort, scannerPort1, scannerPort2, scannerPort3);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    MessageBox.Show(ex.Message);
+                    // MessageBox.Show(ex.Message);
                 }
 
             }).Start();
@@ -1208,14 +1209,12 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 7);
                 }catch(Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    // MessageBox.Show(ex.Message);
                     INFO.Text = "IsScanner1ReceivedCorrectScanData" + ex.Message;
                     if (serialPort != null)
                     {
                         OpenPort(serialPort, scannerPort1_DataReceivedEventHandler);
                     }
-
-                    Console.WriteLine(ex.Message);
                 }
                 
                 Thread.Sleep(1000);
@@ -1245,7 +1244,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     {
                         OpenPort(serialPort, scannerPort1_DataReceivedEventHandler);
                     }
-                    // Console.WriteLine(ex.Message);
                 }
                 
                 Thread.Sleep(1000);
@@ -1257,13 +1255,10 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         private Boolean IsScanner3ReceivedCorrectScanData(SerialPort serialPort, byte[] xInput)
         {
-            //int reTriedTimes = 0;
             _scanner3IsSent = false;
             do
             {
                 _appendImei3?.Clear();
-                //reTriedTimes++;
-                //if (reTriedTimes > 5) return false;
                 try
                 {
                     serialPort?.Write(xInput ?? Array.Empty<byte>(), 0, 7);
@@ -1281,7 +1276,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
                 Thread.Sleep(1000);
             } while (!_scanner3IsSent);
-
             return true;
         }
 
@@ -1317,49 +1311,64 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     CameraFuncExcute(devicePort);
                 }
 
-                if (catalogItemList?.catalogItemList != null)
+                try
                 {
-                    bool detectionRes = false;
-                    var items = catalogItemList.catalogItemList.GetEnumerator();
-                    while (items.MoveNext())
+                    if (catalogItemList?.catalogItemList != null)
                     {
-                        if (items.Current.Name == "certificate")
+                        bool detectionRes = false;
+                        var items = catalogItemList.catalogItemList.GetEnumerator();
+                        while (items.MoveNext())
                         {
-                            detectionRes = true;
-                            // MessageBox.Show(items.Current.id + " " + items.Current.Name + " " + items.Current.Score);
-                            INFO.Text = items.Current.id + " " + items.Current.Name + " " + items.Current.Score;
                             try
                             {
-                                // MessageBox.Show("准备发N6");
-                                devicePort?.Write(CommandDefinition.N6Connect ?? Array.Empty<byte>(), 0, 8);
-                                Thread.Sleep(2000);
-                                devicePort?.Write(CommandDefinition.N6DisConnect ?? Array.Empty<byte>(), 0, 8);
-                            }
-                            catch
+                                if (items.Current.Name == "certificate")
+                                {
+                                    detectionRes = true;
+                                    // MessageBox.Show(items.Current.id + " " + items.Current.Name + " " + items.Current.Score);
+                                    INFO.Text = items.Current.id + " " + items.Current.Name + " " + items.Current.Score;
+                                    try
+                                    {
+                                        // MessageBox.Show("准备发N6");
+                                        devicePort?.Write(CommandDefinition.N6Connect ?? Array.Empty<byte>(), 0, 8);
+                                        Thread.Sleep(2000);
+                                        devicePort?.Write(CommandDefinition.N6DisConnect ?? Array.Empty<byte>(), 0, 8);
+                                    }
+                                    catch
+                                    {
+                                        try
+                                        {
+                                            // MessageBox.Show("N6 exception");
+                                            Boolean deviceIsOpen = OpenPort(devicePort, devicePort_DataReceivedEventHandler);
+                                            devicePort?.Write(CommandDefinition.N6DisConnect ?? Array.Empty<byte>(), 0, 8);
+                                        }
+                                        catch (Exception exc)
+                                        {
+                                            INFO.Text = exc.Message;
+                                        }
+                                    }
+                                    INFO.Text = "发送N6完成";
+                                    break;
+                                }
+                            }catch(Exception ex)
                             {
-                                try
-                                {
-                                    // MessageBox.Show("N6 exception");
-                                    Boolean deviceIsOpen = OpenPort(devicePort, devicePort_DataReceivedEventHandler);
-                                    devicePort?.Write(CommandDefinition.N6DisConnect ?? Array.Empty<byte>(), 0, 8);
-                                }
-                                catch (Exception exc)
-                                {
-                                    INFO.Text = exc.Message;
-                                }
+                                MessageBox.Show(ex.Message);
                             }
-                            INFO.Text = "发送N6完成";
-                            break;
+                            
+                        }
+                        catalogItemList.catalogItemList = null;
+                        if (detectionRes == false)
+                        {
+                            INFO.Text = @"检测完成，未检测到目标合格证";
+                            Thread.Sleep(1000);
+                            CameraFuncExcute(devicePort);
                         }
                     }
-                    catalogItemList.catalogItemList = null;
-                    if (detectionRes == false)
-                    {
-                        INFO.Text = "检测完成，未检测到目标合格证";
-                        Thread.Sleep(1000);
-                        CameraFuncExcute(devicePort);
-                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex+"???");
+                }
+                
             }
         }
 
@@ -1461,14 +1470,9 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
         {
             ObjectDetectionFuncThread = new Thread(delegate () 
             {
-                try
-                {
-                    ObjectDetectionProgram.ImageIdentification.ObjectDetection.Run(out catalogItemList);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("视觉："+ex.Message);
-                }
+
+                ObjectDetection.Run(out catalogItemList);
+
             });
 
             ObjectDetectionFuncThread.Start();

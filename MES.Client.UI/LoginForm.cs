@@ -17,7 +17,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
             InitializeComponent();
         }
 
-
         private void LoginForm_Load(object sender, EventArgs e)
         {
             UserName_TextBox.AutoCompleteCustomSource = null;
@@ -32,13 +31,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
                     UserName_TextBox.AutoCompleteCustomSource?.Add(dr[1].ToString());
                     PassWord_TextBox.AutoCompleteCustomSource?.Add(dr[2].ToString());
                 }
-
-                foreach (DataRow dr in _userPassWd.Tables[0].Rows)
-                {
-                    UserName_TextBox.Text = dr[1].ToString();
-                    break;
-                }
-
             }
             UserName_TextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
             PassWord_TextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -50,7 +42,6 @@ namespace ManufacturingExecutionSystem.MES.Client.UI
 
         }
 
-        
         private void UserName_TextBox_Enter(object sender, EventArgs e)
         {
             if (UserName_TextBox?.Text == @"UserName")

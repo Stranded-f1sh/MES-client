@@ -29,6 +29,7 @@ namespace ObjectDetectionProgram.ImageIdentification
             _outputFile = outputFile;
 
             _inputImage = inputFile ?? throw new ArgumentNullException(nameof(inputFile));
+
             if (IsPixelFormatIndexed(_inputImage.PixelFormat))
             {
                 _bitmap = new Bitmap(_inputImage.Width, _inputImage.Height);
@@ -38,7 +39,10 @@ namespace ObjectDetectionProgram.ImageIdentification
             }
             else
             {
-                _graphics = Graphics.FromImage(_inputImage);
+                _bitmap = new Bitmap(_inputImage.Width, _inputImage.Height);
+                _graphics = Graphics.FromImage(_bitmap);
+                var imageRectangle = new Rectangle(new Point(0, 0), new Size(_inputImage.Width, _inputImage.Height));
+                _graphics.DrawImage(_inputImage, imageRectangle);
             }
         }
 
@@ -113,6 +117,7 @@ namespace ObjectDetectionProgram.ImageIdentification
                         }
                         int value = Convert.ToInt32(classes[i, j]);
                         CatalogItem catalogItem = catalogItems.FirstOrDefault(item => item.Id == value);
+                        //if (catalogItem == null) return null;
                         editor.AddBox(xMin, xMax, yMin, yMax, $"{catalogItem?.Name} : {(scores[i, j] * 100):0}%");
                         ObjectDetectionCatalogItem objectDetectionCatalogItem = new ObjectDetectionCatalogItem
                         {
@@ -154,7 +159,7 @@ namespace ObjectDetectionProgram.ImageIdentification
             _graphics.DrawRectangle(pen, left, top, right - left, bottom - top);
             var font = new Font(_fontFamily, _fontSize);
             SizeF size = _graphics.MeasureString(text, font);
-            _graphics.DrawString(text, font, brush, new PointF(left, top - size.Height));
+            _graphics.DrawString(text, font, brush, new PointF(left, top + size.Height));
         }
 
 
